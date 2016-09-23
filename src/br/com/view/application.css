@@ -1,0 +1,43 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*	cores usadas
+ * 	#00B348 VERDE
+ * 	#E08A2C LARANJA
+ * 	#666 CINZA
+ *
+ */
+ *{
+ 	-fx-text-fill: #666;
+ }
+ stackPane {
+    -fx-border-width: 2px;
+    -fx-border-color: red;
+
+    /* didn't work */
+   -fx-hgap: 100%;
+   -fx-vgap: 100%;
+}
+.border{
+	-fx-border-color: #666;
+}
+#btnEntrar{
+	-fx-background-color: #FFF;
+	-fx-border-color: #00B348;
+	-fx-border-radius: 5;
+	-fx-text-fill: #00B348;
+}
+#btnEntrar:focused{
+	-fx-background-color: #00B348 #FFF ;
+	-fx-text-fill: #FFF;
+}
+
+TextField, PasswordField{
+	-fx-border-color: #E08A2C;
+	-fx-border-radius: 5;
+	-fx-text-fill: #666;
+}
+.focus:focused{
+	-fx-background-color: #FFF #E08A2C;
+	-fx-border-color: #E08A2C;
+}
+
+

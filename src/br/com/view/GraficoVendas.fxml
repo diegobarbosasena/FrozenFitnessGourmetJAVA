@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="550.0" minWidth="900.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
+   <children>
+      <ImageView fitHeight="107.0" fitWidth="240.0" layoutX="30.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+         <image>
+            <Image url="@imagens/logo.PNG" />
+         </image>
+      </ImageView>
+      <Label layoutX="57.0" layoutY="218.0" text="Bem vindo(a)," textFill="#666666">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="218.0" text="Usuário" textFill="#666666">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblHora" layoutX="136.0" layoutY="267.0" text="00:00" />
+      <Label fx:id="lblData" layoutX="119.0" layoutY="308.0" text="00/00/0000" />
+      <Button fx:id="btnSair" layoutX="120.0" layoutY="450.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" text="Sair" />
+      <ScrollPane layoutX="280.0" layoutY="15.0" prefHeight="515.0" prefWidth="596.0" style="-fx-background-color: #FFF;">
+         <content>
+            <AnchorPane prefHeight="510.0" prefWidth="582.0" style="-fx-background-color: #FFF;">
+               <children>
+                  <TabPane prefHeight="507.0" prefWidth="577.0" styleClass="border" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Gráfico de vendas">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="322.0" style="-fx-background-color: #FFF;">
+                                 <children>
+                                    <Label layoutX="156.0" layoutY="18.0" text="Data inicial" />
+                                    <Label layoutX="342.0" layoutY="18.0" text="Data Final" />
+                                    <TextField layoutX="155.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" />
+                                    <TextField layoutX="195.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" />
+                                    <TextField layoutX="236.0" layoutY="44.0" prefHeight="25.0" prefWidth="74.0" />
+                                    <TextField layoutX="341.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" />
+                                    <TextField layoutX="381.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" />
+                                    <TextField layoutX="422.0" layoutY="44.0" prefHeight="25.0" prefWidth="74.0" />
+                                    <Button fx:id="btnFiltrar" layoutX="511.0" layoutY="44.0" mnemonicParsing="false" text="Filtrar" />
+                                    <Separator layoutX="14.0" layoutY="79.0" prefHeight="3.0" prefWidth="547.0" />
+                                    <GridPane layoutX="14.0" layoutY="93.0" prefHeight="371.0" prefWidth="539.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="148.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="473.0" minWidth="10.0" prefWidth="406.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="233.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="128.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Janeiro" />
+                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                          <Label text="Fevereiro" GridPane.rowIndex="1" />
+                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </BarChart>
+                                          <Label text="Março" GridPane.rowIndex="2" />
+                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                             </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Transportadora">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

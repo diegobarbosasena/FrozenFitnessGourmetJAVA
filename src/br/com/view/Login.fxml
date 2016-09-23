@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="500.0" minWidth="500.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LoginController">
+   <children>
+      <ImageView fitHeight="142.0" fitWidth="260.0" layoutX="120.0" layoutY="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagens/logo.PNG" />
+         </image>
+     </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="196.0" text="Usuário">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+
+                                    <TextField fx:id="txtUsuario" alignment="TOP_LEFT" layoutX="176.0" layoutY="230.0" promptText="digite seu usuário" styleClass="focus" />
+      <Label contentDisplay="CENTER" layoutX="176.0" layoutY="269.0" text="Senha">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtSenha" layoutX="176.0" layoutY="301.0" promptText="digite sua senha" styleClass="focus" />
+      <Button fx:id="btnEntrar" layoutX="277.0" layoutY="347.0" mnemonicParsing="false" onAction="#login" text="Entrar" />
+   </children>
+</AnchorPane>
