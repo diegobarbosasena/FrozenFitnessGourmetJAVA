@@ -24,10 +24,5 @@ public class Janelas {
 			e.printStackTrace();
 		}
 	}
-	public void fechar(String arquivo, Stage scene){
 
-		Stage stage = new Stage();
-		stage.close();
-
-	}
 }

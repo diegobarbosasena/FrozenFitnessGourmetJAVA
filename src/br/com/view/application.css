@@ -19,7 +19,11 @@
 .border{
 	-fx-border-color: #666;
 }
-#btnEntrar{
+#lblMsgErro{
+	-fx-background-color: #FFF;
+	-fx-text-fill: #FF0000;
+}
+#btnErroFechar, #btnEntrar, #btnFiltrar, #btnSair{
 	-fx-background-color: #FFF;
 	-fx-border-color: #00B348;
 	-fx-border-radius: 5;

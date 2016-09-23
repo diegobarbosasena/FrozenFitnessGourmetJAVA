@@ -22,9 +22,11 @@ public class GraficoVendasController {
 	// Event Listener on Button[#btnSair].onAction
 	@FXML
 	public void sair(ActionEvent event) {
+
 		Janelas janela = new Janelas();
 
 		Stage stage = (Stage)btnSair.getScene().getWindow();
+		stage.getStyle().getClass().getResource("br/com/view/application.css");
 
 		janela.abrir("Login.fxml", stage);
 	}

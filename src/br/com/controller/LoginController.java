@@ -19,7 +19,7 @@ public class LoginController {
 	// Event Listener on Button[#btnEntrar].onAction
 	@FXML
 	public void login(ActionEvent event) {
-		
+
 		if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
 
 			System.out.println(txtUsuario.getText());
@@ -33,12 +33,11 @@ public class LoginController {
 		}
 		else{
 			Janelas erro = new Janelas();
-			
+
 			erro.abrir("Erro.fxml", new Stage());
 			limpar();
 			System.out.println("ERRO!");
 		}
-
 
 	}
 	public void limpar(){
