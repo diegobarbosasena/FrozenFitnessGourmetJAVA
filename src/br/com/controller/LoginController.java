@@ -3,9 +3,7 @@ package br.com.controller;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -26,7 +24,7 @@ public class LoginController {
 			System.out.println(txtSenha.getText());
 
 			limpar();
-
+			
 			Janelas janela = new Janelas();
 			Stage stage = (Stage)btnEntrar.getScene().getWindow();
 			janela.abrir("GraficoVendas.fxml", stage);
