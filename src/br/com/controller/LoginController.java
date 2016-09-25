@@ -13,6 +13,7 @@ public class LoginController {
 	private Button btnEntrar;
 	@FXML
 	private PasswordField txtSenha;
+	
 
 	// Event Listener on Button[#btnEntrar].onAction
 	@FXML
@@ -26,13 +27,16 @@ public class LoginController {
 			limpar();
 			
 			Janelas janela = new Janelas();
+			janela.abrir("GraficoVendas.fxml", new Stage());
+			
 			Stage stage = (Stage)btnEntrar.getScene().getWindow();
-			janela.abrir("GraficoVendas.fxml", stage);
+			stage.close();
+			
 		}
 		else{
 			Janelas erro = new Janelas();
-
 			erro.abrir("Erro.fxml", new Stage());
+			
 			limpar();
 			System.out.println("ERRO!");
 		}

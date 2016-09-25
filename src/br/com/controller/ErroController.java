@@ -20,8 +20,6 @@ public class ErroController {
 	public void erroFechar(ActionEvent event) {
 
 		Stage stage = (Stage) lblMsgErro.getScene().getWindow();
-		stage.getStyle().getClass().getResource("br/com/view/application.css");
 		stage.close();
-
 	}
 }

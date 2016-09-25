@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
@@ -9,100 +11,63 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="550.0" minWidth="900.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
+<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
    <children>
-      <ImageView fitHeight="107.0" fitWidth="240.0" layoutX="30.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-         <image>
-            <Image url="@imagens/logo.PNG" />
-         </image>
-      </ImageView>
-      <Label layoutX="57.0" layoutY="218.0" text="Bem vindo(a)," textFill="#666666">
-         <font>
-            <Font name="Arial Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="155.0" layoutY="218.0" text="Usuário" textFill="#666666">
-         <font>
-            <Font name="Arial Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblHora" layoutX="136.0" layoutY="267.0" text="00:00" />
-      <Label fx:id="lblData" layoutX="119.0" layoutY="308.0" text="00/00/0000" />
-      <Button fx:id="btnSair" layoutX="120.0" layoutY="450.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" text="Sair" />
-      <ScrollPane layoutX="280.0" layoutY="15.0" prefHeight="515.0" prefWidth="596.0" style="-fx-background-color: #FFF;">
-         <content>
-            <AnchorPane prefHeight="510.0" prefWidth="582.0" style="-fx-background-color: #FFF;">
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="535.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="265.0">
                <children>
-                  <TabPane prefHeight="507.0" prefWidth="577.0" styleClass="border" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Gráfico de vendas">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="322.0" style="-fx-background-color: #FFF;">
-                                 <children>
-                                    <Label layoutX="156.0" layoutY="18.0" text="Data inicial" />
-                                    <Label layoutX="342.0" layoutY="18.0" text="Data Final" />
-                                    <TextField layoutX="155.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" styleClass="focus" />
-                                    <TextField layoutX="195.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" styleClass="focus" />
-                                    <TextField layoutX="236.0" layoutY="44.0" prefHeight="25.0" prefWidth="74.0" styleClass="focus" />
-                                    <TextField layoutX="341.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" styleClass="focus" />
-                                    <TextField layoutX="381.0" layoutY="44.0" prefHeight="20.0" prefWidth="30.0" styleClass="focus" />
-                                    <TextField layoutX="422.0" layoutY="44.0" prefHeight="25.0" prefWidth="74.0" styleClass="focus" />
-                                    <Button fx:id="btnFiltrar" layoutX="511.0" layoutY="44.0" mnemonicParsing="false" styleClass="botao" text="Filtrar" />
-                                    <Separator layoutX="14.0" layoutY="79.0" prefHeight="3.0" prefWidth="547.0" />
-                                    <GridPane layoutX="14.0" layoutY="93.0" prefHeight="371.0" prefWidth="539.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="148.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="473.0" minWidth="10.0" prefWidth="406.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="233.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="128.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Label text="Janeiro" />
-                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1">
-                                            <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                              <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                          </BarChart>
-                                          <Label text="Fevereiro" GridPane.rowIndex="1" />
-                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
-                                          </BarChart>
-                                          <Label text="Março" GridPane.rowIndex="2" />
-                                          <BarChart prefHeight="176.0" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
-                                          </BarChart>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Transportadora">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
+                  <Pane prefHeight="498.0" prefWidth="264.0">
+                     <children>
+                        <ImageView fitHeight="142.0" fitWidth="260.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+                           <image>
+                              <Image url="@imagens/logo.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="22.0" layoutY="207.0" text="Bem vindo(a):" textFill="#666666">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="143.0" layoutY="207.0" text="Usuário" textFill="#666666">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblHora" layoutX="115.0" layoutY="241.0" text="00:00" />
+                        <Label fx:id="lblData" layoutX="99.0" layoutY="284.0" text="00/00/0000" />
+                        <Button fx:id="btnSair" layoutX="100.0" layoutY="406.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" text="Sair" />
+                     </children>
+                  </Pane>
                </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="283.0" layoutY="66.0" prefHeight="500.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="283.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="dpDataInicial" promptText="Escolha a data inicial">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <DatePicker fx:id="dpDataFinal" promptText="Escolha a data final">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <Button fx:id="btnFiltrar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#filtrar" text="Filtrar">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
 </AnchorPane>
