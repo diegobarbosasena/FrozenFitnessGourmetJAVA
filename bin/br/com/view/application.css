@@ -25,12 +25,12 @@
 	-fx-background-color: #00B348 #FFF ;
 	-fx-text-fill: #FFF;
 }
-TextField, PasswordField{
+TextField, PasswordField, DatePicker{
 	-fx-border-color: #E08A2C;
 	-fx-border-radius: 5;
 	-fx-text-fill: #666;
 }
-.focus:focused{
+DatePicker,.focus:focused{
 	-fx-background-color: #FFF #E08A2C;
 	-fx-border-color: #E08A2C;
 }

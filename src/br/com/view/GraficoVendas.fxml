@@ -57,7 +57,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </DatePicker>
-                  <Button fx:id="btnFiltrar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#filtrar" text="Filtrar">
+                  <Button fx:id="btnFiltrar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>

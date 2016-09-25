@@ -14,7 +14,6 @@ public class LoginController {
 	@FXML
 	private PasswordField txtSenha;
 	
-
 	// Event Listener on Button[#btnEntrar].onAction
 	@FXML
 	public void login(ActionEvent event) {
