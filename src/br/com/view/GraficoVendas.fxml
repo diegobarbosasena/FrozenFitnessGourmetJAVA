@@ -11,61 +11,64 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
+<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
    <children>
-      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="535.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="265.0">
+      <SplitPane dividerPositions="0.32456140350877194" prefHeight="502.0" prefWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane prefHeight="500.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
                <children>
-                  <Pane prefHeight="498.0" prefWidth="264.0">
+                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="142.0" fitWidth="260.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-                           <image>
-                              <Image url="@imagens/logo.PNG" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" layoutX="22.0" layoutY="207.0" text="Bem vindo(a):" textFill="#666666">
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="143.0" layoutY="207.0" text="Usuário" textFill="#666666">
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblHora" layoutX="115.0" layoutY="241.0" text="00:00" />
-                        <Label fx:id="lblData" layoutX="99.0" layoutY="284.0" text="00/00/0000" />
-                        <Button fx:id="btnSair" layoutX="100.0" layoutY="406.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" text="Sair" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="255.0">
+                           <children>
+                              <ImageView fitHeight="142.0" fitWidth="260.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+                                 <image>
+                                    <Image url="@imagens/logo.PNG" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" layoutX="22.0" layoutY="207.0" text="Bem vindo(a):" textFill="#666666">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="207.0" text="Usuário" textFill="#666666">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblHora" layoutX="115.0" layoutY="241.0" text="00:00" />
+                              <Label fx:id="lblData" layoutX="99.0" layoutY="284.0" text="00/00/0000" />
+                              <Button fx:id="btnSair" layoutX="100.0" layoutY="406.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" text="Sair" />
+                           </children>
+                        </Pane>
                      </children>
-                  </Pane>
+                  </VBox>
                </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="283.0" layoutY="66.0" prefHeight="500.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="283.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="500.0" prefWidth="200.0">
+            </AnchorPane>
+            <AnchorPane prefHeight="500.0" prefWidth="445.0">
                <children>
-                  <DatePicker fx:id="dpDataInicial" promptText="Escolha a data inicial">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="dpDataFinal" promptText="Escolha a data final">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </DatePicker>
-                  <Button fx:id="btnFiltrar" contentDisplay="CENTER" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar">
-                     <HBox.margin>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </HBox.margin>
-                  </Button>
+                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1; -fx-background-color: #FFF;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <tabs>
+                      <Tab text="Gráfico de Vendas">
+                        <content>
+                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="448.0" layoutY="27.0" mnemonicParsing="false" onAction="#Filtrar" styleClass="botao" text="Filtrar" AnchorPane.bottomAnchor="397.0" AnchorPane.leftAnchor="448.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Transportadoras">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
                </children>
-            </HBox>
-         </children>
-      </VBox>
+            </AnchorPane>
+         </items>
+      </SplitPane>
    </children>
    <rotationAxis>
       <Point3D />
