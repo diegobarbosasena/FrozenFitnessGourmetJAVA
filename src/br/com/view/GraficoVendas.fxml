@@ -53,9 +53,26 @@
                         <content>
                           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
                                  <children>
-                                    <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="448.0" layoutY="27.0" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar" AnchorPane.bottomAnchor="397.0" AnchorPane.leftAnchor="448.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
-                                    <DatePicker fx:id="dpDataInicial" layoutX="83.0" layoutY="27.0" />
-                                    <DatePicker fx:id="dpDataFinal" layoutX="267.0" layoutY="28.0" />
+                                    <SplitPane dividerPositions="0.12" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="450.0" prefWidth="516.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="506.0">
+                                                         <children>
+                                                            <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="443.0" layoutY="12.0" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar" />
+                                                            <DatePicker fx:id="dpDataInicial" layoutX="64.0" layoutY="12.0" />
+                                                            <DatePicker fx:id="dpDataFinal" layoutX="253.0" layoutY="12.0" />
+                                                         </children>
+                                                      </Pane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                      </items>
+                                    </SplitPane>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -64,7 +81,10 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TilePane layoutX="136.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
+                                    <TilePane layoutX="136.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Transportadora" />
+                                       </children></TilePane>
                                  </children></AnchorPane>
                         </content>
                       </Tab>
