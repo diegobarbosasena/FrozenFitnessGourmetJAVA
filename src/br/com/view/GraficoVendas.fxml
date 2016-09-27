@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 2;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
+<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
    <children>
       <SplitPane dividerPositions="0.32456140350877194" prefHeight="502.0" prefWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -47,20 +47,25 @@
             </AnchorPane>
             <AnchorPane prefHeight="500.0" prefWidth="445.0">
                <children>
-                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1; -fx-background-color: #FFF;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <tabs>
-                      <Tab text="Gráfico de Vendas">
+                      <Tab style=": ;" text="Gráfico de Vendas">
                         <content>
-                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
                                  <children>
-                                    <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="448.0" layoutY="27.0" mnemonicParsing="false" onAction="#Filtrar" styleClass="botao" text="Filtrar" AnchorPane.bottomAnchor="397.0" AnchorPane.leftAnchor="448.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
+                                    <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="448.0" layoutY="27.0" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar" AnchorPane.bottomAnchor="397.0" AnchorPane.leftAnchor="448.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
+                                    <DatePicker fx:id="dpDataInicial" layoutX="83.0" layoutY="27.0" />
+                                    <DatePicker fx:id="dpDataFinal" layoutX="267.0" layoutY="28.0" />
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
                       <Tab text="Transportadoras">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TilePane layoutX="136.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
+                                 </children></AnchorPane>
                         </content>
                       </Tab>
                     </tabs>

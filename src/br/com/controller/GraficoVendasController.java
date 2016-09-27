@@ -33,6 +33,6 @@ public class GraficoVendasController {
 	@FXML
 	public void filtrar(ActionEvent event){
 		System.out.println(dpDataInicial.getValue());
-		System.out.println(dpDataFinal.getValue().toString());
+		System.out.println(dpDataFinal.getValue());
 	}
 }
