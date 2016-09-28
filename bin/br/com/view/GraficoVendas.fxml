@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.media.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.chart.*?>
@@ -31,14 +32,14 @@
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="129.0" layoutY="207.0" text="Usuário" textFill="#666666">
+                              <Label fx:id="lblUsuario" layoutX="129.0" layoutY="207.0" text="Usuário" textFill="#666666">
                                  <font>
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblHora" layoutX="115.0" layoutY="235.0" text="00:00" />
                               <Label fx:id="lblData" layoutX="99.0" layoutY="260.0" text="00/00/0000" />
-                              <Button fx:id="btnSair" layoutX="98.0" layoutY="394.0" minWidth="60.0" mnemonicParsing="false" onAction="#sair" style="-fx-border-style: none;" styleClass="botao" text="Sair">
+                              <Button fx:id="btnSair" alignment="CENTER" layoutX="98.0" layoutY="395.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Button>
@@ -50,35 +51,27 @@
             </AnchorPane>
             <AnchorPane prefHeight="500.0" prefWidth="445.0">
                <children>
-                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <tabs>
-                      <Tab style=": ;" text="Gráfico de Vendas">
+                      <Tab text="Gráfico de Vendas">
                         <content>
-                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
+                          <AnchorPane prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
                                  <children>
-                                    <SplitPane dividerPositions="0.12" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="450.0" prefWidth="516.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+                                    <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="514.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefWidth="514.0">
                                              <children>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <children>
-                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="49.0" prefWidth="506.0">
-                                                         <children>
-                                                            <Button fx:id="btnFiltrar" alignment="CENTER" contentDisplay="CENTER" layoutX="436.0" layoutY="11.0" mnemonicParsing="false" onAction="#filtrar" style="-fx-border-style: none;" styleClass="botao" text="Filtrar" textAlignment="CENTER">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font></Button>
-                                                            <DatePicker fx:id="dpDataInicial" layoutX="64.0" layoutY="12.0" />
-                                                            <DatePicker fx:id="dpDataFinal" layoutX="253.0" layoutY="12.0" />
-                                                         </children>
-                                                      </Pane>
-                                                   </children>
-                                                </HBox>
+                                                <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="14.0" />
+                                                <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="14.0" />
+                                                <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="444.0" layoutY="13.0" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
                                              </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                                      </items>
-                                    </SplitPane>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -87,10 +80,24 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TilePane layoutX="136.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <Label text="Transportadora" />
-                                       </children></TilePane>
+                                    <TabPane layoutX="157.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                                      <tabs>
+                                        <Tab id="tab" text="Untitled Tab 1">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                          </content>
+                                             <styleClass>
+                                                <String fx:value="tab" />
+                                                <String fx:value="tab2" />
+                                             </styleClass>
+                                        </Tab>
+                                        <Tab text="Untitled Tab 2">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                          </content>
+                                        </Tab>
+                                      </tabs>
+                                    </TabPane>
                                  </children></AnchorPane>
                         </content>
                       </Tab>

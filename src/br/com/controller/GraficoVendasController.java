@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 public class GraficoVendasController implements Initializable{
 	@FXML
+	private Label lblUsuario;
+	@FXML
 	private Label lblHora;
 	@FXML
 	private Label lblData;
@@ -26,18 +28,19 @@ public class GraficoVendasController implements Initializable{
 	@FXML
 	private DatePicker dpDataInicial, dpDataFinal;
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		lblUsuario.setText(System.getProperty("user.name"));
+		
 		SimpleDateFormat sdfh = new SimpleDateFormat("HH:mm");
 		lblHora.setText(sdfh.format(new Date()));
 
 		SimpleDateFormat sdfd = new SimpleDateFormat("d/MM/YYYY");
 		lblData.setText(sdfd.format(new Date()));
+
 	}
 
-	// Event Listener on Button[#btnSair].onAction
 	@FXML
 	public void sair(ActionEvent event) {
 
@@ -51,12 +54,7 @@ public class GraficoVendasController implements Initializable{
 	public void filtrar(ActionEvent event){
 		System.out.println(dpDataInicial.getValue());
 		System.out.println(dpDataFinal.getValue());
-
-
-
+		
+		System.out.println("");
 	}
-
-
-
-
 }
