@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class GraficoVendasController implements Initializable{
+	
 	@FXML
 	private Label lblUsuario;
 	@FXML
@@ -22,12 +23,16 @@ public class GraficoVendasController implements Initializable{
 	@FXML
 	private Label lblData;
 	@FXML
+	private Label lblIni;
+	@FXML
+	private Label lblFim;
+	@FXML
 	private Button btnSair;
 	@FXML
 	private Button btnFiltrar;
 	@FXML
 	private DatePicker dpDataInicial, dpDataFinal;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -38,7 +43,6 @@ public class GraficoVendasController implements Initializable{
 
 		SimpleDateFormat sdfd = new SimpleDateFormat("d/MM/YYYY");
 		lblData.setText(sdfd.format(new Date()));
-
 	}
 
 	@FXML
@@ -52,9 +56,16 @@ public class GraficoVendasController implements Initializable{
 	}
 	@FXML
 	public void filtrar(ActionEvent event){
+		System.out.println();
 		System.out.println(dpDataInicial.getValue());
 		System.out.println(dpDataFinal.getValue());
 		
+		lblIni.setText(dpDataInicial.getValue().toString());
+		lblFim.setText(dpDataFinal.getValue().toString());
+
+		dpDataFinal.setValue(null);
+		dpDataInicial.setValue(null);
+
 		System.out.println("");
 	}
 }
