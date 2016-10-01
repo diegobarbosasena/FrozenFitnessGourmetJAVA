@@ -38,10 +38,10 @@ public class GraficoVendasController implements Initializable{
 
 		lblUsuario.setText(System.getProperty("user.name"));
 		
-		SimpleDateFormat sdfh = new SimpleDateFormat("HH:mm");
+		SimpleDateFormat sdfh = new SimpleDateFormat("HH:MM");
 		lblHora.setText(sdfh.format(new Date()));
 
-		SimpleDateFormat sdfd = new SimpleDateFormat("d/MM/YYYY");
+		SimpleDateFormat sdfd = new SimpleDateFormat("dd/MM/YYYY");
 		lblData.setText(sdfd.format(new Date()));
 	}
 
