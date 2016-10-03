@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="500.0" minWidth="850.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
+<AnchorPane minHeight="500.0" minWidth="950.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.GraficoVendasController">
    <children>
       <SplitPane dividerPositions="0.32456140350877194" prefHeight="502.0" prefWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -63,7 +62,17 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView layoutX="23.0" layoutY="25.0" prefHeight="449.0" prefWidth="547.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="282.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+                                       <children>
+                                          <Pane prefHeight="47.0" prefWidth="586.0">
+                                             <children>
+                                                <TextField fx:id="txtBuscaPedido" layoutX="360.0" layoutY="10.0" styleClass="focus" />
+                                                <Button fx:id="btnBuscar" alignment="CENTER" layoutX="520.0" layoutY="9.0" mnemonicParsing="false" onAction="#buscarPedido" styleClass="botao" text="Buscar" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                    <TableView layoutX="23.0" layoutY="25.0" prefHeight="449.0" prefWidth="547.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                                       <columns>
                                         <TableColumn prefWidth="131.0" text="Número do pedido" />
                                       </columns>
@@ -109,8 +118,8 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="36.0" />
-                                                <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="36.0" />
+                                                <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="36.0" styleClass="focus" />
+                                                <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="36.0" styleClass="focus" />
                                                 <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="444.0" layoutY="32.0" mnemonicParsing="false" onAction="#filtrar" styleClass="botao" text="Filtrar">
                                                    <font>
                                                       <Font size="14.0" />
@@ -130,13 +139,22 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView prefHeight="449.0" prefWidth="514.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <children>
+                                          <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Button fx:id="btnNovaTransportadora" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova Transportadora" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                    <TableView prefHeight="449.0" prefWidth="514.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                                       <columns>
-                                        <TableColumn fx:id="c1" prefWidth="75.0" text="Cnpj" />
-                                        <TableColumn fx:id="c2" prefWidth="116.0" text="Transportadora" />
-                                          <TableColumn prefWidth="85.0" text="Responsável" />
-                                          <TableColumn prefWidth="74.0" text="Telefone" />
-                                          <TableColumn prefWidth="75.0" text="Endereço" />
+                                        <TableColumn minWidth="120.0" prefWidth="130.0" text="Transportadora" />
+                                        <TableColumn minWidth="120.0" prefWidth="130.0" text="Cnpj" />
+                                          <TableColumn minWidth="120.0" prefWidth="130.0" text="E-mail" />
+                                          <TableColumn minWidth="110.0" prefWidth="115.0" text="Telefone" />
+                                          <TableColumn minWidth="75.0" text="Responsável" />
                                       </columns>
                                     </TableView>
                                  </children></AnchorPane>
