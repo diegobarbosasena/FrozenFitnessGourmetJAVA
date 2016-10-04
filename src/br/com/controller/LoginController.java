@@ -26,7 +26,7 @@ public class LoginController {
 			limpar();
 			
 			Janelas janela = new Janelas();
-			janela.abrir("GraficoVendas.fxml", new Stage());
+			janela.abrir("Layout.fxml", new Stage());
 			
 			Stage login = (Stage)btnEntrar.getScene().getWindow();
 			login.close();
