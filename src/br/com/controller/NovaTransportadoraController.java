@@ -44,19 +44,21 @@ public class NovaTransportadoraController {
 		System.out.println("JA FOI!!");
 		System.out.println();
 		
-		System.out.println(txtCnpjTransp.getText());
-		System.out.println(txtEmailTrans.getText());
 		System.out.println(txtNomeTrans.getText());
-		System.out.println(txtResponsavelTransp.getText());
+		System.out.println(txtEmailTrans.getText());
 		System.out.println(txtTelefoneTrans.getText());
+		System.out.println(txtCnpjTransp.getText());
+		System.out.println(txtResponsavelTransp.getText());
 		
-		
+		limparTrans();	
+	}
+
+	public void limparTrans() {
 		txtCnpjTransp.clear();
 		txtEmailTrans.clear();
 		txtNomeTrans.clear();
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
-		
 	}
 	
 	// Event Listener on Button[#btnConcluido].onAction
