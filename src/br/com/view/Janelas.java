@@ -14,13 +14,10 @@ public class Janelas {
 		Parent root;
 		try {
 			root = FXMLLoader.load(getClass().getResource(arquivo));
-			//root.getStylesheets().add("br/com/view/application.css");
-
 			primaryStage.setScene( new Scene(root));
 			primaryStage.show();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

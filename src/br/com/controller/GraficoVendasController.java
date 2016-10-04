@@ -97,8 +97,6 @@ public class GraficoVendasController implements Initializable{
 
 		Janelas novaTrans = new Janelas();
 		novaTrans.abrir("NovaTransportadora.fxml", new Stage());
-		
-		
 	}
 	
 }

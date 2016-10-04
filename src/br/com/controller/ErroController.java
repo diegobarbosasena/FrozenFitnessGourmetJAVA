@@ -19,7 +19,7 @@ public class ErroController {
 	@FXML
 	public void erroFechar(ActionEvent event) {
 
-		Stage stage = (Stage) lblMsgErro.getScene().getWindow();
-		stage.close();
+		Stage erro = (Stage) lblMsgErro.getScene().getWindow();
+		erro.close();
 	}
 }

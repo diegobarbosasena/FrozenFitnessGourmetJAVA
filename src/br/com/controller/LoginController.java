@@ -28,9 +28,8 @@ public class LoginController {
 			Janelas janela = new Janelas();
 			janela.abrir("GraficoVendas.fxml", new Stage());
 			
-			Stage stage = (Stage)btnEntrar.getScene().getWindow();
-			stage.close();
-			
+			Stage login = (Stage)btnEntrar.getScene().getWindow();
+			login.close();
 		}
 		else{
 			Janelas erro = new Janelas();
@@ -39,11 +38,9 @@ public class LoginController {
 			limpar();
 			System.out.println("ERRO!");
 		}
-
 	}
 	public void limpar(){
 		txtUsuario.clear();
 		txtSenha.clear();
-
 	}
 }
