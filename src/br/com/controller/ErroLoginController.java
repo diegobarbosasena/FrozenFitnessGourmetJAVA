@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ErroController {
+public class ErroLoginController {
 	@FXML
 	private Label lblMsgErro;
 	@FXML
@@ -18,8 +18,8 @@ public class ErroController {
 	// Event Listener on Button[#btnErroFechar].onAction
 	@FXML
 	public void erroFechar(ActionEvent event) {
-
-		Stage erro = (Stage) lblMsgErro.getScene().getWindow();
-		erro.close();
+		
+		Stage erroLogin = (Stage) lblMsgErro.getScene().getWindow();
+		erroLogin.close();
 	}
 }

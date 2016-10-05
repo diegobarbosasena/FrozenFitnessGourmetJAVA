@@ -17,30 +17,30 @@ public class NovaTransportadoraController {
 	@FXML
 	private Label lblNomeTrans;
 	@FXML
-	private Label lblEmailTrans;
-	@FXML
-	private Label lblTelefoneTrans;
-	@FXML
-	private Label lblCnpjTransp;
-	@FXML
-	private Label lblResponsavelTrans;
-	@FXML
 	private TextField txtNomeTrans;
+	@FXML
+	private Label lblEmailTrans;
 	@FXML
 	private TextField txtEmailTrans;
 	@FXML
+	private Label lblTelefoneTrans;
+	@FXML
 	private TextField txtTelefoneTrans;
+	@FXML
+	private Label lblResponsavelTrans;
 	@FXML
 	private TextField txtCnpjTransp;
 	@FXML
+	private Label lblCnpjTransp;
+	@FXML
 	private TextField txtResponsavelTransp;
 	@FXML
-	private Button btnCadastrar;
+	private Button btnCadastrarTrans;
 
-	// Event Listener on Button[#btnCadastrar].onAction
+	
+	// Event Listener on Button[#btnCadastrarTrans].onAction
 	@FXML
-	public void cadastrar(ActionEvent event) {
-		
+	public void cadastrarTransportadora(ActionEvent event) {
 		System.out.println();
 		System.out.println("JA FOI!!");
 		System.out.println();
@@ -49,7 +49,7 @@ public class NovaTransportadoraController {
 			System.out.println("Preencher os dados");
 			
 			Janelas erroTrans = new Janelas();
-			erroTrans.abrir("ErroTrans.fxml", new Stage());	
+			erroTrans.abrir("ErroTrans.fxml", new Stage(), "Erro Tranportadora", false);	
 		}
 		else{
 			System.out.println(txtNomeTrans.getText());
@@ -59,23 +59,30 @@ public class NovaTransportadoraController {
 			System.out.println(txtResponsavelTransp.getText());
 			
 			limparTrans();
-		}	
+		}
 	}
-
+	
 	public boolean vazioTrans(String... strings) {		
-		boolean bo = false;
+		boolean bolean = false;
 		
 		for(String item : strings){
 			if(item.isEmpty()){
-				bo = true;
+				bolean = true;
 				break;
 			}else{
-				bo = false;
+				bolean = false;
 			}
 		}
-		return bo;
+		return bolean;
 	}
-
+	
+	// Event Listener on Button[#btnConcluido].onAction
+	@FXML
+	public void concluido(ActionEvent event) {
+		Stage novaTrans = (Stage)btnConcluido.getScene().getWindow();
+		novaTrans.close();
+	}
+	
 	public void limparTrans() {
 		txtCnpjTransp.clear();
 		txtEmailTrans.clear();
@@ -83,12 +90,4 @@ public class NovaTransportadoraController {
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
 	}
-	
-	// Event Listener on Button[#btnConcluido].onAction
-	@FXML
-	public void concluido(ActionEvent event) {	
-		Stage novaTrans = (Stage)btnConcluido.getScene().getWindow();
-		novaTrans.close();
-	}
-
 }

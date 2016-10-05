@@ -9,13 +9,21 @@ import javafx.stage.Stage;
 
 public class Janelas {
 
-	public void abrir(String arquivo, Stage primaryStage) {
+	public void abrir(String arquivo, Stage primaryStage, String titulo, boolean redimensionar) {
 
 		Parent root;
 		try {
 			root = FXMLLoader.load(getClass().getResource(arquivo));
 			primaryStage.setScene( new Scene(root));
+			primaryStage.setTitle(titulo);
+			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
+			
+			javafx.scene.image.Image icone = new javafx.scene.image.Image(
+					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			
+			primaryStage.getIcons().add(icone);
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();

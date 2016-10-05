@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="150.0" minWidth="300.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.ErroController">
+<AnchorPane minHeight="150.0" minWidth="300.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.ErroLoginController">
    <children>
       <Label fx:id="lblMsgErro" alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="37.0" style="-fx-text-fill: #FF0000;" text="Usuário e Senha incorretos!! " textFill="RED">
          <font>

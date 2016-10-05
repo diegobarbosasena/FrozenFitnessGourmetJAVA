@@ -8,27 +8,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.NovaTransportadoraController">
+<AnchorPane maxWidth="750.0" minHeight="400.0" minWidth="750.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.NovaTransportadoraController">
    <children>
-      <SplitPane dividerPositions="0.32456140350877194" layoutX="10.0" layoutY="10.0" prefHeight="502.0" prefWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
-         <items>
-            <AnchorPane prefHeight="500.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
+      <HBox alignment="CENTER" prefHeight="438.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="438.0" prefWidth="279.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" maxWidth="256.0" minWidth="256.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="255.0">
+                        <Pane maxWidth="250.0" minWidth="200.0" prefHeight="435.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="142.0" fitWidth="260.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+                              <ImageView fitHeight="142.0" fitWidth="260.0" layoutX="-5.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
                                  <image>
                                     <Image url="@imagens/logo.PNG" />
                                  </image>
                               </ImageView>
-                              <Label alignment="CENTER" layoutX="33.0" layoutY="242.0" text="Cadastro de Transportadora" textFill="#666666">
+                              <Label alignment="CENTER" layoutX="33.0" layoutY="210.0" text="Cadastro de Transportadora" textFill="#666666">
                                  <font>
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnConcluido" alignment="CENTER" layoutX="86.0" layoutY="395.0" mnemonicParsing="false" onAction="#concluido" styleClass="botao" stylesheets="@application.css" text="Concluído" textAlignment="CENTER">
+                              <Button fx:id="btnConcluido" alignment="CENTER" layoutX="86.0" layoutY="317.0" mnemonicParsing="false" onAction="#concluido" styleClass="botao" stylesheets="@application.css" text="Concluído" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -39,77 +39,47 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="500.0" prefWidth="445.0">
+            <Separator orientation="VERTICAL" prefWidth="10.0" />
+            <AnchorPane minWidth="445.0" prefHeight="438.0" prefWidth="500.0" stylesheets="@application.css">
                <children>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="536.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="217.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="315.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label fx:id="lblNomeTrans" text="Nome Transportadora">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblEmailTrans" text="E-mail" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblTelefoneTrans" text="Telefone" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblCnpjTransp" text="Cnpj" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblResponsavelTrans" text="Responsável" GridPane.rowIndex="4">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txtNomeTrans" styleClass="focus" GridPane.columnIndex="1" />
-                        <TextField fx:id="txtEmailTrans" styleClass="focus" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txtTelefoneTrans" styleClass="focus" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtCnpjTransp" styleClass="focus" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="txtResponsavelTransp" styleClass="focus" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button fx:id="btnCadastrar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cadastrar" styleClass="botao" text="Cadastrar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </GridPane>
+                  <Label fx:id="lblNomeTrans" layoutX="26.0" layoutY="90.0" text="Nome da Transportadora" textFill="#666666">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtNomeTrans" layoutX="26.0" layoutY="121.0" minWidth="200.0" styleClass="focus" />
+                  <Label fx:id="lblEmailTrans" layoutX="242.0" layoutY="90.0" text="E-mail" textFill="#666666">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtEmailTrans" layoutX="242.0" layoutY="121.0" minWidth="200.0" styleClass="focus" />
+                  <Label fx:id="lblTelefoneTrans" layoutX="26.0" layoutY="180.0" text="Telefone" textFill="#666666">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTelefoneTrans" layoutX="26.0" layoutY="211.0" minWidth="200.0" styleClass="focus" />
+                  <Label fx:id="lblResponsavelTrans" layoutX="27.0" layoutY="276.0" text="Responsável" textFill="#666666">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtCnpjTransp" layoutX="242.0" layoutY="211.0" minWidth="200.0" styleClass="focus" />
+                  <Label fx:id="lblCnpjTransp" layoutX="242.0" layoutY="180.0" text="Cnpj" textFill="#666666">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtResponsavelTransp" layoutX="26.0" layoutY="308.0" minWidth="200.0" styleClass="focus" />
+                  <Button fx:id="btnCadastrarTrans" layoutX="342.0" layoutY="361.0" mnemonicParsing="false" onAction="#cadastrarTransportadora" styleClass="botao" stylesheets="@application.css" text="Cadastrar">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
-         </items>
-      </SplitPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

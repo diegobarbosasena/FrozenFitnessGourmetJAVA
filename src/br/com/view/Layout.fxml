@@ -14,9 +14,9 @@
 
 <AnchorPane minHeight="500.0" minWidth="950.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LayoutController">
    <children>
-      <SplitPane dividerPositions="0.32456140350877194" prefHeight="502.0" prefWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.3246" minHeight="502.0" minWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane prefHeight="500.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
+            <AnchorPane maxWidth="260.0" minWidth="260.0" prefHeight="500.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -54,10 +54,13 @@
                <children>
                   <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <tabs>
-                        <Tab text="Vendas" />
+                        <Tab text="Vendas">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                           </content></Tab>
                         <Tab text="Pedidos">
                           <content>
-                          	<fx:include source="Pedidos.fxml" />
+                          	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                           </content>
                         </Tab>
                         <Tab text="Faturamento">
@@ -120,32 +123,44 @@
                                  <children>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <children>
-                                          <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0">
+                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
                                              <children>
-                                                <Button fx:id="btnNovaTransportadora" layoutX="27.0" layoutY="10.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova Transportadora" />
+                                                <TextField fx:id="txtBuscaTrans" layoutX="53.0" layoutY="11.0" maxWidth="200.0" minWidth="200.0" onAction="#buscarTransportadora" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
+                                                <Button fx:id="btnBuscaTrans" alignment="CENTER" layoutX="274.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarTransportadora" styleClass="botao" text="Buscar Tranportadora" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnNovaTransportadora" layoutX="434.0" layoutY="9.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova Transportadora">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></Button>
                                              </children>
                                           </Pane>
                                        </children>
                                     </HBox>
-                                    <TableView prefHeight="449.0" prefWidth="514.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
-                                      <columns>
-                                        <TableColumn minWidth="120.0" prefWidth="130.0" text="Transportadora" />
-                                        <TableColumn minWidth="120.0" prefWidth="130.0" text="Cnpj" />
-                                          <TableColumn minWidth="120.0" prefWidth="130.0" text="E-mail" />
-                                          <TableColumn minWidth="110.0" prefWidth="115.0" text="Telefone" />
-                                          <TableColumn minWidth="75.0" text="Responsável" />
-                                      </columns>
-                                    </TableView>
-                                    <HBox alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="399.0" prefHeight="47.0" prefWidth="234.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="400.0">
-                                       <children>
-                                          <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="593.0">
+                                    <SplitPane dividerPositions="0.889168765743073" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                      <items>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
-                                                <Button fx:id="btnEditarTrans" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar" />
-                                                <Button fx:id="btnExcluirTrans" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir" />
+                                                <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                  <columns>
+                                                    <TableColumn minWidth="120.0" prefWidth="130.0" text="Transportadora" />
+                                                    <TableColumn minWidth="120.0" prefWidth="130.0" text="Cnpj" />
+                                                      <TableColumn minWidth="120.0" prefWidth="130.0" text="E-mail" />
+                                                      <TableColumn minWidth="110.0" prefWidth="115.0" text="Telefone" />
+                                                      <TableColumn minWidth="75.0" text="Responsável" />
+                                                  </columns>
+                                                </TableView>
                                              </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="43.0" prefWidth="255.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
                                  </children>
 							</AnchorPane>
                         </content>

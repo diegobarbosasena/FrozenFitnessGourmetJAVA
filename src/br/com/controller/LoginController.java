@@ -25,15 +25,15 @@ public class LoginController {
 
 			limpar();
 			
-			Janelas janela = new Janelas();
-			janela.abrir("Layout.fxml", new Stage());
+			Janelas layout = new Janelas();
+			layout.abrir("Layout.fxml", new Stage(), "", true);
 			
 			Stage login = (Stage)btnEntrar.getScene().getWindow();
 			login.close();
 		}
 		else{
-			Janelas erro = new Janelas();
-			erro.abrir("Erro.fxml", new Stage());
+			Janelas erroLogin = new Janelas();
+			erroLogin.abrir("ErroLogin.fxml", new Stage(), "Erro de Login", false);
 			
 			limpar();
 			System.out.println("ERRO!");
