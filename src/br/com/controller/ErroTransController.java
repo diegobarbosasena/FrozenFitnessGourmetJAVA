@@ -6,12 +6,16 @@ import javafx.scene.control.Button;
 
 import javafx.event.ActionEvent;
 
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ErroTransController {
-	
 	@FXML
-	private Button btnErroFecharTrans;
+	public Label lblTituloErro;
+	@FXML
+	public Label lblMsgErroTrans;
+	@FXML
+	public Button btnErroFecharTrans;
 
 	// Event Listener on Button[#btnErroFecharTrans].onAction
 	@FXML
@@ -19,6 +23,6 @@ public class ErroTransController {
 		
 		Stage erroFecharTrans = (Stage) btnErroFecharTrans.getScene().getWindow();
 		erroFecharTrans.close();
-		
 	}
+	
 }

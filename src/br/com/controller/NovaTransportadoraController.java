@@ -1,15 +1,12 @@
 package br.com.controller;
 
-import javafx.fxml.FXML;
-
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class NovaTransportadoraController {
 	@FXML
@@ -49,7 +46,7 @@ public class NovaTransportadoraController {
 			System.out.println("Preencher os dados");
 			
 			Janelas erroTrans = new Janelas();
-			erroTrans.abrir("ErroTrans.fxml", new Stage(), "Erro Tranportadora", false);	
+			erroTrans.abrir("ErroTrans.fxml", new Stage(), "Erro Transportadora", false);	
 		}
 		else{
 			System.out.println(txtNomeTrans.getText());
