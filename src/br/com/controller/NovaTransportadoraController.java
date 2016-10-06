@@ -55,6 +55,11 @@ public class NovaTransportadoraController {
 			System.out.println(txtCnpjTransp.getText());
 			System.out.println(txtResponsavelTransp.getText());
 			
+			ErroTransController e = new ErroTransController("teste", "sucesso!");
+			
+			Janelas j = new Janelas();
+			j.abrirPopup("ErroTrans.fxml", new Stage(), "Erro Transportadora", false, e);
+			
 			limparTrans();
 		}
 	}

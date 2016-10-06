@@ -24,10 +24,36 @@ public class Janelas {
 			
 			primaryStage.getIcons().add(icone);
 			
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void abrirPopup(String arquivo, Stage primaryStage, String titulo, boolean redimensionar, Object controller) {
+
+		Parent root;
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(arquivo));	
+			
+			loader.setController(controller);
+			
+			root = loader.load();
+					
+			primaryStage.setScene( new Scene(root));
+			primaryStage.setTitle(titulo);
+			primaryStage.resizableProperty().set(redimensionar);
+			primaryStage.show();
+			
+			javafx.scene.image.Image icone = new javafx.scene.image.Image(
+					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			
+			primaryStage.getIcons().add(icone);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

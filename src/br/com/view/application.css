@@ -57,3 +57,17 @@ TextField, PasswordField, DatePicker{
 	-fx-border-radius: 5px;
 	-fx-text-fill: #00B348;
  }
+ /*
+ .tab-pane>*.tab-header-area>*.headers-region>*.tab:selected{
+
+ 	-fx-border-color: #00B348;
+ 	-fx-border-insets: 0px 1px 1px 0px, 1px 2px 0px 1px, 2px 3px 0px 2px;
+ 	-fx-border-style: 0px 1px 1px 0px, 1px 2px 0px 1px, 2px 3px 0px 2px;
+ }
+ .tab-pane>*.tab-header-area>*.headers-region>*.tab{
+ 	
+ 	-fx-border-color: #00B348;
+ 	-fx-border-width: 0.5;
+ }
+ */
+ 
