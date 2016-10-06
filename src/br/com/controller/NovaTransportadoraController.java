@@ -45,8 +45,12 @@ public class NovaTransportadoraController {
 		if(vazioTrans(txtCnpjTransp.getText(), txtEmailTrans.getText(), txtNomeTrans.getText(), txtResponsavelTransp.getText(), txtTelefoneTrans.getText())){
 			System.out.println("Preencher os dados");
 			
-			Janelas erroTrans = new Janelas();
-			erroTrans.abrir("ErroTrans.fxml", new Stage(), "Erro Transportadora", false);	
+			ErroTransController e = new ErroTransController("", "");
+			
+			Janelas j = new Janelas();
+			j.abrirPopup("ErroTrans.fxml", new Stage(), "Erro Transportadora", false, e);
+			
+				
 		}
 		else{
 			System.out.println(txtNomeTrans.getText());
