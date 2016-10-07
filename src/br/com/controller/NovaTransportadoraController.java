@@ -38,33 +38,37 @@ public class NovaTransportadoraController {
 	// Event Listener on Button[#btnCadastrarTrans].onAction
 	@FXML
 	public void cadastrarTransportadora(ActionEvent event) {
-		System.out.println();
-		System.out.println("JA FOI!!");
-		System.out.println();
 		
+		System.out.println();
+		System.out.println("Quase cadastro...");
+
 		if(vazioTrans(txtCnpjTransp.getText(), txtEmailTrans.getText(), txtNomeTrans.getText(), txtResponsavelTransp.getText(), txtTelefoneTrans.getText())){
-			System.out.println("Preencher os dados");
 			
-			ErroTransController e = new ErroTransController("", "");
+			System.out.println();
+			System.out.println("ERRO Preencher os dados da transportadora");
+			
+			PopUpController erro = new PopUpController("ERRO AO CADASTRAR TRANSPORTADORA", "Preencha todos os campos!", "Fechar");
 			
 			Janelas j = new Janelas();
-			j.abrirPopup("ErroTrans.fxml", new Stage(), "Erro Transportadora", false, e);
-			
-				
+			j.abrirPopup("PopUp.fxml", new Stage(), "Erro Transportadora", false, erro);
 		}
 		else{
-			System.out.println(txtNomeTrans.getText());
-			System.out.println(txtEmailTrans.getText());
-			System.out.println(txtTelefoneTrans.getText());
-			System.out.println(txtCnpjTransp.getText());
-			System.out.println(txtResponsavelTransp.getText());
+			System.out.println();
+			System.out.println("NOME TRASNP" + txtNomeTrans.getText());
+			System.out.println("EMAIL TRASNP" + txtEmailTrans.getText());
+			System.out.println("TELEFONE TRASNP" + txtTelefoneTrans.getText());
+			System.out.println("CnPJT TRASNP" + txtCnpjTransp.getText());
+			System.out.println("RESPONSÁVEL TRASNP" + txtResponsavelTransp.getText());
 			
-			ErroTransController e = new ErroTransController("teste", "sucesso!");
+			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 			
 			Janelas j = new Janelas();
-			j.abrirPopup("ErroTrans.fxml", new Stage(), "Erro Transportadora", false, e);
+			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 			
 			limparTrans();
+			
+			System.out.println();
+			System.out.println("SUCESSO cadastro de transportadora");
 		}
 	}
 	

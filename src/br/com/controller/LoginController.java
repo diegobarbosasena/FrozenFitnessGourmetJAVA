@@ -19,9 +19,11 @@ public class LoginController {
 	public void login(ActionEvent event) {
 
 		if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
-
-			System.out.println(txtUsuario.getText());
-			System.out.println(txtSenha.getText());
+			
+			System.out.println();
+			System.out.println("USUARIO " + txtUsuario.getText());
+			System.out.println("SENHA " + txtSenha.getText());
+			System.out.println("LOGIN EFETUADO COM SUCESSO...");
 
 			limpar();
 			
@@ -32,11 +34,15 @@ public class LoginController {
 			login.close();
 		}
 		else{
+			
+			PopUpController erro = new PopUpController("ERRO DE LOGIN", "Usuário e Senha incorretos!", "Fechar");
+
 			Janelas erroLogin = new Janelas();
-			erroLogin.abrir("ErroLogin.fxml", new Stage(), "Erro de Login", false);
+			erroLogin.abrirPopup("PopUp.fxml", new Stage(), "Erro de Login", false, erro);
 			
 			limpar();
-			System.out.println("ERRO!");
+			System.out.println();
+			System.out.println("ERRO DE LOGIN");
 		}
 	}
 	public void limpar(){

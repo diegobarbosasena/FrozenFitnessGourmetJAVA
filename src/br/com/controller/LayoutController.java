@@ -1,12 +1,5 @@
 package br.com.controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,10 +8,13 @@ import java.util.ResourceBundle;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
-
-import javafx.scene.control.Label;
-
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LayoutController implements Initializable {
 	@FXML
@@ -124,18 +120,20 @@ public class LayoutController implements Initializable {
 		
 		if(txtBuscaTrans.getText().isEmpty()){
 			
-			System.out.println("erro");
+			System.out.println();
+			System.out.println("ERRO ao buscar transportadora");
 			txtBuscaTrans.clear();
 			
-			Alerta erroBuscaTrans = new Alerta();
-			erroBuscaTrans.alerta("ERRO", "Preencha o nome da transportadora!");
+			Alerta e = new Alerta();
+			e.alerta("ERRO", "Preencha o nome da transportadora!");
 			
 		}else{
+			
 			System.out.println();
 			System.out.println("Buscou Transportadora");
 			System.out.println(txtBuscaTrans.getText());
+			
 			txtBuscaTrans.clear();
-			System.out.println();
 		}
 	}
 	// Event Listener on Button[#btnNovaTransportadora].onAction
@@ -156,15 +154,15 @@ public class LayoutController implements Initializable {
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		lblUsuario.setText(System.getProperty("user.name"));
 		
-		SimpleDateFormat sdfh = new SimpleDateFormat("HH:mm");
-		lblHora.setText(sdfh.format(new Date()));
+		SimpleDateFormat h = new SimpleDateFormat("HH:mm");
+		lblHora.setText(h.format(new Date()));
 		
 		SimpleDateFormat sdfd = new SimpleDateFormat("dd/MM/YYYY");
 		lblData.setText(sdfd.format(new Date()));
 		
 		btnExcluirTrans.setDisable(false);
-		
 	}
 }
