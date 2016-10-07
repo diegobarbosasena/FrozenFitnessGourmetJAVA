@@ -53,6 +53,7 @@ public class NovaTransportadoraController {
 			j.abrirPopup("PopUp.fxml", new Stage(), "Erro Transportadora", false, erro);
 		}
 		else{
+
 			System.out.println();
 			System.out.println("NOME TRASNP" + txtNomeTrans.getText());
 			System.out.println("EMAIL TRASNP" + txtEmailTrans.getText());

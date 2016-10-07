@@ -3,8 +3,10 @@ package br.com.controller;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.model.Transportadora;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
@@ -14,7 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 
 public class LayoutController implements Initializable {
 	@FXML
@@ -61,6 +66,13 @@ public class LayoutController implements Initializable {
 	private Button btnEditarTrans;
 	@FXML
 	private Button btnExcluirTrans;
+	
+	@FXML TableView<Transportadora> tvTransp;
+	@FXML TableColumn <Transportadora, String> clnTransp;
+	@FXML TableColumn <Transportadora, String> clnCnpj;
+	@FXML TableColumn <Transportadora, String> clnEmail;
+	@FXML TableColumn <Transportadora, String> clnFone;
+	@FXML TableColumn <Transportadora, String> clnResp;
 
 	// Event Listener on Button[#btnSair].onAction
 	@FXML
@@ -142,6 +154,22 @@ public class LayoutController implements Initializable {
 		Janelas novaTrans = new Janelas();
 		novaTrans.abrir("NovaTransportadora.fxml", new Stage(), "Cadastrar nova Transportadora", false);
 	}
+	
+	public void preencherTransportadora(){
+
+		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
+		clnCnpj.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("cnpjTransportadora"));
+		clnEmail.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailTransportadora"));
+		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
+		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
+		
+		List<Transportadora> lst= Transportadora.selecionarTodas();
+		
+		System.out.println(lst);
+		tvTransp.getItems().addAll(lst);
+
+		
+	}
 	// Event Listener on Button[#btnEditarTrans].onAction
 	@FXML
 	public void editarTrans(ActionEvent event) {
@@ -154,6 +182,8 @@ public class LayoutController implements Initializable {
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		preencherTransportadora();
 		
 		lblUsuario.setText(System.getProperty("user.name"));
 		

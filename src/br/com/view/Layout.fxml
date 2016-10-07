@@ -245,13 +245,13 @@
                                       <items>
                                           <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                              <children>
-                                                <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                <TableView fx:id="tvTransp" prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                   <columns>
-                                                    <TableColumn minWidth="120.0" prefWidth="130.0" text="Transportadora" />
-                                                    <TableColumn minWidth="120.0" prefWidth="130.0" text="Cnpj" />
-                                                      <TableColumn minWidth="120.0" prefWidth="130.0" text="E-mail" />
-                                                      <TableColumn minWidth="110.0" prefWidth="115.0" text="Telefone" />
-                                                      <TableColumn minWidth="75.0" text="Responsável" />
+                                                    <TableColumn fx:id="clnTransp" minWidth="120.0" prefWidth="130.0" text="Transportadora" />
+                                                    <TableColumn fx:id="clnCnpj" minWidth="120.0" prefWidth="130.0" text="Cnpj" />
+                                                      <TableColumn fx:id="clnEmail" minWidth="120.0" prefWidth="130.0" text="E-mail" />
+                                                      <TableColumn fx:id="clnFone" minWidth="110.0" prefWidth="115.0" text="Telefone" />
+                                                      <TableColumn fx:id="clnResp" minWidth="75.0" text="Responsável" />
                                                   </columns>
                                                 </TableView>
                                              </children>
