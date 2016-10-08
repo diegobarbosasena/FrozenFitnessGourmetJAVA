@@ -2,6 +2,7 @@ package br.com.model;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class Transportadora {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelect = "SELECT * FROM tblTransportadora; ";
+		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
 		
 		List <Transportadora> tr = new ArrayList<>(); 
 		
@@ -90,4 +91,32 @@ public class Transportadora {
 		return tr;
 	}
 	
+	public static List<Transportadora> inserirTransportadora(String nome, String email, String telefone, String cnpj, String responsavel ){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlInsert = "INSERT INTO tbltransportadora (nomeTransportadora,emailTransportadora,telefoneTransportadora,cnpjTransportadora,responsavelTransportadora) VALUES (?,?,?,?,?); ";
+		
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlInsert);
+			
+			parametros.setString(1, nome);
+			parametros.setString(2, email);
+			parametros.setString(3, telefone);
+			parametros.setString(4, cnpj);
+			parametros.setString(5, responsavel);
+			
+			parametros.executeUpdate();
+			
+			c.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }

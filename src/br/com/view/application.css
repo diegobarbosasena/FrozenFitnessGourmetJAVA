@@ -30,49 +30,11 @@ TextField, PasswordField, DatePicker{
 	-fx-border-color: #E08A2C;
 }
 
-.myDialog{
-    -fx-background-color: #FFF;
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {    
+	-fx-border-width: 1px 1px 0px 1px;
+    -fx-border-color: #00B348;
+	-fx-border-radius: 4px 4px 0px 0px;
 }
-.myDialog > *.button-bar > *.container{
-    -fx-background-color: #FFF;
+.tab-pane > .tab-header-area > .headers-region >.tab:selected .focus-indicator{
+    -fx-border-width: 0px;  
 }
-.myDialog > *.label.content{
-    -fx-font-size: 14px;
-    -fx-text-fill: red;
-}
-.myDialog:header *.header-panel{
-    -fx-background-color: #FFF;
-}
-.myDialog:header *.header-panel *.label{
-    -fx-font-size: 18px;
-    -fx-font-style: italic;   
-}
-.dialog-pane .button{
-   -fx-background-color:#FFF;
-   -fx-text-fill:#00B348;
-   -fx-cursor:hand;
- }
-.dialog-pane .button:hover{
-	-fx-border-color: #00B348;
-	-fx-border-radius: 5px;
-	-fx-text-fill: #00B348;
- }
- /*
- .tab-pane>*.tab-header-area>*.headers-region>*.tab:selected{
-
- 	-fx-border-color: #00B348;
- 	-fx-border-insets: 0px 1px 1px 0px, 1px 2px 0px 1px, 2px 3px 0px 2px;
- 	-fx-border-style: 0px 1px 1px 0px, 1px 2px 0px 1px, 2px 3px 0px 2px;
- }
- .tab-pane>*.tab-header-area>*.headers-region>*.tab{
- 	
- 	-fx-border-color: #00B348;
- 	-fx-border-width: 0.5;
- }
- */
- 
-
-
-
-
- 

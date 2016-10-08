@@ -1,5 +1,8 @@
 package br.com.controller;
 
+import java.util.List;
+
+import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +56,14 @@ public class NovaTransportadoraController {
 			j.abrirPopup("PopUp.fxml", new Stage(), "Erro Transportadora", false, erro);
 		}
 		else{
-
+			
+			List<Transportadora> lst = Transportadora.inserirTransportadora(txtNomeTrans.getText(),
+					txtEmailTrans.getText(),
+					txtTelefoneTrans.getText(),
+					txtCnpjTransp.getText(),
+					txtResponsavelTransp.getText()
+					);
+			
 			System.out.println();
 			System.out.println("NOME TRASNP" + txtNomeTrans.getText());
 			System.out.println("EMAIL TRASNP" + txtEmailTrans.getText());
@@ -73,6 +83,8 @@ public class NovaTransportadoraController {
 		}
 	}
 	
+	
+
 	public boolean vazioTrans(String... strings) {		
 		boolean bolean = false;
 		
