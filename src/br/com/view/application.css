@@ -3,8 +3,26 @@
  * 	#00B348 VERDE
  * 	#E08A2C LARANJA
  * 	#666 CINZA
+ * 
+ * -fx-accent: #666;
+ * 
+ *  The color to use in ListView/TreeView/TableView to indicate hover.
+    -fx-cell-hover-color: #cce3f4;
+ 	
+ 	-fx-selection-bar: -fx-accent;
+ 	
+ 	
+ 	/* Background color to use for selection of list cells etc. This is when
+     * the control doesn't have focus or the row of a previously selected item.
+    -fx-selection-bar-non-focused: lightgrey;
+    
+    
+    /* The color to use in ListView/TreeView/TableView to indicate hover.
+    -fx-cell-hover-color: #cce3f4;
+ * 
+ *
  */
-*{ -fx-text-fill: #666; }
+ *{ -fx-text-fill: #666; }
 .border{
 	-fx-border-color: #666;
 }
@@ -29,12 +47,13 @@ TextField, PasswordField, DatePicker{
 	-fx-background-color: #FFF #E08A2C;
 	-fx-border-color: #E08A2C;
 }
-
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {    
 	-fx-border-width: 1px 1px 0px 1px;
     -fx-border-color: #00B348;
 	-fx-border-radius: 4px 4px 0px 0px;
 }
 .tab-pane > .tab-header-area > .headers-region >.tab:selected .focus-indicator{
-    -fx-border-width: 0px;  
+	-fx-border-width: 0px;
 }
+
+ 
