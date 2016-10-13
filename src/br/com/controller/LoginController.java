@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginController implements Initializable{
 	@FXML
@@ -19,7 +20,7 @@ public class LoginController implements Initializable{
 	Button btnEntrar;
 	@FXML
 	PasswordField txtSenha;
-	
+	@FXML AnchorPane anpLogin;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -45,7 +46,6 @@ public class LoginController implements Initializable{
 		
 	}
 	
-	// Event Listener on Button[#btnEntrar].onAction
 	@FXML
 	public void login() {
 
@@ -66,6 +66,8 @@ public class LoginController implements Initializable{
 		}
 		else{
 			
+		
+			
 			PopUpController erro = new PopUpController("ERRO DE LOGIN", "Usuário e Senha incorretos!", "Fechar");
 
 			Janelas erroLogin = new Janelas();
@@ -80,5 +82,4 @@ public class LoginController implements Initializable{
 		txtUsuario.clear();
 		txtSenha.clear();
 	}
-	
 }

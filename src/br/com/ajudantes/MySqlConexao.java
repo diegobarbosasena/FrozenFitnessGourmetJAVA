@@ -8,7 +8,7 @@ public class MySqlConexao {
 	public static Connection ConectarDb(){
 		
 		String jdbc = "jdbc:mysql://";
-		String ip = "192.168.1.34";
+		String ip = "10.107.144.22";
 		String db = "dbfrozenfitness";
 		String usuario = "root";
 		String senha = "root" ;
