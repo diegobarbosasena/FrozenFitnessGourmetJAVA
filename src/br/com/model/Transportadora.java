@@ -1,15 +1,5 @@
 package br.com.model;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.ajudantes.MySqlConexao;
-
 public class Transportadora {
 
 	private int codTransportadora;
@@ -58,65 +48,6 @@ public class Transportadora {
 	}
 	
 	
-	public static List<Transportadora> selecionarTodas() {
-		
-		Connection c = MySqlConexao.ConectarDb();
-		
-		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
-		
-		List <Transportadora> tr = new ArrayList<>(); 
-		
-		ResultSet rs;
-		try {
-			rs = c.createStatement().executeQuery(sqlSelect);
-
-			while(rs.next()){
-				
-				Transportadora t = new Transportadora();
-				
-				t.setCodTransportadora(rs.getInt("codTransportadora"));
-				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
-				t.setEmailTransportadora(rs.getString("emailTransportadora"));
-				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
-				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
-				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-				
-				tr.add(t);			
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return tr;
-	}
 	
-	public static List<Transportadora> inserirTransportadora(String nome, String email, String telefone, String cnpj, String responsavel ){
-		
-		Connection c = MySqlConexao.ConectarDb();
-		
-		String sqlInsert = "INSERT INTO tbltransportadora (nomeTransportadora,emailTransportadora,telefoneTransportadora,cnpjTransportadora,responsavelTransportadora) VALUES (?,?,?,?,?); ";
-		
-		PreparedStatement parametros;
-		
-		try {
-			parametros = c.prepareStatement(sqlInsert);
-			
-			parametros.setString(1, nome);
-			parametros.setString(2, email);
-			parametros.setString(3, telefone);
-			parametros.setString(4, cnpj);
-			parametros.setString(5, responsavel);
-			
-			parametros.executeUpdate();
-			
-			c.close();
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
+	
 }

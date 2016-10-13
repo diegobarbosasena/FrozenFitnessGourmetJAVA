@@ -221,67 +221,7 @@
                       </Tab>
                       <Tab text="Transportadoras">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
-                                       <children>
-                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
-                                             <children>
-                                                <TextField fx:id="txtBuscaTrans" layoutX="55.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
-                                                <Button fx:id="btnBuscaTrans" alignment="CENTER" layoutX="274.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarTransportadora" styleClass="botao" text="Buscar Tranportadora" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button fx:id="btnNovaTransportadora" layoutX="434.0" layoutY="8.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova Transportadora">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font></Button>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
-                                    <SplitPane dividerPositions="0.889168765743073" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                                      <items>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView fx:id="tvTransp" prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="clnTransp" minWidth="120.0" prefWidth="130.0" text="Transportadora" />
-                                                    <TableColumn fx:id="clnCnpj" minWidth="120.0" prefWidth="130.0" text="Cnpj" />
-                                                      <TableColumn fx:id="clnEmail" minWidth="120.0" prefWidth="130.0" text="E-mail" />
-                                                      <TableColumn fx:id="clnFone" minWidth="110.0" prefWidth="115.0" text="Telefone" />
-                                                      <TableColumn fx:id="clnResp" minWidth="75.0" text="Responsável" />
-                                                  </columns>
-                                                </TableView>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <children>
-                                                      <Pane prefHeight="50.0" prefWidth="653.0">
-                                                         <children>
-                                                            <Button fx:id="btnEditarTrans" alignment="CENTER" disable="true" layoutX="493.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <Button fx:id="btnExcluirTrans" alignment="CENTER" disable="true" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                         </children>
-                                                      </Pane>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                 </children>
-							</AnchorPane>
+                          <fx:include fx:id="acpTransp" source="Transportadora.fxml" /> 
                         </content>
                       </Tab>
                     </tabs>

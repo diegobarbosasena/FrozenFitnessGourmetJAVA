@@ -29,14 +29,18 @@
 .botao{
 	-fx-background-color: #FFF;
 	-fx-text-fill: #00B348;
+	-fx-border-radius: 2px ;
 }
 .botao:focused{
 	-fx-background-color: #FFF;
-	-fx-text-fill: #00B348;
+	-fx-text-fill: #E08A2C;
+	-fx-border-color: #E08A2C;
+	-fx-border-radius: 2px ;
 }
 .botao:hover{
+	-fx-background-color: #FFF;
 	-fx-border-color: #00B348;
-	-fx-border-radius: 5px ;
+	-fx-border-radius: 2px ;
 	-fx-text-fill: #00B348;
 }
 TextField, PasswordField, DatePicker{

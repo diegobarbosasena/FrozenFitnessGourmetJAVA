@@ -11,7 +11,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 		Janelas login = new Janelas();
-		login.abrir("Login.fxml", primaryStage, "Login", false);	
+		login.abrir("Login.fxml", primaryStage, "Login", true);	
 	}
 
 	public static void main(String[] args) {

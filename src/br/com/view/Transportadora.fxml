@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="acpTransp" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <tabs>
+          <Tab text="Visualizar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.14" orientation="VERTICAL" prefHeight="364.0" prefWidth="594.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" layoutX="-229.0" layoutY="37.0" prefHeight="45.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
+                                             <children>
+                                                <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="452.0" layoutY="8.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnExcluirTrans" alignment="CENTER" layoutX="518.0" layoutY="8.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnNovaTransportadora" alignment="CENTER" layoutX="388.0" layoutY="8.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <TextField fx:id="txtBuscaTrans" layoutX="102.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
+                                                <Button fx:id="btnBuscaTrans" alignment="CENTER" layoutX="313.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarTransportadora" styleClass="botao" text="Buscar " textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TableView fx:id="tvTransp" prefHeight="348.0" prefWidth="578.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <columns>
+                                          <TableColumn fx:id="clnTransp" minWidth="120.0" prefWidth="130.0" text="Transportadora" />
+                                          <TableColumn fx:id="clnCnpj" minWidth="120.0" prefWidth="130.0" text="Cnpj" />
+                                          <TableColumn fx:id="clnEmail" minWidth="120.0" prefWidth="130.0" text="E-mail" />
+                                          <TableColumn fx:id="clnFone" minWidth="110.0" prefWidth="115.0" text="Telefone" />
+                                          <TableColumn fx:id="clnResp" minWidth="75.0" text="Responsável" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Cadastrar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="364.0" prefWidth="594.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="364.0" prefWidth="598.0">
+                                 <children>
+                                    <Pane prefHeight="363.0" prefWidth="596.0" style="-fx-background-color: #fff;">
+                                       <children>
+                                          <Label fx:id="lblNomeTrans" layoutX="38.0" layoutY="38.0" text="Nome da Transportadora" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNomeTrans" layoutX="38.0" layoutY="68.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblEmailTrans" layoutX="352.0" layoutY="38.0" text="E-mail" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtEmailTrans" layoutX="352.0" layoutY="68.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblTelefoneTrans" layoutX="38.0" layoutY="139.0" text="Telefone" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtTelefoneTrans" layoutX="38.0" layoutY="168.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblCnpjTransp" layoutX="352.0" layoutY="139.0" text="Cnpj" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtCnpjTransp" layoutX="352.0" layoutY="168.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblResponsavelTrans" layoutX="38.0" layoutY="229.0" text="Responsável" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtResponsavelTransp" layoutX="38.0" layoutY="260.0" minWidth="200.0" styleClass="focus" />
+                                          <Button fx:id="btnCadastrarTrans" layoutX="500.0" layoutY="320.0" mnemonicParsing="false" onAction="#cadastrarTransportadora" styleClass="botao" stylesheets="@application.css" text="Cadastrar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnConcluido" contentDisplay="CENTER" layoutX="407.0" layoutY="320.0" mnemonicParsing="false" onAction="#concluido" styleClass="botao" text="Concluído">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
