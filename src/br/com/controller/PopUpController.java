@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class PopUpController implements Initializable{
@@ -43,6 +44,12 @@ public class PopUpController implements Initializable{
 		btnPopUpFechar.setText(botao);
 		
 		btnPopUpFechar.setOnAction(x -> fecharPopUp());
+		
+		btnPopUpFechar.setOnKeyPressed(e -> {
+		    if (e.getCode() == KeyCode.ENTER) {
+		        fecharPopUp();
+		    }
+		});
 	}
 	
 	public void fecharPopUp() {

@@ -22,12 +22,8 @@
                                        <children>
                                           <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
                                              <children>
-                                                <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="452.0" layoutY="8.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button fx:id="btnExcluirTrans" alignment="CENTER" layoutX="518.0" layoutY="8.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                                <TextField fx:id="txtBuscaTrans" layoutX="102.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
+                                                <Button fx:id="btnBuscaTrans" alignment="CENTER" layoutX="313.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarTransportadora" styleClass="botao" text="Buscar " textAlignment="CENTER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -37,8 +33,12 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Button>
-                                                <TextField fx:id="txtBuscaTrans" layoutX="102.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
-                                                <Button fx:id="btnBuscaTrans" alignment="CENTER" layoutX="313.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarTransportadora" styleClass="botao" text="Buscar " textAlignment="CENTER">
+                                                <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="452.0" layoutY="8.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnExcluirTrans" alignment="CENTER" layoutX="518.0" layoutY="8.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir" textAlignment="CENTER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
