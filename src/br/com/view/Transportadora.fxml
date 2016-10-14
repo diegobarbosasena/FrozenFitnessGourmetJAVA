@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="acpTransp" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
+<AnchorPane fx:id="acpTransp" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
    <children>
       <TabPane fx:id="tpTransp" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
@@ -78,30 +78,35 @@
                                  <children>
                                     <Pane prefHeight="363.0" prefWidth="596.0" style="-fx-background-color: #fff;">
                                        <children>
-                                          <Label fx:id="lblNomeTrans" layoutX="38.0" layoutY="38.0" text="Nome da Transportadora" textFill="#666666">
+                                          <Label fx:id="lblEdicaoCadas" layoutX="38.0" layoutY="19.0" style="-fx-font-weight: bold; -fx-font-size: 1.4em;" text="Cadastro de transportadora" textAlignment="CENTER" textFill="#666666">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblNomeTrans" layoutX="38.0" layoutY="73.0" text="Nome da Transportadora" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeTrans" layoutX="38.0" layoutY="68.0" minWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblEmailTrans" layoutX="352.0" layoutY="38.0" text="E-mail" textFill="#666666">
+                                          <TextField fx:id="txtNomeTrans" layoutX="38.0" layoutY="103.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblEmailTrans" layoutX="352.0" layoutY="73.0" text="E-mail" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtEmailTrans" layoutX="352.0" layoutY="68.0" minWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblTelefoneTrans" layoutX="38.0" layoutY="139.0" text="Telefone" textFill="#666666">
+                                          <TextField fx:id="txtEmailTrans" layoutX="352.0" layoutY="103.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblTelefoneTrans" layoutX="38.0" layoutY="154.0" text="Telefone" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtTelefoneTrans" layoutX="38.0" layoutY="168.0" minWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblCnpjTransp" layoutX="352.0" layoutY="139.0" text="Cnpj" textFill="#666666">
+                                          <TextField fx:id="txtTelefoneTrans" layoutX="38.0" layoutY="183.0" minWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblCnpjTransp" layoutX="352.0" layoutY="154.0" text="Cnpj" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCnpjTransp" layoutX="352.0" layoutY="168.0" minWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtCnpjTransp" layoutX="352.0" layoutY="183.0" minWidth="200.0" styleClass="focus" />
                                           <Label fx:id="lblResponsavelTrans" layoutX="38.0" layoutY="229.0" text="Responsável" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />

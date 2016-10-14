@@ -8,7 +8,8 @@ public class MySqlConexao {
 	public static Connection ConectarDb(){
 		
 		String jdbc = "jdbc:mysql://";
-		String ip = "10.107.144.22";
+//		String ip = "10.107.144.22";
+		String ip = "192.168.1.34";
 		String db = "dbfrozenfitness";
 		String usuario = "root";
 		String senha = "root" ;
@@ -16,7 +17,8 @@ public class MySqlConexao {
 		Connection c = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		
+			Class.forName("com.mysql.jdbc.Driver");	
+			
 			c = DriverManager.getConnection(jdbc + ip + "/" + db, usuario, senha);
 			
 		} catch (Exception e) {	

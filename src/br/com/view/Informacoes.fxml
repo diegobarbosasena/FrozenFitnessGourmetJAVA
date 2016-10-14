@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anpInfo" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.InformacoesController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="457.0" prefWidth="255.0">
+               <children>
+                  <ImageView fitHeight="138.0" fitWidth="255.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+                     <image>
+                        <Image url="@imagens/logo.PNG" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="34.0" layoutY="217.0" text="Bem vindo(a):" textFill="#666666">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUsuario" layoutX="128.0" layoutY="217.0" text="Usuário" textFill="#666666">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblHora" layoutX="105.0" layoutY="243.0" text="00:00" />
+                  <Label fx:id="lblData" layoutX="88.0" layoutY="267.0" text="00/00/0000" />
+                  <Button fx:id="btnSair" alignment="CENTER" layoutX="98.0" layoutY="348.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

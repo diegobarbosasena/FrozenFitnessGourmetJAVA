@@ -14,93 +14,65 @@
 
 <AnchorPane minHeight="500.0" minWidth="950.0" style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LayoutController">
    <children>
-      <SplitPane dividerPositions="0.3246" minHeight="502.0" minWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane maxWidth="260.0" minWidth="260.0" prefHeight="500.0" prefWidth="244.0" SplitPane.resizableWithParent="false">
+      <SplitPane dividerPositions="0.06224899598393574" orientation="VERTICAL" prefHeight="500.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                <children>
-                  <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="948.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="255.0">
-                           <children>
-                              <ImageView fitHeight="142.0" fitWidth="260.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-                                 <image>
-                                    <Image url="@imagens/logo.PNG" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" layoutX="32.0" layoutY="207.0" text="Bem vindo(a):" textFill="#666666">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblUsuario" layoutX="129.0" layoutY="207.0" text="Usuário" textFill="#666666">
-                                 <font>
-                                    <Font name="Arial Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblHora" layoutX="105.0" layoutY="233.0" text="00:00" />
-                              <Label fx:id="lblData" layoutX="88.0" layoutY="259.0" text="00/00/0000" />
-                              <Button fx:id="btnSair" alignment="CENTER" layoutX="97.0" layoutY="394.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </Pane>
+                        <MenuBar style="-fx-background-color: #FFF;">
+                          <menus>
+                            <Menu fx:id="mnVisualizar" mnemonicParsing="false" text="Visualizar">
+                              <items>
+                                <MenuItem fx:id="miPedidoTel" mnemonicParsing="false" text="Pedido por telefone" />
+                                <MenuItem fx:id="miPedidos" mnemonicParsing="false" text="Pedidos" />
+                                <MenuItem fx:id="miAcompa" mnemonicParsing="false" text="Acompanhamento" />
+                                <MenuItem fx:id="miVendas" mnemonicParsing="false" text="Vendas" />
+                                <MenuItem fx:id="miFatura" mnemonicParsing="false" text="Faturamento" />
+                                <MenuItem fx:id="miGrafiVendas" mnemonicParsing="false" text="Gráfico de Vendas" />
+                                <MenuItem fx:id="miTransp" mnemonicParsing="false" text="Transportadoras" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="500.0" prefWidth="445.0">
+          <AnchorPane minHeight="10.0">
                <children>
-                  <TabPane prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                    <tabs>
-                        <Tab text="Pedido por telelefone">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                        <Tab text="Pedidos">
-                          <content>
-                          	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
-                                       <children>
-                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
+                  <SplitPane dividerPositions="0.27" minHeight="502.0" minWidth="800.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <fx:include fx:id="anpInfo" source="Informacoes.fxml" />
+                        <AnchorPane prefHeight="500.0" prefWidth="445.0">
+                           <children>
+                              <TabPane fx:id="tpDesk" prefHeight="490.0" prefWidth="530.0" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <tabs>
+                                    <Tab text="Pedido por telelefone">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Pedidos">
+                                      <content>
+                                      	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TextField fx:id="txtBuscaPedido" layoutX="258.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                                                <Button fx:id="btnBuscaPedido" alignment="CENTER" layoutX="478.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarPedido" styleClass="botao" text="Buscar Pedido" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
-                                    <SplitPane dividerPositions="0.889168765743073" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                                       <items>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                                   <columns>
-                                                      <TableColumn minWidth="120.0" prefWidth="130.0" text="Id" />
-                                                      <TableColumn minWidth="120.0" prefWidth="130.0" text="Número do pedido" />
-                                                   </columns>
-                                                </TableView>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
                                                    <children>
-                                                      <Pane prefHeight="50.0" prefWidth="653.0">
+                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
                                                          <children>
-                                                            <Button fx:id="btnEditarPedido" alignment="CENTER" disable="true" layoutX="493.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarPedido" styleClass="botao" text="Editar">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <Button fx:id="btnExcluirPedido" alignment="CENTER" disable="true" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirPedido" styleClass="botao" text="Excluir">
+                                                            <TextField fx:id="txtBuscaPedido" layoutX="258.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
+                                                            <Button fx:id="btnBuscaPedido" alignment="CENTER" layoutX="478.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarPedido" styleClass="botao" text="Buscar Pedido" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -109,56 +81,56 @@
                                                       </Pane>
                                                    </children>
                                                 </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                       </items>
-                                    </SplitPane>
-                                 </children></AnchorPane>
-                          </content>
-                        </Tab>
-                        <Tab text="Acompanhamento">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
-                                       <children>
-                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
-                                             <children>
-                                                <TextField fx:id="txtBuscaPedidoAcompa" layoutX="258.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                                                <Button fx:id="btnBuscaPedidoAcompa" alignment="CENTER" layoutX="478.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarPedidoAcompa" styleClass="botao" text="Buscar Pedido" textAlignment="CENTER">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
-                                    <SplitPane dividerPositions="0.889168765743073" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                                       <items>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                                   <columns>
-                                                      <TableColumn minWidth="92.0" prefWidth="121.0" text="Id" />
-                                                      <TableColumn minWidth="120.0" prefWidth="139.0" text="Número do pedido" />
-                                                      <TableColumn prefWidth="93.0" text="Status" />
-                                                   </columns>
-                                                </TableView>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <children>
-                                                      <Pane prefHeight="50.0" prefWidth="653.0">
+                                                <SplitPane dividerPositions="0.889168765743073" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                                   <items>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                          <children>
-                                                            <Button fx:id="btnEditarPedidoAcomp" alignment="CENTER" disable="true" layoutX="493.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarPedidoAcomp" styleClass="botao" text="Editar">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                            <Button fx:id="btnExcluirPedidoAcomp" alignment="CENTER" disable="true" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirPedidoAcomp" styleClass="botao" text="Excluir">
+                                                            <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                               <columns>
+                                                                  <TableColumn minWidth="120.0" prefWidth="130.0" text="Id" />
+                                                                  <TableColumn minWidth="120.0" prefWidth="130.0" text="Número do pedido" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Pane prefHeight="50.0" prefWidth="653.0">
+                                                                     <children>
+                                                                        <Button fx:id="btnEditarPedido" alignment="CENTER" disable="true" layoutX="493.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarPedido" styleClass="botao" text="Editar">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                        <Button fx:id="btnExcluirPedido" alignment="CENTER" disable="true" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirPedido" styleClass="botao" text="Excluir">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                     </children>
+                                                                  </Pane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Acompanhamento">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="607.0" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
+                                                   <children>
+                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="600.0">
+                                                         <children>
+                                                            <TextField fx:id="txtBuscaPedidoAcompa" layoutX="258.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
+                                                            <Button fx:id="btnBuscaPedidoAcompa" alignment="CENTER" layoutX="478.0" layoutY="8.0" mnemonicParsing="false" onAction="#buscarPedidoAcompa" styleClass="botao" text="Buscar Pedido" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -167,68 +139,106 @@
                                                       </Pane>
                                                    </children>
                                                 </HBox>
+                                                <SplitPane dividerPositions="0.889168765743073" orientation="VERTICAL" prefHeight="449.0" prefWidth="659.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                                   <items>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TableView prefHeight="384.0" prefWidth="657.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                               <columns>
+                                                                  <TableColumn minWidth="92.0" prefWidth="121.0" text="Id" />
+                                                                  <TableColumn minWidth="120.0" prefWidth="139.0" text="Número do pedido" />
+                                                                  <TableColumn prefWidth="93.0" text="Status" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Pane prefHeight="50.0" prefWidth="653.0">
+                                                                     <children>
+                                                                        <Button fx:id="btnEditarPedidoAcomp" alignment="CENTER" disable="true" layoutX="493.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarPedidoAcomp" styleClass="botao" text="Editar">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                        <Button fx:id="btnExcluirPedidoAcomp" alignment="CENTER" disable="true" layoutX="565.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirPedidoAcomp" styleClass="botao" text="Excluir">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                     </children>
+                                                                  </Pane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </items>
+                                                </SplitPane>
                                              </children>
                                           </AnchorPane>
-                                       </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
-                        <Tab text="Vendas">
-                           <content>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                           </content></Tab>
-                        <Tab text="Faturamento">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                      <Tab text="Gráfico de Vendas">
-                        <content>
-                          <AnchorPane prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
-                                 <children>
-                                    <HBox alignment="TOP_RIGHT" prefHeight="76.0" prefWidth="514.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
-                                       <children>
-                                          <Pane nodeOrientation="LEFT_TO_RIGHT" prefWidth="514.0">
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Vendas">
+                                       <content>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
+                                    </Tab>
+                                    <Tab text="Faturamento">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                  <Tab text="Gráfico de Vendas">
+                                    <content>
+                                      <AnchorPane prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
                                              <children>
-                                                <Label layoutX="73.0" layoutY="10.0" text="Data Inicial">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="257.0" layoutY="10.0" text="Data Final">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="36.0" styleClass="focus" />
-                                                <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="36.0" styleClass="focus" />
-                                                <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="444.0" layoutY="32.0" mnemonicParsing="false" onAction="#filtrarVendas" styleClass="botao" text="Filtrar">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="76.0" prefWidth="514.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+                                                   <children>
+                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefWidth="514.0">
+                                                         <children>
+                                                            <Label layoutX="73.0" layoutY="10.0" text="Data Inicial">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label layoutX="257.0" layoutY="10.0" text="Data Final">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="36.0" styleClass="focus" />
+                                                            <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="36.0" styleClass="focus" />
+                                                            <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="444.0" layoutY="32.0" mnemonicParsing="false" onAction="#filtrarVendas" styleClass="botao" text="Filtrar">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Button>
+                                                         </children>
+                                                      </Pane>
+                                                   </children>
+                                                </HBox>
+                                                <Label fx:id="lblIni" layoutX="76.0" layoutY="76.0" />
+                                                <Label fx:id="lblFim" layoutX="257.0" layoutY="76.0" />
                                              </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
-                                    <Label fx:id="lblIni" layoutX="76.0" layoutY="76.0" />
-                                    <Label fx:id="lblFim" layoutX="257.0" layoutY="76.0" />
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Transportadoras">
-                        <content>
-                          <fx:include fx:id="acpTransp" source="Transportadora.fxml" /> 
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab fx:id="tabTransp" text="Transportadoras">
+                                    <content>
+                                      <fx:include fx:id="acpTransp" source="Transportadora.fxml" /> 
+                                    </content>
+                                  </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
-         </items>
+        </items>
       </SplitPane>
    </children>
    <rotationAxis>

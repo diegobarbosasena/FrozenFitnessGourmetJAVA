@@ -1,69 +1,93 @@
 package br.com.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ResourceBundle;
-
-import br.com.view.Janelas;
-import javafx.event.ActionEvent;
-
-import javafx.scene.control.Label;
-
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 
 public class LayoutController implements Initializable{
-	@FXML
-	private Label lblUsuario;
-	@FXML
-	private Label lblHora;
-	@FXML
-	private Label lblData;
-	@FXML
-	private Button btnSair;
-	@FXML
-	private TextField txtBuscaPedido;
-	@FXML
-	private Button btnBuscaPedido;
-	@FXML
-	private Button btnEditarPedido;
-	@FXML
-	private Button btnExcluirPedido;
-	@FXML
-	private TextField txtBuscaPedidoAcompa;
-	@FXML
-	private Button btnBuscaPedidoAcompa;
-	@FXML
-	private Button btnEditarPedidoAcomp;
-	@FXML
-	private Button btnExcluirPedidoAcomp;
-	@FXML
-	private DatePicker dpDataInicial;
-	@FXML
-	private DatePicker dpDataFinal;
-	@FXML
-	private Button btnFiltrar;
-	@FXML
-	private Label lblIni;
-	@FXML
-	private Label lblFim;
+	
+	@FXML private TextField txtBuscaPedido;
+	@FXML private Button btnBuscaPedido;
+	@FXML private Button btnEditarPedido;
+	@FXML private Button btnExcluirPedido;
+	@FXML private TextField txtBuscaPedidoAcompa;
+	@FXML private Button btnBuscaPedidoAcompa;
+	@FXML private Button btnEditarPedidoAcomp;
+	@FXML private Button btnExcluirPedidoAcomp;
+	@FXML private DatePicker dpDataInicial;
+	@FXML private DatePicker dpDataFinal;
+	@FXML private Button btnFiltrar;
+	@FXML private Label lblIni;
+	@FXML private Label lblFim;
+	
+	@FXML private Menu mnVisualizar;
+	@FXML private MenuItem miPedidoTel;
+	@FXML private MenuItem miPedidos;
+	@FXML private MenuItem miAcompa;
+	@FXML private MenuItem miVendas;
+	@FXML private MenuItem miFatura;
+	@FXML private MenuItem miGrafiVendas;
+	@FXML private MenuItem miTransp;
+	@FXML private Tab tabTransp;
+	@FXML private TabPane tpDesk;
 
-	// Event Listener on Button[#btnSair].onAction
-	@FXML
-	public void sair(ActionEvent event) {
-		Janelas login = new Janelas();
-		login.abrir("Login.fxml", new Stage(), "Login", false);
-		
-		Stage layout = (Stage)btnSair.getScene().getWindow();
-		layout.close();
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		miPedidoTel.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(0);
+			}
+		});
+		miPedidos.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(1);
+			}
+		});
+		miAcompa.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(2);
+			}
+		});
+		miVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(3);
+			}
+		});
+		miFatura.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(4);
+			}
+		});
+		miGrafiVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(5);
+			}
+		});
+		miTransp.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				tpDesk.getSelectionModel().select(6);
+			}
+		});
 	}
+	
 	// Event Listener on Button[#btnBuscaPedido].onAction
 	@FXML
 	public void buscarPedido(ActionEvent event) {
@@ -107,15 +131,5 @@ public class LayoutController implements Initializable{
 		dpDataInicial.setValue(null);
 		dpDataFinal.setValue(null);
 	}
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		lblUsuario.setText(System.getProperty("user.name"));
-		
-		SimpleDateFormat h = new SimpleDateFormat("HH:mm");
-		lblHora.setText(h.format(new Date()));
-		
-		SimpleDateFormat sdfd = new SimpleDateFormat("dd/MM/YYYY");
-		lblData.setText(sdfd.format(new Date()));
-		
-	}
+	
 }

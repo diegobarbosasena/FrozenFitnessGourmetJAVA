@@ -59,5 +59,20 @@ TextField, PasswordField, DatePicker{
 .tab-pane > .tab-header-area > .headers-region >.tab:selected .focus-indicator{
 	-fx-border-width: 0px;
 }
-
+.menu:hover { 
+	-fx-border-color: #00B348;
+	-fx-background-color: #FFF;
+	-fx-border-radius: 2px;
+ }
+.menu:showing { 
+	-fx-border-color: #00B348;
+	-fx-background-color: #FFF;
+	-fx-border-radius: 2px;	
+}
+.menu-item{ -fx-background-color: #FFF; }
+.menu-item:hover {
+    -fx-border-color: #00B348;
+	-fx-background-color: #FFF;
+	-fx-border-radius: 2px;
+}
  

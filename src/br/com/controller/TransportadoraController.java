@@ -1,12 +1,5 @@
 package br.com.controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,60 +14,48 @@ import br.com.model.Transportadora;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TabPane;
 
 public class TransportadoraController implements Initializable{
-	@FXML
-	AnchorPane acpTransp;
-	@FXML
-	Button btnEditarTrans;
-	@FXML
-	Button btnExcluirTrans;
-	@FXML
-	Button btnNovaTransportadora;
-	@FXML
-	TextField txtBuscaTrans;
-	@FXML
-	Button btnBuscaTrans;
-	@FXML
-	Label lblNomeTrans;
-	@FXML
-	TextField txtNomeTrans;
-	@FXML
-	Label lblEmailTrans;
-	@FXML
-	TextField txtEmailTrans;
-	@FXML
-	Label lblTelefoneTrans;
-	@FXML
-	TextField txtTelefoneTrans;
-	@FXML
-	Label lblCnpjTransp;
-	@FXML
-	TextField txtCnpjTransp;
-	@FXML
-	Label lblResponsavelTrans;
-	@FXML
-	TextField txtResponsavelTransp;
-	@FXML
-	Button btnCadastrarTrans;
 	
-	@FXML TableView<Transportadora> tvTransp;
-	@FXML TableColumn <Transportadora, String> clnTransp;
-	@FXML TableColumn <Transportadora, String> clnCnpj;
-	@FXML TableColumn <Transportadora, String> clnEmail;
-	@FXML TableColumn <Transportadora, String> clnFone;
-	@FXML TableColumn <Transportadora, String> clnResp;
-	@FXML Button btnConcluido;
-	@FXML TabPane tpTransp;
+	@FXML private AnchorPane acpTransp;
+	@FXML private Button btnEditarTrans;
+	@FXML private Button btnExcluirTrans;
+	@FXML private Button btnNovaTransportadora;
+	@FXML private TextField txtBuscaTrans;
+	@FXML private Button btnBuscaTrans;
+	@FXML private Label lblNomeTrans;
+	@FXML private TextField txtNomeTrans;
+	@FXML private Label lblEmailTrans;
+	@FXML private TextField txtEmailTrans;
+	@FXML private Label lblTelefoneTrans;
+	@FXML private TextField txtTelefoneTrans;
+	@FXML private Label lblCnpjTransp;
+	@FXML private TextField txtCnpjTransp;
+	@FXML private Label lblResponsavelTrans;
+	@FXML private TextField txtResponsavelTransp;
+	@FXML private Button btnCadastrarTrans;
+	
+	@FXML private Label lblEdicaoCadas;
+	
+	@FXML private TableView<Transportadora> tvTransp;
+	@FXML private TableColumn <Transportadora, String> clnTransp;
+	@FXML private TableColumn <Transportadora, String> clnCnpj;
+	@FXML private TableColumn <Transportadora, String> clnEmail;
+	@FXML private TableColumn <Transportadora, String> clnFone;
+	@FXML private TableColumn <Transportadora, String> clnResp;
+	@FXML private Button btnConcluido;
+	@FXML private TabPane tpTransp;
 	
 	boolean modoEdicao = false;
 	
@@ -83,7 +64,7 @@ public class TransportadoraController implements Initializable{
 		preencherTransportadora();
 	}
 	
-	public static List<Transportadora> selecionarTodas() {
+	private static List<Transportadora> selecionarTodas() {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
@@ -115,7 +96,7 @@ public class TransportadoraController implements Initializable{
 		return tr;
 	}
 	
-	public void preencherTransportadora(){
+	private void preencherTransportadora(){
 
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
 		clnCnpj.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("cnpjTransportadora"));
@@ -132,15 +113,16 @@ public class TransportadoraController implements Initializable{
 	
 	// Event Listener on Button[#btnNovaTransportadora].onAction
 	@FXML
-	public void novaTransportadora(ActionEvent event) {
+	private void novaTransportadora(ActionEvent event) {
 		tpTransp.getSelectionModel().select(1);
 	}
 	
 	@FXML
-	public void cadastrarTransportadora() {
+	private void cadastrarTransportadora() {
 		System.out.println();
 		System.out.println("Quase cadastro...");
 
+		lblEdicaoCadas.setText("Cadastro de Transportadora");
 		inserirTransportadora();
 				
 		System.out.println();
@@ -160,9 +142,10 @@ public class TransportadoraController implements Initializable{
 		System.out.println("SUCESSO cadastro de transportadora");	
 	}
 	
-	public void inserirTransportadora() {
+	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
+
 			Connection c = MySqlConexao.ConectarDb();
 			
 			String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
@@ -193,7 +176,7 @@ public class TransportadoraController implements Initializable{
 		modoEdicao = true;
 	}	
 	
-	public void atualizar(){
+	private void atualizar(){
 		Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 		
 		Connection c = MySqlConexao.ConectarDb();
@@ -229,14 +212,15 @@ public class TransportadoraController implements Initializable{
 	public void editarTrans() {
 		modoEdicao = true;
 		
+		lblEdicaoCadas.setText("Atualização de Transportadora");
 		if(modoEdicao){
 		
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
 			if(tn == null){
-				PopUpController sucesso = new PopUpController("ERRO", "Nenhum item selecionado", "Ok");
+				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);	
+				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);	
 			}
 			else{
 				tpTransp.getSelectionModel().select(1);
@@ -256,28 +240,37 @@ public class TransportadoraController implements Initializable{
 	
 	// Event Listener on Button[#btnExcluirTrans].onAction
 	@FXML
-	public void excluirTrans(ActionEvent event) {
+	private void excluirTrans(ActionEvent event) {
+		
 		Transportadora t = tvTransp.getSelectionModel().getSelectedItem();
-			
-		Connection c = MySqlConexao.ConectarDb();
-		String sqlDeletar = "DELETE FROM tblTransportadora WHERE CodTransportadora = ?;";
-			
-		PreparedStatement parametros;
-		try {
-			parametros = c.prepareStatement(sqlDeletar);
-			parametros.setInt(1, t.getCodTransportadora());
-			parametros.executeUpdate();
+		
+		if(t == null){
+			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+		}
+		else{
+		
+			Connection c = MySqlConexao.ConectarDb();
+			String sqlDeletar = "DELETE FROM tblTransportadora WHERE CodTransportadora = ?;";
 				
-			c.close();
-				
-			preencherTransportadora();
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
+			PreparedStatement parametros;
+			try {
+				parametros = c.prepareStatement(sqlDeletar);
+				parametros.setInt(1, t.getCodTransportadora());
+				parametros.executeUpdate();
+					
+				c.close();
+					
+				preencherTransportadora();
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+		}
 	}
-
-	public void limparTrans() {
+	
+	private void limparTrans() {
 		txtCnpjTransp.clear();
 		txtEmailTrans.clear();
 		txtNomeTrans.clear();
@@ -287,7 +280,7 @@ public class TransportadoraController implements Initializable{
 
 	// Event Listener on Button[#btnBuscaTrans].onAction
 	@FXML
-	public void buscarTransportadora(ActionEvent event) {
+	private void buscarTransportadora(ActionEvent event) {
 		if(txtBuscaTrans.getText().isEmpty()){
 				
 			System.out.println();
@@ -307,8 +300,11 @@ public class TransportadoraController implements Initializable{
 	}
 	
 	@FXML 
-	public void concluido(ActionEvent event) {
+	private void concluido(ActionEvent event) {
 		tpTransp.getSelectionModel().select(0);
 	}
-			
+	
+	
+	
+	
 }
