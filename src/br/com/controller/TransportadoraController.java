@@ -62,6 +62,7 @@ public class TransportadoraController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTransportadora();
+		lblEdicaoCadas.setText("Cadastro de Transportadora");
 	}
 	
 	private static List<Transportadora> selecionarTodas() {
@@ -145,7 +146,8 @@ public class TransportadoraController implements Initializable{
 	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
-
+			lblEdicaoCadas.setText("Cadastro de Transportadora");
+			
 			Connection c = MySqlConexao.ConectarDb();
 			
 			String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
@@ -221,6 +223,8 @@ public class TransportadoraController implements Initializable{
 				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);	
+				
+				lblEdicaoCadas.setText("Cadastro de Transportadora");
 			}
 			else{
 				tpTransp.getSelectionModel().select(1);
@@ -303,8 +307,4 @@ public class TransportadoraController implements Initializable{
 	private void concluido(ActionEvent event) {
 		tpTransp.getSelectionModel().select(0);
 	}
-	
-	
-	
-	
 }

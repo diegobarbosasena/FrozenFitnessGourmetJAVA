@@ -192,37 +192,7 @@
                                     </Tab>
                                   <Tab text="Gráfico de Vendas">
                                     <content>
-                                      <AnchorPane prefHeight="180.0" prefWidth="200.0" styleClass="focus" stylesheets="@application.css">
-                                             <children>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="76.0" prefWidth="514.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
-                                                   <children>
-                                                      <Pane nodeOrientation="LEFT_TO_RIGHT" prefWidth="514.0">
-                                                         <children>
-                                                            <Label layoutX="73.0" layoutY="10.0" text="Data Inicial">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label layoutX="257.0" layoutY="10.0" text="Data Final">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <DatePicker fx:id="dpDataInicial" layoutX="73.0" layoutY="36.0" styleClass="focus" />
-                                                            <DatePicker fx:id="dpDataFinal" layoutX="257.0" layoutY="36.0" styleClass="focus" />
-                                                            <Button fx:id="btnFiltrar" alignment="CENTER" layoutX="444.0" layoutY="32.0" mnemonicParsing="false" onAction="#filtrarVendas" styleClass="botao" text="Filtrar">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Button>
-                                                         </children>
-                                                      </Pane>
-                                                   </children>
-                                                </HBox>
-                                                <Label fx:id="lblIni" layoutX="76.0" layoutY="76.0" />
-                                                <Label fx:id="lblFim" layoutX="257.0" layoutY="76.0" />
-                                             </children>
-                                          </AnchorPane>
+                                      <fx:include fx:id="anpGrafVendas" source="GraficoVendas.fxml" /> 
                                     </content>
                                   </Tab>
                                   <Tab fx:id="tabTransp" text="Transportadoras">

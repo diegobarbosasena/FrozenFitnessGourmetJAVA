@@ -9,8 +9,9 @@ public class MySqlConexao {
 		
 		String jdbc = "jdbc:mysql://";
 //		String ip = "10.107.144.22";
-		String ip = "192.168.1.34";
-		String db = "dbfrozenfitness";
+//		String ip = "192.168.1.34";
+		String ip = "10.107.134.41";
+		String db = "dbsmartgourmet";
 		String usuario = "root";
 		String senha = "root" ;
 		
