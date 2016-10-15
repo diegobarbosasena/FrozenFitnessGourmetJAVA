@@ -62,9 +62,9 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFF;">
                <children>
-                  <BarChart fx:id="brcGrafVendas" layoutX="28.0" layoutY="-92.0" prefHeight="308.0" prefWidth="594.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                  <BarChart fx:id="brcGrafVendas" layoutX="28.0" layoutY="-92.0" prefHeight="308.0" prefWidth="594.0" stylesheets="@application.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" fx:id="xEixo" />
+                      <CategoryAxis side="BOTTOM" tickLabelFill="#666666" fx:id="xEixo" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis side="LEFT" />

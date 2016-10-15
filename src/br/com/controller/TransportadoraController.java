@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Tab;
 
 public class TransportadoraController implements Initializable{
 	
@@ -56,8 +57,10 @@ public class TransportadoraController implements Initializable{
 	@FXML private TableColumn <Transportadora, String> clnResp;
 	@FXML private Button btnConcluido;
 	@FXML private TabPane tpTransp;
+	@FXML private Tab tabVisualizar;
 	
 	boolean modoEdicao = false;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -123,6 +126,9 @@ public class TransportadoraController implements Initializable{
 		System.out.println();
 		System.out.println("Quase cadastro...");
 
+		modoEdicao = false;
+		btnCadastrarTrans.setText("Cadastrar");
+		
 		lblEdicaoCadas.setText("Cadastro de Transportadora");
 		inserirTransportadora();
 				
@@ -205,10 +211,16 @@ public class TransportadoraController implements Initializable{
 			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
+			
+			modoEdicao = false;
+			
+			btnConcluido.setDisable(false);
+			tabVisualizar.setDisable(false);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void editarTrans() {
@@ -238,8 +250,11 @@ public class TransportadoraController implements Initializable{
 				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
 			
 				btnCadastrarTrans.setOnAction(a -> atualizar());
+				btnConcluido.setDisable(true);
+				tabVisualizar.setDisable(true);
 			}
 		}
+		modoEdicao = false;
 	}
 	
 	// Event Listener on Button[#btnExcluirTrans].onAction

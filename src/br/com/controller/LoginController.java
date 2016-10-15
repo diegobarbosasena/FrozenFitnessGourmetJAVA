@@ -10,17 +10,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class LoginController implements Initializable{
-	@FXML
-	TextField txtUsuario;
-	@FXML
-	Button btnEntrar;
-	@FXML
-	PasswordField txtSenha;
-	@FXML AnchorPane anpLogin;
+	
+	@FXML private TextField txtUsuario;
+	@FXML private Button btnEntrar;
+	@FXML private PasswordField txtSenha;
+	@FXML private AnchorPane anpLogin;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -42,8 +40,7 @@ public class LoginController implements Initializable{
 		    if (e.getCode() == KeyCode.ENTER) {
 		        login();
 		    }
-		});
-		
+		});	
 	}
 	
 	@FXML
@@ -65,8 +62,6 @@ public class LoginController implements Initializable{
 			login.close();
 		}
 		else{
-			
-		
 			
 			PopUpController erro = new PopUpController("ERRO DE LOGIN", "Usuário e Senha incorretos!", "Fechar");
 

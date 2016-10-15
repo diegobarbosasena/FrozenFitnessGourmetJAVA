@@ -5,9 +5,10 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class Janelas {
+public class Janelas extends Stage{
 
 	public void abrir(String arquivo, Stage primaryStage, String titulo, boolean redimensionar) {
 
@@ -42,6 +43,8 @@ public class Janelas {
 					
 			primaryStage.setScene( new Scene(root));
 			primaryStage.setTitle(titulo);
+			//primaryStage.initOwner(primaryStage.getScene().getWindow());
+			primaryStage.initModality(Modality.APPLICATION_MODAL);
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
 			
@@ -55,5 +58,4 @@ public class Janelas {
 		}
 	}
 	
-
 }
