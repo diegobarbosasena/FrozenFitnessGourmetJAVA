@@ -55,17 +55,20 @@ public class TransportadoraController implements Initializable{
 	@FXML private TableColumn <Transportadora, String> clnEmail;
 	@FXML private TableColumn <Transportadora, String> clnFone;
 	@FXML private TableColumn <Transportadora, String> clnResp;
+	@FXML private Button btnCancelarTransp;
 	@FXML private Button btnConcluido;
 	@FXML private TabPane tpTransp;
 	@FXML private Tab tabVisualizar;
 	
 	boolean modoEdicao = false;
 	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTransportadora();
 		lblEdicaoCadas.setText("Cadastro de Transportadora");
+		
+		btnCancelarTransp.setOnAction(x -> limparTrans());
+		btnCancelarTransp.setOnAction(c -> modoEdicao = false);
 	}
 	
 	private static List<Transportadora> selecionarTodas() {
@@ -119,10 +122,12 @@ public class TransportadoraController implements Initializable{
 	@FXML
 	private void novaTransportadora(ActionEvent event) {
 		tpTransp.getSelectionModel().select(1);
+		btnConcluido.setDisable(true);
 	}
 	
 	@FXML
 	private void cadastrarTransportadora() {
+		
 		System.out.println();
 		System.out.println("Quase cadastro...");
 
@@ -153,7 +158,7 @@ public class TransportadoraController implements Initializable{
 		
 		if(!modoEdicao){
 			lblEdicaoCadas.setText("Cadastro de Transportadora");
-			
+
 			Connection c = MySqlConexao.ConectarDb();
 			
 			String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
@@ -179,6 +184,8 @@ public class TransportadoraController implements Initializable{
 				e.printStackTrace();
 			}
 			btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
+			btnConcluido.setDisable(false);
+			btnCancelarTransp.setDisable(true);
 		}	
 		limparTrans();
 		modoEdicao = true;
@@ -215,16 +222,18 @@ public class TransportadoraController implements Initializable{
 			modoEdicao = false;
 			
 			btnConcluido.setDisable(false);
+			btnCancelarTransp.setDisable(true);
 			tabVisualizar.setDisable(false);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void editarTrans() {
 		modoEdicao = true;
+		btnCancelarTransp.setDisable(false);
+		btnCancelarTransp.setOnAction(q -> concluido(q));
 		
 		lblEdicaoCadas.setText("Atualização de Transportadora");
 		if(modoEdicao){
@@ -321,5 +330,9 @@ public class TransportadoraController implements Initializable{
 	@FXML 
 	private void concluido(ActionEvent event) {
 		tpTransp.getSelectionModel().select(0);
+		tabVisualizar.setDisable(false);
+		limparTrans();
 	}
+	
+	
 }

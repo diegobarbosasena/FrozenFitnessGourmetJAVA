@@ -113,12 +113,17 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="txtResponsavelTransp" layoutX="38.0" layoutY="260.0" minWidth="200.0" styleClass="focus" />
-                                          <Button fx:id="btnCadastrarTrans" layoutX="500.0" layoutY="320.0" mnemonicParsing="false" onAction="#cadastrarTransportadora" styleClass="botao" stylesheets="@application.css" text="Cadastrar">
+                                          <Button fx:id="btnCadastrarTrans" layoutX="298.0" layoutY="320.0" mnemonicParsing="false" onAction="#cadastrarTransportadora" styleClass="botao" stylesheets="@application.css" text="Cadastrar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnConcluido" contentDisplay="CENTER" layoutX="407.0" layoutY="320.0" mnemonicParsing="false" onAction="#concluido" styleClass="botao" text="Concluído">
+                                          <Button fx:id="btnConcluido" contentDisplay="CENTER" layoutX="387.0" layoutY="320.0" mnemonicParsing="false" onAction="#concluido" styleClass="botao" text="Concluído">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnCancelarTransp" layoutX="479.0" layoutY="320.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

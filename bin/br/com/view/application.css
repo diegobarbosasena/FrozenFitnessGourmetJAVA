@@ -73,3 +73,6 @@ TextField, PasswordField, DatePicker{
 	-fx-background-color: #FFF;
 	-fx-border-radius: 2px;
 }
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
