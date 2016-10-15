@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class Janelas extends Stage{
+public class Janelas{
 
 	public void abrir(String arquivo, Stage primaryStage, String titulo, boolean redimensionar) {
 
