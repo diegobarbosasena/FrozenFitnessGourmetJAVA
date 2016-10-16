@@ -28,7 +28,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Button>
-                                                <Button fx:id="btnNovaTransportadora" alignment="CENTER" layoutX="388.0" layoutY="8.0" mnemonicParsing="false" onAction="#novaTransportadora" styleClass="botao" text="Nova" textAlignment="CENTER">
+                                                <Button fx:id="btnNovaTransportadora" alignment="CENTER" layoutX="388.0" layoutY="8.0" mnemonicParsing="false" styleClass="botao" text="Nova" textAlignment="CENTER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -100,7 +100,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtTelefoneTrans" layoutX="38.0" layoutY="183.0" minWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtTelefoneTrans" layoutX="38.0" layoutY="183.0" minWidth="200.0" promptText="0000-0000" styleClass="focus" />
                                           <Label fx:id="lblCnpjTransp" layoutX="352.0" layoutY="154.0" text="Cnpj" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />

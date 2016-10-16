@@ -1,5 +1,12 @@
 package br.com.controller;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,30 +18,40 @@ import java.util.ResourceBundle;
 
 import br.com.ajudantes.MySqlConexao;
 import br.com.model.Transportadora;
-import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.scene.control.Label;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Tab;
 
-public class TransportadoraController implements Initializable{
+import javafx.scene.control.TableView;
+
+import javafx.scene.control.TableColumn;
+
+public class TransportadoraController implements Initializable {
 	
 	@FXML private AnchorPane acpTransp;
-	@FXML private Button btnEditarTrans;
-	@FXML private Button btnExcluirTrans;
-	@FXML private Button btnNovaTransportadora;
+	@FXML private TabPane tpTransp;
+	@FXML private Tab tabVisualizar;
 	@FXML private TextField txtBuscaTrans;
 	@FXML private Button btnBuscaTrans;
+	@FXML private Button btnNovaTransportadora;
+	@FXML private Button btnEditarTrans;
+	@FXML private Button btnExcluirTrans;
+	
+	@FXML private TableView<Transportadora> tvTransp;
+	@FXML private TableColumn <Transportadora, String> clnTransp;
+	@FXML private TableColumn <Transportadora, String> clnCnpj;
+	@FXML private TableColumn <Transportadora, String> clnEmail;
+	@FXML private TableColumn <Transportadora, String> clnFone;
+	@FXML private TableColumn <Transportadora, String> clnResp;
+	
+	@FXML private Label lblEdicaoCadas;
 	@FXML private Label lblNomeTrans;
 	@FXML private TextField txtNomeTrans;
 	@FXML private Label lblEmailTrans;
@@ -46,29 +63,18 @@ public class TransportadoraController implements Initializable{
 	@FXML private Label lblResponsavelTrans;
 	@FXML private TextField txtResponsavelTransp;
 	@FXML private Button btnCadastrarTrans;
-	
-	@FXML private Label lblEdicaoCadas;
-	
-	@FXML private TableView<Transportadora> tvTransp;
-	@FXML private TableColumn <Transportadora, String> clnTransp;
-	@FXML private TableColumn <Transportadora, String> clnCnpj;
-	@FXML private TableColumn <Transportadora, String> clnEmail;
-	@FXML private TableColumn <Transportadora, String> clnFone;
-	@FXML private TableColumn <Transportadora, String> clnResp;
-	@FXML private Button btnCancelarTransp;
 	@FXML private Button btnConcluido;
-	@FXML private TabPane tpTransp;
-	@FXML private Tab tabVisualizar;
-	
+	@FXML private Button btnCancelarTransp;
+
 	boolean modoEdicao = false;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		preencherTransportadora();
-		lblEdicaoCadas.setText("Cadastro de Transportadora");
 		
-		btnCancelarTransp.setOnAction(x -> limparTrans());
-		btnCancelarTransp.setOnAction(c -> modoEdicao = false);
+		btnNovaTransportadora.setOnAction(m -> tpTransp.getSelectionModel().select(1));
+		btnConcluido.setDisable(true);
+		
 	}
 	
 	private static List<Transportadora> selecionarTodas() {
@@ -97,14 +103,13 @@ public class TransportadoraController implements Initializable{
 				tr.add(t);			
 			}	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tr;
 	}
 	
 	private void preencherTransportadora(){
-
+		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
 		clnCnpj.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("cnpjTransportadora"));
 		clnEmail.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailTransportadora"));
@@ -118,46 +123,24 @@ public class TransportadoraController implements Initializable{
 		tvTransp.getItems().addAll(lst);
 	}
 	
-	// Event Listener on Button[#btnNovaTransportadora].onAction
-	@FXML
-	private void novaTransportadora(ActionEvent event) {
-		tpTransp.getSelectionModel().select(1);
-		btnConcluido.setDisable(true);
-	}
 	
+	// Event Listener on Button[#btnCadastrarTrans].onAction
 	@FXML
-	private void cadastrarTransportadora() {
+	public void cadastrarTransportadora(ActionEvent event) {
 		
-		System.out.println();
-		System.out.println("Quase cadastro...");
-
-		modoEdicao = false;
-		btnCadastrarTrans.setText("Cadastrar");
-		
-		lblEdicaoCadas.setText("Cadastro de Transportadora");
 		inserirTransportadora();
-				
-		System.out.println();
-		System.out.println("NOME TRASNP" + txtNomeTrans.getText());
-		System.out.println("EMAIL TRASNP" + txtEmailTrans.getText());
-		System.out.println("TELEFONE TRASNP" + txtTelefoneTrans.getText());
-		System.out.println("CnPJT TRASNP" + txtCnpjTransp.getText());
-		System.out.println("RESPONSÁVEL TRASNP" + txtResponsavelTransp.getText());
-				
-		PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
-		Janelas j = new Janelas();
-		j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
-				
-		limparTrans();
-				
-		System.out.println();
-		System.out.println("SUCESSO cadastro de transportadora");	
+
+		btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
+		
+		btnConcluido.setDisable(false);
+		btnConcluido.setOnAction(n -> tpTransp.getSelectionModel().select(0));
+		
+		limparTrans();			
 	}
 	
 	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
-			lblEdicaoCadas.setText("Cadastro de Transportadora");
 
 			Connection c = MySqlConexao.ConectarDb();
 			
@@ -167,7 +150,7 @@ public class TransportadoraController implements Initializable{
 			
 			try {
 				parametros = c.prepareStatement(sqlInsert);
-				
+
 				parametros.setString(1, txtNomeTrans.getText());
 				parametros.setString(2, txtEmailTrans.getText());
 				parametros.setString(3, txtTelefoneTrans.getText());
@@ -177,98 +160,28 @@ public class TransportadoraController implements Initializable{
 				parametros.executeUpdate();
 				
 				c.close();
+				
+				PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 	
 				preencherTransportadora();
+				limparTrans();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
-			btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
-			btnConcluido.setDisable(false);
-			btnCancelarTransp.setDisable(true);
-		}	
-		limparTrans();
-		modoEdicao = true;
-	}	
-	
-	private void atualizar(){
-		Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
-		
-		Connection c = MySqlConexao.ConectarDb();
-		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
-	
-		System.out.println(sqlAtualizar);
-		PreparedStatement parametros;
-		try {
-			parametros = c.prepareStatement(sqlAtualizar);
-			
-			parametros.setString(1, txtNomeTrans.getText());
-			parametros.setString(2, txtEmailTrans.getText());
-			parametros.setString(3, txtTelefoneTrans.getText());
-			parametros.setString(4, txtCnpjTransp.getText());
-			parametros.setString(5, txtResponsavelTransp.getText());
-			parametros.setInt(6, tn.getCodTransportadora());
-			parametros.executeUpdate();
-			
-			c.close();
-			
-			preencherTransportadora();
-			limparTrans();
-			
-			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
-			
-			modoEdicao = false;
-			
-			btnConcluido.setDisable(false);
-			btnCancelarTransp.setDisable(true);
-			tabVisualizar.setDisable(false);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void editarTrans() {
-		modoEdicao = true;
-		btnCancelarTransp.setDisable(false);
-		btnCancelarTransp.setOnAction(q -> concluido(q));
-		
-		lblEdicaoCadas.setText("Atualização de Transportadora");
-		if(modoEdicao){
-		
-			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
-			
-			if(tn == null){
-				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+				
+				PopUpController sucesso = new PopUpController("ERRO", "ERRO", "Ok");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);	
+				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 				
-				lblEdicaoCadas.setText("Cadastro de Transportadora");
-			}
-			else{
-				tpTransp.getSelectionModel().select(1);
-				
-				btnCadastrarTrans.setText("Atualizar");
-				
-				txtNomeTrans.setText(tn.getNomeTransportadora());
-				txtEmailTrans.setText(tn.getEmailTransportadora());
-				txtTelefoneTrans.setText(tn.getTelefoneTransportadora());
-				txtCnpjTransp.setText(tn.getCnpjTransportadora());
-				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
-			
-				btnCadastrarTrans.setOnAction(a -> atualizar());
-				btnConcluido.setDisable(true);
-				tabVisualizar.setDisable(true);
 			}
 		}
-		modoEdicao = false;
 	}
 	
 	// Event Listener on Button[#btnExcluirTrans].onAction
 	@FXML
-	private void excluirTrans(ActionEvent event) {
+	public void excluirTrans(ActionEvent event) {
 		
 		Transportadora t = tvTransp.getSelectionModel().getSelectedItem();
 		
@@ -291,11 +204,89 @@ public class TransportadoraController implements Initializable{
 				c.close();
 					
 				preencherTransportadora();
-					
+				
+				PopUpController erro = new PopUpController("ERRO", "EXCLUIDO", "Ok");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+	
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}	
 		}
+	}
+	
+	// Event Listener on Button[#btnEditarTrans].onAction
+	// Event Listener on Button[#btnEditarTrans].onAction
+	@FXML
+	public void editarTrans(ActionEvent event) {
+		
+		modoEdicao = true;
+		
+		if(modoEdicao){
+			
+			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
+			
+			if(tn == null){
+				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);	
+				
+			}
+			else{
+				tpTransp.getSelectionModel().select(1);
+				
+				txtNomeTrans.setText(tn.getNomeTransportadora());
+				txtEmailTrans.setText(tn.getEmailTransportadora());
+				txtTelefoneTrans.setText(tn.getTelefoneTransportadora());
+				txtCnpjTransp.setText(tn.getCnpjTransportadora());
+				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
+			
+				btnCadastrarTrans.setOnAction(a -> atualizar());
+			}
+		}
+	}
+	
+	private void atualizar(){
+		Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
+	
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlAtualizar);
+			
+			parametros.setString(1, txtNomeTrans.getText());
+			parametros.setString(2, txtEmailTrans.getText());
+			parametros.setString(3, txtTelefoneTrans.getText());
+			parametros.setString(4, txtCnpjTransp.getText());
+			parametros.setString(5, txtResponsavelTransp.getText());
+			
+			parametros.setInt(6, tn.getCodTransportadora());
+			
+			parametros.executeUpdate();
+			
+			c.close();
+			
+			preencherTransportadora();
+			limparTrans();
+			
+			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+		// Event Listener on Button[#btnExcluirTrans].onAction
+
+	// Event Listener on Button[#btnBuscaTrans].onAction
+	@FXML
+	public void buscarTransportadora(ActionEvent event) {
+			
 	}
 	
 	private void limparTrans() {
@@ -305,34 +296,11 @@ public class TransportadoraController implements Initializable{
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
 	}
-
-	// Event Listener on Button[#btnBuscaTrans].onAction
+	
+	// Event Listener on Button[#btnConcluido].onAction
 	@FXML
-	private void buscarTransportadora(ActionEvent event) {
-		if(txtBuscaTrans.getText().isEmpty()){
-				
-			System.out.println();
-			System.out.println("ERRO ao buscar transportadora");
-			txtBuscaTrans.clear();
-				
-			Alerta e = new Alerta();
-			e.alerta("ERRO", "Preencha o nome da transportadora!");
-				
-		}else{	
-			System.out.println();
-			System.out.println("Buscou Transportadora");
-			System.out.println(txtBuscaTrans.getText());
-				
-			txtBuscaTrans.clear();
-		}
+	public void concluido(ActionEvent event) {
+		
 	}
-	
-	@FXML 
-	private void concluido(ActionEvent event) {
-		tpTransp.getSelectionModel().select(0);
-		tabVisualizar.setDisable(false);
-		limparTrans();
-	}
-	
 	
 }

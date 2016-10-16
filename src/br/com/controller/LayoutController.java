@@ -44,6 +44,8 @@ public class LayoutController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		tpDesk.getSelectionModel().select(6);
+		
 		miPedidoTel.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
