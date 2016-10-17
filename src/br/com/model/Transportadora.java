@@ -1,5 +1,13 @@
 package br.com.model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.ajudantes.MySqlConexao;
+
 public class Transportadora {
 
 	private int codTransportadora;
@@ -45,6 +53,38 @@ public class Transportadora {
 	}
 	public void setResponsavelTransportadora(String responsavelTransportadora) {
 		this.responsavelTransportadora = responsavelTransportadora;
+	}
+	
+	
+	public static List<Transportadora> selecionarTodas() {
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
+		
+		List <Transportadora> tr = new ArrayList<>(); 
+		
+		ResultSet rs;
+		try {
+			rs = c.createStatement().executeQuery(sqlSelect);
+
+			while(rs.next()){
+				
+				Transportadora t = new Transportadora();
+				
+				t.setCodTransportadora(rs.getInt("codTransportadora"));
+				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				t.setEmailTransportadora(rs.getString("emailTransportadora"));
+				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				
+				tr.add(t);			
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tr;
 	}
 	
 	

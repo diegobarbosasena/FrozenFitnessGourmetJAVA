@@ -1,18 +1,9 @@
 package br.com.controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -20,18 +11,18 @@ import br.com.ajudantes.MySqlConexao;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
-
-import javafx.scene.control.TabPane;
-
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.Tab;
-
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.TableColumn;
 
 public class TransportadoraController implements Initializable {
 	
@@ -77,38 +68,6 @@ public class TransportadoraController implements Initializable {
 		btnConcluido.setDisable(true);
 	}
 	
-	private static List<Transportadora> selecionarTodas() {
-		
-		Connection c = MySqlConexao.ConectarDb();
-		
-		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
-		
-		List <Transportadora> tr = new ArrayList<>(); 
-		
-		ResultSet rs;
-		try {
-			rs = c.createStatement().executeQuery(sqlSelect);
-
-			while(rs.next()){
-				
-				Transportadora t = new Transportadora();
-				
-				t.setCodTransportadora(rs.getInt("codTransportadora"));
-				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
-				t.setEmailTransportadora(rs.getString("emailTransportadora"));
-				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
-				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
-				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-				
-				tr.add(t);			
-			}	
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return tr;
-	}
-	
-	
 	private void preencherTransportadora(){
 		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
@@ -117,7 +76,7 @@ public class TransportadoraController implements Initializable {
 		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
 		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		
-		List<Transportadora> lst = selecionarTodas();
+		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
 		System.out.println(lst);
 		tvTransp.getItems().clear();

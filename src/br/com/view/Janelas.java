@@ -43,7 +43,6 @@ public class Janelas{
 					
 			primaryStage.setScene( new Scene(root));
 			primaryStage.setTitle(titulo);
-			//primaryStage.initOwner(primaryStage.getScene().getWindow());
 			primaryStage.initModality(Modality.APPLICATION_MODAL);
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
