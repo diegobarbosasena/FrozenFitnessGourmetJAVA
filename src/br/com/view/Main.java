@@ -10,8 +10,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
-		Janelas splash = new Janelas();
+		
+	 	Janelas splash = new Janelas();
 		splash.abrirSplash("Splash.fxml", primaryStage);
+		
+		
+		
+		
 	}
 
 	public static void main(String[] args) {

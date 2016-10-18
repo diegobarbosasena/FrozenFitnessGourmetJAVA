@@ -112,54 +112,44 @@ public class TransportadoraController implements Initializable {
 	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
-
-			Connection c = MySqlConexao.ConectarDb();
 			
-			String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
+			Transportadora novo = new Transportadora();
 			
-			PreparedStatement parametros;
+			novo.setCnpjTransportadora(txtCnpjTransp.getText());
+			novo.setNomeTransportadora(txtNomeTrans.getText());
+			novo.setEmailTransportadora(txtEmailTrans.getText());
+			novo.setResponsavelTransportadora(txtResponsavelTransp.getText());
+			novo.setTelefoneTransportadora(txtTelefoneTrans.getText());
 			
-			try {
-				parametros = c.prepareStatement(sqlInsert);
-
-				parametros.setString(1, txtNomeTrans.getText());
-				parametros.setString(2, txtEmailTrans.getText());
-				parametros.setString(3, txtTelefoneTrans.getText());
-				parametros.setString(4, txtCnpjTransp.getText());
-				parametros.setString(5, txtResponsavelTransp.getText());
-	
-				parametros.executeUpdate();
-				
-				c.close();
+			if(Transportadora.insert(novo)){
 				
 				PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
-	
+		
 				btnConcluido.setOnAction(p -> concluido());
-				
+					
 				btnConcluido.setOnKeyPressed(k -> {
 					if (k.getCode() == KeyCode.ENTER){
-						concluido();
+							concluido();
 					}
 				});
-				
+					
 				preencherTransportadora();
 				limparTrans();
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-				
-				PopUpController sucesso = new PopUpController("ERRO", "ERRO", "Ok");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "erro nao cadastrou", false, sucesso);
-		
 			}
+			else{
+				PopUpController sucess = new PopUpController("ERRO", "ERRO", "Ok");
+				Janelas je = new Janelas();
+				je.abrirPopup("PopUp.fxml", new Stage(), "erro nao cadastrou", false, sucess);	
+			}
+	
 		}
 		else if (modoEdicao){
 		
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
-	
+			
+
 			btnCancelarTransp.setOnAction(i -> cancelar());
 			
 			if(tn == null){
@@ -202,6 +192,7 @@ public class TransportadoraController implements Initializable {
 	public void editarTrans(ActionEvent event) {
 			
 		modoEdicao = true;
+		btnCadastrarTrans.setDisable(false);
 		inserirTransportadora();
 	}
 		
@@ -264,26 +255,20 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 		
-			Connection c = MySqlConexao.ConectarDb();
-			String sqlDeletar = "DELETE FROM tblTransportadora WHERE CodTransportadora = ?;";
-				
-			PreparedStatement parametros;
-			try {
-				parametros = c.prepareStatement(sqlDeletar);
-				parametros.setInt(1, t.getCodTransportadora());
-				parametros.executeUpdate();
-					
-				c.close();
-					
+			if(Transportadora.delete(t.getCodTransportadora())){
 				preencherTransportadora();
 				
-				PopUpController erro = new PopUpController("ERRO", "EXCLUIDO", "Ok");
+				PopUpController erro = new PopUpController("SUCESSO", "EXCLUIDO", "Ok");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+			}
+			else{
+				PopUpController erro = new PopUpController("ERRO", "ERRO", "Ok");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "ERRO", false, erro);
+				
+			}
 	
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}	
 		}
 	}
 	
@@ -301,8 +286,6 @@ public class TransportadoraController implements Initializable {
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
 	}
-	
-	
 	
 	public void concluido() {
 		
@@ -322,7 +305,5 @@ public class TransportadoraController implements Initializable {
 		
 		limparTrans();
 	}
-	
-	
 	
 }

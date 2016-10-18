@@ -1,6 +1,7 @@
 package br.com.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -88,5 +89,59 @@ public class Transportadora {
 		}
 		return lstTransp;
 	}
+	
+	public static boolean insert(Transportadora novo) {
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
+		
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlInsert);
+
+			parametros.setString(1, novo.getNomeTransportadora());
+			parametros.setString(2, novo.getEmailTransportadora());
+			parametros.setString(3, novo.getTelefoneTransportadora());
+			parametros.setString(4, novo.getCnpjTransportadora());
+			parametros.setString(5, novo.getResponsavelTransportadora());
+			
+			parametros.executeUpdate();
+			
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+	
+		}
+		
+	}
+	
+	public static boolean delete(int codTransp ){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		String sqlDeletar = "DELETE FROM tblTransportadora WHERE CodTransportadora = ?;";
+			
+		PreparedStatement parametros;
+		try {
+			parametros = c.prepareStatement(sqlDeletar);
+			parametros.setInt(1, codTransp);
+			parametros.executeUpdate();
+				
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			return false;
+		}
+			
+	}
+	
 	
 }
