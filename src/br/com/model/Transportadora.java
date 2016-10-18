@@ -143,5 +143,9 @@ public class Transportadora {
 			
 	}
 	
+	public static boolean update(){
+		
+		return false;
+	}
 	
 }

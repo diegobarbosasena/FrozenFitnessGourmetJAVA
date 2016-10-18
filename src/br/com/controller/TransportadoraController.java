@@ -86,9 +86,7 @@ public class TransportadoraController implements Initializable {
 		tvTransp.getItems().addAll(lst);
 	}
 	
-	// Event Listener on Button[#btnCadastrarTrans].onAction
-	@FXML
-	public void cadastrarTransportadora(ActionEvent event) {
+	public void cadastrarTransportadora() {
 		
 		inserirTransportadora();
 		
@@ -127,6 +125,7 @@ public class TransportadoraController implements Initializable {
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 		
+				btnCadastrarTrans.setOnAction(a -> cadastrarTransportadora());
 				btnConcluido.setOnAction(p -> concluido());
 					
 				btnConcluido.setOnKeyPressed(k -> {
@@ -145,17 +144,15 @@ public class TransportadoraController implements Initializable {
 			}
 	
 		}
-		else if (modoEdicao){
+		else{
 		
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
-
-			btnCancelarTransp.setOnAction(i -> cancelar());
 			
 			if(tn == null){
 				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);	
+				j.abrirPopup("PopUp.fxml", new Stage(), "ERRO", false, erro);	
 			}
 			else{
 				
@@ -172,8 +169,9 @@ public class TransportadoraController implements Initializable {
 				txtCnpjTransp.setText(tn.getCnpjTransportadora());
 				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
 			
+				btnCancelarTransp.setOnAction(i -> cancelar());
+				
 				btnCadastrarTrans.setOnAction(a -> atualizar());
-				modoEdicao = false;
 				
 				btnConcluido.setOnAction(p -> concluido());
 				
@@ -182,7 +180,7 @@ public class TransportadoraController implements Initializable {
 						concluido();
 					}
 				});
-				
+				modoEdicao = false;	
 			}
 		}
 	}
@@ -288,11 +286,18 @@ public class TransportadoraController implements Initializable {
 	}
 	
 	public void concluido() {
+		lblEdicaoCadas.setText("Cadastrar Transportadora");
+		btnCadastrarTrans.setText("Cadastrar");
+		btnCadastrarTrans.setDisable(true);
+		
+		btnConcluido.setDisable(true);
+		btnCadastrarTrans.setDisable(false);
+		btnCancelarTransp.setDisable(false);
 		
 		tabVisualizar.setDisable(false);
 		tpTransp.getSelectionModel().select(0);
 		modoEdicao = false;
-
+		
 	}
 	
 	public void cancelar(){
