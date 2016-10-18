@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,7 +29,7 @@ public class TransportadoraController implements Initializable {
 	
 	@FXML private AnchorPane acpTransp;
 	
-	@FXML private static TextField txtBuscaTrans;
+	@FXML private TextField txtBuscaTrans;
 	@FXML private Button btnBuscaTrans;
 	@FXML private Button btnNovaTransportadora;
 	@FXML private Button btnEditarTrans;
@@ -66,6 +67,8 @@ public class TransportadoraController implements Initializable {
 		
 		btnNovaTransportadora.setOnAction(m -> tpTransp.getSelectionModel().select(1));
 		btnConcluido.setDisable(true);
+		
+		
 	}
 	
 	private void preencherTransportadora(){
@@ -88,6 +91,14 @@ public class TransportadoraController implements Initializable {
 	public void cadastrarTransportadora(ActionEvent event) {
 		
 		inserirTransportadora();
+		
+		btnConcluido.setOnAction(p -> concluido());
+		
+		btnConcluido.setOnKeyPressed(k -> {
+			if (k.getCode() == KeyCode.ENTER){
+				concluido();
+			}
+		});
 		
 		btnCancelarTransp.setOnAction(p -> cancelar());
 		btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
@@ -125,6 +136,14 @@ public class TransportadoraController implements Initializable {
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 	
+				btnConcluido.setOnAction(p -> concluido());
+				
+				btnConcluido.setOnKeyPressed(k -> {
+					if (k.getCode() == KeyCode.ENTER){
+						concluido();
+					}
+				});
+				
 				preencherTransportadora();
 				limparTrans();
 				
@@ -165,6 +184,15 @@ public class TransportadoraController implements Initializable {
 			
 				btnCadastrarTrans.setOnAction(a -> atualizar());
 				modoEdicao = false;
+				
+				btnConcluido.setOnAction(p -> concluido());
+				
+				btnConcluido.setOnKeyPressed(k -> {
+					if (k.getCode() == KeyCode.ENTER){
+						concluido();
+					}
+				});
+				
 			}
 		}
 	}
@@ -206,11 +234,13 @@ public class TransportadoraController implements Initializable {
 			preencherTransportadora();
 			limparTrans();
 				
-			btnConcluido.setDisable(false);
-
 			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
+			
+			btnConcluido.setDisable(false);
+			btnCadastrarTrans.setDisable(true);
+			btnCancelarTransp.setDisable(true);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -272,12 +302,14 @@ public class TransportadoraController implements Initializable {
 		txtTelefoneTrans.clear();
 	}
 	
-	// Event Listener on Button[#btnConcluido].onAction
-	@FXML
-	public void concluido(ActionEvent event) {
+	
+	
+	public void concluido() {
+		
 		tabVisualizar.setDisable(false);
 		tpTransp.getSelectionModel().select(0);
 		modoEdicao = false;
+
 	}
 	
 	public void cancelar(){

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anpPedidos" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosController">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <tabs>
+          <Tab text="Visualizar ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.1424802110817942" orientation="VERTICAL" prefHeight="324.0" prefWidth="724.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" SplitPane.resizableWithParent="false">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="722.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane prefHeight="55.0" prefWidth="720.0">
+                                             <children>
+                                                <TextField fx:id="txtPedido" layoutX="239.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
+                                                <Button fx:id="btnBuscarPedido" layoutX="451.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Buscar">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnEditPedido" layoutX="525.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TableView fx:id="tvPedidos" prefHeight="200.0" prefWidth="385.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                      <columns>
+                                          <TableColumn fx:id="tcCodPed" maxWidth="500.0" minWidth="80.0" prefWidth="-1.0" text="Cod. Pedido" />
+                                        <TableColumn fx:id="tcTipoPed" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" text="Tipo Pedido" />
+                                          <TableColumn fx:id="tcDtComp" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Data de Compra" />
+                                        	<TableColumn fx:id="tcDtEntr" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Data de Entrega" />
+                                          <TableColumn fx:id="tcClien" maxWidth="200.0" minWidth="108.0" prefWidth="120.0" text="Nome do Cliente" />
+                                          <TableColumn fx:id="tcStatus" maxWidth="134.0" minWidth="124.0" prefWidth="134.0" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Editar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

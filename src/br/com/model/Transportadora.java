@@ -17,6 +17,8 @@ public class Transportadora {
 	private String cnpjTransportadora;
 	private String responsavelTransportadora;
 	
+	public List<Endereco> lstEnd;
+	
 	
 	public int getCodTransportadora() {
 		return codTransportadora;
@@ -55,14 +57,14 @@ public class Transportadora {
 		this.responsavelTransportadora = responsavelTransportadora;
 	}
 	
-	
+
 	public static List<Transportadora> selecionarTodas() {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
 		
-		List <Transportadora> tr = new ArrayList<>(); 
+		List <Transportadora> lstTransp = new ArrayList<>(); 
 		
 		ResultSet rs;
 		try {
@@ -79,15 +81,12 @@ public class Transportadora {
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
 				
-				tr.add(t);			
+				lstTransp.add(t);			
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return tr;
+		return lstTransp;
 	}
-	
-	
-	
 	
 }

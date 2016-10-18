@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Janelas{
 
@@ -28,6 +29,26 @@ public class Janelas{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void abrirSplash(String arquivo, Stage primaryStage){
+		
+		Parent p;
+		try {
+			p = FXMLLoader.load(getClass().getResource(arquivo));
+			
+			primaryStage.setScene(new Scene(p));
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.show();
+			
+			javafx.scene.image.Image icone = new javafx.scene.image.Image(
+					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			
+			primaryStage.getIcons().add(icone);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	public void abrirPopup(String arquivo, Stage primaryStage, String titulo, boolean redimensionar, Object controller) {
