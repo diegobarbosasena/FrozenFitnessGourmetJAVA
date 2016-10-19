@@ -1,13 +1,9 @@
 package br.com.controller;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.ajudantes.MySqlConexao;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.event.ActionEvent;
@@ -37,6 +33,8 @@ public class TransportadoraController implements Initializable {
 	
 	@FXML private TabPane tpTransp;
 	@FXML private Tab tabVisualizar;
+	@FXML private Tab tabCadastrar;
+	
 	@FXML private TableView<Transportadora> tvTransp;
 	@FXML private TableColumn <Transportadora, String> clnTransp;
 	@FXML private TableColumn <Transportadora, String> clnCnpj;
@@ -60,15 +58,16 @@ public class TransportadoraController implements Initializable {
 	@FXML private Button btnCancelarTransp;
 
 	boolean modoEdicao = false;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		tabCadastrar.setDisable(true);
+		
 		preencherTransportadora();
 		
-		btnNovaTransportadora.setOnAction(m -> tpTransp.getSelectionModel().select(1));
-		btnConcluido.setDisable(true);
+		btnNovaTransportadora.setOnAction(m -> nova());
 		
-		
+		btnConcluido.setDisable(true);	
 	}
 	
 	private void preencherTransportadora(){
@@ -86,10 +85,23 @@ public class TransportadoraController implements Initializable {
 		tvTransp.getItems().addAll(lst);
 	}
 	
+	private void nova() {
+		
+		tabCadastrar.setText("Cadastrar");
+		tpTransp.getSelectionModel().select(1);
+		
+		tabVisualizar.setDisable(true);
+		tabCadastrar.setDisable(false);
+		
+		btnCadastrarTrans.setOnAction(b -> cadastrarTransportadora());
+		
+		btnCancelarTransp.setOnAction(v -> cancelar());
+	}
+	
 	public void cadastrarTransportadora() {
-		
+
 		inserirTransportadora();
-		
+
 		btnConcluido.setOnAction(p -> concluido());
 		
 		btnConcluido.setOnKeyPressed(k -> {
@@ -148,7 +160,6 @@ public class TransportadoraController implements Initializable {
 		
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
-			
 			if(tn == null){
 				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 				Janelas j = new Janelas();
@@ -188,56 +199,49 @@ public class TransportadoraController implements Initializable {
 	// Event Listener on Button[#btnEditarTrans].onAction
 	@FXML
 	public void editarTrans(ActionEvent event) {
-			
+		
+		tabCadastrar.setText("Editar");
+		
 		modoEdicao = true;
 		btnCadastrarTrans.setDisable(false);
+		tabCadastrar.setDisable(false);
+		
 		inserirTransportadora();
 	}
 		
 	private void atualizar(){
-		Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
-			
-		btnConcluido.setDisable(true);
-			
-		Connection c = MySqlConexao.ConectarDb();
-			
-		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
 		
-		PreparedStatement parametros;
+		btnConcluido.setDisable(true);
+		
+		//Transportadora cod = tvTransp.getSelectionModel().getSelectedItem();
+		
+		Transportadora up = new Transportadora();
+		
+		up.setCnpjTransportadora(txtCnpjTransp.getText());
+		up.setNomeTransportadora(txtNomeTrans.getText());
+		up.setEmailTransportadora(txtEmailTrans.getText());
+		up.setResponsavelTransportadora(txtResponsavelTransp.getText());
+		up.setTelefoneTransportadora(txtTelefoneTrans.getText());
+		
+		//up.setCodTransportadora(cod);
+		
+		Transportadora.update(up);
+				
+		preencherTransportadora();
+		limparTrans();
+				
+		PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
+		Janelas j = new Janelas();
+		j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 			
-		try {
-			parametros = c.prepareStatement(sqlAtualizar);
-				
-			parametros.setString(1, txtNomeTrans.getText());
-			parametros.setString(2, txtEmailTrans.getText());
-			parametros.setString(3, txtTelefoneTrans.getText());
-			parametros.setString(4, txtCnpjTransp.getText());
-			parametros.setString(5, txtResponsavelTransp.getText());
-				
-			parametros.setInt(6, tn.getCodTransportadora());
-				
-			parametros.executeUpdate();
-				
-			c.close();
-				
-			preencherTransportadora();
-			limparTrans();
-				
-			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
-			
-			btnConcluido.setDisable(false);
-			btnCadastrarTrans.setDisable(true);
-			btnCancelarTransp.setDisable(true);
+		btnConcluido.setDisable(false);
+		btnCadastrarTrans.setDisable(true);
+		btnCancelarTransp.setDisable(true);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
 				
-			PopUpController sucesso = new PopUpController("SUCESSO", "ERRO nao atualizou!", "Ok");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "ERRO ", false, sucesso);
-		}
+			
+		
 	}
 	
 	// Event Listener on Button[#btnExcluirTrans].onAction
@@ -254,11 +258,12 @@ public class TransportadoraController implements Initializable {
 		else{
 		
 			if(Transportadora.delete(t.getCodTransportadora())){
-				preencherTransportadora();
 				
 				PopUpController erro = new PopUpController("SUCESSO", "EXCLUIDO", "Ok");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+				
+				preencherTransportadora();
 			}
 			else{
 				PopUpController erro = new PopUpController("ERRO", "ERRO", "Ok");
@@ -270,7 +275,6 @@ public class TransportadoraController implements Initializable {
 		}
 	}
 	
-
 	// Event Listener on Button[#btnBuscaTrans].onAction
 	@FXML
 	public void buscarTransportadora(ActionEvent event) {
@@ -298,16 +302,21 @@ public class TransportadoraController implements Initializable {
 		tpTransp.getSelectionModel().select(0);
 		modoEdicao = false;
 		
+		tabCadastrar.setDisable(true);
+		
 	}
 	
 	public void cancelar(){
 		
 		tpTransp.getSelectionModel().select(0);
 		tabVisualizar.setDisable(false);
+		tabCadastrar.setDisable(true);
+		
 		modoEdicao = false;
+		
 		lblEdicaoCadas.setText("Cadastro de Transportadora");
 		btnCadastrarTrans.setText("Cadastrar");
-		
+
 		limparTrans();
 	}
 	

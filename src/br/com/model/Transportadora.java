@@ -91,6 +91,7 @@ public class Transportadora {
 	}
 	
 	public static boolean insert(Transportadora novo) {
+		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
@@ -114,8 +115,8 @@ public class Transportadora {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 			return false;
-	
 		}
 		
 	}
@@ -143,9 +144,36 @@ public class Transportadora {
 			
 	}
 	
-	public static boolean update(){
+	public static boolean update(Transportadora up){
 		
-		return false;
+		Connection c = MySqlConexao.ConectarDb();
+			
+		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
+		
+		PreparedStatement parametros;
+			
+		try {
+			parametros = c.prepareStatement(sqlAtualizar);
+				
+			parametros.setString(1, up.nomeTransportadora);
+			parametros.setString(2, up.emailTransportadora);
+			parametros.setString(3, up.telefoneTransportadora);
+			parametros.setString(4, up.cnpjTransportadora);
+			parametros.setString(5, up.responsavelTransportadora);
+				
+			parametros.setInt(6, up.codTransportadora);
+				
+			parametros.executeUpdate();
+				
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			return false;	
+		}
 	}
-	
+		
 }

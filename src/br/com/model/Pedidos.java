@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.com.ajudantes.MySqlConexao;
 
-public class Pedido {
+public class Pedidos {
 
 	private int codPedido;
 	private String tipoPedido;
@@ -46,13 +46,13 @@ public class Pedido {
 	}
 	
 	
-	public static List<Pedido> selecionarTodos(){
+	public static List<Pedidos> selecionarTodos(){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT * FROM tblPedido ORDER BY codPedido DESC; ";
 		
-		List<Pedido> lstPedidos = new ArrayList<>();
+		List<Pedidos> lstPedidos = new ArrayList<>();
 		
 		ResultSet rs;
 		try {
@@ -60,7 +60,7 @@ public class Pedido {
 			
 			while (rs.next()){
 				
-				Pedido p = new Pedido();
+				Pedidos p = new Pedidos();
 				
 				p.setCodPedido(rs.getInt("codPedido"));
 				p.setDtCompra(rs.getDate("dtCompra"));

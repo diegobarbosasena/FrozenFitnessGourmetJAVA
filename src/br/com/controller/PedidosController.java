@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.model.Pedido;
+import br.com.model.Pedidos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,14 +18,14 @@ public class PedidosController implements Initializable{
 	
 	@FXML private AnchorPane anpPedidos;
 	
-	@FXML private TableView <Pedido> tvPedidos;
+	@FXML private TableView <Pedidos> tvPedidos;
 	
-	@FXML private TableColumn <Pedido, String> tcCodPed;
-	@FXML private TableColumn <Pedido, String> tcTipoPed;
-	@FXML private TableColumn <Pedido, String> tcDtComp;
-	@FXML private TableColumn <Pedido, String> tcDtEntr;
-	@FXML private TableColumn <Pedido, String> tcClien;
-	@FXML private TableColumn <Pedido, String> tcStatus;
+	@FXML private TableColumn <Pedidos, String> tcCodPed;
+	@FXML private TableColumn <Pedidos, String> tcTipoPed;
+	@FXML private TableColumn <Pedidos, String> tcDtComp;
+	@FXML private TableColumn <Pedidos, String> tcDtEntr;
+	@FXML private TableColumn <Pedidos, String> tcClien;
+	@FXML private TableColumn <Pedidos, String> tcStatus;
 	
 	@FXML private TextField txtPedido;
 	
@@ -40,12 +40,15 @@ public class PedidosController implements Initializable{
 	
 	private void preencherPedidos(){
 		
-		tcCodPed.setCellValueFactory(new PropertyValueFactory<Pedido, String>("codPedido"));
-		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedido, String>("tipoPedido"));
-		tcDtEntr.setCellValueFactory(new PropertyValueFactory<Pedido, String>("dtEntrega"));
-		tcDtComp.setCellValueFactory(new PropertyValueFactory<Pedido, String>("dtCompra"));
+		tcCodPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("codPedido"));
+		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("tipoPedido"));
+		tcDtEntr.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtEntrega"));
+		tcDtComp.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtCompra"));
 		
-		List<Pedido> lstPedido = Pedido.selecionarTodos();
+		List<Pedidos> lstPedido = Pedidos.selecionarTodos();
+		
+		System.out.println(lstPedido);
+		
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);
 	}
