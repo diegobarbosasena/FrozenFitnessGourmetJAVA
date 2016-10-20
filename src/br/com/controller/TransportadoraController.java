@@ -62,15 +62,15 @@ public class TransportadoraController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		initTooltip();
-		
-		tabCadastrar.setDisable(true);
 		
 		preencherTransportadora();
+		initTooltip();
+		tabCadastrar.setDisable(true);
 		
 		btnNovaTransportadora.setOnAction(m -> nova());
-		
 		btnConcluido.setDisable(true);	
+		
+		txtBuscaTrans.textProperty().addListener(a -> buscarTransportadora());
 	}
 	
 	private void preencherTransportadora(){
@@ -88,6 +88,11 @@ public class TransportadoraController implements Initializable {
 		tvTransp.getItems().addAll(lst);
 	}
 	
+	public void initTooltip() {
+		
+		Tooltip.install(txtNomeTrans, new Tooltip("Digite aqui o nome da transportadora."));	
+	}
+	
 	private void nova() {
 		
 		tabCadastrar.setText("Cadastrar");
@@ -97,7 +102,6 @@ public class TransportadoraController implements Initializable {
 		tabCadastrar.setDisable(false);
 		
 		btnCadastrarTrans.setOnAction(b -> cadastrarTransportadora());
-		
 		btnCancelarTransp.setOnAction(v -> cancelar());
 	}
 	
@@ -106,13 +110,6 @@ public class TransportadoraController implements Initializable {
 		inserirTransportadora();
 
 		btnConcluido.setOnAction(p -> concluido());
-		
-		btnConcluido.setOnKeyPressed(k -> {
-			if (k.getCode() == KeyCode.ENTER){
-				concluido();
-			}
-		});
-		
 		btnCancelarTransp.setOnAction(p -> cancelar());
 		btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
 		
@@ -140,12 +137,17 @@ public class TransportadoraController implements Initializable {
 				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
 		
 				btnCadastrarTrans.setOnAction(a -> cadastrarTransportadora());
-				btnConcluido.setOnAction(p -> concluido());
-					
-				btnConcluido.setOnKeyPressed(k -> {
-					if (k.getCode() == KeyCode.ENTER){
-							concluido();
-					}
+				btnCadastrarTrans.setOnKeyPressed(a -> { 
+					if (a.getCode() == KeyCode.ENTER){ 
+						cadastrarTransportadora(); 
+					} 
+				});
+				
+				btnConcluido.setOnAction(c -> concluido());	
+				btnConcluido.setOnKeyPressed(d -> { 
+					if (d.getCode() == KeyCode.ENTER){ 
+						concluido();
+					} 
 				});
 					
 				preencherTransportadora();
@@ -188,11 +190,6 @@ public class TransportadoraController implements Initializable {
 				
 				btnConcluido.setOnAction(p -> concluido());
 				
-				btnConcluido.setOnKeyPressed(k -> {
-					if (k.getCode() == KeyCode.ENTER){
-						concluido();
-					}
-				});
 				modoEdicao = false;	
 			}
 		}
@@ -273,10 +270,12 @@ public class TransportadoraController implements Initializable {
 		}
 	}
 	
-	// Event Listener on Button[#btnBuscaTrans].onAction
-	@FXML
-	public void buscarTransportadora(ActionEvent event) {
+	public void buscarTransportadora() {
 		
+		List<Transportadora> lstTransFilt = Transportadora.filtrar("%"+txtBuscaTrans.getText()+"%");
+		
+		tvTransp.getItems().clear();
+		tvTransp.getItems().addAll(lstTransFilt);
 	}
 	
 	private void limparTrans() {
@@ -319,9 +318,6 @@ public class TransportadoraController implements Initializable {
 		limparTrans();
 	}
 	
-	public void initTooltip() {
-		
-		Tooltip.install(txtNomeTrans, new Tooltip("Digite aqui o nome da transportadora."));	
-	}	
+	
 	
 }

@@ -58,7 +58,47 @@ public class Transportadora {
 		this.responsavelTransportadora = responsavelTransportadora;
 	}
 	
+	
+	public static List<Transportadora> filtrar(String nomePesquisa){
+	
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectPesq = "SELECT * FROM tblTransportadora WHERE nomeTransportadora LIKE ?; ";
+		
+		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlSelectPesq);
+			
+			parametros.setString(1, nomePesquisa);	
+			ResultSet rs = parametros.executeQuery();
 
+			
+			System.out.println(parametros.toString());
+			
+			while(rs.next()){
+				
+				Transportadora tp = new Transportadora();
+				
+				tp.setCodTransportadora(rs.getInt("codTransportadora"));
+				tp.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				tp.setEmailTransportadora(rs.getString("emailTransportadora"));
+				tp.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				tp.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				tp.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				
+				lstTranspPesq.add(tp);			
+			}
+			c.close();
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return lstTranspPesq;
+	}
+	
 	public static List<Transportadora> selecionarTodas() {
 		
 		Connection c = MySqlConexao.ConectarDb();
@@ -149,26 +189,21 @@ public class Transportadora {
 		Connection c = MySqlConexao.ConectarDb();
 			
 		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
-		
-		
-		
+
 		PreparedStatement parametros;
 			
 		try {
 			parametros = c.prepareStatement(sqlAtualizar);
-				
+			
+			parametros.setInt(6, up.codTransportadora);
 			parametros.setString(1, up.nomeTransportadora);
 			parametros.setString(2, up.emailTransportadora);
 			parametros.setString(3, up.telefoneTransportadora);
 			parametros.setString(4, up.cnpjTransportadora);
 			parametros.setString(5, up.responsavelTransportadora);
-				
-			parametros.setInt(6, up.codTransportadora);
-				
+					
 			parametros.executeUpdate();
-			
-			System.out.println(parametros);
-			
+		
 			c.close();
 			
 			return true;
@@ -178,6 +213,5 @@ public class Transportadora {
 			
 			return false;	
 		}
-	}
-		
+	}	
 }
