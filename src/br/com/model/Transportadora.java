@@ -150,6 +150,8 @@ public class Transportadora {
 			
 		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
 		
+		
+		
 		PreparedStatement parametros;
 			
 		try {
@@ -164,7 +166,9 @@ public class Transportadora {
 			parametros.setInt(6, up.codTransportadora);
 				
 			parametros.executeUpdate();
-				
+			
+			System.out.println(parametros);
+			
 			c.close();
 			
 			return true;

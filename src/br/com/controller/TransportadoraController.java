@@ -215,7 +215,7 @@ public class TransportadoraController implements Initializable {
 		
 		btnConcluido.setDisable(true);
 		
-		//Transportadora cod = tvTransp.getSelectionModel().getSelectedItem();
+		Transportadora cod = tvTransp.getSelectionModel().getSelectedItem();
 		
 		Transportadora up = new Transportadora();
 		
@@ -225,7 +225,7 @@ public class TransportadoraController implements Initializable {
 		up.setResponsavelTransportadora(txtResponsavelTransp.getText());
 		up.setTelefoneTransportadora(txtTelefoneTrans.getText());
 		
-		//up.setCodTransportadora(cod);
+		up.setCodTransportadora(cod.getCodTransportadora());
 		
 		Transportadora.update(up);
 				
@@ -240,10 +240,6 @@ public class TransportadoraController implements Initializable {
 		btnCadastrarTrans.setDisable(true);
 		btnCancelarTransp.setDisable(true);
 
-		
-				
-			
-		
 	}
 	
 	// Event Listener on Button[#btnExcluirTrans].onAction
