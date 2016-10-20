@@ -16,6 +16,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -61,6 +62,8 @@ public class TransportadoraController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		initTooltip();
+		
 		tabCadastrar.setDisable(true);
 		
 		preencherTransportadora();
@@ -114,7 +117,6 @@ public class TransportadoraController implements Initializable {
 		btnCadastrarTrans.setOnAction(x -> inserirTransportadora());
 		
 		btnConcluido.setDisable(false);
-		btnCancelarTransp.setOnAction(n -> tpTransp.getSelectionModel().select(0));
 		
 		limparTrans();			
 	}
@@ -309,6 +311,7 @@ public class TransportadoraController implements Initializable {
 	public void cancelar(){
 		
 		tpTransp.getSelectionModel().select(0);
+		
 		tabVisualizar.setDisable(false);
 		tabCadastrar.setDisable(true);
 		
@@ -319,5 +322,10 @@ public class TransportadoraController implements Initializable {
 
 		limparTrans();
 	}
+	
+	public void initTooltip() {
+		
+		Tooltip.install(txtNomeTrans, new Tooltip("Digite aqui o nome da transportadora."));	
+	}	
 	
 }
