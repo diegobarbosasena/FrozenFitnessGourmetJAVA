@@ -274,8 +274,16 @@ public class TransportadoraController implements Initializable {
 		
 		List<Transportadora> lstTransFilt = Transportadora.filtrar("%"+txtBuscaTrans.getText()+"%");
 		
-		tvTransp.getItems().clear();
-		tvTransp.getItems().addAll(lstTransFilt);
+		if (lstTransFilt.isEmpty()){
+			
+			PopUpController sucesso = new PopUpController("ERRO", "Nenhum registro encontrado!", "Ok");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
+		}
+		else{
+			tvTransp.getItems().clear();
+			tvTransp.getItems().addAll(lstTransFilt);
+		}	
 	}
 	
 	private void limparTrans() {
