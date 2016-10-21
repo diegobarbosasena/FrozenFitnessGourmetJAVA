@@ -18,18 +18,21 @@ public class SplashController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//btnSplash.setOnMouseClicked(n -> fecharSplash());
-		//btnSplash.setOnKeyPressed(e -> { if (e.getCode() == KeyCode.ENTER) fecharSplash(); } );
-		
-		//fecharSplash();
-		
-		Timeline timeline = new Timeline(new KeyFrame(
+	
+		Timeline tempoSplash = new Timeline(new KeyFrame(
 		        Duration.millis(2500),
 		        ae -> {
-		        	fecharSplash();
-		        	
+		        	fecharSplash();		        	
 		        }));
-		timeline.play();
+		tempoSplash.play();
+	}
+
+	public void fecharSplash(){	
+		
+		Stage fs = (Stage) btnSplash.getScene().getWindow();
+		fs.close();
+				
+		inicio();
 	}
 	
 	public void inicio(){
@@ -37,18 +40,5 @@ public class SplashController implements Initializable{
 		Janelas login = new Janelas();
 		Stage s = new Stage();
 		login.abrir("login.fxml", s, "Login", false);
-	}
-	
-	public void fecharSplash(){	
-		
-	
-		
-		
-		//	Thread.sleep(5000);
-		
-		Stage fs = (Stage) btnSplash.getScene().getWindow();
-		fs.close();
-				
-		inicio();
 	}
 }

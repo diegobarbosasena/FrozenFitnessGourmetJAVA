@@ -28,9 +28,9 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblHora" layoutX="105.0" layoutY="243.0" text="00:00" />
-                  <Label fx:id="lblData" layoutX="88.0" layoutY="267.0" text="00/00/0000" />
-                  <Button fx:id="btnSair" alignment="CENTER" layoutX="98.0" layoutY="348.0" mnemonicParsing="false" onAction="#sair" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
+                  <Label fx:id="lblHora" layoutX="96.0" layoutY="246.0" text="00:00:00" />
+                  <Label fx:id="lblData" layoutX="88.0" layoutY="271.0" text="00/00/0000" />
+                  <Button fx:id="btnSair" alignment="CENTER" layoutX="98.0" layoutY="348.0" mnemonicParsing="false" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
