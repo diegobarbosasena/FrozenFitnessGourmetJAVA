@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import br.com.view.Janelas;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +24,8 @@ public class InformacoesController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		btnSair.setOnAction(s -> sair());
+		
 		lblUsuario.setText(System.getProperty("user.name"));
 		
 		SimpleDateFormat d = new SimpleDateFormat("dd/MM/YYYY");
@@ -52,7 +53,7 @@ public class InformacoesController implements Initializable{
 		t.start();
 	}
 	
-	public void sair(ActionEvent event) {
+	public void sair() {
 		Janelas login = new Janelas();
 		login.abrir("Login.fxml", new Stage(), "Login", false);
 		

@@ -8,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;

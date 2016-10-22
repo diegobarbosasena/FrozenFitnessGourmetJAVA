@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -64,14 +64,16 @@ public class TransportadoraController implements Initializable {
 		
 		preencherTransportadora();
 		initTooltip();
+		
 		tabCadastrar.setDisable(true);
-		
-		btnNovaTransportadora.setOnAction(m -> nova());
-		btnConcluido.setDisable(true);	
-		
-		txtBuscaTrans.textProperty().addListener(a -> buscarTransportadora());
-	}
 	
+		txtBuscaTrans.textProperty().addListener(a -> buscarTransportadora());
+
+		btnNovaTransportadora.setOnAction(b -> nova());
+		btnEditarTrans.setOnAction(c -> editarTrans());
+		btnExcluirTrans.setOnAction(d -> excluirTrans());	
+	}
+
 	private void preencherTransportadora(){
 		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
@@ -82,7 +84,6 @@ public class TransportadoraController implements Initializable {
 		
 		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
-		System.out.println(lst);
 		tvTransp.getItems().clear();
 		tvTransp.getItems().addAll(lst);
 	}
@@ -97,43 +98,50 @@ public class TransportadoraController implements Initializable {
 		tabCadastrar.setText("Cadastrar");
 		tpTransp.getSelectionModel().select(1);
 		
+		lblEdicaoCadas.setText("Cadastrar transportadora");
+		
 		tabVisualizar.setDisable(true);
 		tabCadastrar.setDisable(false);
 		
-		btnCadastrarTrans.setOnAction(b -> cadastrarTransportadora());
-		btnCancelarTransp.setOnAction(v -> cancelar());
+		btnConcluido.setDisable(true);
+		
+		btnCadastrarTrans.setText("Cadastrar");
+		btnCadastrarTrans.setOnAction(e -> inserirTransportadora());
+		btnCadastrarTrans.setOnKeyPressed(f -> {
+		    if (f.getCode() == KeyCode.ENTER) {
+		    	inserirTransportadora();
+		    }
+		});
+		
+		btnCancelarTransp.setDisable(false);
+		btnCancelarTransp.setOnAction(g -> cancelar());
 	}
 	
 	public void cadastrarTransportadora() {
 
 		inserirTransportadora();
-
-		btnConcluido.setOnAction(p -> concluido());
-		btnCancelarTransp.setOnAction(p -> cancelar());
 		
-		
-		btnConcluido.setDisable(false);
-		
-		limparTrans();			
+		btnCancelarTransp.setOnAction(h -> cancelar());
+		btnCancelarTransp.setOnKeyPressed(i -> {
+		    if (i.getCode() == KeyCode.ENTER) {
+		    	concluido();
+		    }
+		});	
 	}
 	
 	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
 			
-			Transportadora novo = new Transportadora();
-			
-			
-			if(validarCamposTransportadora()){
+			if(validarCamposTransportadora(txtNomeTrans.getText(),txtCnpjTransp.getText(),txtEmailTrans.getText(),txtResponsavelTransp.getText(), txtTelefoneTrans.getText())){
 				
-				btnConcluido.setDisable(true);
-				
-				PopUpController sucesso = new PopUpController("ERRO", "preencha todos os campos", "Ok");
+				PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Erro", false, sucesso);
-	
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 			}
 			else{
+				
+				Transportadora novo = new Transportadora();
 			
 				novo.setNomeTransportadora(txtNomeTrans.getText());
 				novo.setCnpjTransportadora(txtCnpjTransp.getText());
@@ -144,20 +152,26 @@ public class TransportadoraController implements Initializable {
 				if(Transportadora.insert(novo)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
-					Janelas j = new Janelas();
-					j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
-			
-					btnConcluido.setOnAction(c -> concluido());	
+					Janelas jn = new Janelas();
+					jn.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
 					
-					btnCadastrarTrans.setOnAction(x -> cadastrarTransportadora());
+					btnConcluido.setDisable(false);
+					btnConcluido.setOnAction(j -> concluido());	
+					btnConcluido.setOnKeyPressed(k -> {
+					    if (k.getCode() == KeyCode.ENTER) {
+					    	concluido();
+					    }
+					});
 					
-					preencherTransportadora();
+					btnCancelarTransp.setDisable(true);
+					
 					limparTrans();
+					preencherTransportadora();	
 				}
 				else{
-					PopUpController sucess = new PopUpController("ERRO", "ERRO", "Ok");
+					PopUpController erro = new PopUpController("ERRO", "Transportadora não cadastrada", "OK");
 					Janelas je = new Janelas();
-					je.abrirPopup("PopUp.fxml", new Stage(), "erro nao cadastrou", false, sucess);	
+					je.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 				}
 			}	
 		}
@@ -166,62 +180,49 @@ public class TransportadoraController implements Initializable {
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
 			if(tn == null){
-				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "FECHAR");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "ERRO", false, erro);	
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 			}
 			else{
 				
 				tabVisualizar.setDisable(true);
+				tpTransp.getSelectionModel().select(1);
 				
 				lblEdicaoCadas.setText("Atualizar Transportadora");
 				btnCadastrarTrans.setText("Atualizar");
-				
-				tpTransp.getSelectionModel().select(1);
-				
+
 				txtNomeTrans.setText(tn.getNomeTransportadora());
 				txtEmailTrans.setText(tn.getEmailTransportadora());
 				txtTelefoneTrans.setText(tn.getTelefoneTransportadora());
 				txtCnpjTransp.setText(tn.getCnpjTransportadora());
 				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
 			
-				btnCancelarTransp.setOnAction(i -> cancelar());
-				
-				btnCadastrarTrans.setOnAction(a -> atualizar());
-				
-				btnConcluido.setOnAction(p -> concluido());
+				btnCadastrarTrans.setOnAction(l -> atualizar());
+				btnCancelarTransp.setOnAction(m -> cancelar());
+				btnConcluido.setOnAction(n -> concluido());
 				
 				modoEdicao = false;	
 			}
 		}
 	}
-
-	private boolean validarCamposTransportadora() {
+	
+	private boolean validarCamposTransportadora(String... camposTrans) {
 		
-		return txtBuscaTrans.getText().isEmpty() || 
-				txtCnpjTransp.getText().isEmpty() || 
-				txtEmailTrans.getText().isEmpty() ||
-				txtNomeTrans.getText().isEmpty() ||
-				txtResponsavelTransp.getText().isEmpty() ||
-				txtTelefoneTrans.getText().isEmpty();
+		boolean preenchido = false;
+		
+		for(String item : camposTrans){
+			if(item.isEmpty()){
+				preenchido = true;
+				break;
+			}else{
+				preenchido = false;
+			}
+		}
+		return preenchido;
 	}
 	
-	// Event Listener on Button[#btnEditarTrans].onAction
-	@FXML
-	public void editarTrans(ActionEvent event) {
-		
-		tabCadastrar.setText("Editar");
-		
-		modoEdicao = true;
-		btnCadastrarTrans.setDisable(false);
-		tabCadastrar.setDisable(false);
-		
-		inserirTransportadora();
-	}
-		
 	private void atualizar(){
-		
-		btnConcluido.setDisable(true);
 		
 		Transportadora cod = tvTransp.getSelectionModel().getSelectedItem();
 		
@@ -235,49 +236,68 @@ public class TransportadoraController implements Initializable {
 		
 		up.setCodTransportadora(cod.getCodTransportadora());
 		
-		Transportadora.update(up);
-				
-		preencherTransportadora();
-		limparTrans();
-				
-		PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "Ok");
-		Janelas j = new Janelas();
-		j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, sucesso);
+		if(Transportadora.update(up)){
 			
-		btnConcluido.setDisable(false);
-		btnCadastrarTrans.setDisable(true);
-		btnCancelarTransp.setDisable(true);
-
+			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
+			
+			btnConcluido.setDisable(false);
+			
+			btnCancelarTransp.setDisable(true);
+			
+			btnCadastrarTrans.setDisable(true);
+			
+			preencherTransportadora();
+			limparTrans();
+			
+			modoEdicao = false;
+		}
+		else{
+			
+			PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "FECHAR");
+			Janelas e = new Janelas();
+			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+		}
 	}
-	
-	// Event Listener on Button[#btnExcluirTrans].onAction
-	@FXML
-	public void excluirTrans(ActionEvent event) {
+
+	public void editarTrans() {
+		
+		tabCadastrar.setText("Editar");
+		tabCadastrar.setDisable(false);
+		
+		btnCancelarTransp.setDisable(false);
+		btnConcluido.setDisable(true);
+		
+		modoEdicao = true;
+		
+		inserirTransportadora();
+	}
+		
+	public void excluirTrans() {
 		
 		Transportadora t = tvTransp.getSelectionModel().getSelectedItem();
 		
 		if(t == null){
-			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "FECHAR");
 			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 		}
 		else{
 		
 			if(Transportadora.delete(t.getCodTransportadora())){
 				
-				PopUpController erro = new PopUpController("SUCESSO", "EXCLUIDO", "Ok");
+				PopUpController erro = new PopUpController("SUCESSO", "Transportadora excluída com sucesso!", "OK");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Sucesso Transportadora", false, erro);
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 				
 				preencherTransportadora();
 			}
 			else{
-				PopUpController erro = new PopUpController("ERRO", "ERRO", "Ok");
+				PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser excluída", "FECHAR");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "ERRO", false, erro);
-				
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 			}
-	
 		}
 	}
 	
@@ -287,14 +307,31 @@ public class TransportadoraController implements Initializable {
 		
 		if (lstTransFilt.isEmpty()){
 			
-			PopUpController sucesso = new PopUpController("ERRO", "Nenhum registro encontrado!", "Ok");
+			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
 			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
+			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 		}
 		else{
 			tvTransp.getItems().clear();
 			tvTransp.getItems().addAll(lstTransFilt);
-		}	
+		}
+		
+	}
+
+	public void concluido() {
+		tpTransp.getSelectionModel().select(0);
+		
+		tabCadastrar.setDisable(true);
+		tabVisualizar.setDisable(false);
+	}
+	
+	public void cancelar(){
+		tpTransp.getSelectionModel().select(0);
+		
+		tabCadastrar.setDisable(true);
+		tabVisualizar.setDisable(false);
+		
+		limparTrans();
 	}
 	
 	private void limparTrans() {
@@ -304,39 +341,5 @@ public class TransportadoraController implements Initializable {
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
 	}
-	
-	public void concluido() {
-		lblEdicaoCadas.setText("Cadastrar Transportadora");
-		btnCadastrarTrans.setText("Cadastrar");
-		btnCadastrarTrans.setDisable(true);
-		
-		btnConcluido.setDisable(true);
-		btnCadastrarTrans.setDisable(false);
-		btnCancelarTransp.setDisable(false);
-		
-		tabVisualizar.setDisable(false);
-		tpTransp.getSelectionModel().select(0);
-		modoEdicao = false;
-		
-		tabCadastrar.setDisable(true);
-		
-	}
-	
-	public void cancelar(){
-		
-		tpTransp.getSelectionModel().select(0);
-		
-		tabVisualizar.setDisable(false);
-		tabCadastrar.setDisable(true);
-		
-		modoEdicao = false;
-		
-		lblEdicaoCadas.setText("Cadastro de Transportadora");
-		btnCadastrarTrans.setText("Cadastrar");
-
-		limparTrans();
-	}
-	
-	
 	
 }

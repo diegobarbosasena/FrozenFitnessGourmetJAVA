@@ -47,8 +47,6 @@ public class PedidosController implements Initializable{
 		
 		List<Pedidos> lstPedido = Pedidos.selecionarTodos();
 		
-		System.out.println(lstPedido);
-		
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);
 	}

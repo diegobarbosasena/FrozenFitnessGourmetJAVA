@@ -7,30 +7,30 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anpInfo" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.InformacoesController">
+<AnchorPane fx:id="anpInfo" maxWidth="255.0" minWidth="255.0" prefWidth="255.0" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.InformacoesController">
    <children>
-      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="457.0" prefWidth="255.0">
+            <Pane>
                <children>
-                  <ImageView fitHeight="138.0" fitWidth="255.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+                  <ImageView fitHeight="138.0" fitWidth="255.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imagens/logo.PNG" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" layoutX="34.0" layoutY="217.0" text="Bem vindo(a):" textFill="#666666">
+                  <Label alignment="CENTER" layoutY="195.0" prefWidth="255.0" text="Bem vindo(a):" textFill="#666666">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblUsuario" layoutX="128.0" layoutY="217.0" text="Usuário" textFill="#666666">
+                  <Label fx:id="lblUsuario" alignment="CENTER" layoutY="219.0" prefHeight="16.0" prefWidth="255.0" text="Usuário" textFill="#666666">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblHora" layoutX="96.0" layoutY="246.0" text="00:00:00" />
-                  <Label fx:id="lblData" layoutX="88.0" layoutY="271.0" text="00/00/0000" />
-                  <Button fx:id="btnSair" alignment="CENTER" layoutX="98.0" layoutY="348.0" mnemonicParsing="false" styleClass="botao" stylesheets="@application.css" text="Sair" textAlignment="CENTER">
+                  <Label fx:id="lblHora" alignment="CENTER" contentDisplay="CENTER" layoutY="268.0" prefWidth="255.0" text="00:00:00" />
+                  <Label fx:id="lblData" alignment="CENTER" contentDisplay="CENTER" layoutY="295.0" prefWidth="255.0" text="00/00/0000" />
+                  <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="378.0" mnemonicParsing="false" styleClass="botao" text="Sair" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>

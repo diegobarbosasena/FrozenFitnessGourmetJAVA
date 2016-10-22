@@ -63,7 +63,7 @@ public class Transportadora {
 	
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelectPesq = "SELECT * FROM tblTransportadora WHERE nomeTransportadora LIKE ?; ";
+		String sqlSelectPesq = "SELECT * FROM tblTransportadora WHERE nomeTransportadora LIKE ? ORDER BY codTransportadora DESC; ";
 		
 		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
 		PreparedStatement parametros;
@@ -74,9 +74,6 @@ public class Transportadora {
 			parametros.setString(1, nomePesquisa);	
 			ResultSet rs = parametros.executeQuery();
 
-			
-			System.out.println(parametros.toString());
-			
 			while(rs.next()){
 				
 				Transportadora tp = new Transportadora();

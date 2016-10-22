@@ -85,7 +85,6 @@ TextField, PasswordField, DatePicker{
 	-fx-border-width: 1px;
 	-fx-border-color: #00b050;
 }
-
 .tooltip {
     -fx-background-radius: 2 2 2 2;
     -fx-background-color: #F0F0F0;
