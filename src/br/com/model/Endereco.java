@@ -50,13 +50,11 @@ public class Endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
 	@Override
 	public String toString() {
-		return "Endereco [logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", bairro=" + bairro
-				+ ", complemento=" + complemento + ", lstCidade=" + lstCidade + "]";
+		return "Endereco [codEndereco=" + codEndereco + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
+				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + "]";
 	}
 	
-	
-	
+
 }

@@ -113,6 +113,7 @@ public class Transportadora {
 			while(rs.next()){
 				
 				Transportadora t = new Transportadora();
+				Endereco e = new Endereco();
 				
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
 				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
@@ -120,6 +121,8 @@ public class Transportadora {
 				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				
+				e.toString();
 				
 				lstTransp.add(t);			
 			}	

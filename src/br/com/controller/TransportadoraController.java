@@ -99,7 +99,7 @@ public class TransportadoraController implements Initializable {
 		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
 		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		
-		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>());
+		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		
 		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
