@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.model.Cidade;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
 
 public class TransportadoraController implements Initializable {
 	
@@ -41,6 +43,7 @@ public class TransportadoraController implements Initializable {
 	@FXML private TableColumn <Transportadora, String> clnEmail;
 	@FXML private TableColumn <Transportadora, String> clnFone;
 	@FXML private TableColumn <Transportadora, String> clnResp;
+	@FXML private TableColumn <Transportadora, String> clnEndereco;
 	
 	@FXML private Label lblEdicaoCadas;
 	@FXML private Label lblNomeTrans;
@@ -52,13 +55,27 @@ public class TransportadoraController implements Initializable {
 	@FXML private Label lblCnpjTransp;
 	@FXML private TextField txtCnpjTransp;
 	@FXML private Label lblResponsavelTrans;
-	@FXML private TextField txtResponsavelTransp;
+	@FXML private TextField txtResponsavelTransp;	
+	@FXML private Label lblLogradouroTransp;
+	@FXML private TextField txtLogradouroTransp;
+	@FXML private Label lblNroTransp;
+	@FXML private TextField txtNroTransp;
+	@FXML private Label lblCepTransp;
+	@FXML private TextField txtCepTransp;
+	@FXML private Label lblBairroTransp;
+	@FXML private TextField txtBairroTransp;
+	@FXML private Label lblCidadeTransp;
+	@FXML private ComboBox<Cidade> cboCidadeTransp;
+	@FXML private Label lblComplementoTransp;
+	@FXML private TextField txtComplementoTransp;
+	
 	@FXML private Button btnCadastrarTrans;
 	@FXML private Button btnConcluido;
 	@FXML private Button btnCancelarTransp;
 
 	boolean modoEdicao = false;
 
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -81,6 +98,8 @@ public class TransportadoraController implements Initializable {
 		clnEmail.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailTransportadora"));
 		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
 		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
+		
+		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>());
 		
 		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
@@ -315,7 +334,6 @@ public class TransportadoraController implements Initializable {
 			tvTransp.getItems().clear();
 			tvTransp.getItems().addAll(lstTransFilt);
 		}
-		
 	}
 
 	public void concluido() {

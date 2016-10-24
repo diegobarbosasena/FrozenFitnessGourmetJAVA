@@ -18,7 +18,7 @@ public class Transportadora {
 	private String cnpjTransportadora;
 	private String responsavelTransportadora;
 	
-	public List<Endereco> lstEnd;
+	public List<Endereco> lstEndereco;
 	
 	
 	public int getCodTransportadora() {
@@ -100,7 +100,9 @@ public class Transportadora {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelect = "SELECT * FROM tblTransportadora ORDER BY codTransportadora DESC; ";
+		String sqlSelect = "select t.codTransportadora, t.cnpjTransportadora, t.emailTransportadora, t.telefoneTransportadora, t.responsavelTransportadora, ";
+		sqlSelect = sqlSelect + "e.logradouro, e.cep, e.numero, e.bairro, e.complemento from tblTransportadora as t ";
+		sqlSelect = sqlSelect + "inner join tblEndereco as e on (t.codEndereco = e.codEndereco) ORDER BY codTransportadora DESC; ";
 		
 		List <Transportadora> lstTransp = new ArrayList<>(); 
 		

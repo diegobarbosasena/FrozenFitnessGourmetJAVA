@@ -12,12 +12,10 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class PopUpController implements Initializable{
-	@FXML
-	private Label lblTituloErro;
-	@FXML
-	private Label lblMsgErro;
-	@FXML
-	private Button btnPopUpFechar;
+	
+	@FXML private Label lblTituloErro;
+	@FXML private Label lblMsgErro;
+	@FXML private Button btnPopUpFechar;
 	
 	private String titulo, msg, botao;
 	
@@ -26,19 +24,11 @@ public class PopUpController implements Initializable{
 		this.titulo = titulo;
 		this.msg = msg;
 		this.botao = botao;
-		
-		System.out.println();
-		System.out.println(titulo);
-		System.out.println(msg);
-		System.out.println(botao);
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		System.out.println();
-		System.out.println("Controller initializable");
-	
 		lblTituloErro.setText(titulo);
 		lblMsgErro.setText(msg);
 		btnPopUpFechar.setText(botao);

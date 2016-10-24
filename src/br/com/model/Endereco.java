@@ -1,5 +1,7 @@
 package br.com.model;
 
+import java.util.List;
+
 public class Endereco {
 	
 	private int codEndereco;
@@ -8,6 +10,8 @@ public class Endereco {
 	private String numero;
 	private String bairro;
 	private String complemento;
+	
+	public List<Cidade> lstCidade;
 	
 	
 	public int getCodEndereco() {
@@ -45,6 +49,12 @@ public class Endereco {
 	}
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+	
+	@Override
+	public String toString() {
+		return "Endereco [logradouro=" + logradouro + ", cep=" + cep + ", numero=" + numero + ", bairro=" + bairro
+				+ ", complemento=" + complemento + ", lstCidade=" + lstCidade + "]";
 	}
 	
 	

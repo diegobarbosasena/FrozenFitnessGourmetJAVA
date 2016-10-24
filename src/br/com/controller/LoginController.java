@@ -48,12 +48,7 @@ public class LoginController implements Initializable{
 
 		if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
 			
-			System.out.println();
-			System.out.println("USUARIO " + txtUsuario.getText());
-			System.out.println("SENHA " + txtSenha.getText());
-			System.out.println("LOGIN EFETUADO COM SUCESSO...");
-
-			limpar();
+			limparLogin();
 			
 			Janelas layout = new Janelas();
 			layout.abrir("Layout.fxml", new Stage(), "", true);
@@ -68,12 +63,10 @@ public class LoginController implements Initializable{
 			Janelas erroLogin = new Janelas();
 			erroLogin.abrirPopup("PopUp.fxml", new Stage(), "Erro de Login", false, erro);
 			
-			limpar();
-			System.out.println();
-			System.out.println("ERRO DE LOGIN");
+			limparLogin();
 		}
 	}
-	public void limpar(){
+	public void limparLogin(){
 		txtUsuario.clear();
 		txtSenha.clear();
 	}
