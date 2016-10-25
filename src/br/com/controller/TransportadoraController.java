@@ -166,13 +166,13 @@ public class TransportadoraController implements Initializable {
 			else{
 				
 				Transportadora novo = new Transportadora();
-				Endereco novoEn = new Endereco();
+				Endereco novoEnde = new Endereco();
 				
-				novoEn.setBairro(txtBairroTransp.getText());
-				novoEn.setCep(txtCepTransp.getText());
-				novoEn.setComplemento(txtComplementoTransp.getText());
-				novoEn.setLogradouro(txtLogradouroTransp.getText());
-				novoEn.setNumero(txtNroTransp.getText());
+				novoEnde.setBairro(txtBairroTransp.getText());
+				novoEnde.setCep(txtCepTransp.getText());
+				novoEnde.setComplemento(txtComplementoTransp.getText());
+				novoEnde.setLogradouro(txtLogradouroTransp.getText());
+				novoEnde.setNumero(txtNroTransp.getText());
 			
 				novo.setNomeTransportadora(txtNomeTrans.getText());
 				novo.setCnpjTransportadora(txtCnpjTransp.getText());
@@ -180,7 +180,7 @@ public class TransportadoraController implements Initializable {
 				novo.setResponsavelTransportadora(txtResponsavelTransp.getText());
 				novo.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
-				if(Transportadora.insert(novo , novoEn)){
+				if(Transportadora.insert(novo) && Endereco.insert(novoEnde)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 					Janelas jn = new Janelas();
@@ -341,6 +341,8 @@ public class TransportadoraController implements Initializable {
 			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+			
+			txtBuscaTrans.clear();
 		}
 		else{
 			tvTransp.getItems().clear();

@@ -1,5 +1,11 @@
 package br.com.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import br.com.ajudantes.MySqlConexao;
+
 public class Endereco {
 	
 	private int codEndereco;
@@ -49,9 +55,42 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return logradouro + ", " +  numero + " ," + bairro ;
+		return logradouro + " n°" +  numero + " Bairro " + bairro ;
 	}
 	
-	
+	public static boolean insert(Endereco novoEnde ) {
+		
+		Connection c = MySqlConexao.ConectarDb();
+			
+		String sqlInsertEndereco = "INSERT INTO tblEndereco "
+				+ "(logradouro, cep, numero, bairro, complemento, codCidade) "
+				+ "VALUES (?, ?, ?, ?, ?, ?) ";
+		
+		PreparedStatement parametros;
+		
+		try {
+			
+			parametros = c.prepareStatement(sqlInsertEndereco);
+			
+			parametros.setString(1, novoEnde.getLogradouro());
+			parametros.setString(2, novoEnde.getCep());
+			parametros.setString(3, novoEnde.getNumero());
+			parametros.setString(4, novoEnde.getBairro());
+			parametros.setString(5, novoEnde.getComplemento());
+			parametros.setInt(6, 1);
+			
+			parametros.executeUpdate();
+				
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			return false;
+		}
+		
+	}
 	
 }

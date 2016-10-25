@@ -11,17 +11,14 @@
  	
  	-fx-selection-bar: -fx-accent;
  	
- 	
  	/* Background color to use for selection of list cells etc. This is when
      * the control doesn't have focus or the row of a previously selected item.
     -fx-selection-bar-non-focused: lightgrey;
     
-    
     /* The color to use in ListView/TreeView/TableView to indicate hover.
     -fx-cell-hover-color: #cce3f4;
- * 
- *
  */
+ 
  *{ -fx-text-fill: #666; }
 .border{
 	-fx-border-color: #666;
