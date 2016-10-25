@@ -1,6 +1,12 @@
 package br.com.model;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import br.com.ajudantes.MySqlConexao;
 
 public class Endereco {
 	
@@ -56,5 +62,38 @@ public class Endereco {
 				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + "]";
 	}
 	
+	
+	public static  List<Endereco> selecionarTodos(){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelect = "select * from tblEndereco ;" ;
+		
+		System.out.println(sqlSelect);
+		
+		List <Endereco> lstEndereco = new ArrayList<>(); 
+		
+		ResultSet rs;
+		try {
+			rs = c.createStatement().executeQuery(sqlSelect);
+
+			while(rs.next()){
+				
+				Endereco e = new Endereco();
+				
+				e.setCodEndereco(rs.getInt("codEndereco"));
+				e.setBairro(rs.getString("logradouro"));
+				e.setCep(rs.getString("cep"));
+				e.setComplemento(rs.getString("complemento"));
+				e.setLogradouro(rs.getString("logradouro"));
+				e.setNumero(rs.getString("numero"));
+			
+				lstEndereco.add(e);			
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lstEndereco;
+	}
 
 }

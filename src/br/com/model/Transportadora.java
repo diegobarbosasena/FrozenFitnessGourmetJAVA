@@ -17,8 +17,9 @@ public class Transportadora {
 	private String telefoneTransportadora;
 	private String cnpjTransportadora;
 	private String responsavelTransportadora;
+	private int codEndereco;
 	
-	public List<Endereco> lstEndereco;
+	public Endereco endereco;
 	
 	
 	public int getCodTransportadora() {
@@ -56,6 +57,12 @@ public class Transportadora {
 	}
 	public void setResponsavelTransportadora(String responsavelTransportadora) {
 		this.responsavelTransportadora = responsavelTransportadora;
+	}
+	public int getCodEndereco() {
+		return codEndereco;
+	}
+	public void setCodEndereco(int codEndereco) {
+		this.codEndereco = codEndereco;
 	}
 	
 	
@@ -113,7 +120,6 @@ public class Transportadora {
 			while(rs.next()){
 				
 				Transportadora t = new Transportadora();
-				Endereco e = new Endereco();
 				
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
 				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
@@ -121,9 +127,7 @@ public class Transportadora {
 				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-				
-				e.toString();
-				
+			
 				lstTransp.add(t);			
 			}	
 		} catch (SQLException e) {
@@ -216,5 +220,6 @@ public class Transportadora {
 			return false;	
 		}
 	}
+	
 	
 }

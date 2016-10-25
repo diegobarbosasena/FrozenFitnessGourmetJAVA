@@ -10,6 +10,7 @@ import br.com.view.Janelas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -21,7 +22,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.ComboBox;
 
 public class TransportadoraController implements Initializable {
 	
@@ -89,7 +89,11 @@ public class TransportadoraController implements Initializable {
 		btnNovaTransportadora.setOnAction(b -> nova());
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());	
+		
+		
+		cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
 	}
+	
 
 	private void preencherTransportadora(){
 		
@@ -99,7 +103,7 @@ public class TransportadoraController implements Initializable {
 		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
 		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		
-		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
+		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("codEndereco"));
 		
 		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
