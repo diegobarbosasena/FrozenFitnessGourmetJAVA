@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.model.Cidade;
+import br.com.model.Endereco;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class TransportadoraController implements Initializable {
 	@FXML private TableColumn <Transportadora, String> clnEmail;
 	@FXML private TableColumn <Transportadora, String> clnFone;
 	@FXML private TableColumn <Transportadora, String> clnResp;
-	@FXML private TableColumn <Transportadora, String> clnEndereco;
+	@FXML private TableColumn <Transportadora, Endereco> clnEndereco;
 	
 	@FXML private Label lblEdicaoCadas;
 	@FXML private Label lblNomeTrans;
@@ -103,7 +104,7 @@ public class TransportadoraController implements Initializable {
 		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
 		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		
-		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("codEndereco"));
+		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, Endereco>("endereco"));
 		
 		List<Transportadora> lst = Transportadora.selecionarTodas();
 		
@@ -165,6 +166,13 @@ public class TransportadoraController implements Initializable {
 			else{
 				
 				Transportadora novo = new Transportadora();
+				Endereco novoEn = new Endereco();
+				
+				novoEn.setBairro(txtBairroTransp.getText());
+				novoEn.setCep(txtCepTransp.getText());
+				novoEn.setComplemento(txtComplementoTransp.getText());
+				novoEn.setLogradouro(txtLogradouroTransp.getText());
+				novoEn.setNumero(txtNroTransp.getText());
 			
 				novo.setNomeTransportadora(txtNomeTrans.getText());
 				novo.setCnpjTransportadora(txtCnpjTransp.getText());
@@ -172,7 +180,7 @@ public class TransportadoraController implements Initializable {
 				novo.setResponsavelTransportadora(txtResponsavelTransp.getText());
 				novo.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
-				if(Transportadora.insert(novo)){
+				if(Transportadora.insert(novo , novoEn)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 					Janelas jn = new Janelas();

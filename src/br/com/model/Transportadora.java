@@ -19,7 +19,7 @@ public class Transportadora {
 	private String responsavelTransportadora;
 	private int codEndereco;
 	
-	public Endereco endereco;
+	private Endereco endereco;
 	
 	
 	public int getCodTransportadora() {
@@ -57,6 +57,13 @@ public class Transportadora {
 	}
 	public void setResponsavelTransportadora(String responsavelTransportadora) {
 		this.responsavelTransportadora = responsavelTransportadora;
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	public int getCodEndereco() {
 		return codEndereco;
@@ -107,9 +114,9 @@ public class Transportadora {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelect = "select t.codTransportadora, t.cnpjTransportadora, t.emailTransportadora, t.telefoneTransportadora, t.responsavelTransportadora, ";
-		sqlSelect = sqlSelect + "e.logradouro, e.cep, e.numero, e.bairro, e.complemento from tblTransportadora as t ";
-		sqlSelect = sqlSelect + "inner join tblEndereco as e on (t.codEndereco = e.codEndereco) ORDER BY codTransportadora DESC; ";
+		String sqlSelect = "SELECT t.codTransportadora, t.nomeTransportadora, t.cnpjTransportadora, t.emailTransportadora, t.telefoneTransportadora, t.responsavelTransportadora, ";
+		sqlSelect = sqlSelect + "e.codEndereco, e.logradouro, e.cep, e.numero, e.bairro, e.complemento FROM tblTransportadora AS t ";
+		sqlSelect = sqlSelect + "INNER JOIN tblEndereco AS e ON (t.codEndereco = e.codEndereco) ORDER BY codTransportadora DESC; ";
 		
 		List <Transportadora> lstTransp = new ArrayList<>(); 
 		
@@ -120,14 +127,25 @@ public class Transportadora {
 			while(rs.next()){
 				
 				Transportadora t = new Transportadora();
+				Endereco e = new Endereco();
 				
+				e.setCodEndereco(rs.getInt("codEndereco"));
+				e.setLogradouro(rs.getString("logradouro"));
+				e.setCep(rs.getString("cep"));
+				e.setNumero(rs.getString("numero"));
+				e.setBairro(rs.getString("bairro"));
+				e.setComplemento(rs.getString("complemento"));
+					
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
 				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
 				t.setEmailTransportadora(rs.getString("emailTransportadora"));
 				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
-				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-			
+				t.setCodEndereco(rs.getInt("codEndereco"));
+				
+				t.setEndereco(e);
+				
 				lstTransp.add(t);			
 			}	
 		} catch (SQLException e) {
@@ -136,24 +154,42 @@ public class Transportadora {
 		return lstTransp;
 	}
 	
-	public static boolean insert(Transportadora novo) {
+	public static boolean insert(Transportadora novo, Endereco novoEn ) {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlInsert = "INSERT INTO tblTransportadora (nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora) VALUES ( ?, ?, ?, ?, ?); ";
+		String sqlInsertEndereco = "INSERT INTO tblEndereco "
+				+ "(logradouro, cep, numero, bairro, complemento, codCidade) "
+				+ "VALUES (?, ?, ? , ?, ?, ?) ";
+				
+		String sqlInsertTransp = "INSERT INTO tblTransportadora "
+				+ "(nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora, codEndereco) "
+				+ "VALUES ( ?, ?, ?, ?, ?, last_insert_id()); ";
 		
 		PreparedStatement parametros;
 		
 		try {
-			parametros = c.prepareStatement(sqlInsert);
+			parametros = c.prepareStatement(sqlInsertEndereco);
 
-			parametros.setString(1, novo.getNomeTransportadora());
-			parametros.setString(2, novo.getEmailTransportadora());
-			parametros.setString(3, novo.getTelefoneTransportadora());
-			parametros.setString(4, novo.getCnpjTransportadora());
-			parametros.setString(5, novo.getResponsavelTransportadora());
+			parametros.setString(1, novoEn.getLogradouro());
+			parametros.setString(2, novoEn.getCep());
+			parametros.setString(3, novoEn.getNumero());
+			parametros.setString(4, novoEn.getBairro());
+			parametros.setString(5, novoEn.getComplemento());
+			
+			parametros.setInt(6, 1);
+			
+			parametros = c.prepareStatement(sqlInsertTransp);
+			
+			parametros.setString(7, novo.getNomeTransportadora());
+			parametros.setString(8, novo.getEmailTransportadora());
+			parametros.setString(9, novo.getTelefoneTransportadora());
+			parametros.setString(10, novo.getCnpjTransportadora());
+			parametros.setString(11, novo.getResponsavelTransportadora());
 			
 			parametros.executeUpdate();
+			
+			System.out.println(parametros);
 			
 			c.close();
 			
@@ -220,6 +256,7 @@ public class Transportadora {
 			return false;	
 		}
 	}
+	
 	
 	
 }

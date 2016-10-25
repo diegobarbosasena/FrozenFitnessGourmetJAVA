@@ -1,13 +1,5 @@
 package br.com.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.ajudantes.MySqlConexao;
-
 public class Endereco {
 	
 	private int codEndereco;
@@ -16,9 +8,7 @@ public class Endereco {
 	private String numero;
 	private String bairro;
 	private String complemento;
-	
-	public List<Cidade> lstCidade;
-	
+		
 	
 	public int getCodEndereco() {
 		return codEndereco;
@@ -56,44 +46,12 @@ public class Endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+	
 	@Override
 	public String toString() {
-		return "Endereco [codEndereco=" + codEndereco + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
-				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + "]";
+		return logradouro + ", " +  numero + " ," + bairro ;
 	}
 	
 	
-	public static  List<Endereco> selecionarTodos(){
-		
-		Connection c = MySqlConexao.ConectarDb();
-		
-		String sqlSelect = "select * from tblEndereco ;" ;
-		
-		System.out.println(sqlSelect);
-		
-		List <Endereco> lstEndereco = new ArrayList<>(); 
-		
-		ResultSet rs;
-		try {
-			rs = c.createStatement().executeQuery(sqlSelect);
-
-			while(rs.next()){
-				
-				Endereco e = new Endereco();
-				
-				e.setCodEndereco(rs.getInt("codEndereco"));
-				e.setBairro(rs.getString("logradouro"));
-				e.setCep(rs.getString("cep"));
-				e.setComplemento(rs.getString("complemento"));
-				e.setLogradouro(rs.getString("logradouro"));
-				e.setNumero(rs.getString("numero"));
-			
-				lstEndereco.add(e);			
-			}	
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return lstEndereco;
-	}
-
+	
 }
