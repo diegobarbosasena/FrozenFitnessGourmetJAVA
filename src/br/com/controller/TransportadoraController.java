@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import br.com.model.Cidade;
 import br.com.model.Endereco;
+import br.com.model.Estado;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class TransportadoraController implements Initializable {
 	@FXML private Tab tabVisualizar;
 	@FXML private Tab tabCadastrar;
 	
-	@FXML private TableView<Transportadora> tvTransp;
+	@FXML private TableView <Transportadora> tvTransp;
 	@FXML private TableColumn <Transportadora, String> clnTransp;
 	@FXML private TableColumn <Transportadora, String> clnCnpj;
 	@FXML private TableColumn <Transportadora, String> clnEmail;
@@ -65,10 +66,15 @@ public class TransportadoraController implements Initializable {
 	@FXML private TextField txtCepTransp;
 	@FXML private Label lblBairroTransp;
 	@FXML private TextField txtBairroTransp;
-	@FXML private Label lblCidadeTransp;
-	@FXML private ComboBox<Cidade> cboCidadeTransp;
+	
 	@FXML private Label lblComplementoTransp;
 	@FXML private TextField txtComplementoTransp;
+	
+	@FXML private Label lblCidadeTransp;
+	@FXML private ComboBox <Cidade> cboCidadeTransp;
+	
+	@FXML private Label lblEstadoTransp;
+	@FXML private ComboBox <Estado> cboEstadoTransp;
 	
 	@FXML private Button btnCadastrarTrans;
 	@FXML private Button btnConcluido;
@@ -76,7 +82,6 @@ public class TransportadoraController implements Initializable {
 
 	boolean modoEdicao = false;
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -91,8 +96,11 @@ public class TransportadoraController implements Initializable {
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());	
 		
+		cboEstadoTransp.getItems().clear();
+		cboEstadoTransp.getItems().addAll(Estado.selecionarTodosEstados());
 		
-		cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
+		cboCidadeTransp.getItems().clear();
+		cboCidadeTransp.getItems().addAll(Cidade.filtrarCidade("%" + cboEstadoTransp.getSelectionModel().getSelectedItem() + "%"));
 	}
 	
 
@@ -157,7 +165,11 @@ public class TransportadoraController implements Initializable {
 		
 		if(!modoEdicao){
 			
-			if(validarCamposTransportadora(txtNomeTrans.getText(),txtCnpjTransp.getText(),txtEmailTrans.getText(),txtResponsavelTransp.getText(), txtTelefoneTrans.getText())){
+			if(validarCamposTransportadora(
+					txtNomeTrans.getText(), txtCnpjTransp.getText(), txtEmailTrans.getText(), txtResponsavelTransp.getText(), txtTelefoneTrans.getText(),
+					txtLogradouroTransp.getText(), txtCepTransp.getText(), txtNroTransp.getText(), txtBairroTransp.getText(), txtComplementoTransp.getText()) 
+			){
+				
 				
 				PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
 				Janelas j = new Janelas();
@@ -200,7 +212,7 @@ public class TransportadoraController implements Initializable {
 					preencherTransportadora();	
 				}
 				else{
-					PopUpController erro = new PopUpController("ERRO", "Transportadora não cadastrada", "OK");
+					PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser cadastrada", "OK");
 					Janelas je = new Janelas();
 					je.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 				}
@@ -211,7 +223,7 @@ public class TransportadoraController implements Initializable {
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
 			if(tn == null){
-				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "FECHAR");
+				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 			}
@@ -286,7 +298,7 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 			
-			PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "FECHAR");
+			PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "Fechar");
 			Janelas e = new Janelas();
 			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 		}
@@ -310,7 +322,7 @@ public class TransportadoraController implements Initializable {
 		Transportadora t = tvTransp.getSelectionModel().getSelectedItem();
 		
 		if(t == null){
-			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "FECHAR");
+			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 		}
@@ -325,7 +337,7 @@ public class TransportadoraController implements Initializable {
 				preencherTransportadora();
 			}
 			else{
-				PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser excluída", "FECHAR");
+				PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser excluída", "Fechar");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 			}

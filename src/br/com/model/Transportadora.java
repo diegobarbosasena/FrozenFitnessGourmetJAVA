@@ -66,8 +66,6 @@ public class Transportadora {
 		this.endereco = endereco;
 	}
 	
-	
-	
 	public static List<Transportadora> filtrar(String nomePesquisa){
 	
 		Connection c = MySqlConexao.ConectarDb();
@@ -171,21 +169,19 @@ public class Transportadora {
 		String sqlInsertTransp = "INSERT INTO tblTransportadora "
 				+ "(nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora, codEndereco) "
 				+ "VALUES ( ?, ?, ?, ?, ?, last_insert_id()); ";
-		
-		
+			
 		PreparedStatement parametros;
 		
-		try {
-			
+		try {		
 			parametros = c.prepareStatement(sqlInsertTransp);
-			
-			System.out.println(parametros);
 			
 			parametros.setString(1, novo.getNomeTransportadora());
 			parametros.setString(2, novo.getEmailTransportadora());
 			parametros.setString(3, novo.getTelefoneTransportadora());
 			parametros.setString(4, novo.getCnpjTransportadora());
 			parametros.setString(5, novo.getResponsavelTransportadora());
+			
+			System.out.println(parametros);
 			
 			parametros.executeUpdate();
 			

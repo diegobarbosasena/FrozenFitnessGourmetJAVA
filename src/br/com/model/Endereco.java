@@ -58,7 +58,7 @@ public class Endereco {
 		return logradouro + " n°" +  numero + " Bairro " + bairro ;
 	}
 	
-	public static boolean insert(Endereco novoEnde ) {
+	public static boolean insert(Endereco novoEnde) {
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
@@ -78,6 +78,8 @@ public class Endereco {
 			parametros.setString(4, novoEnde.getBairro());
 			parametros.setString(5, novoEnde.getComplemento());
 			parametros.setInt(6, 1);
+			
+			System.out.println(parametros);
 			
 			parametros.executeUpdate();
 				
