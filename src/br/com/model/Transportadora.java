@@ -58,6 +58,7 @@ public class Transportadora {
 		this.responsavelTransportadora = responsavelTransportadora;
 	}
 	
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -74,7 +75,7 @@ public class Transportadora {
 				+ "e.codEndereco, e.logradouro, e.cep, e.numero, e.bairro, e.complemento "
 				+ "FROM tblTransportadora AS t INNER JOIN tblEndereco AS e "
 				+ "ON (t.codEndereco = e.codEndereco) WHERE nomeTransportadora LIKE ? "
-				+ "ORDER BY nomeTransportadora DESC ";
+				+ "ORDER BY codTransportadora DESC ";
 		
 		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
 		PreparedStatement parametros;
@@ -160,7 +161,7 @@ public class Transportadora {
 		return lstTransp;
 	}
 	
-	public static boolean insert(Transportadora novo ) {
+	public static boolean insertTransportadora(Transportadora novaTrans) {
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
@@ -173,13 +174,13 @@ public class Transportadora {
 		try {		
 			parametros = c.prepareStatement(sqlInsertTransp);
 			
-			parametros.setString(1, novo.getNomeTransportadora());
-			parametros.setString(2, novo.getEmailTransportadora());
-			parametros.setString(3, novo.getTelefoneTransportadora());
-			parametros.setString(4, novo.getCnpjTransportadora());
-			parametros.setString(5, novo.getResponsavelTransportadora());
-		
-			parametros.setInt(6, novo.getEndereco().getCodEndereco());
+			parametros.setString(1, novaTrans.getNomeTransportadora());
+			parametros.setString(2, novaTrans.getEmailTransportadora());
+			parametros.setString(3, novaTrans.getTelefoneTransportadora());
+			parametros.setString(4, novaTrans.getCnpjTransportadora());
+			parametros.setString(5, novaTrans.getResponsavelTransportadora());
+			
+			parametros.setInt(6, Endereco.buscarUltimoId());
 			
 			parametros.executeUpdate();
 			
@@ -193,7 +194,7 @@ public class Transportadora {
 		}
 	}
 	
-	public static boolean delete(int codTransp ){
+	public static boolean deleteTransp(int codTransp ){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		String sqlDeletar = "DELETE FROM tblTransportadora WHERE CodTransportadora = ?;";
@@ -244,6 +245,7 @@ public class Transportadora {
 			return false;	
 		}
 	}
+	
 	
 	
 }

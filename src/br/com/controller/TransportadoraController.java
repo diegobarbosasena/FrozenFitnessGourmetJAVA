@@ -114,7 +114,6 @@ public class TransportadoraController implements Initializable {
 
 	}
 	
-
 	private void preencherTransportadora(){
 		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
@@ -187,7 +186,7 @@ public class TransportadoraController implements Initializable {
 			}
 			else{
 				
-				Transportadora novo = new Transportadora();
+				Transportadora novaTrans = new Transportadora();
 				Endereco novoEnde = new Endereco();
 				
 				novoEnde.setBairro(txtBairroTransp.getText());
@@ -195,14 +194,15 @@ public class TransportadoraController implements Initializable {
 				novoEnde.setComplemento(txtComplementoTransp.getText());
 				novoEnde.setLogradouro(txtLogradouroTransp.getText());
 				novoEnde.setNumero(txtNroTransp.getText());
+				novoEnde.setCidade(cboCidadeTransp.getSelectionModel().getSelectedItem());
 			
-				novo.setNomeTransportadora(txtNomeTrans.getText());
-				novo.setCnpjTransportadora(txtCnpjTransp.getText());
-				novo.setEmailTransportadora(txtEmailTrans.getText());
-				novo.setResponsavelTransportadora(txtResponsavelTransp.getText());
-				novo.setTelefoneTransportadora(txtTelefoneTrans.getText());
+				novaTrans.setNomeTransportadora(txtNomeTrans.getText());
+				novaTrans.setCnpjTransportadora(txtCnpjTransp.getText());
+				novaTrans.setEmailTransportadora(txtEmailTrans.getText());
+				novaTrans.setResponsavelTransportadora(txtResponsavelTransp.getText());
+				novaTrans.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
-				if(Transportadora.insert(novo) && Endereco.insert(novoEnde)){
+				if(Endereco.insertEndereco(novoEnde) && Transportadora.insertTransportadora(novaTrans)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 					Janelas jn = new Janelas();
@@ -250,7 +250,14 @@ public class TransportadoraController implements Initializable {
 				txtTelefoneTrans.setText(tn.getTelefoneTransportadora());
 				txtCnpjTransp.setText(tn.getCnpjTransportadora());
 				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
-			
+				
+				txtLogradouroTransp.setText(tn.getEndereco().getLogradouro());
+				txtCepTransp.setText(tn.getEndereco().getCep());
+				txtNroTransp.setText(tn.getEndereco().getNumero());
+				txtBairroTransp.setText(tn.getEndereco().getBairro());
+				txtComplementoTransp.setText(tn.getEndereco().getComplemento());
+
+				
 				btnCadastrarTrans.setOnAction(l -> atualizar());
 				btnCancelarTransp.setOnAction(m -> cancelar());
 				btnConcluido.setOnAction(n -> concluido());
@@ -277,9 +284,11 @@ public class TransportadoraController implements Initializable {
 	
 	private void atualizar(){
 		
-		Transportadora cod = tvTransp.getSelectionModel().getSelectedItem();
+		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		
 		Transportadora up = new Transportadora();
+		
+		Endereco upEn = new Endereco();
 		
 		up.setCnpjTransportadora(txtCnpjTransp.getText());
 		up.setNomeTransportadora(txtNomeTrans.getText());
@@ -287,9 +296,18 @@ public class TransportadoraController implements Initializable {
 		up.setResponsavelTransportadora(txtResponsavelTransp.getText());
 		up.setTelefoneTransportadora(txtTelefoneTrans.getText());
 		
-		up.setCodTransportadora(cod.getCodTransportadora());
 		
-		if(Transportadora.update(up)){
+		up.setCodTransportadora(codTrans.getCodTransportadora());
+	
+		upEn.setLogradouro(txtLogradouroTransp.getText());
+		upEn.setCep(txtCepTransp.getText());
+		upEn.setNumero(txtNroTransp.getText());
+		upEn.setBairro(txtBairroTransp.getText());
+		upEn.setComplemento(txtComplementoTransp.getText());
+		upEn.setCodEndereco(codTrans.getEndereco().getCodEndereco());
+
+		
+		if(Transportadora.update(up) && Endereco.updateEnde(upEn)){
 			
 			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
 			Janelas j = new Janelas();
@@ -338,7 +356,9 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 		
-			if(Transportadora.delete(t.getCodTransportadora())){
+			if(Transportadora.deleteTransp(t.getCodTransportadora())){
+				
+				Endereco.deleteEnde(t.getEndereco().getCodEndereco());
 				
 				PopUpController erro = new PopUpController("SUCESSO", "Transportadora excluída com sucesso!", "OK");
 				Janelas j = new Janelas();
@@ -394,6 +414,13 @@ public class TransportadoraController implements Initializable {
 		txtNomeTrans.clear();
 		txtResponsavelTransp.clear();
 		txtTelefoneTrans.clear();
+		
+		txtBairroTransp.clear();
+		txtBuscaTrans.clear();
+		txtCepTransp.clear();
+		txtComplementoTransp.clear();
+		txtLogradouroTransp.clear();
+		txtNroTransp.clear();
 	}
 	
 }
