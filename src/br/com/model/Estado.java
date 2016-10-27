@@ -34,12 +34,11 @@ public class Estado {
 	}
 
 	
-	
 	public static List<Estado> selecionarTodosEstados(){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelectEstado = "SELECT * FROM tblEstado;" ;
+		String sqlSelectEstado = "SELECT * FROM tblEstado ORDER BY nomeEstado;" ;
 				
 		List <Estado> lstEstado = new ArrayList<>(); 
 		

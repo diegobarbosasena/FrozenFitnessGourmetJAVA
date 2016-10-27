@@ -41,11 +41,6 @@ public class Janelas{
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
 			
-			javafx.scene.image.Image icone = new javafx.scene.image.Image(
-					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
-			
-			primaryStage.getIcons().add(icone);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	

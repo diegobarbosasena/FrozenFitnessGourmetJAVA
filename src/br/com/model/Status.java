@@ -5,6 +5,7 @@ public class Status {
 	private int codStatus;
 	private String statusPedido;
 	
+	
 	public int getCodStatus() {
 		return codStatus;
 	}

@@ -1,7 +1,6 @@
 package br.com.model;
 
 import java.util.Date;
-import java.util.List;
 
 public class Cliente {
 
@@ -16,7 +15,7 @@ public class Cliente {
 	private String emailCliente;
 	
 	
-	public List<Endereco> lstEncCliente;
+	private Endereco endereco;
 	
 	
 	public int getCodCliente() {
@@ -72,6 +71,13 @@ public class Cliente {
 	}
 	public void setEmailCliente(String emailCliente) {
 		this.emailCliente = emailCliente;
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 	

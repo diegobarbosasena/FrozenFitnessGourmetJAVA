@@ -46,7 +46,7 @@ public class Cidade {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelectCidade = "SELECT * FROM tblCidade ;" ;
+		String sqlSelectCidade = "SELECT * FROM tblCidade ORDER BY nomeCidade;" ;
 				
 		List <Cidade> lstCidade = new ArrayList<>(); 
 		
@@ -65,12 +65,11 @@ public class Cidade {
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		return lstCidade;
 	}
 
-	public static List<Cidade> filtrarCidade(String nomeFiltroCidade){
+	public static List<Cidade> filtrarCidade(String ufEstadoFiltro){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
@@ -87,7 +86,7 @@ public class Cidade {
 		try {
 			parametros = c.prepareStatement(sqlSelectPesqCidade);
 			
-			parametros.setString(1, nomeFiltroCidade);	
+			parametros.setString(1, ufEstadoFiltro);	
 			ResultSet rs = parametros.executeQuery();
 
 			while(rs.next()){
@@ -111,8 +110,7 @@ public class Cidade {
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}
-		
+		}	
 		return lstCidadePesq;
 	}
 	
@@ -121,6 +119,4 @@ public class Cidade {
 		return  NomeCidade;
 	}
 	
-	
-
 }

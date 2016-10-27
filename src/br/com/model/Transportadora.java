@@ -17,7 +17,6 @@ public class Transportadora {
 	private String telefoneTransportadora;
 	private String cnpjTransportadora;
 	private String responsavelTransportadora;
-	//private int codEndereco;
 	
 	private Endereco endereco;
 	
@@ -114,8 +113,7 @@ public class Transportadora {
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-		}
-		
+		}	
 		return lstTranspPesq;
 	}
 	
@@ -168,7 +166,7 @@ public class Transportadora {
 			
 		String sqlInsertTransp = "INSERT INTO tblTransportadora "
 				+ "(nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora, codEndereco) "
-				+ "VALUES ( ?, ?, ?, ?, ?, last_insert_id()); ";
+				+ "VALUES ( ?, ?, ?, ?, ?, ?); ";
 			
 		PreparedStatement parametros;
 		
@@ -180,8 +178,8 @@ public class Transportadora {
 			parametros.setString(3, novo.getTelefoneTransportadora());
 			parametros.setString(4, novo.getCnpjTransportadora());
 			parametros.setString(5, novo.getResponsavelTransportadora());
-			
-			System.out.println(parametros);
+		
+			parametros.setInt(6, novo.getEndereco().getCodEndereco());
 			
 			parametros.executeUpdate();
 			
@@ -190,11 +188,9 @@ public class Transportadora {
 			return true;
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 			return false;
 		}
-		
 	}
 	
 	public static boolean delete(int codTransp ){
@@ -213,8 +209,7 @@ public class Transportadora {
 			return true;
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 			return false;
 		}
 			
@@ -245,12 +240,10 @@ public class Transportadora {
 			return true;
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 			return false;	
 		}
 	}
-	
 	
 	
 }

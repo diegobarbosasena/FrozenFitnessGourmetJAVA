@@ -16,8 +16,9 @@ public class Pedidos {
 	private Date dtEntrega;
 	private Date dtCompra;
 	
-	public List<Cliente> lstCliente;
-	public List<Status> lstStatus;
+	private Cliente cliente;
+	private Status status;
+	
 	
 	
 	public int getCodPedido() {
@@ -43,6 +44,22 @@ public class Pedidos {
 	}
 	public void setDtCompra(Date dtCompra) {
 		this.dtCompra = dtCompra;
+	}
+	
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	
@@ -74,5 +91,6 @@ public class Pedidos {
 		}
 		return lstPedidos;
 	}
+	
 	
 }

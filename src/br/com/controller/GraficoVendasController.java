@@ -65,7 +65,6 @@ public class GraficoVendasController implements Initializable{
 		
 		brcGrafVendas.getData().add(totalCatego);
 	
-		
 		rbSemanal.setDisable(true);
 	}	
 

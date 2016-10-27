@@ -9,6 +9,8 @@ import br.com.model.Endereco;
 import br.com.model.Estado;
 import br.com.model.Transportadora;
 import br.com.view.Janelas;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -96,11 +98,20 @@ public class TransportadoraController implements Initializable {
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());	
 		
+		cboCidadeTransp.getItems().clear();
+		cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
+		
 		cboEstadoTransp.getItems().clear();
 		cboEstadoTransp.getItems().addAll(Estado.selecionarTodosEstados());
 		
-		cboCidadeTransp.getItems().clear();
-		cboCidadeTransp.getItems().addAll(Cidade.filtrarCidade("%" + cboEstadoTransp.getSelectionModel().getSelectedItem() + "%"));
+		cboEstadoTransp.valueProperty().addListener(new ChangeListener<Estado>() {
+			@Override
+			public void changed(ObservableValue<? extends Estado> observable, Estado oldValue, Estado newValue) {			
+				cboCidadeTransp.getItems().clear();
+				cboCidadeTransp.getItems().addAll(Cidade.filtrarCidade(cboEstadoTransp.getSelectionModel().getSelectedItem().getUf()));	
+			}
+		});
+
 	}
 	
 
@@ -169,8 +180,7 @@ public class TransportadoraController implements Initializable {
 					txtNomeTrans.getText(), txtCnpjTransp.getText(), txtEmailTrans.getText(), txtResponsavelTransp.getText(), txtTelefoneTrans.getText(),
 					txtLogradouroTransp.getText(), txtCepTransp.getText(), txtNroTransp.getText(), txtBairroTransp.getText(), txtComplementoTransp.getText()) 
 			){
-				
-				
+						
 				PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);

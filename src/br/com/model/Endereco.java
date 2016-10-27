@@ -14,6 +14,8 @@ public class Endereco {
 	private String numero;
 	private String bairro;
 	private String complemento;
+	
+	private Cidade cidade;
 		
 	
 	public int getCodEndereco() {
@@ -53,6 +55,13 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 	
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+	
 	@Override
 	public String toString() {
 		return logradouro + " n°" +  numero + " Bairro " + bairro ;
@@ -77,9 +86,7 @@ public class Endereco {
 			parametros.setString(3, novoEnde.getNumero());
 			parametros.setString(4, novoEnde.getBairro());
 			parametros.setString(5, novoEnde.getComplemento());
-			parametros.setInt(6, 1);
-			
-			System.out.println(parametros);
+			parametros.setInt(6, novoEnde.getCidade().getCodCidade());
 			
 			parametros.executeUpdate();
 				
@@ -89,10 +96,10 @@ public class Endereco {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
 			return false;
 		}
 		
 	}
+	
 	
 }
