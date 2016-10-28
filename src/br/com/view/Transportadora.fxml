@@ -78,55 +78,55 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeTrans" layoutX="15.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtNomeTrans" layoutX="15.0" layoutY="78.0" prefWidth="200.0" promptText="Digite o nome da Transportadora" styleClass="focus" />
                                           <Label fx:id="lblEmailTrans" layoutX="245.0" layoutY="58.0" text="Email Transportadora">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtEmailTrans" layoutX="245.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtEmailTrans" layoutX="245.0" layoutY="78.0" prefWidth="200.0" promptText="Digite o email da Transportadora" styleClass="focus" />
                                           <Label fx:id="lblTelefoneTrans" layoutX="475.0" layoutY="58.0" text="Telefone">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtTelefoneTrans" layoutX="475.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtTelefoneTrans" layoutX="475.0" layoutY="78.0" prefWidth="200.0" promptText="(00)0000-0000" styleClass="focus" />
                                           <Label fx:id="lblCnpjTransp" layoutX="15.0" layoutY="120.0" text="Cnpj">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCnpjTransp" layoutX="15.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtCnpjTransp" layoutX="15.0" layoutY="140.0" prefWidth="200.0" promptText="00.000.000/0000-00" styleClass="focus" />
                                           <Label fx:id="lblResponsavelTrans" layoutX="245.0" layoutY="120.0" text="Responsável">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtResponsavelTransp" layoutX="245.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblLogradouroTransp" layoutX="475.0" layoutY="120.0" text="Logradouro">
+                                          <TextField fx:id="txtResponsavelTransp" layoutX="245.0" layoutY="140.0" prefWidth="200.0" promptText="Nome do Responsável " styleClass="focus" />
+                                          <Label fx:id="lblLogradouroTransp" layoutX="475.0" layoutY="120.0" text="Endereço">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtLogradouroTransp" layoutX="475.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtLogradouroTransp" layoutX="475.0" layoutY="140.0" prefWidth="200.0" promptText="Rua , Av" styleClass="focus" />
                                           <Label fx:id="lblNroTransp" layoutX="15.0" layoutY="180.0" text="Número">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNroTransp" layoutX="15.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtNroTransp" layoutX="15.0" layoutY="200.0" prefWidth="200.0" promptText="Número pode conter letras" styleClass="focus" />
                                           <Label fx:id="lblCepTransp" layoutX="245.0" layoutY="180.0" text="Cep">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCepTransp" layoutX="245.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtCepTransp" layoutX="245.0" layoutY="200.0" prefWidth="200.0" promptText="00000-000" styleClass="focus" />
                                           <Label fx:id="lblBairroTransp" layoutX="475.0" layoutY="180.0" text="Bairro">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtBairroTransp" layoutX="475.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtBairroTransp" layoutX="475.0" layoutY="200.0" prefWidth="200.0" promptText="Digite o Bairro" styleClass="focus" />
                                           <Label fx:id="lblComplementoTransp" layoutX="15.0" layoutY="240.0" text="Complemento">
                                              <font>
                                                 <Font size="14.0" />

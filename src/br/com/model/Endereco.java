@@ -15,6 +15,7 @@ public class Endereco {
 	private String numero;
 	private String bairro;
 	private String complemento;
+	private int codCidade;
 	
 	private Cidade cidade;
 		
@@ -53,6 +54,12 @@ public class Endereco {
 	}
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+	public int getCodCidade() {
+		return codCidade;
+	}
+	public void setCodCidade(int codCidade) {
+		this.codCidade = codCidade;
 	}
 	
 	public Cidade getCidade() {
@@ -123,7 +130,7 @@ public class Endereco {
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlAtualizarEnde = "UPDATE tblEndereco set logradouro = ?, "
-				+ "cep = ?, numero = ?, bairro = ?, complemento = ? WHERE codEndereco = ?";
+				+ "cep = ?, numero = ?, bairro = ?, complemento = ?, codCidade = ? WHERE codEndereco = ?";
 
 		PreparedStatement parametros;
 			
@@ -136,7 +143,9 @@ public class Endereco {
 			parametros.setString(4, upEnde.bairro);
 			parametros.setString(5, upEnde.complemento);
 			
-			parametros.setInt(6, upEnde.codEndereco);
+			parametros.setInt(6, upEnde.cidade.getCodCidade());
+			
+			parametros.setInt(7, upEnde.codEndereco);
 			
 			parametros.executeUpdate();
 		
@@ -177,6 +186,7 @@ public class Endereco {
 		return "Endereco [codEndereco=" + codEndereco + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
 				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + "]";
 	}
+	
 	
 //	@Override
 //	public String toString() {

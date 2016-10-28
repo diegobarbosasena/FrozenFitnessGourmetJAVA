@@ -13,6 +13,7 @@ public class Cidade {
 
 	private int codCidade;
 	private String NomeCidade;
+	private int codEstado;
 	
 	private Estado estado;
 	
@@ -28,6 +29,14 @@ public class Cidade {
 	public void setNomeCidade(String nomeCidade) {
 		NomeCidade = nomeCidade;
 	}
+	public int getCodEstado() {
+		return codEstado;
+	}
+	public void setCodEstado(int codEstado) {
+		this.codEstado = codEstado;
+	}
+	
+	
 	public Estado getEstado() {
 		return estado;
 	}
@@ -84,8 +93,6 @@ public class Cidade {
 				+ "ON (c.codEstado = e.codEstado) "
 				+ "WHERE uf = ?;" ;
 		
-		System.out.println(sqlSelectPesqCidade);
-		
 		List<Cidade> lstCidadePesq = new ArrayList<>(); 
 		PreparedStatement parametros;
 		
@@ -121,7 +128,9 @@ public class Cidade {
 	
 	@Override
 	public String toString() {
-		return  NomeCidade;
+		return NomeCidade + " - " + estado;
 	}
 	
+	
+		
 }

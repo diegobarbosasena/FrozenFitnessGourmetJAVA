@@ -17,6 +17,7 @@ public class Transportadora {
 	private String telefoneTransportadora;
 	private String cnpjTransportadora;
 	private String responsavelTransportadora;
+	private int codEndereco;
 	
 	private Endereco endereco;
 	
@@ -56,6 +57,12 @@ public class Transportadora {
 	}
 	public void setResponsavelTransportadora(String responsavelTransportadora) {
 		this.responsavelTransportadora = responsavelTransportadora;
+	}
+	public int getCodEndereco() {
+		return codEndereco;
+	}
+	public void setCodEndereco(int codEndereco) {
+		this.codEndereco = codEndereco;
 	}
 	
 	
@@ -123,7 +130,7 @@ public class Transportadora {
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT t.codTransportadora, t.nomeTransportadora, t.cnpjTransportadora, t.emailTransportadora, t.telefoneTransportadora, t.responsavelTransportadora, ";
-		sqlSelect = sqlSelect + "e.codEndereco, e.logradouro, e.cep, e.numero, e.bairro, e.complemento FROM tblTransportadora AS t ";
+		sqlSelect = sqlSelect + "e.codEndereco, e.logradouro, e.cep, e.numero, e.bairro, e.complemento, e.codCidade FROM tblTransportadora AS t ";
 		sqlSelect = sqlSelect + "INNER JOIN tblEndereco AS e ON (t.codEndereco = e.codEndereco) ORDER BY codTransportadora DESC; ";
 
 		List <Transportadora> lstTransp = new ArrayList<>(); 
@@ -143,6 +150,7 @@ public class Transportadora {
 				e.setNumero(rs.getString("numero"));
 				e.setBairro(rs.getString("bairro"));
 				e.setComplemento(rs.getString("complemento"));
+				e.setCodCidade(rs.getInt("codCidade"));
 					
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
 				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
@@ -245,6 +253,7 @@ public class Transportadora {
 			return false;	
 		}
 	}
+	
 	
 	
 	
