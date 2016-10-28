@@ -84,6 +84,7 @@ public class TransportadoraController implements Initializable {
 
 	boolean modoEdicao = false;
 
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -194,8 +195,9 @@ public class TransportadoraController implements Initializable {
 				novoEnde.setComplemento(txtComplementoTransp.getText());
 				novoEnde.setLogradouro(txtLogradouroTransp.getText());
 				novoEnde.setNumero(txtNroTransp.getText());
+				
 				novoEnde.setCidade(cboCidadeTransp.getSelectionModel().getSelectedItem());
-			
+				
 				novaTrans.setNomeTransportadora(txtNomeTrans.getText());
 				novaTrans.setCnpjTransportadora(txtCnpjTransp.getText());
 				novaTrans.setEmailTransportadora(txtEmailTrans.getText());
@@ -256,7 +258,20 @@ public class TransportadoraController implements Initializable {
 				txtNroTransp.setText(tn.getEndereco().getNumero());
 				txtBairroTransp.setText(tn.getEndereco().getBairro());
 				txtComplementoTransp.setText(tn.getEndereco().getComplemento());
-
+				
+				cboCidadeTransp.getItems().clear();
+				cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
+				
+				cboEstadoTransp.getItems().clear();
+				cboEstadoTransp.getItems().addAll(Estado.selecionarTodosEstados());
+				
+				cboEstadoTransp.valueProperty().addListener(new ChangeListener<Estado>() {
+					@Override
+					public void changed(ObservableValue<? extends Estado> observable, Estado oldValue, Estado newValue) {			
+						cboCidadeTransp.getItems().clear();
+						cboCidadeTransp.getItems().addAll(Cidade.filtrarCidade(cboEstadoTransp.getSelectionModel().getSelectedItem().getUf()));	
+					}
+				});
 				
 				btnCadastrarTrans.setOnAction(l -> atualizar());
 				btnCancelarTransp.setOnAction(m -> cancelar());
@@ -421,6 +436,9 @@ public class TransportadoraController implements Initializable {
 		txtComplementoTransp.clear();
 		txtLogradouroTransp.clear();
 		txtNroTransp.clear();
+		
+		cboCidadeTransp.getItems().clear();
+		cboEstadoTransp.getItems().clear();
 	}
 	
 }

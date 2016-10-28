@@ -12,7 +12,6 @@ import br.com.ajudantes.MySqlConexao;
 public class Cidade {
 
 	private int codCidade;
-	private int codEstado;
 	private String NomeCidade;
 	
 	private Estado estado;
@@ -22,12 +21,6 @@ public class Cidade {
 	}
 	public void setCodCidade(int codCidade) {
 		this.codCidade = codCidade;
-	}
-	public int getCodEstado() {
-		return codEstado;
-	}
-	public void setCodEstado(int codEstado) {
-		this.codEstado = codEstado;
 	}
 	public String getNomeCidade() {
 		return NomeCidade;
@@ -46,7 +39,11 @@ public class Cidade {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelectCidade = "SELECT * FROM tblCidade ORDER BY nomeCidade;" ;
+		String sqlSelectCidade = "SELECT "
+				+ "c.codCidade, c.nomeCidade, c.codEstado, "
+				+ "e.codEstado, e.nomeEstado, e.uf "
+				+ "FROM tblCidade as c INNER JOIN tblEstado as e "
+				+ "ON (c.codEstado = e.codEstado) ;";
 				
 		List <Cidade> lstCidade = new ArrayList<>(); 
 		
@@ -57,9 +54,16 @@ public class Cidade {
 			while(rs.next()){
 				
 				Cidade ci = new Cidade();
+				Estado es = new Estado();
+				
+				es.setCodEstado(rs.getInt("codEstado"));
+				es.setNomeEstado(rs.getString("nomeEstado"));
+				es.setUf(rs.getString("uf"));
 				
 				ci.setCodCidade(rs.getInt("codCidade"));
 				ci.setNomeCidade(rs.getString("nomeCidade"));
+				
+				ci.setEstado(es);
 			
 				lstCidade.add(ci);
 			}	
@@ -80,6 +84,8 @@ public class Cidade {
 				+ "ON (c.codEstado = e.codEstado) "
 				+ "WHERE uf = ?;" ;
 		
+		System.out.println(sqlSelectPesqCidade);
+		
 		List<Cidade> lstCidadePesq = new ArrayList<>(); 
 		PreparedStatement parametros;
 		
@@ -99,7 +105,6 @@ public class Cidade {
 				es.setUf(rs.getString("uf"));
 				
 				ci.setCodCidade(rs.getInt("codCidade"));
-				ci.setCodEstado(rs.getInt("codEstado"));
 				ci.setNomeCidade(rs.getString("nomeCidade"));
 				
 				ci.setEstado(es);

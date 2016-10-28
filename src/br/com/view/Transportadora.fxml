@@ -42,7 +42,7 @@
                                  <children>
                                     <TableView fx:id="tvTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
-                                          <TableColumn fx:id="clnTransp" maxWidth="1000.0" minWidth="130.0" prefWidth="150.0" text="Transportadora" />
+                                          <TableColumn fx:id="clnTransp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Transportadora" />
                                           <TableColumn fx:id="clnCnpj" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Cnpj" />
                                           <TableColumn fx:id="clnEmail" maxWidth="1000.0" minWidth="180.0" prefWidth="180.0" text="E-mail" />
                                           <TableColumn fx:id="clnFone" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Telefone" />
@@ -60,108 +60,112 @@
           </Tab>
           <Tab fx:id="tabCadastrar" text="Cadastrar">
             <content>
-              <AnchorPane>
+              <AnchorPane style="-fx-background-color: #FFF;">
                      <children>
-                        <ScrollPane style="-fx-border-color: #666; -fx-background-color: #FFF; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
-                           <content>
-                              <AnchorPane>
+                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER">
                                  <children>
-                                    <Label fx:id="lblEdicaoCadas" layoutX="15.0" layoutY="15.0" style="-fx-font-weight: bold; -fx-font-size: 1.4em;" text="Cadastro de transportadora" textAlignment="CENTER" textFill="#666666">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="lblNomeTrans" layoutX="15.0" layoutY="60.0" text="Nome da Transportadora" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtNomeTrans" layoutX="15.0" layoutY="80.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblEmailTrans" layoutX="230.0" layoutY="60.0" text="E-mail" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtEmailTrans" layoutX="230.0" layoutY="80.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblTelefoneTrans" layoutX="446.0" layoutY="60.0" text="Telefone" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtTelefoneTrans" layoutX="446.0" layoutY="80.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblCnpjTransp" layoutX="15.0" layoutY="121.0" text="Cnpj" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtCnpjTransp" layoutX="15.0" layoutY="141.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblResponsavelTrans" layoutX="230.0" layoutY="121.0" text="Responsável" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtResponsavelTransp" layoutX="230.0" layoutY="141.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblLogradouroTransp" layoutX="446.0" layoutY="121.0" text="Logradouro" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtLogradouroTransp" layoutX="446.0" layoutY="141.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblNroTransp" layoutX="15.0" layoutY="181.0" text="Número" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtNroTransp" layoutX="15.0" layoutY="201.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblCepTransp" layoutX="230.0" layoutY="180.0" text="Cep" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtCepTransp" layoutX="230.0" layoutY="201.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblBairroTransp" layoutX="446.0" layoutY="181.0" text="Bairro" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtBairroTransp" layoutX="446.0" layoutY="201.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblComplementoTransp" layoutX="15.0" layoutY="241.0" text="Complemento" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtComplementoTransp" layoutX="15.0" layoutY="261.0" minWidth="200.0" styleClass="focus" />
-                                    <Label fx:id="lblEstadoTransp" layoutX="230.0" layoutY="241.0" text="Estado" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cboEstadoTransp" layoutX="230.0" layoutY="261.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione um Estado" styleClass="focus" />
-                                    <Label fx:id="lblCidadeTransp" layoutX="446.0" layoutY="241.0" text="Cidade" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cboCidadeTransp" layoutX="446.0" layoutY="261.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione uma Cidade" styleClass="focus" />
-                                    <Button fx:id="btnCadastrarTrans" layoutX="387.0" layoutY="332.0" mnemonicParsing="false" styleClass="botao" stylesheets="@application.css" text="Cadastrar">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="btnConcluido" contentDisplay="CENTER" layoutX="478.0" layoutY="332.0" mnemonicParsing="false" styleClass="botao" text="Concluído">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="btnCancelarTransp" layoutX="573.0" layoutY="332.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
+                                    <Pane prefHeight="375.0">
+                                       <children>
+                                          <Label fx:id="lblEdicaoCadas" layoutX="15.0" layoutY="15.0" text="Cadastrar Tansportadora">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblNomeTrans" layoutX="15.0" layoutY="58.0" text="Nome Transportadora">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNomeTrans" layoutX="15.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblEmailTrans" layoutX="245.0" layoutY="58.0" text="Email Transportadora">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtEmailTrans" layoutX="245.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblTelefoneTrans" layoutX="475.0" layoutY="58.0" text="Telefone">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtTelefoneTrans" layoutX="475.0" layoutY="78.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblCnpjTransp" layoutX="15.0" layoutY="120.0" text="Cnpj">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtCnpjTransp" layoutX="15.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblResponsavelTrans" layoutX="245.0" layoutY="120.0" text="Responsável">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtResponsavelTransp" layoutX="245.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblLogradouroTransp" layoutX="475.0" layoutY="120.0" text="Logradouro">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtLogradouroTransp" layoutX="475.0" layoutY="140.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblNroTransp" layoutX="15.0" layoutY="180.0" text="Número">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNroTransp" layoutX="15.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblCepTransp" layoutX="245.0" layoutY="180.0" text="Cep">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtCepTransp" layoutX="245.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblBairroTransp" layoutX="475.0" layoutY="180.0" text="Bairro">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtBairroTransp" layoutX="475.0" layoutY="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblComplementoTransp" layoutX="15.0" layoutY="240.0" text="Complemento">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtComplementoTransp" layoutX="15.0" layoutY="260.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblEstadoTransp" layoutX="245.0" layoutY="240.0" text="Estado">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboEstadoTransp" layoutX="245.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione um Estado" styleClass="focus" />
+                                          <Label fx:id="lblCidadeTransp" layoutX="475.0" layoutY="240.0" text="Cidade">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboCidadeTransp" layoutX="475.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione uma Cidade" styleClass="focus" />
+                                          <Button fx:id="btnCadastrarTrans" layoutX="14.0" layoutY="324.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnConcluido" layoutX="104.0" layoutY="324.0" mnemonicParsing="false" styleClass="botao" text="Concluído">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnCancelarTransp" layoutX="198.0" layoutY="324.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
                                  </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children></AnchorPane>
             </content>
           </Tab>

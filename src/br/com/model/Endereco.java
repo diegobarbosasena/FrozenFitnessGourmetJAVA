@@ -62,6 +62,7 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 	
+	
 	public static boolean insertEndereco(Endereco novoEnde) {
 		
 		Connection c = MySqlConexao.ConectarDb();
@@ -173,8 +174,15 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return "Rua " + logradouro + " n°" +  numero + " Bairro " + bairro ;
+		return "Endereco [codEndereco=" + codEndereco + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
+				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + "]";
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "Rua " + logradouro + " n°" +  numero + " Bairro " + bairro ;
+//	}
+	
 	
 	
 }
