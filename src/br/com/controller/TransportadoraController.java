@@ -95,7 +95,6 @@ public class TransportadoraController implements Initializable {
 		
 		preencherTransportadora();
 		initTooltip();
-		popularComboBox();
 		
 		tabCadastrar.setDisable(true);
 	
@@ -151,6 +150,8 @@ public class TransportadoraController implements Initializable {
 	
 	private void nova() {
 		
+		popularComboBox();
+		
 		tabCadastrar.setText("Cadastrar");
 		tpTransp.getSelectionModel().select(1);
 		
@@ -199,11 +200,12 @@ public class TransportadoraController implements Initializable {
 							txtLogradouroTransp.getText(), 
 							txtCepTransp.getText(), 
 							txtNroTransp.getText(), 
-							txtBairroTransp.getText(), 
-							txtComplementoTransp.getText()
-							) 
+							txtBairroTransp.getText()
+							)
 					&& 
-						validaCamposTranspCidade(cboCidadeTransp) 
+					
+					validaCidadetransportadora(cboCidadeTransp.getSelectionModel().getSelectedItem())
+				
 				)		
 			{
 						
@@ -230,6 +232,7 @@ public class TransportadoraController implements Initializable {
 				novaTrans.setResponsavelTransportadora(txtResponsavelTransp.getText());
 				novaTrans.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
+
 				if(Endereco.insertEndereco(novoEnde) && Transportadora.insertTransportadora(novaTrans)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
@@ -268,6 +271,7 @@ public class TransportadoraController implements Initializable {
 			}
 			else{
 				
+				
 				tabVisualizar.setDisable(true);
 				tpTransp.getSelectionModel().select(1);
 				
@@ -291,7 +295,7 @@ public class TransportadoraController implements Initializable {
 					Cidade c = cboCidadeTransp.getItems().get(i);
 					
 					if(c.getCodCidade() == tn.getEndereco().getCodCidade()){
-						cboCidadeTransp.getSelectionModel().select( i );
+						cboCidadeTransp.getSelectionModel().select(i);
 						break;
 					}
 				}
@@ -305,10 +309,22 @@ public class TransportadoraController implements Initializable {
 		}
 	}
 	
+	private boolean validaCidadetransportadora(Cidade selectedItem) {
+		boolean preen = false;
+		
+		if (selectedItem == null){
+			preen = true;
+		}
+		else{
+			preen=false;
+		}
+		
+		return preen;
+	}
+
 	private boolean validarCamposTransportadora(String... camposTrans) {
 		
 		boolean preenchido = false;
-		
 		for(String item : camposTrans){
 			if(item.isEmpty()){
 				preenchido = true;
@@ -318,28 +334,6 @@ public class TransportadoraController implements Initializable {
 			}
 		}
 		return preenchido;
-	}
-	
-	private boolean validaCamposTranspCidade(ComboBox<Cidade> cboCidade) {
-		
-		boolean preenchid = false;
-		if (cboCidade.getValue() == null){	
-			preenchid = true;	
-		}
-		else{
-			preenchid = false;
-		}
-		return preenchid;
-	}
-	private boolean validaCamposTranspEstado(ComboBox<Estado> cboEstado) {
-		
-		boolean preenchi = false;
-		if (cboEstado.getSelectionModel().getSelectedItem().equals(""))	
-			preenchi = true;	
-		else
-			preenchi = false;
-		
-		return preenchi;
 	}
 	
 	private void atualizar(){
@@ -365,35 +359,64 @@ public class TransportadoraController implements Initializable {
 		
 		upEn.setCodEndereco(codTrans.getEndereco().getCodEndereco());
 		
+		upEn.setCidade(cboCidadeTransp.getSelectionModel().getSelectedItem());
 		
-		if(Transportadora.update(up) /*&& Endereco.updateEnde(upEn)*/){
+		if(
+				validarCamposTransportadora( 
+					txtNomeTrans.getText(), 
+					txtCnpjTransp.getText(), 
+					txtEmailTrans.getText(), 
+					txtResponsavelTransp.getText(), 
+					txtTelefoneTrans.getText(), 
+					txtLogradouroTransp.getText(), 
+					txtCepTransp.getText(), 
+					txtNroTransp.getText(), 
+					txtBairroTransp.getText()
+				)
+				&& 
+				validaCidadetransportadora(cboCidadeTransp.getSelectionModel().getSelectedItem())
+		){	
 			
-			PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
-			
-			btnConcluido.setDisable(false);	
-			btnCancelarTransp.setDisable(true);
-			btnCadastrarTrans.setDisable(true);
-			
-			preencherTransportadora();
-			limparTrans();
-			
-			modoEdicao = false;
+			System.out.println("nao");
+			PopUpController erro = new PopUpController("ERRO", "Preencha Todos os campos", "Fechar");
+			Janelas e = new Janelas();
+			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 		}
 		else{
 			
-			PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "Fechar");
-			Janelas e = new Janelas();
-			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+			if(Transportadora.update(up) && Endereco.updateEnde(upEn)){
+				
+				PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
+				
+				btnConcluido.setDisable(false);	
+				btnCancelarTransp.setDisable(true);
+				btnCadastrarTrans.setDisable(true);
+				
+				preencherTransportadora();
+				limparTrans();
+				
+				modoEdicao = false;
+			}
+			else{
+				
+				PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "Fechar");
+				Janelas e = new Janelas();
+				e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+			}
 		}
+		
+		
 	}
 
 	public void editarTrans() {
+		popularComboBox();
 		
 		tabCadastrar.setText("Editar");
 		tabCadastrar.setDisable(false);
 		
+		btnCadastrarTrans.setDisable(false);
 		btnCancelarTransp.setDisable(false);
 		btnConcluido.setDisable(true);
 		

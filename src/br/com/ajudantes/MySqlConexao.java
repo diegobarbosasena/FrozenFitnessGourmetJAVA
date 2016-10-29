@@ -12,9 +12,9 @@ public class MySqlConexao {
 	public static Connection ConectarDb(){
 		
 		String jdbc = "jdbc:mysql://";
-		String ip = "10.107.134.60";
+//		String ip = "10.107.134.60";
 //		String ip = "10.107.144.26";
-//		String ip = "192.168.1.32";
+		String ip = "192.168.1.32";
 		String db = "dbsmartgourmet";
 		String usuario = "root";
 		String senha = "root" ;

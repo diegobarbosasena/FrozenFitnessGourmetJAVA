@@ -144,7 +144,7 @@ public class Endereco {
 			parametros.setString(5, upEnde.complemento);
 			
 			parametros.setInt(6, upEnde.cidade.getCodCidade());
-			
+		
 			parametros.setInt(7, upEnde.codEndereco);
 			
 			parametros.executeUpdate();
@@ -183,16 +183,8 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return "Endereco [codEndereco=" + codEndereco + ", logradouro=" + logradouro + ", cep=" + cep + ", numero="
-				+ numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + "]";
+		return logradouro + ", "+" n°" +  numero +", "+ bairro ;	
 	}
 	
-	
-//	@Override
-//	public String toString() {
-//		return "Rua " + logradouro + " n°" +  numero + " Bairro " + bairro ;
-//	}
-	
-	
-	
+		
 }

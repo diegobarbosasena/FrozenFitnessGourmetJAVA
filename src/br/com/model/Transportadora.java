@@ -228,7 +228,10 @@ public class Transportadora {
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
-		String sqlAtualizar = "UPDATE tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? WHERE codTransportadora = ?";
+		String sqlAtualizar = "UPDATE "
+				+ "tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, "
+				+ "telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? "
+				+ "WHERE codTransportadora = ?";
 
 		PreparedStatement parametros;
 			
@@ -254,7 +257,13 @@ public class Transportadora {
 		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Transportadora [codTransportadora=" + codTransportadora + ", nomeTransportadora=" + nomeTransportadora
+				+ ", emailTransportadora=" + emailTransportadora + ", telefoneTransportadora=" + telefoneTransportadora
+				+ ", cnpjTransportadora=" + cnpjTransportadora + ", responsavelTransportadora="
+				+ responsavelTransportadora + ", codEndereco=" + codEndereco + ", endereco=" + endereco + "]";
+	}
 	
 	
 }
