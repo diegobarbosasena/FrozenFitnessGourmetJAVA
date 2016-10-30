@@ -3,6 +3,7 @@ package br.com.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cidade;
@@ -12,6 +13,9 @@ import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,8 +29,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class TransportadoraController implements Initializable {
 	
@@ -84,7 +90,11 @@ public class TransportadoraController implements Initializable {
 	@FXML private Button btnCancelarTransp;
 
 	boolean modoEdicao = false;
-
+	String filter_cidade = "";
+	String filter_estado = "";
+	
+	public ObservableList<Cidade> cidades;
+	public ObservableList<Estado> estados;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -104,9 +114,12 @@ public class TransportadoraController implements Initializable {
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());	
 		
+		comboBoxEstadoAutoComplete(cboEstadoTransp);
+		comboBoxCidadeAutoComplete(cboCidadeTransp);
+
 	}
 
-	private void popularComboBox() {
+	public void popularComboBox() {
 		cboCidadeTransp.getItems().clear();
 		cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
 		
@@ -127,7 +140,104 @@ public class TransportadoraController implements Initializable {
 		});
 	}
 	
-	private void preencherTransportadora(){
+	
+	public void comboBoxCidadeAutoComplete(ComboBox<Cidade> cboCidadeTransp) {
+		
+		cidades = FXCollections.observableArrayList(cboCidadeTransp.getItems());
+		cboCidadeTransp.setTooltip(new Tooltip());
+		cboCidadeTransp.setOnKeyPressed(this::handleOnKeyPressedCidade);
+		cboCidadeTransp.setOnHidden(this::handleOnHidingCidade);
+	}
+
+	public void handleOnKeyPressedCidade(KeyEvent e) {
+		ObservableList<Cidade> filteredListCidade = FXCollections.observableArrayList();
+		KeyCode code = e.getCode();
+
+		if (code.isLetterKey()) {
+			filter_cidade += e.getText();
+		}
+		if (code == KeyCode.BACK_SPACE && filter_cidade.length() > 0) {
+			filter_cidade = filter_cidade.substring(0, filter_cidade.length() - 1);
+			cboCidadeTransp.getItems().setAll(cidades);
+		}
+		if (code == KeyCode.ESCAPE) {
+			filter_cidade = "";
+		}
+		if (filter_cidade.length() == 0) {
+			filteredListCidade = cidades;
+			cboCidadeTransp.getTooltip().hide();
+		} else {
+			Stream<Cidade> itens_cidade = cboCidadeTransp.getItems().stream();
+			String txtUsrCidade = filter_cidade.toString().toLowerCase();
+			itens_cidade.filter(el -> el.toString().toLowerCase().contains(txtUsrCidade)).forEach(filteredListCidade::add);
+			cboCidadeTransp.getTooltip().setText(txtUsrCidade);
+			Window stage = cboCidadeTransp.getScene().getWindow();
+			double posX = stage.getX() + cboCidadeTransp.getBoundsInParent().getMinX();
+			double posY = stage.getY() + cboCidadeTransp.getBoundsInParent().getMinY();
+			cboCidadeTransp.getTooltip().show(stage, posX, posY);
+			cboCidadeTransp.show();
+		}
+		cboCidadeTransp.getItems().setAll(filteredListCidade);
+	}
+
+	public void handleOnHidingCidade(Event e) {
+		filter_cidade = "";
+		cboCidadeTransp.getTooltip().hide();
+		Cidade s = cboCidadeTransp.getSelectionModel().getSelectedItem();
+		cboCidadeTransp.getItems().setAll(cidades);
+		cboCidadeTransp.getSelectionModel().select(s);
+	}
+
+	
+	public void comboBoxEstadoAutoComplete(ComboBox<Estado> cboEstadoTransp) {
+		
+		estados = FXCollections.observableArrayList(cboEstadoTransp.getItems());
+		cboEstadoTransp.setTooltip(new Tooltip());
+		cboEstadoTransp.setOnKeyPressed(this::handleOnKeyPressedEstado);
+		cboEstadoTransp.setOnHidden(this::handleOnHidingEstado);
+	}
+
+	public void handleOnKeyPressedEstado(KeyEvent e) {
+		ObservableList<Estado> filteredListEstado = FXCollections.observableArrayList();
+		KeyCode code1 = e.getCode();
+
+		if (code1.isLetterKey()) {
+			filter_estado += e.getText();
+		}
+		if (code1 == KeyCode.BACK_SPACE && filter_estado.length() > 0) {
+			filter_estado = filter_estado.substring(0, filter_estado.length() - 1);
+			cboEstadoTransp.getItems().setAll(estados);
+		}
+		if (code1 == KeyCode.ESCAPE) {
+			filter_estado = "";
+		}
+		if (filter_estado.length() == 0) {
+			filteredListEstado = estados;
+			cboCidadeTransp.getTooltip().hide();
+		} else {
+			Stream<Estado> itens = cboEstadoTransp.getItems().stream();
+			String txtUsrEstado = filter_estado.toString().toLowerCase();
+			itens.filter(el -> el.toString().toLowerCase().contains(txtUsrEstado)).forEach(filteredListEstado::add);
+			cboEstadoTransp.getTooltip().setText(txtUsrEstado);
+			Window stage = cboEstadoTransp.getScene().getWindow();
+			double posX = stage.getX() + cboEstadoTransp.getBoundsInParent().getMinX();
+			double posY = stage.getY() + cboEstadoTransp.getBoundsInParent().getMinY();
+			cboEstadoTransp.getTooltip().show(stage, posX, posY);
+			cboEstadoTransp.show();
+		}
+		cboEstadoTransp.getItems().setAll(filteredListEstado);
+	}
+	
+	public void handleOnHidingEstado(Event e) {
+		filter_estado = "";
+		cboEstadoTransp.getTooltip().hide();
+		Estado esta = cboEstadoTransp.getSelectionModel().getSelectedItem();
+		cboEstadoTransp.getItems().setAll(estados);
+		cboEstadoTransp.getSelectionModel().select(esta);
+	}
+	
+	
+	public void preencherTransportadora(){
 		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
 		clnCnpj.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("cnpjTransportadora"));
@@ -148,7 +258,7 @@ public class TransportadoraController implements Initializable {
 		Tooltip.install(txtNomeTrans, new Tooltip("Digite aqui o nome da transportadora."));	
 	}
 	
-	private void nova() {
+	public void nova() {
 		
 		popularComboBox();
 		
@@ -186,7 +296,7 @@ public class TransportadoraController implements Initializable {
 		});	
 	}
 	
-	private void inserirTransportadora() {
+	public void inserirTransportadora() {
 		
 		if(!modoEdicao){
 			
@@ -201,11 +311,7 @@ public class TransportadoraController implements Initializable {
 							txtCepTransp.getText(), 
 							txtNroTransp.getText(), 
 							txtBairroTransp.getText()
-							)
-					&& 
-					
-					validaCidadetransportadora(cboCidadeTransp.getSelectionModel().getSelectedItem())
-				
+							)	
 				)		
 			{
 						
@@ -309,7 +415,7 @@ public class TransportadoraController implements Initializable {
 		}
 	}
 	
-	private boolean validaCidadetransportadora(Cidade selectedItem) {
+	public boolean validaCidadetransportadora(Cidade selectedItem) {
 		boolean preen = false;
 		
 		if (selectedItem == null){
@@ -322,7 +428,7 @@ public class TransportadoraController implements Initializable {
 		return preen;
 	}
 
-	private boolean validarCamposTransportadora(String... camposTrans) {
+	public boolean validarCamposTransportadora(String... camposTrans) {
 		
 		boolean preenchido = false;
 		for(String item : camposTrans){
@@ -336,7 +442,7 @@ public class TransportadoraController implements Initializable {
 		return preenchido;
 	}
 	
-	private void atualizar(){
+	public void atualizar(){
 		
 		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		
@@ -488,7 +594,7 @@ public class TransportadoraController implements Initializable {
 		limparTrans();
 	}
 	
-	private void limparTrans() {
+	public void limparTrans() {
 		txtCnpjTransp.clear();
 		txtEmailTrans.clear();
 		txtNomeTrans.clear();
