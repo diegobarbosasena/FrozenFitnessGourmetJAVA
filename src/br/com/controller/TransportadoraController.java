@@ -108,15 +108,17 @@ public class TransportadoraController implements Initializable {
 		
 		tabCadastrar.setDisable(true);
 	
-		txtBuscaTrans.textProperty().addListener(a -> buscarTransportadora());
+		txtBuscaTrans.textProperty().addListener(a -> {
+			if(!txtBuscaTrans.getText().isEmpty())
+				buscarTransportadora();
+		});
 
 		btnNovaTransportadora.setOnAction(b -> nova());
 		btnEditarTrans.setOnAction(c -> editarTrans());
-		btnExcluirTrans.setOnAction(d -> excluirTrans());	
+		btnExcluirTrans.setOnAction(d -> excluirTrans());
 		
 		comboBoxEstadoAutoComplete(cboEstadoTransp);
 		comboBoxCidadeAutoComplete(cboCidadeTransp);
-
 	}
 
 	public void popularComboBox() {
@@ -260,6 +262,7 @@ public class TransportadoraController implements Initializable {
 	
 	public void nova() {
 		
+		limparTrans();
 		popularComboBox();
 		
 		tabCadastrar.setText("Cadastrar");
@@ -281,7 +284,12 @@ public class TransportadoraController implements Initializable {
 		});
 		
 		btnCancelarTransp.setDisable(false);
-		btnCancelarTransp.setOnAction(g -> cancelar());
+		btnCancelarTransp.setOnAction(z -> cancelar());
+		btnCancelarTransp.setOnKeyPressed(f -> {
+		    if (f.getCode() == KeyCode.ENTER) {
+		    	cancelar();
+		    }
+		});
 	}
 	
 	public void cadastrarTransportadora() {
@@ -291,7 +299,7 @@ public class TransportadoraController implements Initializable {
 		btnCancelarTransp.setOnAction(h -> cancelar());
 		btnCancelarTransp.setOnKeyPressed(i -> {
 		    if (i.getCode() == KeyCode.ENTER) {
-		    	concluido();
+		    	cancelar();
 		    }
 		});	
 	}
@@ -338,7 +346,6 @@ public class TransportadoraController implements Initializable {
 				novaTrans.setResponsavelTransportadora(txtResponsavelTransp.getText());
 				novaTrans.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
-
 				if(Endereco.insertEndereco(novoEnde) && Transportadora.insertTransportadora(novaTrans)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
@@ -396,6 +403,16 @@ public class TransportadoraController implements Initializable {
 				txtBairroTransp.setText(tn.getEndereco().getBairro());
 				txtComplementoTransp.setText(tn.getEndereco().getComplemento());
 		
+				/*for(int i=0 ; i < cboEstadoTransp.getItems().size();i++){
+					
+					Estado e = cboEstadoTransp.getItems().get(i);
+					
+					if(e.getCodEstado() == tn.getEndereco().getCidade().getEstado().getCodEstado()){
+						cboEstadoTransp.getSelectionModel().select(i);
+						break;
+					}
+				}*/
+				
 				for(int i=0 ; i < cboCidadeTransp.getItems().size();i++){
 					
 					Cidade c = cboCidadeTransp.getItems().get(i);
@@ -424,7 +441,6 @@ public class TransportadoraController implements Initializable {
 		else{
 			preen=false;
 		}
-		
 		return preen;
 	}
 
@@ -479,8 +495,6 @@ public class TransportadoraController implements Initializable {
 					txtNroTransp.getText(), 
 					txtBairroTransp.getText()
 				)
-				&& 
-				validaCidadetransportadora(cboCidadeTransp.getSelectionModel().getSelectedItem())
 		){	
 			
 			System.out.println("nao");
@@ -492,6 +506,8 @@ public class TransportadoraController implements Initializable {
 			
 			if(Transportadora.update(up) && Endereco.updateEnde(upEn)){
 				
+				limparTrans();
+				
 				PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
 				Janelas j = new Janelas();
 				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
@@ -501,7 +517,6 @@ public class TransportadoraController implements Initializable {
 				btnCadastrarTrans.setDisable(true);
 				
 				preencherTransportadora();
-				limparTrans();
 				
 				modoEdicao = false;
 			}
@@ -512,11 +527,11 @@ public class TransportadoraController implements Initializable {
 				e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
 			}
 		}
-		
-		
+			
 	}
 
 	public void editarTrans() {
+			
 		popularComboBox();
 		
 		tabCadastrar.setText("Editar");
@@ -563,21 +578,21 @@ public class TransportadoraController implements Initializable {
 	public void buscarTransportadora() {
 		
 		List<Transportadora> lstTransFilt = Transportadora.filtrar("%"+txtBuscaTrans.getText()+"%");
-		
-		if (lstTransFilt.isEmpty()){
 			
+		if (lstTransFilt.isEmpty()){
+				
 			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
-			
+				
 			txtBuscaTrans.clear();
 		}
 		else{
 			tvTransp.getItems().clear();
-			tvTransp.getItems().addAll(lstTransFilt);
+				tvTransp.getItems().addAll(lstTransFilt);
 		}
 	}
-
+	
 	public void concluido() {
 		tpTransp.getSelectionModel().select(0);
 		
@@ -602,14 +617,13 @@ public class TransportadoraController implements Initializable {
 		txtTelefoneTrans.clear();
 		
 		txtBairroTransp.clear();
-		txtBuscaTrans.clear();
 		txtCepTransp.clear();
 		txtComplementoTransp.clear();
 		txtLogradouroTransp.clear();
 		txtNroTransp.clear();
 		
-		cboCidadeTransp.getItems().clear();
-		cboEstadoTransp.getItems().clear();
+		cboCidadeTransp.valueProperty().set(null);
+		cboEstadoTransp.valueProperty().set(null);
 	}
 
 	

@@ -20,7 +20,6 @@ public class Pedidos {
 	private Status status;
 	
 	
-	
 	public int getCodPedido() {
 		return codPedido;
 	}

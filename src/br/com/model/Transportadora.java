@@ -21,7 +21,6 @@ public class Transportadora {
 	
 	private Endereco endereco;
 	
-	
 	public int getCodTransportadora() {
 		return codTransportadora;
 	}

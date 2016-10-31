@@ -25,7 +25,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnEditarStatus" layoutX="292.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar Status">
+                                    <Button fx:id="btnEditarPediAcom" layoutX="292.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -38,7 +38,9 @@
                                        <columns>
                                           <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cod. Pedido" />
                                           <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />
-                                          <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Status" />
+                                          <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="130.0" prefWidth="130.0" text="Status" />
+                                          <TableColumn fx:id="tcTranspAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Transportadora" />
+                                          <TableColumn fx:id="tcVeiculoAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Veículo" />
                                        </columns>
                                     </TableView>
                                  </children>
@@ -57,32 +59,44 @@
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Pane prefHeight="200.0" style="-fx-background-color: #FFF;">
+                                    <Pane prefHeight="350.0" prefWidth="455.0" style="-fx-background-color: #FFF;">
                                        <children>
                                           <Label fx:id="lblCodPed" disable="true" layoutY="2.0" text="Cod Pedido" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" styleClass="focus" />
+                                          <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" minWidth="200.0" prefWidth="200.0" styleClass="focus" />
                                           <Label fx:id="lblNomeClien" disable="true" layoutX="224.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="224.0" layoutY="22.0" styleClass="focus" />
-                                          <Label fx:id="lblStatus" layoutY="115.0" text="Status" textFill="#666666">
+                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="224.0" layoutY="22.0" minWidth="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblStatus" layoutY="67.0" text="Status" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboStatus" layoutY="135.0" prefWidth="150.0" />
-                                          <Button fx:id="btnAtualizarSatus" layoutX="202.0" layoutY="133.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                                          <ComboBox fx:id="cboStatus" layoutX="-3.0" layoutY="88.0" minWidth="200.0" prefWidth="200.0" />
+                                          <Label fx:id="lblTransp" layoutX="230.0" layoutY="67.0" text="Transportadora" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="227.0" layoutY="88.0" minWidth="200.0" prefWidth="200.0" />
+                                          <Label fx:id="lblVeículo" layoutX="3.0" layoutY="141.0" text="Veículo" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="200.0" prefWidth="200.0" />
+                                          <Button fx:id="btnAtualizarSatus" layoutX="255.0" layoutY="293.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnCancelarSatus" layoutX="299.0" layoutY="133.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                          <Button fx:id="btnCancelarSatus" layoutX="341.0" layoutY="293.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

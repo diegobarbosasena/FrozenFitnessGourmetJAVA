@@ -61,8 +61,7 @@ public class Mascaras {
 	
 	public static void cepMask (final TextField textFieldCep){
 		
-		maxField(textFieldCep, 9); 
-		
+		maxField(textFieldCep, 9);
 		textFieldCep.lengthProperty().addListener(new ChangeListener<Number>() {
 	        @Override
 	        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
@@ -77,7 +76,6 @@ public class Mascaras {
 	
 	public static void cnpjField(final TextField textField) {
 	    maxField(textField, 18);
-	
 	    textField.lengthProperty().addListener(new ChangeListener<Number>() {
 	        @Override
 	        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
@@ -96,7 +94,6 @@ public class Mascaras {
 	public static void telefoneMask (final TextField textFieldTel){
 		
 		maxField(textFieldTel, 13);
-		
 		textFieldTel.lengthProperty().addListener(new ChangeListener<Number>() {
 	        @Override
 	        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
@@ -130,4 +127,5 @@ public class Mascaras {
 	        }
 	    });
 	}
+	
 }
