@@ -13,11 +13,6 @@
           <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" SplitPane.resizableWithParent="false">
                <children>
                   <TextField fx:id="txtPedido" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                  <Button fx:id="btnBuscarPedido" alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Buscar">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane>

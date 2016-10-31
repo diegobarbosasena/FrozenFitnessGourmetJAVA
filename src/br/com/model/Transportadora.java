@@ -258,10 +258,7 @@ public class Transportadora {
 	
 	@Override
 	public String toString() {
-		return "Transportadora [codTransportadora=" + codTransportadora + ", nomeTransportadora=" + nomeTransportadora
-				+ ", emailTransportadora=" + emailTransportadora + ", telefoneTransportadora=" + telefoneTransportadora
-				+ ", cnpjTransportadora=" + cnpjTransportadora + ", responsavelTransportadora="
-				+ responsavelTransportadora + ", codEndereco=" + codEndereco + ", endereco=" + endereco + "]";
+		return nomeTransportadora;
 	}
 	
 	

@@ -589,7 +589,7 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 			tvTransp.getItems().clear();
-				tvTransp.getItems().addAll(lstTransFilt);
+			tvTransp.getItems().addAll(lstTransFilt);
 		}
 	}
 	

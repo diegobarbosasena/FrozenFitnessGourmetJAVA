@@ -59,44 +59,44 @@
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Pane prefHeight="350.0" prefWidth="455.0" style="-fx-background-color: #FFF;">
+                                    <Pane prefHeight="230.0" prefWidth="471.0" style="-fx-background-color: #FFF;">
                                        <children>
                                           <Label fx:id="lblCodPed" disable="true" layoutY="2.0" text="Cod Pedido" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" minWidth="200.0" prefWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblNomeClien" disable="true" layoutX="224.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
+                                          <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Label fx:id="lblNomeClien" disable="true" layoutX="261.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="224.0" layoutY="22.0" minWidth="200.0" prefWidth="200.0" styleClass="focus" />
+                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="261.0" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Label fx:id="lblStatus" layoutY="67.0" text="Status" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboStatus" layoutX="-3.0" layoutY="88.0" minWidth="200.0" prefWidth="200.0" />
-                                          <Label fx:id="lblTransp" layoutX="230.0" layoutY="67.0" text="Transportadora" textFill="#666666">
+                                          <ComboBox fx:id="cboStatus" layoutY="88.0" minWidth="210.0" prefWidth="210.0" />
+                                          <Label fx:id="lblTransp" layoutX="261.0" layoutY="67.0" text="Transportadora" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="227.0" layoutY="88.0" minWidth="200.0" prefWidth="200.0" />
+                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="261.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" />
                                           <Label fx:id="lblVeículo" layoutX="3.0" layoutY="141.0" text="Veículo" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="200.0" prefWidth="200.0" />
-                                          <Button fx:id="btnAtualizarSatus" layoutX="255.0" layoutY="293.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="210.0" prefWidth="210.0" />
+                                          <Button fx:id="btnAtualizarPediAcomp" layoutX="300.0" layoutY="160.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnCancelarSatus" layoutX="341.0" layoutY="293.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                          <Button fx:id="btnCancelarPediAcomp" layoutX="385.0" layoutY="160.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

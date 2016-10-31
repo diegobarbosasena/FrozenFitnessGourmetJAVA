@@ -50,18 +50,40 @@ public class AcompanhamentoController implements Initializable{
 	
 	@FXML private Button btnBuscarPediAcom;
 	@FXML private Button btnEditarPediAcom;
-	@FXML private Button btnAtualizarSatus;
-	@FXML private Button btnCancelarSatus;
+	@FXML private Button btnAtualizarPediAcomp;
+	@FXML private Button btnCancelarPediAcomp;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		popularComboBoxStatus();
-		btnAtualizarSatus.setOnAction(c -> teste());
+		popularComboBox();
 		
-		btnEditarPediAcom.setOnAction(g -> alterar());
+		tabEditAcomp.setDisable(true);
+		
+		btnEditarPediAcom.setOnAction(c -> editarAcomp());
+		
+		btnAtualizarPediAcomp.setOnAction(c -> teste());
+		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());
+			
 	} 
 	
+	public void cancelarAcompa() {
+		tpAcomp.getSelectionModel().select(0);
+		tabEditAcomp.setDisable(true);
+		tabVisuaAcomp.setDisable(false);	
+		
+		limparAcompanhamento();
+	}
+
+	
+
+	public void editarAcomp() {
+		tpAcomp.getSelectionModel().select(1);
+		tabEditAcomp.setDisable(false);
+		tabVisuaAcomp.setDisable(true);
+	}
+
 	public void teste(){
 		
 		if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
@@ -75,26 +97,20 @@ public class AcompanhamentoController implements Initializable{
 		}
 	}
 	
-	public void alterar(){
-		
-		tpAcomp.getSelectionModel().select(1);
-		
-	}
-	
-	public void popularComboBoxStatus() {
+	public void popularComboBox() {
 		
 		cboStatus.getItems().clear();
 		cboStatus.getItems().addAll(Status.selecionarTodosStatus());
 		
+		cboTransp.getItems().clear();
+		cboTransp.getItems().addAll(Transportadora.selecionarTodas());	
 	}
 	
-	
+	public void limparAcompanhamento() {
+		cboStatus.valueProperty().set(null);
+		cboTransp.valueProperty().set(null);
+		cboVeiculo.valueProperty().set(null);	
+	}
 
-
-
-	
-	
-
-	
 
 }
