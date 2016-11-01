@@ -586,6 +586,7 @@ public class TransportadoraController implements Initializable {
 			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 				
 			txtBuscaTrans.clear();
+			preencherTransportadora();
 		}
 		else{
 			tvTransp.getItems().clear();

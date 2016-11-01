@@ -24,7 +24,7 @@ public class Pedidos {
 	private Status status;
 	private VeiculoTransp veiculoTrasnp;
 	
-	
+
 	public int getCodPedido() {
 		return codPedido;
 	}
@@ -183,7 +183,10 @@ public class Pedidos {
 	
 	
 	
-	
+	@Override
+	public String toString() {
+		return codPedido+"" ;
+	}
 
 
 

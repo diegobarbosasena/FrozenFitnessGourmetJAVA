@@ -1,12 +1,16 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
 import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +21,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 public class AcompanhamentoController implements Initializable{
@@ -32,9 +37,9 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private TextField txtNomeClienAcomp;
 	
 	@FXML private TableView <Pedidos> tvPedidosAcompa;
-	@FXML private TableColumn <Pedidos, String> tcCodPedAcomp;
-	@FXML private TableColumn <Pedidos, String> tcClientePedAcomp;
-	@FXML private TableColumn <Pedidos, String> tcStatusAcomp;
+	@FXML private TableColumn <Pedidos, Integer> tcCodPedAcomp;
+	@FXML private TableColumn <Pedidos, Cliente> tcClientePedAcomp;
+	@FXML private TableColumn <Pedidos, Status> tcStatusAcomp;
 	@FXML private TableColumn <Pedidos, Transportadora> tcTranspAcomp;
 	@FXML private TableColumn <Pedidos, TipoVeiculo> tcVeiculoAcomp;
 	
@@ -57,59 +62,71 @@ public class AcompanhamentoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		preencherPedidosAcompanhamento();
 		popularComboBox();
 		
 		tabEditAcomp.setDisable(true);
 		
 		btnEditarPediAcom.setOnAction(c -> editarAcomp());
-		
-		btnAtualizarPediAcomp.setOnAction(c -> teste());
-		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());
-			
+		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());		
 	} 
+	
+	public void preencherPedidosAcompanhamento(){
+		
+		tcCodPedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Integer>("codPedido"));
+		tcClientePedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
+		tcStatusAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
+		tcTranspAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Transportadora>("transportadora"));
+		tcVeiculoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, TipoVeiculo>("veiculoTrasnp"));
+	
+		List<Pedidos> lstPedidos = Pedidos.selecionarTodosPedidos();
+		
+		tvPedidosAcompa.getItems().clear();
+		tvPedidosAcompa.getItems().addAll(lstPedidos);
+		
+	}
+	
+	
+	
 	
 	public void cancelarAcompa() {
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
-		tabVisuaAcomp.setDisable(false);	
+		tabVisuaAcomp.setDisable(false);
 		
 		limparAcompanhamento();
 	}
-
-	
 
 	public void editarAcomp() {
 		tpAcomp.getSelectionModel().select(1);
 		tabEditAcomp.setDisable(false);
 		tabVisuaAcomp.setDisable(true);
+		
+		popularComboBox();
 	}
 
-	public void teste(){
-		
-		if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
-			
-			cboTransp.setDisable(false);
-			cboVeiculo.setDisable(false);
-		}
-		else{
-			cboTransp.setDisable(true);
-			cboVeiculo.setDisable(true);
-		}
-	}
-	
 	public void popularComboBox() {
 		
 		cboStatus.getItems().clear();
 		cboStatus.getItems().addAll(Status.selecionarTodosStatus());
 		
 		cboTransp.getItems().clear();
-		cboTransp.getItems().addAll(Transportadora.selecionarTodas());	
+		cboTransp.getItems().addAll(Transportadora.selecionarTodas());
+		
+		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
+			@Override
+			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
+					
+				if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
+					cboTransp.setDisable(false);
+					cboVeiculo.setDisable(false);
+				}
+			}
+		});
 	}
 	
 	public void limparAcompanhamento() {
-		cboStatus.valueProperty().set(null);
-		cboTransp.valueProperty().set(null);
-		cboVeiculo.valueProperty().set(null);	
+		
 	}
 
 

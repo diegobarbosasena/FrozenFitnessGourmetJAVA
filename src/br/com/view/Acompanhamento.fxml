@@ -78,19 +78,19 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboStatus" layoutY="88.0" minWidth="210.0" prefWidth="210.0" />
+                                          <ComboBox fx:id="cboStatus" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Label fx:id="lblTransp" layoutX="261.0" layoutY="67.0" text="Transportadora" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="261.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" />
+                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="261.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Label fx:id="lblVeículo" layoutX="3.0" layoutY="141.0" text="Veículo" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="210.0" prefWidth="210.0" />
+                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Button fx:id="btnAtualizarPediAcomp" layoutX="300.0" layoutY="160.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                              <font>
                                                 <Font size="14.0" />
