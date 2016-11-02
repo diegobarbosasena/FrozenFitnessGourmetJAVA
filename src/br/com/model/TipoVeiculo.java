@@ -19,6 +19,11 @@ public class TipoVeiculo {
 		this.nomeTipoVeiculo = nomeTipoVeiculo;
 	}
 	
+	@Override
+	public String toString() {
+		return nomeTipoVeiculo ;
+	}
+	
 	
 	
 }

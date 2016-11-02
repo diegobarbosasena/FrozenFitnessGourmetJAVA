@@ -26,6 +26,7 @@
                           <MenuItem fx:id="miPedidos" mnemonicParsing="false" text="Pedidos" />
                           <MenuItem fx:id="miAcompa" mnemonicParsing="false" text="Acompanhamento" />
                           <MenuItem fx:id="miVendas" mnemonicParsing="false" text="Vendas" />
+                          <MenuItem fx:id="miRelatorios" mnemonicParsing="false" text="Relatórios" />
                           <MenuItem fx:id="miFatura" mnemonicParsing="false" text="Faturamento" />
                           <MenuItem fx:id="miGrafiVendas" mnemonicParsing="false" text="Gráfico de Vendas" />
                           <MenuItem fx:id="miTransp" mnemonicParsing="false" text="Transportadoras" />
@@ -73,6 +74,11 @@
                                        <content>
                                           <AnchorPane />
                                        </content>
+                                    </Tab>
+                                    <Tab text="Relatórios">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
                                     </Tab>
                                     <Tab text="Faturamento">
                                       <content>

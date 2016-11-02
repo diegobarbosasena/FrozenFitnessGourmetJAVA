@@ -23,7 +23,8 @@ public class Pedidos {
 	private Cliente cliente;
 	private Status status;
 	private VeiculoTransp veiculoTrasnp;
-	
+	private Transportadora transportadora;
+	private TipoVeiculo tipoVeiculo;
 
 	public int getCodPedido() {
 		return codPedido;
@@ -89,12 +90,25 @@ public class Pedidos {
 		this.veiculoTrasnp = veiculoTrasnp;
 	}
 	
+	public Transportadora getTransportadora() {
+		return transportadora;
+	}
+	public void setTransportadora(Transportadora transportadora) {
+		this.transportadora = transportadora;
+	}
+	
+	public TipoVeiculo getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+	public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+		this.tipoVeiculo = tipoVeiculo;
+	}
 	
 	public static List<Pedidos> selecionarTodosPedidos(){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelect = "SELECT * FROM tblPedido ORDER BY codPedido DESC; ";
+		String sqlSelect = "CALL pcd_lista_pedi_clie_sta_tipoveic_trans_veictrans() ;";
 		
 		List<Pedidos> lstPedidos = new ArrayList<>();
 		
@@ -105,11 +119,57 @@ public class Pedidos {
 			while (rs.next()){
 				
 				Pedidos p = new Pedidos();
+				Cliente cl = new Cliente();
+				Status s = new Status();
+				TipoVeiculo tv = new TipoVeiculo();
+				Transportadora t = new Transportadora();
+				VeiculoTransp vt = new VeiculoTransp();
+				
+				vt.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
+				vt.setPlacaVeiculo(rs.getString("placaVeiculo"));
+				vt.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				vt.setCodTransportadora(rs.getInt("codTransportadora"));
+				
+				vt.setTransportadora(t);
+				
+				t.setCodTransportadora(rs.getInt("codTransportadora"));
+				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				t.setEmailTransportadora(rs.getString("emailTransportadora"));
+				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				t.setCodEndereco(rs.getInt("codEndereco"));
+				
+				cl.setCodCliente(rs.getInt("codCliente"));
+				cl.setNomeCliente(rs.getString("nomeCliente"));
+				cl.setCpfCliente(rs.getString("cpfCliente"));
+				cl.setDtNascCliente(rs.getDate("dtNascCliente"));
+				cl.setPeso(rs.getFloat("peso"));
+				cl.setAltura(rs.getFloat("altura"));
+				cl.setTelefoneCliente(rs.getString("telefoneCliente"));
+				cl.setCelularCliente(rs.getString("celularCliente"));
+				cl.setEmailCliente(rs.getString("emailCliente"));
+				
+				s.setCodStatus(rs.getInt("codStatus"));
+				s.setStatusPedido(rs.getString("statusPedido"));
+				
+				tv.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
 				
 				p.setCodPedido(rs.getInt("codPedido"));
-				p.setDtCompra(rs.getDate("dtCompra"));
-				p.setDtEntrega(rs.getDate("dtEntrega"));
 				p.setTipoPedido(rs.getString("tipoPedido"));
+				p.setDtEntrega(rs.getDate("dtEntrega"));
+				p.setDtCompra(rs.getDate("dtCompra"));
+				p.setCodCliente(rs.getInt("codCliente"));
+				p.setCodStatus(rs.getInt("codStatus"));
+				p.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
+				
+				p.setTipoVeiculo(tv);
+				p.setTransportadora(t);
+				p.setCliente(cl);
+				p.setStatus(s);
+				p.setVeiculoTrasnp(vt);
+				
 				
 				lstPedidos.add(p);
 			}
@@ -187,13 +247,8 @@ public class Pedidos {
 	public String toString() {
 		return codPedido+"" ;
 	}
-
-
-
-
-
 	
 	
-	
-	
+
+
 }

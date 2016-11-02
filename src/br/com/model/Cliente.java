@@ -15,9 +15,6 @@ public class Cliente {
 	private String emailCliente;
 	
 	
-	private Endereco endereco;
-	
-	
 	public int getCodCliente() {
 		return codCliente;
 	}
@@ -73,11 +70,10 @@ public class Cliente {
 		this.emailCliente = emailCliente;
 	}
 	
-	public Endereco getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	
+	@Override
+	public String toString() {
+		return nomeCliente ;
 	}
 	
 	

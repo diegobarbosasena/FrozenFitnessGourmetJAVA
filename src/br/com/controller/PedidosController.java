@@ -4,7 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.model.Cliente;
 import br.com.model.Pedidos;
+import br.com.model.Status;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,8 +28,8 @@ public class PedidosController implements Initializable{
 	@FXML private TableColumn <Pedidos, String> tcTipoPed;
 	@FXML private TableColumn <Pedidos, String> tcDtComp;
 	@FXML private TableColumn <Pedidos, String> tcDtEntr;
-	@FXML private TableColumn <Pedidos, String> tcClien;
-	@FXML private TableColumn <Pedidos, String> tcStatus;
+	@FXML private TableColumn <Pedidos, Cliente> tcClien;
+	@FXML private TableColumn <Pedidos, Status> tcStatus;
 	
 	@FXML private TextField txtPedido;
 	@FXML private Button btnEditPedido;
@@ -67,6 +69,8 @@ public class PedidosController implements Initializable{
 		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("tipoPedido"));
 		tcDtEntr.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtEntrega"));
 		tcDtComp.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtCompra"));
+		tcClien.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
+		tcStatus.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		
 		List<Pedidos> lstPedido = Pedidos.selecionarTodosPedidos();
 		
