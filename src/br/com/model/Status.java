@@ -27,7 +27,6 @@ public class Status {
 		this.statusPedido = statusPedido;
 	}
 	
-	
 	public static List<Status> selecionarTodosStatus() {
 		
 		Connection c = MySqlConexao.ConectarDb();
@@ -53,6 +52,7 @@ public class Status {
 		}
 		return lstStatus;
 	}
+	
 	
 	@Override
 	public String toString() {

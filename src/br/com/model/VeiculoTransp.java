@@ -48,6 +48,8 @@ public class VeiculoTransp {
 	public void setTransportadora(Transportadora transportadora) {
 		this.transportadora = transportadora;
 	}
+	
+	
 
 	@Override
 	public String toString() {

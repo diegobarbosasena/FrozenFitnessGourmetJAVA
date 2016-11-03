@@ -22,10 +22,12 @@ public class Pedidos {
 	
 	private Cliente cliente;
 	private Status status;
-	private VeiculoTransp veiculoTrasnp;
+	private VeiculoTransp veiculoTransp;
 	private Transportadora transportadora;
 	private TipoVeiculo tipoVeiculo;
 
+	
+	
 	public int getCodPedido() {
 		return codPedido;
 	}
@@ -62,47 +64,43 @@ public class Pedidos {
 	public void setCodStatus(int codStatus) {
 		this.codStatus = codStatus;
 	}
-	public int getCodVeiculoTransp() {
-		return codVeiculoTransp;
-	}
-	public void setCodVeiculoTransp(int codVeiculoTransp) {
-		this.codVeiculoTransp = codVeiculoTransp;
-	}
-	
 	public Cliente getCliente() {
 		return cliente;
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
 	public Status getStatus() {
 		return status;
 	}
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	public VeiculoTransp getVeiculoTrasnp() {
-		return veiculoTrasnp;
-	}
-	public void setVeiculoTrasnp(VeiculoTransp veiculoTrasnp) {
-		this.veiculoTrasnp = veiculoTrasnp;
-	}
-	
 	public Transportadora getTransportadora() {
 		return transportadora;
 	}
 	public void setTransportadora(Transportadora transportadora) {
 		this.transportadora = transportadora;
 	}
-	
 	public TipoVeiculo getTipoVeiculo() {
 		return tipoVeiculo;
 	}
 	public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
 		this.tipoVeiculo = tipoVeiculo;
 	}
+	public int getCodVeiculoTransp() {
+		return codVeiculoTransp;
+	}
+	public void setCodVeiculoTransp(int codVeiculoTransp) {
+		this.codVeiculoTransp = codVeiculoTransp;
+	}
+	public VeiculoTransp getVeiculoTransp() {
+		return veiculoTransp;
+	}
+	public void setVeiculoTransp(VeiculoTransp veiculoTransp) {
+		this.veiculoTransp = veiculoTransp;
+	}
+
 	
 	public static List<Pedidos> selecionarTodosPedidos(){
 		
@@ -168,7 +166,7 @@ public class Pedidos {
 				p.setTransportadora(t);
 				p.setCliente(cl);
 				p.setStatus(s);
-				p.setVeiculoTrasnp(vt);
+				p.setVeiculoTransp(vt);
 				
 				
 				lstPedidos.add(p);
@@ -229,7 +227,7 @@ public class Pedidos {
 				
 				p.setCliente(cl);
 				p.setStatus(s);
-				p.setVeiculoTrasnp(v);
+				p.setVeiculoTransp(v);
 					
 				lstPediPesq.add(p);			
 			}
@@ -241,12 +239,43 @@ public class Pedidos {
 		return lstPediPesq;
 	}
 	
+	public static boolean updatePedido(Pedidos upPed){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlAtualizarPedido = "UPDATE "
+				+ "tblPedido SET "
+				+ "codStatus = ?, "
+				+ "codVeiculoTransp = ? WHERE codPedido = ? ;";
+
+		PreparedStatement parametros;
+			
+		try {
+			parametros = c.prepareStatement(sqlAtualizarPedido);
+			
+			parametros.setInt(1, upPed.status.getCodStatus());
+			parametros.setInt(2, upPed.veiculoTransp.getCodVeiculoTransp());
+			parametros.setInt(3, upPed.codPedido);
+					
+			parametros.executeUpdate();
+		
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			return false;	
+		}
+		
+	}
 	
 	
 	@Override
 	public String toString() {
 		return codPedido+"" ;
 	}
+	
 	
 	
 

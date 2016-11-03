@@ -19,7 +19,7 @@
                <children>
                   <TableView fx:id="tvPedidos" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                     <columns>
-                        <TableColumn fx:id="tcCodPed" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="ID Pedido" />
+                        <TableColumn fx:id="tcCodPed" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Cod. Pedido" />
                       <TableColumn fx:id="tcTipoPed" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Tipo Pedido" />
                         <TableColumn fx:id="tcDtComp" maxWidth="1000.0" minWidth="110.0" prefWidth="110.0" text="Data de Compra" />
                       	<TableColumn fx:id="tcDtEntr" maxWidth="1000.0" minWidth="110.0" prefWidth="110.0" text="Data de Entrega" />

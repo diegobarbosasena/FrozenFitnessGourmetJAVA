@@ -86,9 +86,6 @@ public class AcompanhamentoController implements Initializable{
 		
 	}
 	
-	
-	
-	
 	public void cancelarAcompa() {
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
@@ -103,6 +100,21 @@ public class AcompanhamentoController implements Initializable{
 		tabVisuaAcomp.setDisable(true);
 		
 		popularComboBox();
+		
+		/*Pedidos pedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
+		
+		Pedidos pedUp = new Pedidos();
+		Status staUp = new Status();
+		
+		Stat
+		tranp 
+		veicu
+		
+		pedUp.setCodPedido(pedi.getCodPedido());
+		pedUp.setStatus(cboStatus.getSelectionModel().getSelectedItem());
+		pedUp.setV
+		
+		Pedidos.updatePedido(null);*/
 	}
 
 	public void popularComboBox() {
@@ -113,19 +125,37 @@ public class AcompanhamentoController implements Initializable{
 		cboTransp.getItems().clear();
 		cboTransp.getItems().addAll(Transportadora.selecionarTodas());
 		
-		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
+		if (cboStatus != null){
+			cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
+				@Override
+				public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
+						
+					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
+						cboTransp.setDisable(false);
+						cboVeiculo.setDisable(false);
+					}
+				}
+			});
+		}
+		
+		
+		cboTransp.valueProperty().addListener(new ChangeListener<Transportadora>() {
 			@Override
-			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
+			public void changed(ObservableValue<? extends Transportadora> observable, Transportadora oldValue,
+					Transportadora newValue) {
+				if(cboVeiculo.getSelectionModel().getSelectedItem() != null){
 					
-				if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
-					cboTransp.setDisable(false);
-					cboVeiculo.setDisable(false);
+					List<TipoVeiculo> nomeVeiculo = TipoVeiculo.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
+					cboVeiculo.getItems().addAll(nomeVeiculo);
 				}
 			}
 		});
+		
 	}
 	
 	public void limparAcompanhamento() {
+		
+		//cboStatus.getSelectionModel().clearSelection();
 		
 	}
 
