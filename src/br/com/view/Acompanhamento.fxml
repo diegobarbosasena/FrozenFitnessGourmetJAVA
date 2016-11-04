@@ -38,7 +38,7 @@
                                        <columns>
                                           <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Cod. Pedido" />
                                           <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />
-                                          <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Status" />
+                                          <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Status" />
                                           <TableColumn fx:id="tcTranspAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Transportadora" />
                                           <TableColumn fx:id="tcVeiculoAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Veículo" />
                                        </columns>
@@ -59,7 +59,7 @@
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Pane prefHeight="230.0" prefWidth="471.0" style="-fx-background-color: #FFF;">
+                                    <Pane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #FFF;">
                                        <children>
                                           <Label fx:id="lblCodPed" disable="true" layoutY="2.0" text="Cod Pedido" textFill="#666666">
                                              <font>
@@ -67,36 +67,41 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
-                                          <Label fx:id="lblNomeClien" disable="true" layoutX="261.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
+                                          <Label fx:id="lblNomeClien" disable="true" layoutX="271.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="261.0" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="271.0" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Label fx:id="lblStatus" layoutY="67.0" text="Status" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <ComboBox fx:id="cboStatus" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
-                                          <Label fx:id="lblTransp" layoutX="261.0" layoutY="67.0" text="Transportadora" textFill="#666666">
+                                          <Label fx:id="lblTransp" layoutX="271.0" layoutY="67.0" text="Transportadora" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="261.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="271.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
                                           <Label fx:id="lblVeículo" layoutX="3.0" layoutY="141.0" text="Veículo" textFill="#666666">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
-                                          <Button fx:id="btnAtualizarPediAcomp" layoutX="300.0" layoutY="160.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                                          <Button fx:id="btnAtualizarPediAcomp" layoutX="231.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btnCancelarPediAcomp" layoutX="385.0" layoutY="160.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                          <Button fx:id="btnCancelarPediAcomp" layoutX="408.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnConcPediAcomp" layoutX="315.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Concluído">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

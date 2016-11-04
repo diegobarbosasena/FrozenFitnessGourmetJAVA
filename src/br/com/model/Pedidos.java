@@ -26,8 +26,7 @@ public class Pedidos {
 	private Transportadora transportadora;
 	private TipoVeiculo tipoVeiculo;
 
-	
-	
+
 	public int getCodPedido() {
 		return codPedido;
 	}
@@ -239,25 +238,24 @@ public class Pedidos {
 		return lstPediPesq;
 	}
 	
-	public static boolean updatePedido(Pedidos upPed){
+	public static boolean updatePedido(Integer codStatus,Integer codVeicu, Integer codPed){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlAtualizarPedido = "UPDATE "
 				+ "tblPedido SET "
 				+ "codStatus = ?, "
-				+ "codTransportadora = ?"
-				+ "codVeiculoTransp = ? WHERE codPedido = ? ;";
+				+ "codVeiculoTransp = ? "
+				+ "WHERE codPedido = ? ;";
 
 		PreparedStatement parametros;
 			
 		try {
 			parametros = c.prepareStatement(sqlAtualizarPedido);
 			
-			parametros.setInt(1, upPed.status.getCodStatus());
-			parametros.setInt(2, upPed.transportadora.getCodTransportadora());
-			parametros.setInt(3, upPed.veiculoTransp.getCodVeiculoTransp());
-			parametros.setInt(4, upPed.codPedido);
+			parametros.setString(1, codStatus.toString());
+			parametros.setString(2, codVeicu.toString() );
+			parametros.setString(3, codPed.toString());
 					
 			parametros.executeUpdate();
 		

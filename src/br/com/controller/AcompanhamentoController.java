@@ -59,6 +59,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Button btnEditarPediAcom;
 	@FXML private Button btnAtualizarPediAcomp;
 	@FXML private Button btnCancelarPediAcomp;
+	@FXML private Button btnConcPediAcomp;
 
 
 	@Override
@@ -111,30 +112,40 @@ public class AcompanhamentoController implements Initializable{
 			tpAcomp.getSelectionModel().select(1);
 			tabEditAcomp.setDisable(false);
 			tabVisuaAcomp.setDisable(true);
-		
-			popularComboBox();
 			
+			btnConcPediAcomp.setDisable(true);
+			btnAtualizarPediAcomp.setDisable(false);
+			btnCancelarPediAcomp.setDisable(false);
+			
+			popularComboBox();
+		
 			txtCodPediAcomp.setText(pdAcom.getCodPedido() + "");
 			txtNomeClienAcomp.setText(pdAcom.getCliente().getNomeCliente());
 
 		}
 		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());
-		
-		
+			
 	}
 
 	private void atualizarPedido() {
 		
+		Integer codStatus = null, codVeicu = null, codPed = null;
+		
+		btnConcPediAcomp.setDisable(true);
+		
 		Pedidos codPedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
+	
+		if(cboStatus.getSelectionModel().getSelectedItem() != null){
+			codStatus = cboStatus.getSelectionModel().getSelectedItem().getCodStatus();	
+		}
+			
+		if(cboVeiculo.getSelectionModel().getSelectedItem() != null){
+			codPed = cboVeiculo.getSelectionModel().getSelectedItem().getCodTipoVeiculo();	
+		}
 		
-		Pedidos upPedi = new Pedidos();
+		codPed = codPedi.getCodPedido();
 		
-		upPedi.setVeiculoTransp(cboVeiculo.getSelectionModel().getSelectedItem());
-		upPedi.setTransportadora(cboTransp.getSelectionModel().getSelectedItem());
-		upPedi.setStatus(cboStatus.getSelectionModel().getSelectedItem());
-		upPedi.setCodPedido(codPedi.getCodPedido());
-		
-		if(Pedidos.updatePedido(upPedi)){
+		if(Pedidos.updatePedido(codStatus, codVeicu, codPed)){
 			
 			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
 			Janelas j = new Janelas();
@@ -143,7 +154,20 @@ public class AcompanhamentoController implements Initializable{
 			preencherPedidosAcompanhamento();
 			
 			btnCancelarPediAcomp.setDisable(true);
+			btnAtualizarPediAcomp.setDisable(true);
+			btnConcPediAcomp.setDisable(false);
+			
+			btnConcPediAcomp.setOnAction(v -> acompConcluido());
 		}
+	}
+
+	private void acompConcluido() {
+		
+		tpAcomp.getSelectionModel().select(0);
+		tabEditAcomp.setDisable(true);
+		tabVisuaAcomp.setDisable(false);
+		
+		limparAcompanhamento();
 	}
 
 	public void popularComboBox() {

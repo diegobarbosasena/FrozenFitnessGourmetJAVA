@@ -7,6 +7,7 @@ public class VeiculoTransp {
 	private int codTipoVeiculo;
 	private int codTransportadora;
 	
+	private TipoVeiculo tipoVeiculo;
 	private Transportadora transportadora;
 
 	public int getCodVeiculoTransp() {
@@ -40,6 +41,14 @@ public class VeiculoTransp {
 	public void setCodTransportadora(int codTransportadora) {
 		this.codTransportadora = codTransportadora;
 	}
+	
+	public TipoVeiculo getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+
+	public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+		this.tipoVeiculo = tipoVeiculo;
+	}
 
 	public Transportadora getTransportadora() {
 		return transportadora;
@@ -55,6 +64,8 @@ public class VeiculoTransp {
 	public String toString() {
 		return codVeiculoTransp + placaVeiculo + codTipoVeiculo + codTransportadora + transportadora ;
 	}
+
+	
 	
 	
 	
