@@ -29,7 +29,7 @@ public class TipoVeiculo {
 	}
 	
 	public static List<TipoVeiculo> selecionarTodos(){
-Connection c = MySqlConexao.ConectarDb();
+		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT * FROM tblTipoVeiculo ";
 

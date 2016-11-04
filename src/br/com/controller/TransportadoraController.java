@@ -384,7 +384,6 @@ public class TransportadoraController implements Initializable {
 			}
 			else{
 				
-				
 				tabVisualizar.setDisable(true);
 				tpTransp.getSelectionModel().select(1);
 				
@@ -458,7 +457,7 @@ public class TransportadoraController implements Initializable {
 		return preenchido;
 	}
 	
-	public void atualizar(){
+	private void atualizar(){
 		
 		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		

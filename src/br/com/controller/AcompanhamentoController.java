@@ -9,6 +9,7 @@ import br.com.model.Pedidos;
 import br.com.model.Status;
 import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
+import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AcompanhamentoController implements Initializable{
 	
@@ -66,6 +68,7 @@ public class AcompanhamentoController implements Initializable{
 		popularComboBox();
 		
 		tabEditAcomp.setDisable(true);
+		cboVeiculo.setDisable(true);
 		
 		btnEditarPediAcom.setOnAction(c -> editarAcomp());
 		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());
@@ -96,12 +99,51 @@ public class AcompanhamentoController implements Initializable{
 	}
 
 	public void editarAcomp() {
-		tpAcomp.getSelectionModel().select(1);
-		tabEditAcomp.setDisable(false);
-		tabVisuaAcomp.setDisable(true);
 		
-		popularComboBox();
+		Pedidos pdAcom = tvPedidosAcompa.getSelectionModel().getSelectedItem();
 		
+		if(pdAcom == null){
+			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Acompanhamento", false, erro);
+		}
+		else{
+			tpAcomp.getSelectionModel().select(1);
+			tabEditAcomp.setDisable(false);
+			tabVisuaAcomp.setDisable(true);
+		
+			popularComboBox();
+			
+			txtCodPediAcomp.setText(pdAcom.getCodPedido() + "");
+			txtNomeClienAcomp.setText(pdAcom.getCliente().getNomeCliente());
+
+		}
+		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());
+		
+		
+	}
+
+	private void atualizarPedido() {
+		
+		Pedidos codPedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
+		
+		Pedidos upPedi = new Pedidos();
+		
+		upPedi.setVeiculoTransp(cboVeiculo.getSelectionModel().getSelectedItem());
+		upPedi.setTransportadora(cboTransp.getSelectionModel().getSelectedItem());
+		upPedi.setStatus(cboStatus.getSelectionModel().getSelectedItem());
+		upPedi.setCodPedido(codPedi.getCodPedido());
+		
+		if(Pedidos.updatePedido(upPedi)){
+			
+			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Pedidos", false, sucesso);	
+			
+			preencherPedidosAcompanhamento();
+			
+			btnCancelarPediAcomp.setDisable(true);
+		}
 	}
 
 	public void popularComboBox() {
@@ -109,38 +151,40 @@ public class AcompanhamentoController implements Initializable{
 		cboStatus.getItems().clear();
 		cboStatus.getItems().addAll(Status.selecionarTodosStatus());
 		
-		cboVeiculo.getItems().clear();
-		cboVeiculo.getItems().addAll(TipoVeiculo.selecionarTodos());
-		
 		cboTransp.getItems().clear();
 		cboTransp.getItems().addAll(Transportadora.selecionarTodas());
 		
-		if (cboStatus != null){
-			cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
-				@Override
-				public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
-						
+		
+		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
+			@Override
+			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
+				if (cboStatus != null){	
 					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
 						cboTransp.setDisable(false);
-						cboVeiculo.setDisable(false);
 					}
 					else{
 						cboTransp.setDisable(true);
 						cboVeiculo.setDisable(true);
 					}
-				}
-			});
-		}
-		
+				}	
+			}
+		});
 		
 		cboTransp.valueProperty().addListener(new ChangeListener<Transportadora>() {
 			@Override
 			public void changed(ObservableValue<? extends Transportadora> observable, Transportadora oldValue,
 					Transportadora newValue) {
-				if(cboVeiculo.getSelectionModel().getSelectedItem() != null){
+				
+				if(cboTransp.getSelectionModel().getSelectedItem() != null){
+					
+					cboVeiculo.setDisable(false);
 					
 					List<TipoVeiculo> nomeVeiculo = TipoVeiculo.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
+					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);
+				}
+				else{
+					cboVeiculo.setDisable(true);
 				}
 			}
 		});

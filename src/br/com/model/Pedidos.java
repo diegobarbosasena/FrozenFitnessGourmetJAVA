@@ -246,6 +246,7 @@ public class Pedidos {
 		String sqlAtualizarPedido = "UPDATE "
 				+ "tblPedido SET "
 				+ "codStatus = ?, "
+				+ "codTransportadora = ?"
 				+ "codVeiculoTransp = ? WHERE codPedido = ? ;";
 
 		PreparedStatement parametros;
@@ -254,8 +255,9 @@ public class Pedidos {
 			parametros = c.prepareStatement(sqlAtualizarPedido);
 			
 			parametros.setInt(1, upPed.status.getCodStatus());
-			parametros.setInt(2, upPed.veiculoTransp.getCodVeiculoTransp());
-			parametros.setInt(3, upPed.codPedido);
+			parametros.setInt(2, upPed.transportadora.getCodTransportadora());
+			parametros.setInt(3, upPed.veiculoTransp.getCodVeiculoTransp());
+			parametros.setInt(4, upPed.codPedido);
 					
 			parametros.executeUpdate();
 		
