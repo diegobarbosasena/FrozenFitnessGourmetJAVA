@@ -28,17 +28,45 @@ public class TipoVeiculo {
 		this.nomeTipoVeiculo = nomeTipoVeiculo;
 	}
 	
+	public static List<TipoVeiculo> selecionarTodos(){
+Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelect = "SELECT * FROM tblTipoVeiculo ";
+
+		List <TipoVeiculo> lstTv = new ArrayList<>(); 
+		
+		ResultSet rs;
+		try {
+			rs = c.createStatement().executeQuery(sqlSelect);
+
+			while(rs.next()){
+				
+				TipoVeiculo tv = new TipoVeiculo();
+				
+				tv.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
+				
+				lstTv.add(tv);
+	
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return lstTv;
+	}
+	
 	public static List<TipoVeiculo> filtrarTransp(String nomeFiltroTrans){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelectPesq = "SELECT "
-				+ "tv.* FROM tblVeiculoTransp AS vt "
+				+ "tv.*, t.*, vt.* FROM tblVeiculoTransp AS vt "
 				+ "INNER JOIN tblTransportadora AS t "
-				+ "ON (vt.codTransportadora = t.codTransportadora)"
+				+ "ON (vt.codTransportadora = t.codTransportadora) "
 				+ "INNER JOIN tblTipoVeiculo AS tv "
-				+ "ON (tv.codTipoVeiculo = vt.codTipoVeiculo)"
-				+ "WHERE t.nomeTransportadora = ?;";
+				+ "ON (tv.codTipoVeiculo = vt.codTipoVeiculo) "
+				+ "WHERE t.nomeTransportadora = ? ;";
 		
 		List <TipoVeiculo> lstVeicuTranspFiltro = new ArrayList<>(); 
 		PreparedStatement parametros;

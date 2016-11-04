@@ -68,7 +68,8 @@ public class AcompanhamentoController implements Initializable{
 		tabEditAcomp.setDisable(true);
 		
 		btnEditarPediAcom.setOnAction(c -> editarAcomp());
-		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());		
+		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());
+		
 	} 
 	
 	public void preencherPedidosAcompanhamento(){
@@ -101,26 +102,15 @@ public class AcompanhamentoController implements Initializable{
 		
 		popularComboBox();
 		
-		/*Pedidos pedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
-		
-		Pedidos pedUp = new Pedidos();
-		Status staUp = new Status();
-		
-		Stat
-		tranp 
-		veicu
-		
-		pedUp.setCodPedido(pedi.getCodPedido());
-		pedUp.setStatus(cboStatus.getSelectionModel().getSelectedItem());
-		pedUp.setV
-		
-		Pedidos.updatePedido(null);*/
 	}
 
 	public void popularComboBox() {
 		
 		cboStatus.getItems().clear();
 		cboStatus.getItems().addAll(Status.selecionarTodosStatus());
+		
+		cboVeiculo.getItems().clear();
+		cboVeiculo.getItems().addAll(TipoVeiculo.selecionarTodos());
 		
 		cboTransp.getItems().clear();
 		cboTransp.getItems().addAll(Transportadora.selecionarTodas());
@@ -133,6 +123,10 @@ public class AcompanhamentoController implements Initializable{
 					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
 						cboTransp.setDisable(false);
 						cboVeiculo.setDisable(false);
+					}
+					else{
+						cboTransp.setDisable(true);
+						cboVeiculo.setDisable(true);
 					}
 				}
 			});
