@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -61,12 +62,16 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Button btnCancelarPediAcomp;
 	@FXML private Button btnConcPediAcomp;
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		preencherPedidosAcompanhamento();
 		popularComboBox();
+		
+		txtPediAcomp.textProperty().addListener(f ->{
+			if(!txtPediAcomp.getText().isEmpty())
+				buscarPedido();
+		});
 		
 		tabEditAcomp.setDisable(true);
 		cboVeiculo.setDisable(true);
@@ -76,6 +81,26 @@ public class AcompanhamentoController implements Initializable{
 		
 	} 
 	
+	private void buscarPedido() {
+		
+		/*List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(txtCodPediAcomp.getId());
+		
+		if (lstPediFilt.isEmpty()){
+				
+			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
+			Janelas j = new Janelas();
+			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+				
+			lstPediFilt.clear();
+			preencherPedidosAcompanhamento();
+		}
+		else{
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPediFilt);
+		}*/
+		
+	}
+
 	public void preencherPedidosAcompanhamento(){
 		
 		tcCodPedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Integer>("codPedido"));
@@ -117,11 +142,23 @@ public class AcompanhamentoController implements Initializable{
 			btnAtualizarPediAcomp.setDisable(false);
 			btnCancelarPediAcomp.setDisable(false);
 			
+			lblStatus.setDisable(false);
+			cboStatus.setDisable(false);
+			
 			popularComboBox();
 		
-			txtCodPediAcomp.setText(pdAcom.getCodPedido() + "");
+			txtCodPediAcomp.setText(pdAcom.getCodPedido()+"");
 			txtNomeClienAcomp.setText(pdAcom.getCliente().getNomeCliente());
-
+			
+			for(int i=0 ; i < cboStatus.getItems().size();i++){
+				
+				Status s = cboStatus.getItems().get(i);
+				
+				if(s.getCodStatus() == pdAcom.getStatus().getCodStatus()){
+					cboStatus.getSelectionModel().select(i);
+					break;
+				}
+			}
 		}
 		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());
 			
@@ -129,23 +166,33 @@ public class AcompanhamentoController implements Initializable{
 
 	private void atualizarPedido() {
 		
-		Integer codStatus = null, codVeicu = null, codPed = null;
+		Integer codStat = null;
+		Integer	codVeic = null;
+		Integer codPed = null;
 		
 		btnConcPediAcomp.setDisable(true);
 		
 		Pedidos codPedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
-	
-		if(cboStatus.getSelectionModel().getSelectedItem() != null){
-			codStatus = cboStatus.getSelectionModel().getSelectedItem().getCodStatus();	
-		}
-			
-		if(cboVeiculo.getSelectionModel().getSelectedItem() != null){
-			codPed = cboVeiculo.getSelectionModel().getSelectedItem().getCodTipoVeiculo();	
-		}
+		Pedidos upPedi = new Pedidos();
+		
+		if(cboStatus.getSelectionModel().getSelectedItem() != null)
+			codStat = cboStatus.getSelectionModel().getSelectedItem().getCodStatus();	
+		
+		if(cboVeiculo.getSelectionModel().getSelectedItem() != null)
+			codVeic = cboVeiculo.getSelectionModel().getSelectedItem().getCodTipoVeiculo();	
 		
 		codPed = codPedi.getCodPedido();
 		
-		if(Pedidos.updatePedido(codStatus, codVeicu, codPed)){
+		System.out.println("cod veiculo  "+codVeic);
+		System.out.println("cod pedido   "+codPed);
+		System.out.println("cod status   "+codStat);
+		
+		upPedi.setCodPedido(codPed);
+		upPedi.setCodStatus(codStat);
+		//upPedi.setCodVeiculoTransp(codVeic);
+		
+
+		if(Pedidos.updatePedido(upPedi)){
 			
 			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
 			Janelas j = new Janelas();
@@ -157,7 +204,15 @@ public class AcompanhamentoController implements Initializable{
 			btnAtualizarPediAcomp.setDisable(true);
 			btnConcPediAcomp.setDisable(false);
 			
+			lblStatus.setDisable(true);
+			cboStatus.setDisable(true);
+			
 			btnConcPediAcomp.setOnAction(v -> acompConcluido());
+			btnConcPediAcomp.setOnKeyPressed(f -> {
+				if (f.getCode() == KeyCode.ENTER){
+					acompConcluido();
+				}
+			});
 		}
 	}
 
@@ -166,30 +221,36 @@ public class AcompanhamentoController implements Initializable{
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
 		tabVisuaAcomp.setDisable(false);
-		
-		limparAcompanhamento();
 	}
 
 	public void popularComboBox() {
 		
-		cboStatus.getItems().clear();
-		cboStatus.getItems().addAll(Status.selecionarTodosStatus());
+		if(cboStatus != null){
+			cboStatus.getItems().clear();
+			cboStatus.getItems().addAll(Status.selecionarTodosStatus());
+		}
 		
-		cboTransp.getItems().clear();
-		cboTransp.getItems().addAll(Transportadora.selecionarTodas());
-		
+		if(cboTransp != null){
+			cboTransp.getItems().clear();
+			cboTransp.getItems().addAll(Transportadora.selecionarTodas());
+		}
 		
 		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
 			@Override
 			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
-				if (cboStatus != null){	
-					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
+				
+				if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
 						cboTransp.setDisable(false);
-					}
-					else{
-						cboTransp.setDisable(true);
-						cboVeiculo.setDisable(true);
-					}
+						lblTransp.setDisable(false);
+				}
+				else{
+					lblTransp.setDisable(true);
+					cboTransp.setDisable(true);
+					cboTransp.getSelectionModel().clearSelection();
+						
+					lblVeículo.setDisable(true);
+					cboVeiculo.setDisable(true);
+					cboVeiculo.getSelectionModel().clearSelection();
 				}	
 			}
 		});
@@ -201,14 +262,18 @@ public class AcompanhamentoController implements Initializable{
 				
 				if(cboTransp.getSelectionModel().getSelectedItem() != null){
 					
+					lblVeículo.setDisable(false);
 					cboVeiculo.setDisable(false);
 					
 					List<TipoVeiculo> nomeVeiculo = TipoVeiculo.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
+					
 					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);
 				}
 				else{
+					lblVeículo.setDisable(true);
 					cboVeiculo.setDisable(true);
+					cboVeiculo.getSelectionModel().clearSelection();
 				}
 			}
 		});
@@ -217,7 +282,9 @@ public class AcompanhamentoController implements Initializable{
 	
 	public void limparAcompanhamento() {
 		
-		//cboStatus.getSelectionModel().clearSelection();
+		cboVeiculo.getSelectionModel().clearSelection();
+		cboTransp.getSelectionModel().clearSelection();
+		cboStatus.getSelectionModel().clearSelection();
 		
 	}
 

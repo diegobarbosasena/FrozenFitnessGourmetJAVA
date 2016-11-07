@@ -238,7 +238,7 @@ public class Pedidos {
 		return lstPediPesq;
 	}
 	
-	public static boolean updatePedido(Integer codStatus,Integer codVeicu, Integer codPed){
+	public static boolean updatePedido(Pedidos upPedi){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
@@ -253,9 +253,9 @@ public class Pedidos {
 		try {
 			parametros = c.prepareStatement(sqlAtualizarPedido);
 			
-			parametros.setString(1, codStatus.toString());
-			parametros.setString(2, codVeicu.toString() );
-			parametros.setString(3, codPed.toString());
+			parametros.setInt(1, upPedi.codStatus);
+			parametros.setNull(2, upPedi.codVeiculoTransp);
+			parametros.setInt(3, upPedi.codPedido);
 					
 			parametros.executeUpdate();
 		

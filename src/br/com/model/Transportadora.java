@@ -77,8 +77,8 @@ public class Transportadora {
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelectPesq = "SELECT "
-				+ "t.codTransportadora, t.nomeTransportadora, t.cnpjTransportadora, t.emailTransportadora, t.telefoneTransportadora, t.responsavelTransportadora, "
-				+ "e.codEndereco, e.logradouro, e.cep, e.numero, e.bairro, e.complemento "
+				+ "t.*, "
+				+ "e.*,  "
 				+ "FROM tblTransportadora AS t INNER JOIN tblEndereco AS e "
 				+ "ON (t.codEndereco = e.codEndereco) WHERE nomeTransportadora LIKE ? "
 				+ "ORDER BY codTransportadora DESC ";
