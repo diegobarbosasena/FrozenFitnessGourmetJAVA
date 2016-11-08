@@ -88,3 +88,12 @@ TextField, PasswordField, DatePicker{
     -fx-text-fill: #00b050;
     -fx-font-size: 1.1em;
 }
+.list-cell:odd {
+    -fx-cell-hover-color: #FF00FF;
+    -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: #FF0000;
+    -fx-text-fill: white;
+}

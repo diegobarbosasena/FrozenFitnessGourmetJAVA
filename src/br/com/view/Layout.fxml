@@ -57,7 +57,7 @@
                                 <tabs>
                                     <Tab text="Pedido por telelefone">
                                       <content>
-                                        <AnchorPane />
+                                        <fx:include fx:id="anpPedidosTelefone" source="PedidoTelefone.fxml" />
                                       </content>
                                     </Tab>
                                     <Tab text="Pedidos">
