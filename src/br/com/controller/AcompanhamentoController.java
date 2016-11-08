@@ -238,7 +238,7 @@ public class AcompanhamentoController implements Initializable{
 		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
 			@Override
 			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
-				
+						
 				if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
 						cboTransp.setDisable(false);
 						lblTransp.setDisable(false);
