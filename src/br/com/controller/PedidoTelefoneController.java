@@ -3,6 +3,8 @@ package br.com.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.ajudantes.Mascaras;
+import br.com.model.Cliente;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,7 +30,7 @@ public class PedidoTelefoneController implements Initializable {
 	@FXML private RadioButton rbSim;
 	@FXML private RadioButton rbNao;
 	@FXML private Label lblListaCliente;
-	@FXML private ComboBox<?> cboCliente;
+	@FXML private ComboBox<Cliente> cboCliente;
 	@FXML private Label lblNomeClien;
 	@FXML private TextField txtNomeClien;
 	@FXML private Label lblCpfClien;
@@ -65,7 +67,13 @@ public class PedidoTelefoneController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		Mascaras.pesoMask(txtPeso);
+		Mascaras.alturaMask(txtAltura);
+		
 		grupoRadioButton();	
+		
+		cboCliente.getItems().clear();
+		cboCliente.getItems().addAll(Cliente.selecionarTodosClientes());
 	}
 
 	public void grupoRadioButton() {

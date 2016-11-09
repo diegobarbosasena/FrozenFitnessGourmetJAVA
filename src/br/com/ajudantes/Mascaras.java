@@ -74,6 +74,40 @@ public class Mascaras {
 	    });
 	}
 	
+	public static void pesoMask (final TextField textFieldPeso){
+		
+		maxField(textFieldPeso, 5);
+		textFieldPeso.lengthProperty().addListener(new ChangeListener<Number>() {
+	        @Override
+	        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+	        	String value = textFieldPeso.getText();
+	        	value = value.replaceAll("[^0-9]", "");
+	            value = value.replaceFirst("(\\d{3})(\\d)", "$1.$2");
+	            value = value.replaceFirst("(\\d{3})\\.(\\d{3})(\\d)", "$1.$2.$3");
+	            textFieldPeso.setText(value);
+	            positionCaret(textFieldPeso);
+	        }
+	    });
+	}
+	
+	public static void alturaMask (final TextField textFieldAltura){
+		
+		maxField(textFieldAltura, 4);
+		if(textFieldAltura != null){
+			textFieldAltura.lengthProperty().addListener(new ChangeListener<Number>() {
+		        @Override
+		        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+		        	String value = textFieldAltura.getText();
+		        	value = value.replaceAll("[^0-9]", "");
+		            value = value.replaceFirst("(\\d{1})(\\d)", "$1.$2");
+		            value = value.replaceFirst("(\\d{3})\\.(\\d{3})(\\d)", "$1.$2.$3");
+		            textFieldAltura.setText(value);
+		            positionCaret(textFieldAltura);
+		        }
+		    });
+		}	
+	}
+	
 	public static void cnpjField(final TextField textField) {
 	    maxField(textField, 18);
 	    textField.lengthProperty().addListener(new ChangeListener<Number>() {
