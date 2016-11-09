@@ -13,43 +13,43 @@
         <items>
           <AnchorPane maxHeight="70.0" minHeight="70.0" prefHeight="70.0" SplitPane.resizableWithParent="false">
                <children>
-                  <Button layoutX="584.0" layoutY="25.0" mnemonicParsing="false" styleClass="botao" text="Nova Consuta">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
                   <RadioButton fx:id="rbSemanal" layoutX="11.0" layoutY="31.0" mnemonicParsing="false" text="Semanal" textFill="#666666">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rbMensal" disable="true" layoutX="95.0" layoutY="31.0" mnemonicParsing="false" text="Mensal" textFill="#666666">
+                  <RadioButton fx:id="rbMensal" layoutX="95.0" layoutY="31.0" mnemonicParsing="false" text="Mensal" textFill="#666666">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rbTrimestral" disable="true" layoutX="172.0" layoutY="31.0" mnemonicParsing="false" text="Trimestral" textFill="#666666">
+                  <RadioButton fx:id="rbTrimestral" layoutX="172.0" layoutY="31.0" mnemonicParsing="false" text="Trimestral" textFill="#666666">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rbPeriodo" disable="true" layoutX="263.0" layoutY="31.0" mnemonicParsing="false" text="Período" textFill="#666666">
+                  <RadioButton fx:id="rbPeriodo" layoutX="263.0" layoutY="31.0" mnemonicParsing="false" text="Período" textFill="#666666">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
-                  <Label fx:id="lblDtInicial" layoutX="344.0" layoutY="7.0" text="Data Inicial" textFill="#666666">
+                  <Label fx:id="lblDtInicial" disable="true" layoutX="344.0" layoutY="7.0" text="Data Inicial" textFill="#666666">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDtFim" layoutX="464.0" layoutY="7.0" text="Data Final" textFill="#666666">
+                  <Label fx:id="lblDtFim" disable="true" layoutX="464.0" layoutY="7.0" text="Data Final" textFill="#666666">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="dtpInicio" disable="true" layoutX="344.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" stylesheets="@application.css" />
-                  <DatePicker fx:id="dtpFim" disable="true" layoutX="464.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" stylesheets="@application.css" />
+                  <DatePicker fx:id="dtpInicio" disable="true" layoutX="344.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" />
+                  <DatePicker fx:id="dtpFim" disable="true" layoutX="464.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" />
+                  <Button fx:id="btnRelatorio" layoutX="585.0" layoutY="26.0" mnemonicParsing="false" styleClass="botao" text="Gerar Relátorio">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane style="-fx-background-color: #FFF;">
@@ -62,7 +62,7 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <Label layoutX="26.0" layoutY="14.0" style="fx-font-weight: bold; -fx-font-size: 1.4em;" text="Vendas Semanal" textAlignment="CENTER" textFill="#666666">
+                  <Label layoutX="26.0" layoutY="14.0" style="fx-font-weight: bold; -fx-font-size: 1.4em;" text="Vendas" textAlignment="CENTER" textFill="#666666">
                      <font>
                         <Font size="16.0" />
                      </font>
