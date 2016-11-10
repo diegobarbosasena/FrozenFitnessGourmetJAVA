@@ -67,8 +67,7 @@ public class PedidoTelefoneController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		Mascaras.pesoMask(txtPeso);
-		Mascaras.alturaMask(txtAltura);
+		Mascaras.mascaraAltura(txtAltura);
 		
 		grupoRadioButton();	
 		

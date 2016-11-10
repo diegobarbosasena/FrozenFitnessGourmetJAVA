@@ -99,10 +99,10 @@ public class TransportadoraController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		Mascaras.cepMask(txtCepTransp);
-		Mascaras.cnpjField(txtCnpjTransp);
-		Mascaras.telefoneMask(txtTelefoneTrans);
-		
+		Mascaras.mascaraCEP(txtCepTransp);
+		Mascaras.mascaraCNPJ(txtCnpjTransp);
+		Mascaras.mascaraTelefone(txtTelefoneTrans);
+	
 		preencherTransportadora();
 		initTooltip();
 		
