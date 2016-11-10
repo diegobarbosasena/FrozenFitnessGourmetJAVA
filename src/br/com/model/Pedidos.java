@@ -238,36 +238,56 @@ public class Pedidos {
 		return lstPediPesq;
 	}
 	
-	public static boolean updatePedido(Pedidos upPedi){
+	public static boolean updatePedido(Integer codVeic, Integer codPed, Integer codStat){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlAtualizarPedido = "UPDATE "
-				+ "tblPedido SET "
-				+ "codStatus = ?, "
-				+ "codVeiculoTransp = ? "
-				+ "WHERE codPedido = ? ;";
-
+		String sqlAtualizarPedido = "";
 		PreparedStatement parametros;
-			
-		try {
-			parametros = c.prepareStatement(sqlAtualizarPedido);
-			
-			parametros.setInt(1, upPedi.codStatus);
-			parametros.setNull(2, upPedi.codVeiculoTransp);
-			parametros.setInt(3, upPedi.codPedido);
-					
-			parametros.executeUpdate();
 		
-			c.close();
+		if (codVeic != null){
+			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ?, codVeiculoTransp = ? WHERE codPedido = ? ;";
 			
-			return true;
+			try {
+				parametros = c.prepareStatement(sqlAtualizarPedido);
+				
+				parametros.setInt(1, codStat);
+				parametros.setInt(2, codVeic);
+				parametros.setInt(3, codPed);
+				
+				parametros.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
-			return false;	
+				c.close();
+				
+				return true;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();	
+				return false;	
+			}
+				
 		}
-		
+		else{
+			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ?, codVeiculoTransp = null WHERE codPedido = ? ;";
+			
+			try {
+				parametros = c.prepareStatement(sqlAtualizarPedido);
+				
+				parametros.setInt(1, codStat);
+				parametros.setInt(2, codPed);
+				
+				parametros.executeUpdate();
+			
+				c.close();
+				
+				return true;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();	
+				return false;	
+			}
+		}
+
 	}
 	
 	
@@ -277,7 +297,4 @@ public class Pedidos {
 	}
 	
 	
-	
-
-
 }

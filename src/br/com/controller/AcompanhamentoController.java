@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
@@ -65,13 +66,17 @@ public class AcompanhamentoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		Mascaras.mascaraNumeroInteiro(txtPediAcomp);
+		
 		preencherPedidosAcompanhamento();
 		popularComboBox();
 		
-		txtPediAcomp.textProperty().addListener(f ->{
+		/*txtPediAcomp.textProperty().addListener(f ->{
 			if(!txtPediAcomp.getText().isEmpty())
 				buscarPedido();
-		});
+		});*/
+		
+		btnBuscarPediAcom.setOnAction(b -> buscarPedido());
 		
 		tabEditAcomp.setDisable(true);
 		cboVeiculo.setDisable(true);
@@ -83,7 +88,14 @@ public class AcompanhamentoController implements Initializable{
 	
 	private void buscarPedido() {
 		
-		/*List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(txtCodPediAcomp.getId());
+		int codPedido = 0;
+		
+		System.out.println(txtPediAcomp.getText());
+		codPedido = Integer.parseInt(txtPediAcomp.getText());
+		
+		System.out.println(codPedido);
+		
+		List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(codPedido);
 		
 		if (lstPediFilt.isEmpty()){
 				
@@ -97,7 +109,7 @@ public class AcompanhamentoController implements Initializable{
 		else{
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPediFilt);
-		}*/
+		}
 		
 	}
 
@@ -183,16 +195,14 @@ public class AcompanhamentoController implements Initializable{
 		
 		codPed = codPedi.getCodPedido();
 		
-		System.out.println("cod veiculo  "+codVeic);
-		System.out.println("cod pedido   "+codPed);
-		System.out.println("cod status   "+codStat);
-		
 		upPedi.setCodPedido(codPed);
 		upPedi.setCodStatus(codStat);
-		//upPedi.setCodVeiculoTransp(codVeic);
 		
-
-		if(Pedidos.updatePedido(upPedi)){
+		if(codVeic != null){
+			upPedi.setCodVeiculoTransp(codVeic);
+		}
+		
+		if(Pedidos.updatePedido(codVeic, codPed, codStat)){
 			
 			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
 			Janelas j = new Janelas();
@@ -206,6 +216,12 @@ public class AcompanhamentoController implements Initializable{
 			
 			lblStatus.setDisable(true);
 			cboStatus.setDisable(true);
+			
+			lblTransp.setDisable(true);
+			cboTransp.setDisable(true);
+			
+			lblVeículo.setDisable(true);
+			cboVeiculo.setDisable(true);
 			
 			btnConcPediAcomp.setOnAction(v -> acompConcluido());
 			btnConcPediAcomp.setOnKeyPressed(f -> {
@@ -239,18 +255,21 @@ public class AcompanhamentoController implements Initializable{
 			@Override
 			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
 						
-				if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
-						cboTransp.setDisable(false);
-						lblTransp.setDisable(false);
-				}
-				else{
-					lblTransp.setDisable(true);
-					cboTransp.setDisable(true);
-					cboTransp.getSelectionModel().clearSelection();
-						
-					lblVeículo.setDisable(true);
-					cboVeiculo.setDisable(true);
-					cboVeiculo.getSelectionModel().clearSelection();
+				if(cboStatus.getSelectionModel().getSelectedItem() != null){
+				
+					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
+							cboTransp.setDisable(false);
+							lblTransp.setDisable(false);
+					}
+					else{
+						lblTransp.setDisable(true);
+						cboTransp.setDisable(true);
+						cboTransp.getSelectionModel().clearSelection();
+							
+						lblVeículo.setDisable(true);
+						cboVeiculo.setDisable(true);
+						cboVeiculo.getSelectionModel().clearSelection();
+					}	
 				}	
 			}
 		});

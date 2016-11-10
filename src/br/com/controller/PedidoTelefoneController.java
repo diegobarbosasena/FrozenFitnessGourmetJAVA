@@ -68,6 +68,10 @@ public class PedidoTelefoneController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		Mascaras.mascaraAltura(txtAltura);
+		Mascaras.mascaraPeso(txtPeso);
+		Mascaras.mascaraEmail(txtEmail);
+		Mascaras.mascaraTelefone(txtTel);
+		Mascaras.mascaraCPF(txtCpfClien);
 		
 		grupoRadioButton();	
 		

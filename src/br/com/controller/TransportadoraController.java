@@ -102,6 +102,7 @@ public class TransportadoraController implements Initializable {
 		Mascaras.mascaraCEP(txtCepTransp);
 		Mascaras.mascaraCNPJ(txtCnpjTransp);
 		Mascaras.mascaraTelefone(txtTelefoneTrans);
+		Mascaras.mascaraEmail(txtEmailTrans);
 	
 		preencherTransportadora();
 		initTooltip();

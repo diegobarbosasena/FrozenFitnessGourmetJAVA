@@ -7,6 +7,11 @@ import javafx.scene.input.KeyEvent;
 
 public class Mascaras {
 
+	/**
+	 * Funções para se aplicar máscaras aos controles do JavaFX
+	 *
+	 * @author Paulo Henrique Luvisoto - paulobitfranca@gmail.com
+	 */
 	
 	public static void mascaraNumeroInteiro(TextField textField){
 
@@ -68,40 +73,63 @@ public class Mascaras {
         });
 
     }
-    
+   
     public static void mascaraAltura(TextField textField){
 
-        textField.setOnKeyTyped((KeyEvent event) -> {
+    	textField.setOnKeyTyped((KeyEvent event) -> {
             if("0123456789".contains(event.getCharacter())==false){
                 event.consume();
             }
 
             if(event.getCharacter().trim().length()==0){ // apagando
 
-                if(textField.getText().length()==3){
-                    textField.setText(textField.getText().substring(0,2));
+                if(textField.getText().length()==1){
+                    textField.setText(textField.getText().substring(0,1));
                     textField.positionCaret(textField.getText().length());
                 }
-
+                
             }else{ // escrevendo
 
-                if(textField.getText().length()==3) event.consume();
+                if(textField.getText().length()==4) event.consume();
 
-                if(textField.getText().length()==3){
+                if(textField.getText().length()==1){
                     textField.setText(textField.getText()+".");
                     textField.positionCaret(textField.getText().length());
                 }
             }
         });
 
-        textField.setOnKeyReleased((KeyEvent evt) -> {
+    }
+    
+    public static void mascaraPeso(TextField textField){
+    	
+    	textField.setOnKeyTyped((KeyEvent event) -> {
+            if("0123456789".contains(event.getCharacter())==false){
+                event.consume();
+            }
 
-            if(!textField.getText().matches("\\d-*")){
-                textField.setText(textField.getText().replaceAll("[^\\d-]", ""));
-                textField.positionCaret(textField.getText().length());
+            if(event.getCharacter().trim().length()==0){ // apagando
+
+                if(textField.getText().length()==4){
+                    textField.setText(textField.getText().substring(0,3));
+                    textField.positionCaret(textField.getText().length());
+                }
+                
+            }else{ // escrevendo
+
+                if(textField.getText().length()==2) event.consume();
+
+                if(textField.getText().length()==1){
+                    textField.setText(textField.getText()+".");
+                    textField.positionCaret(textField.getText().length());
+                }
+                if(textField.getText().length()==2){
+                    textField.setText(textField.getText()+"."+textField.getText());
+                    textField.positionCaret(textField.getText().length());
+                }
             }
         });
-
+    	
     }
 
     public static void mascaraData(TextField textField){
