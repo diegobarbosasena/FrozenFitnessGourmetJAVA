@@ -71,6 +71,7 @@ public class PedidoTelefoneController implements Initializable {
 		Mascaras.mascaraPeso(txtPeso);
 		Mascaras.mascaraEmail(txtEmail);
 		Mascaras.mascaraTelefone(txtTel);
+		Mascaras.mascaraCelular(txtCel);
 		Mascaras.mascaraCPF(txtCpfClien);
 		
 		grupoRadioButton();	

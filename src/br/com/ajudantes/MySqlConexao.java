@@ -13,9 +13,9 @@ public class MySqlConexao {
 		
 		String jdbc = "jdbc:mysql://";
 //		String ip = "10.107.134.60";
-		String ip = "10.107.144.26";
+//		String ip = "10.107.144.26";
 //		String ip = "10.107.134.54";
-//		String ip = "192.168.1.33";
+		String ip = "192.168.1.34";
 //		String ip = "10.107.140.14";
 		String db = "dbsmartgourmet";
 		String usuario = "root";
@@ -29,13 +29,10 @@ public class MySqlConexao {
 			c = DriverManager.getConnection(jdbc + ip + "/" + db + "?useSSL=false", usuario, senha);
 			
 		} catch (Exception e) {	
-			//e.printStackTrace();
-			
 			PopUpController erro = new PopUpController("ERRO", "ERRO AO CONECTAR COM O DATABASE", "Ok");
 			Janelas j = new Janelas();
 			j.abrirPopup("PopUp.fxml", new Stage(), "ERRO DE CONEXÃO", false, erro);
 		}
-
 		return c;	
 	}
 }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
@@ -37,11 +38,16 @@ public class PedidosController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		Mascaras.mascaraNumeroInteiro(txtPedido);
+		
 		preencherPedidos();
 		
 		txtPedido.textProperty().addListener(a -> {
 			if(!txtPedido.getText().isEmpty())
 				buscarPedido();
+			else
+				preencherPedidos();
 		});
 	}
 	

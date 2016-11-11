@@ -57,7 +57,6 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private ComboBox <Transportadora> cboTransp;
 	@FXML private ComboBox <TipoVeiculo> cboVeiculo;
 	
-	@FXML private Button btnBuscarPediAcom;
 	@FXML private Button btnEditarPediAcom;
 	@FXML private Button btnAtualizarPediAcomp;
 	@FXML private Button btnCancelarPediAcomp;
@@ -71,12 +70,12 @@ public class AcompanhamentoController implements Initializable{
 		preencherPedidosAcompanhamento();
 		popularComboBox();
 		
-		/*txtPediAcomp.textProperty().addListener(f ->{
+		txtPediAcomp.textProperty().addListener(f ->{
 			if(!txtPediAcomp.getText().isEmpty())
 				buscarPedido();
-		});*/
-		
-		btnBuscarPediAcom.setOnAction(b -> buscarPedido());
+			else
+				preencherPedidosAcompanhamento();
+		});
 		
 		tabEditAcomp.setDisable(true);
 		cboVeiculo.setDisable(true);
@@ -90,10 +89,7 @@ public class AcompanhamentoController implements Initializable{
 		
 		int codPedido = 0;
 		
-		System.out.println(txtPediAcomp.getText());
 		codPedido = Integer.parseInt(txtPediAcomp.getText());
-		
-		System.out.println(codPedido);
 		
 		List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(codPedido);
 		

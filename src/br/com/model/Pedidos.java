@@ -180,7 +180,7 @@ public class Pedidos {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlSelectPesqPedido = "SELECT * FROM tblPedido WHERE codPedido = ?";
+		String sqlSelectPesqPedido = "CALL pcd_filtro_pedido(?)";
 		
 		List <Pedidos> lstPediPesq = new ArrayList<>(); 
 		PreparedStatement parametros;
@@ -196,8 +196,25 @@ public class Pedidos {
 				Pedidos p = new Pedidos();
 				Cliente cl = new Cliente();
 				Status s = new Status();
-				VeiculoTransp v = new VeiculoTransp();
-		
+				TipoVeiculo tv = new TipoVeiculo();
+				Transportadora t = new Transportadora();
+				VeiculoTransp vt = new VeiculoTransp();
+				
+				vt.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
+				vt.setPlacaVeiculo(rs.getString("placaVeiculo"));
+				vt.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				vt.setCodTransportadora(rs.getInt("codTransportadora"));
+				
+				vt.setTransportadora(t);
+				
+				t.setCodTransportadora(rs.getInt("codTransportadora"));
+				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				t.setEmailTransportadora(rs.getString("emailTransportadora"));
+				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				t.setCodEndereco(rs.getInt("codEndereco"));
+				
 				cl.setCodCliente(rs.getInt("codCliente"));
 				cl.setNomeCliente(rs.getString("nomeCliente"));
 				cl.setCpfCliente(rs.getString("cpfCliente"));
@@ -211,10 +228,8 @@ public class Pedidos {
 				s.setCodStatus(rs.getInt("codStatus"));
 				s.setStatusPedido(rs.getString("statusPedido"));
 				
-				v.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
-				v.setPlacaVeiculo(rs.getString("placaVeiculo"));
-				v.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
-				v.setCodTransportadora(rs.getInt("codTransportadora"));
+				tv.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
 				
 				p.setCodPedido(rs.getInt("codPedido"));
 				p.setTipoPedido(rs.getString("tipoPedido"));
@@ -224,9 +239,11 @@ public class Pedidos {
 				p.setCodStatus(rs.getInt("codStatus"));
 				p.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
 				
+				p.setTipoVeiculo(tv);
+				p.setTransportadora(t);
 				p.setCliente(cl);
 				p.setStatus(s);
-				p.setVeiculoTransp(v);
+				p.setVeiculoTransp(vt);
 					
 				lstPediPesq.add(p);			
 			}
