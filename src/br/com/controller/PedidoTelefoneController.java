@@ -3,6 +3,7 @@ package br.com.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.DAO.ClienteDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class PedidoTelefoneController implements Initializable {
 		grupoRadioButton();	
 		
 		cboCliente.getItems().clear();
-		cboCliente.getItems().addAll(Cliente.selecionarTodosClientes());
+		cboCliente.getItems().addAll(ClienteDAO.selecionarTodosClientes());
 	}
 
 	public void grupoRadioButton() {

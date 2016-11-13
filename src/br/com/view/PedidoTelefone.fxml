@@ -32,13 +32,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtNomeClien" layoutY="95.0" prefWidth="210.0" styleClass="focus" />
+                        <TextField fx:id="txtNomeClien" layoutY="95.0" prefWidth="210.0" promptText="Digite o nome do cliente" styleClass="focus" />
                         <Label fx:id="lblCpfClien" layoutX="220.0" layoutY="75.0" text="Cpf Cliente">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCpfClien" layoutX="220.0" layoutY="95.0" prefWidth="100.0" styleClass="focus" />
+                        <TextField fx:id="txtCpfClien" layoutX="220.0" layoutY="95.0" prefWidth="100.0" promptText="000.000.000-00" styleClass="focus" />
                         <Label fx:id="lblDatNacClien" layoutX="330.0" layoutY="75.0" text="Data de Nascimento">
                            <font>
                               <Font size="14.0" />
@@ -56,56 +56,56 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtAltura" layoutX="531.0" layoutY="95.0" prefWidth="40.0" styleClass="focus" />
+                        <TextField fx:id="txtAltura" layoutX="531.0" layoutY="95.0" prefWidth="40.0" promptText="0.00" styleClass="focus" />
                         <Label fx:id="lblTelefone" layoutX="581.0" layoutY="75.0" text="Telefone">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtTel" layoutX="581.0" layoutY="95.0" prefWidth="100.0" styleClass="focus" />
+                        <TextField fx:id="txtTel" layoutX="581.0" layoutY="95.0" prefWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
                         <Label fx:id="lblCel" layoutX="691.0" layoutY="75.0" text="Celular">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCel" layoutX="691.0" layoutY="95.0" prefWidth="100.0" styleClass="focus" />
+                        <TextField fx:id="txtCel" layoutX="691.0" layoutY="95.0" prefWidth="100.0" promptText="(00)00000-0000" styleClass="focus" />
                         <Label fx:id="lblEmail" layoutY="135.0" text="Email">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtEmail" layoutY="155.0" prefWidth="200.0" styleClass="focus" />
-                        <Label fx:id="lblSexo" layoutX="211.0" layoutY="135.0" text="Sexo">
+                        <TextField fx:id="txtEmail" layoutY="155.0" prefWidth="210.0" promptText="Digite o email do cliente" styleClass="focus" />
+                        <Label fx:id="lblSexo" layoutX="225.0" layoutY="135.0" text="Sexo">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="rbSexoM" layoutX="210.0" layoutY="160.0" mnemonicParsing="false" text="M" />
-                        <RadioButton fx:id="rbSexoF" layoutX="263.0" layoutY="160.0" mnemonicParsing="false" text="F" />
-                        <Label layoutX="301.0" layoutY="135.0" text="Endereço">
+                        <RadioButton fx:id="rbSexoM" layoutX="224.0" layoutY="160.0" mnemonicParsing="false" text="M" />
+                        <RadioButton fx:id="rbSexoF" layoutX="277.0" layoutY="160.0" mnemonicParsing="false" text="F" />
+                        <Label layoutX="315.0" layoutY="135.0" text="Endereço">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="300.0" layoutY="155.0" prefWidth="200.0" styleClass="focus" />
-                        <Label layoutX="510.0" layoutY="135.0" text="Número">
+                        <TextField layoutX="314.0" layoutY="155.0" prefWidth="200.0" promptText="Rua, Av" styleClass="focus" />
+                        <Label layoutX="524.0" layoutY="135.0" text="Número">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="510.0" layoutY="155.0" prefWidth="55.0" styleClass="focus" />
-                        <Label layoutX="575.0" layoutY="135.0" text="Cep">
+                        <TextField layoutX="524.0" layoutY="155.0" prefWidth="55.0" styleClass="focus" />
+                        <Label layoutX="589.0" layoutY="135.0" text="Cep">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="575.0" layoutY="155.0" styleClass="focus" />
+                        <TextField layoutX="589.0" layoutY="155.0" promptText="00000-000" styleClass="focus" />
                         <Label layoutY="196.0" text="Bairro">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutY="216.0" prefWidth="200.0" styleClass="focus" />
+                        <TextField layoutY="216.0" prefWidth="200.0" promptText="Digite o bairro" styleClass="focus" />
                         <Label layoutX="210.0" layoutY="196.0" text="Complemento">
                            <font>
                               <Font size="14.0" />
@@ -117,15 +117,15 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="380.0" layoutY="216.0" prefWidth="200.0" styleClass="focus" />
+                        <ComboBox layoutX="380.0" layoutY="216.0" prefWidth="200.0" promptText="Secione um estado" styleClass="focus" />
                         <Label layoutX="590.0" layoutY="196.0" text="Cidade">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="590.0" layoutY="216.0" prefWidth="200.0" styleClass="focus" />
-                        <Separator layoutX="5.0" layoutY="256.0" prefHeight="1.0" prefWidth="665.0" />
-                        <Label fx:id="lblCpfDoClien" layoutY="267.0" text="Cpf do Cliente">
+                        <ComboBox layoutX="590.0" layoutY="216.0" prefWidth="200.0" promptText="Selecione uma cidade" styleClass="focus" />
+                        <Separator layoutX="5.0" layoutY="256.0" prefHeight="1.0" prefWidth="780.0" />
+                        <Label fx:id="lblCpfDoClien" layoutY="267.0" text="Nome do Cliente">
                            <font>
                               <Font size="14.0" />
                            </font>

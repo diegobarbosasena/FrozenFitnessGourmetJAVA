@@ -1,14 +1,18 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
 import br.com.view.Janelas;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,6 +45,8 @@ public class PedidosController implements Initializable{
 		
 		Mascaras.mascaraNumeroInteiro(txtPedido);
 		
+		
+		
 		preencherPedidos();
 		
 		txtPedido.textProperty().addListener(a -> {
@@ -53,7 +59,7 @@ public class PedidosController implements Initializable{
 	
 	public void buscarPedido() {
 		
-		List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
+		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
 			
 		if (lstPediFilt.isEmpty()){
 				
@@ -73,12 +79,28 @@ public class PedidosController implements Initializable{
 		
 		tcCodPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("codPedido"));
 		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("tipoPedido"));
-		tcDtEntr.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtEntrega"));
-		tcDtComp.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("dtCompra"));
+		
+		tcDtEntr.setCellValueFactory( 
+			
+			dtEntrega -> {
+				SimpleStringProperty propriedade = new SimpleStringProperty();
+				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+				propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
+				return propriedade;
+		});
+		
+		tcDtComp.setCellValueFactory( 
+				dtCompra -> {
+					SimpleStringProperty propriedade = new SimpleStringProperty();
+					DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+					propriedade.setValue(dF.format(dtCompra.getValue().getDtCompra()));
+					return propriedade;
+		});
+			
 		tcClien.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
 		tcStatus.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		
-		List<Pedidos> lstPedido = Pedidos.selecionarTodosPedidos();
+		List<Pedidos> lstPedido = PedidosDAO.selecionarTodosPedidos();
 		
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);

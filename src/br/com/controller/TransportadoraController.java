@@ -3,8 +3,11 @@ package br.com.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Stream;
 
+import br.com.DAO.CidadeDAO;
+import br.com.DAO.EnderecoDAO;
+import br.com.DAO.EstadoDAO;
+import br.com.DAO.TransportadoraDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cidade;
 import br.com.model.Endereco;
@@ -13,9 +16,7 @@ import br.com.model.Transportadora;
 import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,25 +30,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class TransportadoraController implements Initializable {
 	
-	@FXML private AnchorPane acpTransp;
-	
+	@FXML private AnchorPane acpTransp;	
 	@FXML private TextField txtBuscaTrans;
 	@FXML private Button btnBuscaTrans;
 	@FXML private Button btnNovaTransportadora;
 	@FXML private Button btnEditarTrans;
 	@FXML private Button btnExcluirTrans;
-	
 	@FXML private TabPane tpTransp;
 	@FXML private Tab tabVisualizar;
 	@FXML private Tab tabCadastrar;
-	
 	@FXML private TableView <Transportadora> tvTransp;
 	@FXML private TableColumn <Transportadora, String> clnTransp;
 	@FXML private TableColumn <Transportadora, String> clnCnpj;
@@ -55,7 +51,6 @@ public class TransportadoraController implements Initializable {
 	@FXML private TableColumn <Transportadora, String> clnFone;
 	@FXML private TableColumn <Transportadora, String> clnResp;
 	@FXML private TableColumn <Transportadora, Endereco> clnEndereco;
-	
 	@FXML private Label lblEdicaoCadas;
 	@FXML private Label lblNomeTrans;
 	@FXML private TextField txtNomeTrans;
@@ -75,16 +70,12 @@ public class TransportadoraController implements Initializable {
 	@FXML private TextField txtCepTransp;
 	@FXML private Label lblBairroTransp;
 	@FXML private TextField txtBairroTransp;
-	
 	@FXML private Label lblComplementoTransp;
 	@FXML private TextField txtComplementoTransp;
-	
 	@FXML private Label lblCidadeTransp;
 	@FXML private ComboBox <Cidade> cboCidadeTransp;
-	
 	@FXML private Label lblEstadoTransp;
 	@FXML private ComboBox <Estado> cboEstadoTransp;
-	
 	@FXML private Button btnCadastrarTrans;
 	@FXML private Button btnConcluido;
 	@FXML private Button btnCancelarTransp;
@@ -117,17 +108,14 @@ public class TransportadoraController implements Initializable {
 		btnNovaTransportadora.setOnAction(b -> nova());
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());
-		
-		comboBoxEstadoAutoComplete(cboEstadoTransp);
-		comboBoxCidadeAutoComplete(cboCidadeTransp);
 	}
 
 	public void popularComboBox() {
 		cboCidadeTransp.getItems().clear();
-		cboCidadeTransp.getItems().addAll(Cidade.selecionarTodasCidades());
+		cboCidadeTransp.getItems().addAll(CidadeDAO.selecionarTodasCidades());
 		
 		cboEstadoTransp.getItems().clear();
-		cboEstadoTransp.getItems().addAll(Estado.selecionarTodosEstados());
+		cboEstadoTransp.getItems().addAll(EstadoDAO.selecionarTodosEstados());
 		
 		cboEstadoTransp.valueProperty().addListener(new ChangeListener<Estado>() {
 			@Override
@@ -135,7 +123,7 @@ public class TransportadoraController implements Initializable {
 				cboCidadeTransp.getItems().clear();
 				
 				if(cboEstadoTransp.getSelectionModel().getSelectedItem() !=null){
-					List<Cidade> uf = Cidade.filtrarCidade(cboEstadoTransp.getSelectionModel().getSelectedItem().getUf());
+					List<Cidade> uf = CidadeDAO.filtrarCidade(cboEstadoTransp.getSelectionModel().getSelectedItem().getUf());
 				
 					cboCidadeTransp.getItems().addAll(uf);
 				}
@@ -143,101 +131,6 @@ public class TransportadoraController implements Initializable {
 		});
 	}
 	
-	
-	public void comboBoxCidadeAutoComplete(ComboBox<Cidade> cboCidadeTransp) {
-		
-		cidades = FXCollections.observableArrayList(cboCidadeTransp.getItems());
-		cboCidadeTransp.setTooltip(new Tooltip());
-		cboCidadeTransp.setOnKeyPressed(this::handleOnKeyPressedCidade);
-		cboCidadeTransp.setOnHidden(this::handleOnHidingCidade);
-	}
-
-	public void handleOnKeyPressedCidade(KeyEvent e) {
-		ObservableList<Cidade> filteredListCidade = FXCollections.observableArrayList();
-		KeyCode code = e.getCode();
-
-		if (code.isLetterKey()) {
-			filter_cidade += e.getText();
-		}
-		if (code == KeyCode.BACK_SPACE && filter_cidade.length() > 0) {
-			filter_cidade = filter_cidade.substring(0, filter_cidade.length() - 1);
-			cboCidadeTransp.getItems().setAll(cidades);
-		}
-		if (code == KeyCode.ESCAPE) {
-			filter_cidade = "";
-		}
-		if (filter_cidade.length() == 0) {
-			filteredListCidade = cidades;
-			cboCidadeTransp.getTooltip().hide();
-		} else {
-			Stream<Cidade> itens_cidade = cboCidadeTransp.getItems().stream();
-			String txtUsrCidade = filter_cidade.toString().toLowerCase();
-			itens_cidade.filter(el -> el.toString().toLowerCase().contains(txtUsrCidade)).forEach(filteredListCidade::add);
-			cboCidadeTransp.getTooltip().setText(txtUsrCidade);
-			Window stage = cboCidadeTransp.getScene().getWindow();
-			double posX = stage.getX() + cboCidadeTransp.getBoundsInParent().getMinX();
-			double posY = stage.getY() + cboCidadeTransp.getBoundsInParent().getMinY();
-			cboCidadeTransp.getTooltip().show(stage, posX, posY);
-			cboCidadeTransp.show();
-		}
-		cboCidadeTransp.getItems().setAll(filteredListCidade);
-	}
-
-	public void handleOnHidingCidade(Event e) {
-		filter_cidade = "";
-		cboCidadeTransp.getTooltip().hide();
-		Cidade s = cboCidadeTransp.getSelectionModel().getSelectedItem();
-		cboCidadeTransp.getItems().setAll(cidades);
-		cboCidadeTransp.getSelectionModel().select(s);
-	}
-
-	
-	public void comboBoxEstadoAutoComplete(ComboBox<Estado> cboEstadoTransp) {
-		
-		estados = FXCollections.observableArrayList(cboEstadoTransp.getItems());
-		cboEstadoTransp.setTooltip(new Tooltip());
-		cboEstadoTransp.setOnKeyPressed(this::handleOnKeyPressedEstado);
-		cboEstadoTransp.setOnHidden(this::handleOnHidingEstado);
-	}
-
-	public void handleOnKeyPressedEstado(KeyEvent e) {
-		ObservableList<Estado> filteredListEstado = FXCollections.observableArrayList();
-		KeyCode code1 = e.getCode();
-
-		if (code1.isLetterKey()) {
-			filter_estado += e.getText();
-		}
-		if (code1 == KeyCode.BACK_SPACE && filter_estado.length() > 0) {
-			filter_estado = filter_estado.substring(0, filter_estado.length() - 1);
-			cboEstadoTransp.getItems().setAll(estados);
-		}
-		if (code1 == KeyCode.ESCAPE) {
-			filter_estado = "";
-		}
-		if (filter_estado.length() == 0) {
-			filteredListEstado = estados;
-			cboCidadeTransp.getTooltip().hide();
-		} else {
-			Stream<Estado> itens = cboEstadoTransp.getItems().stream();
-			String txtUsrEstado = filter_estado.toString().toLowerCase();
-			itens.filter(el -> el.toString().toLowerCase().contains(txtUsrEstado)).forEach(filteredListEstado::add);
-			cboEstadoTransp.getTooltip().setText(txtUsrEstado);
-			Window stage = cboEstadoTransp.getScene().getWindow();
-			double posX = stage.getX() + cboEstadoTransp.getBoundsInParent().getMinX();
-			double posY = stage.getY() + cboEstadoTransp.getBoundsInParent().getMinY();
-			cboEstadoTransp.getTooltip().show(stage, posX, posY);
-			cboEstadoTransp.show();
-		}
-		cboEstadoTransp.getItems().setAll(filteredListEstado);
-	}
-	
-	public void handleOnHidingEstado(Event e) {
-		filter_estado = "";
-		cboEstadoTransp.getTooltip().hide();
-		Estado esta = cboEstadoTransp.getSelectionModel().getSelectedItem();
-		cboEstadoTransp.getItems().setAll(estados);
-		cboEstadoTransp.getSelectionModel().select(esta);
-	}
 	
 	
 	public void preencherTransportadora(){
@@ -250,7 +143,7 @@ public class TransportadoraController implements Initializable {
 		
 		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, Endereco>("endereco"));
 		
-		List<Transportadora> lst = Transportadora.selecionarTodas();
+		List<Transportadora> lst = TransportadoraDAO.selecionarTodas();
 		
 		tvTransp.getItems().clear();
 		tvTransp.getItems().addAll(lst);
@@ -347,7 +240,7 @@ public class TransportadoraController implements Initializable {
 				novaTrans.setResponsavelTransportadora(txtResponsavelTransp.getText());
 				novaTrans.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
-				if(Endereco.insertEndereco(novoEnde) && Transportadora.insertTransportadora(novaTrans)){
+				if(EnderecoDAO.insertEndereco(novoEnde) && TransportadoraDAO.insertTransportadora(novaTrans)){
 					
 					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
 					Janelas jn = new Janelas();
@@ -497,14 +390,13 @@ public class TransportadoraController implements Initializable {
 				)
 		){	
 			
-			System.out.println("nao");
 			PopUpController erro = new PopUpController("ERRO", "Preencha Todos os campos", "Fechar");
 			Janelas e = new Janelas();
 			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 		}
 		else{
 			
-			if(Transportadora.update(up) && Endereco.updateEnde(upEn)){
+			if(TransportadoraDAO.update(up) && EnderecoDAO.updateEnde(upEn)){
 				
 				limparTrans();
 				
@@ -557,9 +449,9 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 		
-			if(Transportadora.deleteTransp(t.getCodTransportadora())){
+			if(TransportadoraDAO.deleteTransp(t.getCodTransportadora()) ){
 				
-				Endereco.deleteEnde(t.getEndereco().getCodEndereco());
+				EnderecoDAO.deleteEnde(t.getEndereco().getCodEndereco());
 				
 				PopUpController erro = new PopUpController("SUCESSO", "Transportadora excluída com sucesso!", "OK");
 				Janelas j = new Janelas();
@@ -577,7 +469,7 @@ public class TransportadoraController implements Initializable {
 	
 	public void buscarTransportadora() {
 		
-		List<Transportadora> lstTransFilt = Transportadora.filtrar("%"+txtBuscaTrans.getText()+"%");
+		List<Transportadora> lstTransFilt = TransportadoraDAO.filtrar("%"+txtBuscaTrans.getText()+"%");
 			
 		if (lstTransFilt.isEmpty()){
 				

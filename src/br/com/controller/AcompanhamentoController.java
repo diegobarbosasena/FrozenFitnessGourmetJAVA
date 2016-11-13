@@ -4,6 +4,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.DAO.PedidosDAO;
+import br.com.DAO.StatusDAO;
+import br.com.DAO.TipoVeiculoDAO;
+import br.com.DAO.TransportadoraDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
@@ -31,32 +35,26 @@ import javafx.stage.Stage;
 public class AcompanhamentoController implements Initializable{
 	
 	@FXML private AnchorPane anpAcompanhamento;
-	
 	@FXML private TabPane tpAcomp;
 	@FXML private Tab tabVisuaAcomp;
 	@FXML private Tab tabEditAcomp;
-	
 	@FXML private TextField txtPediAcomp;
 	@FXML private TextField txtCodPediAcomp;
 	@FXML private TextField txtNomeClienAcomp;
-	
 	@FXML private TableView <Pedidos> tvPedidosAcompa;
 	@FXML private TableColumn <Pedidos, Integer> tcCodPedAcomp;
 	@FXML private TableColumn <Pedidos, Cliente> tcClientePedAcomp;
 	@FXML private TableColumn <Pedidos, Status> tcStatusAcomp;
 	@FXML private TableColumn <Pedidos, Transportadora> tcTranspAcomp;
 	@FXML private TableColumn <Pedidos, TipoVeiculo> tcVeiculoAcomp;
-	
 	@FXML private Label lblCodPed;
 	@FXML private Label lblNomeClien;
 	@FXML private Label lblStatus;
 	@FXML private Label lblTransp;
 	@FXML private Label lblVeículo;
-	
 	@FXML private ComboBox <Status> cboStatus;
 	@FXML private ComboBox <Transportadora> cboTransp;
 	@FXML private ComboBox <TipoVeiculo> cboVeiculo;
-	
 	@FXML private Button btnEditarPediAcom;
 	@FXML private Button btnAtualizarPediAcomp;
 	@FXML private Button btnCancelarPediAcomp;
@@ -91,7 +89,7 @@ public class AcompanhamentoController implements Initializable{
 		
 		codPedido = Integer.parseInt(txtPediAcomp.getText());
 		
-		List<Pedidos> lstPediFilt = Pedidos.filtrarPedidos(codPedido);
+		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(codPedido);
 		
 		if (lstPediFilt.isEmpty()){
 				
@@ -100,6 +98,7 @@ public class AcompanhamentoController implements Initializable{
 			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
 				
 			lstPediFilt.clear();
+			txtPediAcomp.clear();
 			preencherPedidosAcompanhamento();
 		}
 		else{
@@ -117,7 +116,7 @@ public class AcompanhamentoController implements Initializable{
 		tcTranspAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Transportadora>("transportadora"));
 		tcVeiculoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, TipoVeiculo>("tipoVeiculo"));
 	
-		List<Pedidos> lstPedidos = Pedidos.selecionarTodosPedidos();
+		List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();
 		
 		tvPedidosAcompa.getItems().clear();
 		tvPedidosAcompa.getItems().addAll(lstPedidos);
@@ -155,7 +154,7 @@ public class AcompanhamentoController implements Initializable{
 			
 			popularComboBox();
 		
-			txtCodPediAcomp.setText(pdAcom.getCodPedido()+"");
+			txtCodPediAcomp.setText(String.valueOf(pdAcom.getCodPedido()));
 			txtNomeClienAcomp.setText(pdAcom.getCliente().getNomeCliente());
 			
 			for(int i=0 ; i < cboStatus.getItems().size();i++){
@@ -168,8 +167,7 @@ public class AcompanhamentoController implements Initializable{
 				}
 			}
 		}
-		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());
-			
+		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());		
 	}
 
 	private void atualizarPedido() {
@@ -198,7 +196,7 @@ public class AcompanhamentoController implements Initializable{
 			upPedi.setCodVeiculoTransp(codVeic);
 		}
 		
-		if(Pedidos.updatePedido(codVeic, codPed, codStat)){
+		if(PedidosDAO.updatePedido(codVeic, codPed, codStat)){
 			
 			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
 			Janelas j = new Janelas();
@@ -239,12 +237,12 @@ public class AcompanhamentoController implements Initializable{
 		
 		if(cboStatus != null){
 			cboStatus.getItems().clear();
-			cboStatus.getItems().addAll(Status.selecionarTodosStatus());
+			cboStatus.getItems().addAll(StatusDAO.selecionarTodosStatus());
 		}
 		
 		if(cboTransp != null){
 			cboTransp.getItems().clear();
-			cboTransp.getItems().addAll(Transportadora.selecionarTodas());
+			cboTransp.getItems().addAll(TransportadoraDAO.selecionarTodas());
 		}
 		
 		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
@@ -280,7 +278,7 @@ public class AcompanhamentoController implements Initializable{
 					lblVeículo.setDisable(false);
 					cboVeiculo.setDisable(false);
 					
-					List<TipoVeiculo> nomeVeiculo = TipoVeiculo.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
+					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
 					
 					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);
@@ -302,6 +300,5 @@ public class AcompanhamentoController implements Initializable{
 		cboStatus.getSelectionModel().clearSelection();
 		
 	}
-
 
 }
