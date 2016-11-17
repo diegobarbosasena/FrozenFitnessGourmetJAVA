@@ -1,6 +1,8 @@
 package br.com.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,4 +45,60 @@ public class ClienteDAO {
 		}
 		return lstCliente;
 	}
+
+	public static boolean inserirCliente(Cliente cliente){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlInsertCliente = "INSERT INTO tblCliente "
+				+ "(nomeCliente, cpfCliente, dtNascCliente, peso, altura, telefoneCliente, celularCliente, emailCliente, sexo) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?); ";
+		
+		try {
+			PreparedStatement parametros = c.prepareStatement(sqlInsertCliente);
+			
+			parametros.setString(1, cliente.getNomeCliente());
+			parametros.setString(2, cliente.getCpfCliente());
+			parametros.setDate(3, (Date) cliente.getDtNascCliente());
+			parametros.setFloat(4, cliente.getPeso());
+			parametros.setFloat(5, cliente.getAltura());
+			parametros.setString(6, cliente.getTelefoneCliente());
+			parametros.setString(7, cliente.getCelularCliente());
+			parametros.setString(8, cliente.getEmailCliente());
+			
+			parametros.executeUpdate();
+			
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteCliente (int codCliente ){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlDeletarCliente = "DELETE FROM tblCliente  WHERE codCliente ? ;" ;
+		
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlDeletarCliente);
+			parametros.setInt(1, codCliente);
+			parametros.executeUpdate();
+		
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}	
+	}
+		
 }
