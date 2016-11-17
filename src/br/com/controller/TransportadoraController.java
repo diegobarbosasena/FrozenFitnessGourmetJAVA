@@ -132,7 +132,6 @@ public class TransportadoraController implements Initializable {
 	}
 	
 	
-	
 	public void preencherTransportadora(){
 		
 		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));

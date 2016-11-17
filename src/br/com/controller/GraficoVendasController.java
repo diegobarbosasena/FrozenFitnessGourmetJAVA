@@ -1,13 +1,8 @@
 package br.com.controller;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.com.model.Pedidos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -49,8 +44,7 @@ public class GraficoVendasController implements Initializable {
 		rbPeriodo.setOnAction(p -> preencherGraficoPeriodo());
 		
 		xEixo.tickLabelFontProperty().set(Font.font(14));
-		brcGrafVendas.setTitle("Gráfico de Vendas");
-		
+		brcGrafVendas.setTitle("Gráfico de Vendas");	
 	}
 	
 	public void radioButtonGroup() {
@@ -64,6 +58,7 @@ public class GraficoVendasController implements Initializable {
 	
 	private void preencherGraficoSemanal() {
 		
+		limpaData();
 		desabilitaAbilitaData(true);
 		
 		XYChart.Data<String, Number> perdaPeso = new XYChart.Data<String, Number>("Perda de Peso", 18.156);	
@@ -87,6 +82,7 @@ public class GraficoVendasController implements Initializable {
 	
 	private void preencherGraficoTrimestral() {
 		
+		limpaData();
 		desabilitaAbilitaData(true);
 		
 		XYChart.Data<String, Number> perdaPeso = new XYChart.Data<String, Number>("Perda de Peso", 500.100);
@@ -110,6 +106,7 @@ public class GraficoVendasController implements Initializable {
 
 	private void preencherGraficoMensal() {
 		
+		limpaData();
 		desabilitaAbilitaData(true);
 		
 		XYChart.Data<String, Number> perdaPeso = new XYChart.Data<String, Number>("Perda de Peso", 150.102);
@@ -137,12 +134,17 @@ public class GraficoVendasController implements Initializable {
 		desabilitaAbilitaData(false);
 	}
 
-	public void desabilitaAbilitaData(boolean falso) {
+	private void desabilitaAbilitaData(boolean falso) {
 		
 		dtpInicio.setDisable(falso);
 		dtpFim.setDisable(falso);
 		lblDtInicial.setDisable(falso);
 		lblDtFim.setDisable(falso);
+	}
+	
+	private void limpaData(){
+		dtpInicio.setValue(null);
+		dtpFim.setValue(null);
 	}
 	
 	/*public void writeExcel() throws Exception {

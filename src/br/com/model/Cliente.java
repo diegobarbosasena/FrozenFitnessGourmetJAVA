@@ -72,7 +72,7 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return nomeCliente ;
+		return "Nome: " + nomeCliente + ", Cpf: " + cpfCliente + "";
 	}
 	
 }

@@ -200,6 +200,7 @@ public class PedidosDAO {
 			}
 				
 		}
+		
 		else if (codVeic == null) {
 			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = null WHERE codPedido = ? ;";
 			
