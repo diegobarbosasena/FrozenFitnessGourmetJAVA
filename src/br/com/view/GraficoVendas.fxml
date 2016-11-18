@@ -45,7 +45,7 @@
                   </Label>
                   <DatePicker fx:id="dtpInicio" disable="true" layoutX="344.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" />
                   <DatePicker fx:id="dtpFim" disable="true" layoutX="464.0" layoutY="27.0" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="focus" />
-                  <Button fx:id="btnRelatorio" layoutX="585.0" layoutY="26.0" mnemonicParsing="false" styleClass="botao" text="Gerar Relátorio">
+                  <Button fx:id="btnRelatorio" layoutX="585.0" layoutY="26.0" mnemonicParsing="false" styleClass="botao" text="Gerar Relatório">
                      <font>
                         <Font size="14.0" />
                      </font>
