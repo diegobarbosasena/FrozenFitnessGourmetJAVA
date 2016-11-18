@@ -57,7 +57,7 @@ public class PedidosController implements Initializable{
 		});
 	}
 	
-	public void buscarPedido() {
+	private void buscarPedido() {
 		
 		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
 			
@@ -106,6 +106,4 @@ public class PedidosController implements Initializable{
 		tvPedidos.getItems().addAll(lstPedido);
 	}
 	
-	
-
 }

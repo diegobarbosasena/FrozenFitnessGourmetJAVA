@@ -44,7 +44,7 @@ public class LoginController implements Initializable{
 	}
 	
 	@FXML
-	public void login() {
+	private void login() {
 
 		if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
 			
@@ -66,7 +66,7 @@ public class LoginController implements Initializable{
 			limparLogin();
 		}
 	}
-	public void limparLogin(){
+	private void limparLogin(){
 		txtUsuario.clear();
 		txtSenha.clear();
 	}

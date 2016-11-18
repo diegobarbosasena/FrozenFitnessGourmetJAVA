@@ -197,7 +197,7 @@ public class TransportadoraController implements Initializable {
 		});	
 	}
 	
-	public void inserirTransportadora() {
+	private void inserirTransportadora() {
 		
 		if(!modoEdicao){
 			
@@ -350,7 +350,7 @@ public class TransportadoraController implements Initializable {
 		return preenchido;
 	}
 	
-	private void atualizar(){
+	public void atualizar(){
 		
 		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		
@@ -506,8 +506,7 @@ public class TransportadoraController implements Initializable {
 		txtEmailTrans.clear();
 		txtNomeTrans.clear();
 		txtResponsavelTransp.clear();
-		txtTelefoneTrans.clear();
-		
+		txtTelefoneTrans.clear();	
 		txtBairroTransp.clear();
 		txtCepTransp.clear();
 		txtComplementoTransp.clear();
@@ -518,5 +517,4 @@ public class TransportadoraController implements Initializable {
 		cboEstadoTransp.valueProperty().set(null);
 	}
 
-	
 }

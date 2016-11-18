@@ -5,7 +5,6 @@ public class TipoVeiculo {
 	private int codTipoVeiculo;
 	private String nomeTipoVeiculo;
 	
-	
 	public int getCodTipoVeiculo() {
 		return codTipoVeiculo;
 	}

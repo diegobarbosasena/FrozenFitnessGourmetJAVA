@@ -9,7 +9,7 @@ public class Estoque {
 	private int qtd;
 	private int qtdMin;
 	
-	
+
 	public int getCodEstoque() {
 		return codEstoque;
 	}
@@ -35,6 +35,4 @@ public class Estoque {
 		this.qtdMin = qtdMin;
 	}
 	
-	
-
 }

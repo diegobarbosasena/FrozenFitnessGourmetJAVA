@@ -24,6 +24,7 @@ public class TransportadoraDAO {
 				+ "ORDER BY codTransportadora DESC ;";
 	
 		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
+		
 		PreparedStatement parametros;
 		
 		try {
@@ -77,6 +78,7 @@ public class TransportadoraDAO {
 		List <Transportadora> lstTransp = new ArrayList<>(); 
 		
 		ResultSet rs;
+		
 		try {
 			rs = c.createStatement().executeQuery(sqlSelect);
 
@@ -161,8 +163,7 @@ public class TransportadoraDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();	
 			return false;
-		}
-			
+		}	
 	}
 	
 	public static boolean update(Transportadora up){

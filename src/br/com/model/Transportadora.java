@@ -55,7 +55,6 @@ public class Transportadora {
 		this.codEndereco = codEndereco;
 	}
 	
-	
 	public Endereco getEndereco() {
 		return endereco;
 	}

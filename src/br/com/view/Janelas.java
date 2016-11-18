@@ -14,6 +14,7 @@ public class Janelas{
 	public void abrir(String arquivo, Stage primaryStage, String titulo, boolean redimensionar) {
 
 		Parent root;
+		
 		try {
 			root = FXMLLoader.load(getClass().getResource(arquivo));
 			primaryStage.setScene( new Scene(root));

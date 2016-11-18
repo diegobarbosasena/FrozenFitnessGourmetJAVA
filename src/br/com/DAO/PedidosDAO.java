@@ -82,8 +82,7 @@ public class PedidosDAO {
 				p.setCliente(cl);
 				p.setStatus(s);
 				p.setVeiculoTransp(vt);
-				
-				
+							
 				lstPedidos.add(p);
 			}
 		} catch (SQLException e) {
@@ -197,8 +196,7 @@ public class PedidosDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();	
 				return false;	
-			}
-				
+			}		
 		}
 		
 		else if (codVeic == null) {
@@ -242,6 +240,5 @@ public class PedidosDAO {
 				return false;	
 			}
 		}
-
 	}
 }

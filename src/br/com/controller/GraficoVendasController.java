@@ -1,8 +1,11 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import br.com.ajudantes.MySqlConexao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -15,6 +18,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class GraficoVendasController implements Initializable {
 	
@@ -44,10 +51,12 @@ public class GraficoVendasController implements Initializable {
 		rbPeriodo.setOnAction(p -> preencherGraficoPeriodo());
 		
 		xEixo.tickLabelFontProperty().set(Font.font(14));
-		brcGrafVendas.setTitle("Gráfico de Vendas");	
+		brcGrafVendas.setTitle("Gráfico de Vendas");
+		
+		btnRelatorio.setOnAction(r -> gerarRelatorio());
 	}
 	
-	public void radioButtonGroup() {
+	private void radioButtonGroup() {
 		final ToggleGroup tgFiltrar = new ToggleGroup();
 		
 		rbMensal.setToggleGroup(tgFiltrar);
@@ -168,5 +177,17 @@ public class GraficoVendasController implements Initializable {
 	        writer.close();
 	    } 
 	}*/
-	
+	public void gerarRelatorio(){
+		
+		try {
+			Connection c = MySqlConexao.ConectarDb();
+			HashMap parametro = new HashMap();
+			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_semanal.jasper", parametro, c);
+			JasperViewer jw = new JasperViewer(jp);
+			jw.setVisible(true);
+			
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+	}
 }

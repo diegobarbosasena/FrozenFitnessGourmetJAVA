@@ -18,7 +18,6 @@ public class Pedidos {
 	private Transportadora transportadora;
 	private TipoVeiculo tipoVeiculo;
 
-
 	public int getCodPedido() {
 		return codPedido;
 	}
@@ -96,6 +95,5 @@ public class Pedidos {
 	public String toString() {
 		return String.valueOf(codPedido) ;
 	}
-	
 	
 }

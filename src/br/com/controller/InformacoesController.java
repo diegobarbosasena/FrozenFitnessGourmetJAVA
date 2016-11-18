@@ -53,7 +53,7 @@ public class InformacoesController implements Initializable{
 		t.start();
 	}
 	
-	public void sair() {
+	private void sair() {
 		Janelas login = new Janelas();
 		login.abrir("Login.fxml", new Stage(), "Login", false);
 		

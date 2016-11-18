@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LayoutController">
+   <children>
+      <SplitPane dividerPositions="0.06224899598393574" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+               <children>
+                  <MenuBar layoutY="4.0" style="-fx-background-color: #FFF;">
+                    <menus>
+                      <Menu fx:id="mnVisualizar" mnemonicParsing="false" text="Visualizar">
+                        <items>
+                          <MenuItem fx:id="miPedidoTel" mnemonicParsing="false" text="Pedido por telefone" />
+                          <MenuItem fx:id="miPedidos" mnemonicParsing="false" text="Pedidos" />
+                          <MenuItem fx:id="miAcompa" mnemonicParsing="false" text="Acompanhamento" />
+                          <MenuItem fx:id="miVendas" mnemonicParsing="false" text="Vendas" />
+                          <MenuItem fx:id="miRelatorios" mnemonicParsing="false" text="Relatórios" />
+                          <MenuItem fx:id="miFatura" mnemonicParsing="false" text="Faturamento" />
+                          <MenuItem fx:id="miGrafiVendas" mnemonicParsing="false" text="Gráfico de Vendas" />
+                          <MenuItem fx:id="miTransp" mnemonicParsing="false" text="Transportadoras" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <SplitPane dividerPositions="0.27" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <fx:include fx:id="anpInfo" source="Informacoes.fxml" />
+                        <AnchorPane>
+                           <children>
+                              <TabPane fx:id="tpDesk" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                <tabs>
+                                    <Tab text="Pedido por telelefone">
+                                      <content>
+                                        <fx:include fx:id="anpPedidosTelefone" source="PedidoTelefone.fxml" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Pedidos">
+                                      <content>
+                                      	<fx:include fx:id="anpPedidos" source="Pedidos.fxml" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Acompanhamento">
+                                      <content>
+                                        <fx:include fx:id="anpAcompanhamento" source="Acompanhamento.fxml" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Vendas">
+                                       <content>
+                                          <AnchorPane />
+                                       </content>
+                                    </Tab>
+                                    <Tab text="Relatórios">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Faturamento">
+                                      <content>
+                                        <AnchorPane />
+                                      </content>
+                                    </Tab>
+                                  <Tab text="Gráfico de Vendas">
+                                    <content>
+                                      <fx:include fx:id="anpGrafVendas" source="GraficoVendas.fxml" /> 
+                                    </content>
+                                  </Tab>
+                                  <Tab fx:id="tabTransp" text="Transportadoras">
+                                    <content>
+                                      <fx:include fx:id="acpTransp" source="Transportadora.fxml" /> 
+                                    </content>
+                                  </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
+</AnchorPane>

@@ -15,6 +15,7 @@ import br.com.model.VeiculoTransp;
 public class TipoVeiculoDAO {
 	
 	public static List<TipoVeiculo> selecionarTodos(){
+		
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT * FROM tblTipoVeiculo ";
@@ -55,6 +56,7 @@ public class TipoVeiculoDAO {
 				+ "WHERE t.nomeTransportadora = ? ;";
 		
 		List <TipoVeiculo> lstVeicuTranspFiltro = new ArrayList<>(); 
+		
 		PreparedStatement parametros;
 		
 		try {
@@ -75,8 +77,7 @@ public class TipoVeiculoDAO {
 				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
 				
 				vt.setTransportadora(t);
-				
-				
+						
 				lstVeicuTranspFiltro.add(tv);			
 			}
 			c.close();

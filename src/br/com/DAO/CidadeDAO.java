@@ -94,6 +94,5 @@ public static List<Cidade> selecionarTodasCidades(){
 		}	
 		return lstCidadePesq;
 	}
-	
-	
+		
 }

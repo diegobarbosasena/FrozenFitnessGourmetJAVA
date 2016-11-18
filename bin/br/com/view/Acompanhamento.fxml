@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anpAcompanhamento" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.AcompanhamentoController">
+   <children>
+      <TabPane fx:id="tpAcomp" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <tabs>
+          <Tab fx:id="tabVisuaAcomp" text="Visualizar">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <SplitPane dividerPositions="0.1424802110817942" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <items>
+                              <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" SplitPane.resizableWithParent="false">
+                                 <children>
+                                    <TextField fx:id="txtPediAcomp" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
+                                    <Button fx:id="btnEditarPediAcom" layoutX="221.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane>
+                                 <children>
+                                    <TableView fx:id="tvPedidosAcompa" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <columns>
+                                          <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Cod. Pedido" />
+                                          <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />
+                                          <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Status" />
+                                          <TableColumn fx:id="tcTranspAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Transportadora" />
+                                          <TableColumn fx:id="tcVeiculoAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Veículo" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab fx:id="tabEditAcomp" text="Editar">
+               <content>
+                  <AnchorPane style="-fx-background-color: #FFF;">
+                     <children>
+                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Pane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #FFF;">
+                                       <children>
+                                          <Label fx:id="lblCodPed" disable="true" layoutY="2.0" text="Cod Pedido" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtCodPediAcomp" disable="true" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Label fx:id="lblNomeClien" disable="true" layoutX="271.0" layoutY="2.0" text="Nome do Cliente" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNomeClienAcomp" disable="true" layoutX="271.0" layoutY="22.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Label fx:id="lblStatus" layoutY="67.0" text="Status" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboStatus" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Label fx:id="lblTransp" layoutX="271.0" layoutY="67.0" text="Transportadora" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboTransp" disable="true" layoutX="271.0" layoutY="88.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Label fx:id="lblVeículo" layoutX="3.0" layoutY="141.0" text="Veículo" textFill="#666666">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboVeiculo" disable="true" layoutY="162.0" minWidth="210.0" prefWidth="210.0" styleClass="focus" />
+                                          <Button fx:id="btnAtualizarPediAcomp" layoutX="231.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnCancelarPediAcomp" layoutX="408.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnConcPediAcomp" layoutX="315.0" layoutY="200.0" mnemonicParsing="false" styleClass="botao" text="Concluído">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

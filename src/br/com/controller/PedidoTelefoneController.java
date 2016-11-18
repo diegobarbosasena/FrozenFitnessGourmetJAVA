@@ -106,7 +106,7 @@ public class PedidoTelefoneController implements Initializable{
 		ativaDesativaVendas(true);
 	}
 
-	public void grupoRadioButton() {
+	private void grupoRadioButton() {
 		final ToggleGroup tgSN = new ToggleGroup();
 		final ToggleGroup tgSx = new ToggleGroup();
 		
@@ -168,7 +168,7 @@ public class PedidoTelefoneController implements Initializable{
 		lsvItensPedido.setDisable(adv);
 	}
 	
-	public void popularComboBox() {
+	private void popularComboBox() {
 		
 		cboCpfClien.getItems().clear();
 		cboCpfClien.getItems().addAll(ClienteDAO.selecionarTodosClientes());

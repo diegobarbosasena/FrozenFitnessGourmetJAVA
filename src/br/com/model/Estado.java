@@ -29,6 +29,5 @@ public class Estado {
 	public String toString() {
 		return uf ;
 	}
-
 	
 }

@@ -108,7 +108,7 @@ public class AcompanhamentoController implements Initializable{
 		
 	}
 
-	public void preencherPedidosAcompanhamento(){
+	private void preencherPedidosAcompanhamento(){
 		
 		tcCodPedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Integer>("codPedido"));
 		tcClientePedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
@@ -123,7 +123,7 @@ public class AcompanhamentoController implements Initializable{
 		
 	}
 	
-	public void cancelarAcompa() {
+	private void cancelarAcompa() {
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
 		tabVisuaAcomp.setDisable(false);
@@ -131,7 +131,7 @@ public class AcompanhamentoController implements Initializable{
 		limparAcompanhamento();
 	}
 
-	public void editarAcomp() {
+	private void editarAcomp() {
 		
 		Pedidos pdAcom = tvPedidosAcompa.getSelectionModel().getSelectedItem();
 		
@@ -233,7 +233,7 @@ public class AcompanhamentoController implements Initializable{
 		tabVisuaAcomp.setDisable(false);
 	}
 
-	public void popularComboBox() {
+	private void popularComboBox() {
 		
 		if(cboStatus != null){
 			cboStatus.getItems().clear();
@@ -293,7 +293,7 @@ public class AcompanhamentoController implements Initializable{
 		
 	}
 	
-	public void limparAcompanhamento() {
+	private void limparAcompanhamento() {
 		
 		cboVeiculo.getSelectionModel().clearSelection();
 		cboTransp.getSelectionModel().clearSelection();
