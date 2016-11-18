@@ -100,5 +100,26 @@ public class ClienteDAO {
 			return false;
 		}	
 	}
+	
+	public static int buscarUltimoIdCliente() {
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectUltimoId = "SELECT * FROM tblCliente ORDER BY codEndereco DESC LIMIT 1";
+
+		int ultimo_id = 0;
+		
+		ResultSet rs;
+		try {
+			rs = c.createStatement().executeQuery(sqlSelectUltimoId);
+
+			while(rs.next()){
+				ultimo_id = rs.getInt("codEndereco");
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ultimo_id;	
+	}
 		
 }

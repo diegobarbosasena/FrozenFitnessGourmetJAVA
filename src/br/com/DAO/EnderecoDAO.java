@@ -100,7 +100,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 	
 	}
 	
-	public static int buscarUltimoId() {
+	public static int buscarUltimoIdEndereco() {
 		
 		Connection c = MySqlConexao.ConectarDb();
 		

@@ -6,10 +6,12 @@ import java.util.ResourceBundle;
 
 import br.com.DAO.CidadeDAO;
 import br.com.DAO.ClienteDAO;
+import br.com.DAO.EnderecoDAO;
 import br.com.DAO.EstadoDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cidade;
 import br.com.model.Cliente;
+import br.com.model.Endereco;
 import br.com.model.Estado;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -78,6 +80,8 @@ public class PedidoTelefoneController implements Initializable{
 	@FXML private Button btnCancelar;
 	@FXML private Button btnCadastrar;
 	
+	boolean modoEdicao = false;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -94,8 +98,44 @@ public class PedidoTelefoneController implements Initializable{
 		
 		rbSim.setOnAction(d -> clienteCadastrado());
 		rbNao.setOnAction(n -> clienteNaoCadastradrado());	
+		
+		btnCadastrar.setOnAction(c -> inserirCliente());
 	}
 	
+	private void inserirCliente() {
+		
+		
+		
+		
+		if (! modoEdicao){
+			
+		}
+		else{
+			Cliente novoCliente = new Cliente();
+			Endereco novoEndereco = new Endereco();
+			
+			
+			novoEndereco.setLogradouro(txtEndereco.getText());
+			novoEndereco.setCep(txtCep.getText());
+			novoEndereco.setNumero(txtNro.getText());
+			novoEndereco.setBairro(txtBairro.getText());
+			novoEndereco.setComplemento(txtComple.getText());
+			novoEndereco.setCidade(cboCidade.getSelectionModel().getSelectedItem());
+			
+			novoCliente.setNomeCliente(txtNomeClien.getText());
+			novoCliente.setCpfCliente(txtCep.getText());
+//			novoCliente.setDtNascCliente(dpDtNasc.getValue());
+			novoCliente.setPeso(Float.valueOf(txtPeso.getText()));
+			novoCliente.setAltura(Float.valueOf(txtAltura.getText()));
+			novoCliente.setTelefoneCliente(txtTel.getText());
+			novoCliente.setCelularCliente(txtCel.getText());
+			novoCliente.setEmailCliente(txtEmail.getText());
+			
+			EnderecoDAO.insertEndereco(novoEndereco);
+			ClienteDAO.inserirCliente(novoCliente);
+		}
+	}
+
 	private void clienteCadastrado() {
 		ativaDesativa(true);
 		ativaDesativaVendas(false);

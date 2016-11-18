@@ -131,7 +131,7 @@ public class TransportadoraDAO {
 			parametros.setString(4, novaTrans.getCnpjTransportadora());
 			parametros.setString(5, novaTrans.getResponsavelTransportadora());
 			
-			parametros.setInt(6, EnderecoDAO.buscarUltimoId());
+			parametros.setInt(6, EnderecoDAO.buscarUltimoIdEndereco());
 			
 			parametros.executeUpdate();
 			

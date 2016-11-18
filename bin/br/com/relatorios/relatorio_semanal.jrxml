@@ -108,13 +108,12 @@ ORDER BY codPedido DESC]]>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="324" height="79" uuid="4e90cf77-afb8-4878-80ea-eb772a87ec8f"/>
+				<reportElement x="0" y="0" width="305" height="79" uuid="4e90cf77-afb8-4878-80ea-eb772a87ec8f"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Calibri" size="22" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Relatório de pedidos semanal]]></text>
 			</staticText>
-			
 		</band>
 	</title>
 	<pageHeader>
