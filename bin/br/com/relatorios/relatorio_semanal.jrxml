@@ -114,10 +114,7 @@ ORDER BY codPedido DESC]]>
 				</textElement>
 				<text><![CDATA[Relatório de pedidos semanal]]></text>
 			</staticText>
-			<image>
-				<reportElement x="379" y="0" width="176" height="79" uuid="9dfb1be4-e191-4ed9-a2e9-46a01c2ae90d"/>
-				<imageExpression><![CDATA["C:\\Users\\diego\\WorkspaceNeon\\FrozenFitnessGourmetJAVA\\src\\br\\com\\view\\imagens\\logo.PNG"]]></imageExpression>
-			</image>
+			
 		</band>
 	</title>
 	<pageHeader>

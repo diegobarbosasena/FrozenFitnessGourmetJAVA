@@ -31,7 +31,7 @@
                                  <children>
                                     <TableView fx:id="tvPedidosAcompa" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
-                                          <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Cod. Pedido" />
+                                          <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Cod. Pedido" />
                                           <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />
                                           <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Status" />
                                           <TableColumn fx:id="tcTranspAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Transportadora" />
