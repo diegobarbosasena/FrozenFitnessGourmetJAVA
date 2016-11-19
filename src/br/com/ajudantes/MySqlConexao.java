@@ -21,6 +21,11 @@ public class MySqlConexao {
 		String usuario = "root";
 		String senha = "root" ;
 		
+		/* CONEXAO CON SERVIDOR*/
+		/*String db = "dbsmartgourmet";
+		String usuario = "smartsoftware";
+		String senha = "smart147852" ;*/
+		
 		Connection c = null;
 		
 		try {
