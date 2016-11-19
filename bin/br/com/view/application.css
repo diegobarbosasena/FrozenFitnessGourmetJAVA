@@ -65,7 +65,9 @@ TextField, PasswordField, DatePicker{
 	-fx-background-color: #FFF;
 	-fx-border-radius: 2px;	
 }
-.menu-item{ -fx-background-color: #FFF; }
+.menu-item{ 
+	-fx-background-color: #FFF;
+}
 .menu-item:hover {
     -fx-border-color: #00B348;
 	-fx-background-color: #FFF;
@@ -103,5 +105,21 @@ ListView:focused{
 ListView:hover{ 
 	-fx-cell-hover-color: #00B348;
 }
+.dialog-pane .button{
+   -fx-background-color: #FFF;
+   -fx-text-fill: #00B348;
+   -fx-border-radius: 2px;
+   -fx-wrap-text: true;
+   /*-fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0); */
+   -fx-cursor:hand;
+ }
 
+.dialog-pane .button:hover{     
+	-fx-background-color: #FFF;
+	-fx-border-color: #00B348;
+	-fx-border-radius: 2px ;
+	-fx-text-fill: #00B348;
+ 	-fx-font-weight:bold; 
+ }
+ 
 

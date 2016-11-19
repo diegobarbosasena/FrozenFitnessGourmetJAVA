@@ -13,6 +13,7 @@ import br.com.model.Cidade;
 import br.com.model.Endereco;
 import br.com.model.Estado;
 import br.com.model.Transportadora;
+import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -216,9 +217,12 @@ public class TransportadoraController implements Initializable {
 				)		
 			{
 						
-				PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
+				/*PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
 				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);*/
+				
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaWarning("Transportadora", "ERRO", "Preencha todos os campos!");
 			}
 			else{
 				
