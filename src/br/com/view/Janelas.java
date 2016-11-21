@@ -9,7 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Janelas{
+public class Janelas extends Stage{
 
 	public void abrir(String arquivo, Stage primaryStage, String titulo, boolean redimensionar) {
 
@@ -19,7 +19,6 @@ public class Janelas{
 			root = FXMLLoader.load(getClass().getResource(arquivo));
 			primaryStage.setScene( new Scene(root));
 			primaryStage.setTitle(titulo);
-			//primaryStage.initModality(Modality.APPLICATION_MODAL);
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
 			
@@ -48,6 +47,32 @@ public class Janelas{
 		}	
 	}
 	
+	public void abrirJanela(String arquivo, Stage stage, String titulo, boolean redimensionar, Object controller){
+	
+		Parent p;
+		try {
+			
+			FXMLLoader load = new FXMLLoader(getClass().getResource(arquivo));
+			
+			load.setController(controller);
+			
+			p = load.load();
+			
+			stage.setScene(new Scene(p));
+			stage.setTitle(titulo);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.resizableProperty().set(redimensionar);
+			stage.show();
+			
+			javafx.scene.image.Image icone = new javafx.scene.image
+					.Image(getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			stage.getIcons().add(icone);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	public void abrirPopup(String arquivo, Stage primaryStage, String titulo, boolean redimensionar, Object controller) {
 
 		Parent root;
@@ -65,8 +90,8 @@ public class Janelas{
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
 			
-			javafx.scene.image.Image icone = new javafx.scene.image.Image(
-					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			javafx.scene.image.Image icone = new javafx.scene.image
+					.Image(getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
 			
 			primaryStage.getIcons().add(icone);
 			
