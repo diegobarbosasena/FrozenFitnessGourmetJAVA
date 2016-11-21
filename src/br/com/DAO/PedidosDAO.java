@@ -73,6 +73,7 @@ public class PedidosDAO {
 				p.setTipoPedido(rs.getString("tipoPedido"));
 				p.setDtEntrega(rs.getDate("dtEntrega"));
 				p.setDtCompra(rs.getDate("dtCompra"));
+				p.setTotal(rs.getFloat("total"));
 				p.setCodCliente(rs.getInt("codCliente"));
 				p.setCodStatus(rs.getInt("codStatus"));
 				p.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
@@ -150,6 +151,7 @@ public class PedidosDAO {
 				p.setTipoPedido(rs.getString("tipoPedido"));
 				p.setDtEntrega(rs.getDate("dtEntrega"));
 				p.setDtCompra(rs.getDate("dtCompra"));
+				p.setTotal(rs.getFloat("total"));
 				p.setCodCliente(rs.getInt("codCliente"));
 				p.setCodStatus(rs.getInt("codStatus"));
 				p.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));

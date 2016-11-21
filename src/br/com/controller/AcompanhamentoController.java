@@ -47,6 +47,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private TableColumn <Pedidos, Status> tcStatusAcomp;
 	@FXML private TableColumn <Pedidos, Transportadora> tcTranspAcomp;
 	@FXML private TableColumn <Pedidos, TipoVeiculo> tcVeiculoAcomp;
+	@FXML private TableColumn <Pedidos, ?>tcPrecoAcomp;
 	@FXML private Label lblCodPed;
 	@FXML private Label lblNomeClien;
 	@FXML private Label lblStatus;
@@ -59,6 +60,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Button btnAtualizarPediAcomp;
 	@FXML private Button btnCancelarPediAcomp;
 	@FXML private Button btnConcPediAcomp;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

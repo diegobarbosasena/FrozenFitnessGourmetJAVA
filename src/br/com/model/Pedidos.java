@@ -8,6 +8,7 @@ public class Pedidos {
 	private String tipoPedido;
 	private Date dtEntrega;
 	private Date dtCompra;
+	private float total;
 	private int codCliente;
 	private int codStatus;
 	private int codVeiculoTransp;
@@ -90,7 +91,13 @@ public class Pedidos {
 	public void setVeiculoTransp(VeiculoTransp veiculoTransp) {
 		this.veiculoTransp = veiculoTransp;
 	}
-
+	public float getTotal() {
+		return total;
+	}
+	public void setTotal(float total) {
+		this.total = total;
+	}
+	
 	@Override
 	public String toString() {
 		return String.valueOf(codPedido) ;

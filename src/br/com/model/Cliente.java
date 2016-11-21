@@ -70,9 +70,14 @@ public class Cliente {
 		this.emailCliente = emailCliente;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return "Nome: " + nomeCliente + ", Cpf: " + cpfCliente + "";
+	}*/
+	
+	@Override
+	public String toString() {
+		return nomeCliente ;
 	}
 	
 }

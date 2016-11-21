@@ -35,17 +35,15 @@ public class PedidosController implements Initializable{
 	@FXML private TableColumn <Pedidos, String> tcDtEntr;
 	@FXML private TableColumn <Pedidos, Cliente> tcClien;
 	@FXML private TableColumn <Pedidos, Status> tcStatus;
+	@FXML private TableColumn <Pedidos, String> tcPreco;
 	
 	@FXML private TextField txtPedido;
 	@FXML private Button btnEditPedido;
-	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		Mascaras.mascaraNumeroInteiro(txtPedido);
-		
-		
 		
 		preencherPedidos();
 		
@@ -99,8 +97,13 @@ public class PedidosController implements Initializable{
 			
 		tcClien.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
 		tcStatus.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
+		tcPreco.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("total"));
 		
 		List<Pedidos> lstPedido = PedidosDAO.selecionarTodosPedidos();
+		
+		for(Pedidos item : lstPedido){
+			System.out.println(item.getTotal());
+		}
 		
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);
