@@ -33,6 +33,9 @@ ORDER BY codPedido DESC]]>
 	<field name="dtCompra" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="codCliente" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -139,6 +142,13 @@ ORDER BY codPedido DESC]]>
 				</textElement>
 				<text><![CDATA[Nome do Cliente]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="425" y="0" width="130" height="20" uuid="fd84ab77-8dcc-49f7-9e45-4041c919fb6a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Valor total]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -156,6 +166,13 @@ ORDER BY codPedido DESC]]>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="0" width="100" height="20" uuid="00282089-9648-48df-9726-0426071cca7c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
