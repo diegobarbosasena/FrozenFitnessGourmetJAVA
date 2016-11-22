@@ -22,9 +22,10 @@ public class MySqlConexao {
 		String senha = "root" ;
 		
 		/* CONEXAO CON SERVIDOR*/
-		/*String db = "dbsmartgourmet";
-		String usuario = "smartsoftware";
-		String senha = "smart147852" ;*/
+		/*String ip = "192.168.0.2"
+		String db = "dbsmartgourmet";
+		String usuario = "smartgourmet";
+		String senha = "smart147852";*/
 		
 		Connection c = null;
 		
