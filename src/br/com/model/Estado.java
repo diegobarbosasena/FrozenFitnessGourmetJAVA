@@ -27,7 +27,7 @@ public class Estado {
 
 	@Override
 	public String toString() {
-		return uf ;
+		return nomeEstado ;
 	}
 	
 }

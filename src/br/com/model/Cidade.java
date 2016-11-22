@@ -26,8 +26,6 @@ public class Cidade {
 	public void setCodEstado(int codEstado) {
 		this.codEstado = codEstado;
 	}
-	
-	
 	public Estado getEstado() {
 		return estado;
 	}

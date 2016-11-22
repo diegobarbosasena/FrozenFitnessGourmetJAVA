@@ -137,7 +137,7 @@ public class GraficoVendasController implements Initializable {
 		brcGrafVendas.getData().add(totalCatego);
 	
 	}
-
+	
 	private void preencherGraficoPeriodo() {
 		
 		desabilitaAbilitaData(false);

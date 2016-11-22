@@ -47,7 +47,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private TableColumn <Pedidos, Status> tcStatusAcomp;
 	@FXML private TableColumn <Pedidos, Transportadora> tcTranspAcomp;
 	@FXML private TableColumn <Pedidos, TipoVeiculo> tcVeiculoAcomp;
-	@FXML private TableColumn <Pedidos, ?>tcPrecoAcomp;
+	@FXML private TableColumn <Pedidos, Number>tcPrecoAcomp;
 	@FXML private Label lblCodPed;
 	@FXML private Label lblNomeClien;
 	@FXML private Label lblStatus;
@@ -116,6 +116,7 @@ public class AcompanhamentoController implements Initializable{
 		tcClientePedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
 		tcStatusAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		tcTranspAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Transportadora>("transportadora"));
+		tcPrecoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Number>("total"));
 		tcVeiculoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, TipoVeiculo>("tipoVeiculo"));
 	
 		List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();

@@ -43,6 +43,12 @@ public class Pedidos {
 	public void setDtCompra(Date dtCompra) {
 		this.dtCompra = dtCompra;
 	}
+	public float getTotal() {
+		return total;
+	}
+	public void setTotal(float total) {
+		this.total = total;
+	}
 	public int getCodCliente() {
 		return codCliente;
 	}
@@ -54,6 +60,12 @@ public class Pedidos {
 	}
 	public void setCodStatus(int codStatus) {
 		this.codStatus = codStatus;
+	}
+	public int getCodVeiculoTransp() {
+		return codVeiculoTransp;
+	}
+	public void setCodVeiculoTransp(int codVeiculoTransp) {
+		this.codVeiculoTransp = codVeiculoTransp;
 	}
 	public Cliente getCliente() {
 		return cliente;
@@ -67,6 +79,12 @@ public class Pedidos {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	public VeiculoTransp getVeiculoTransp() {
+		return veiculoTransp;
+	}
+	public void setVeiculoTransp(VeiculoTransp veiculoTransp) {
+		this.veiculoTransp = veiculoTransp;
+	}
 	public Transportadora getTransportadora() {
 		return transportadora;
 	}
@@ -79,25 +97,7 @@ public class Pedidos {
 	public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
 		this.tipoVeiculo = tipoVeiculo;
 	}
-	public int getCodVeiculoTransp() {
-		return codVeiculoTransp;
-	}
-	public void setCodVeiculoTransp(int codVeiculoTransp) {
-		this.codVeiculoTransp = codVeiculoTransp;
-	}
-	public VeiculoTransp getVeiculoTransp() {
-		return veiculoTransp;
-	}
-	public void setVeiculoTransp(VeiculoTransp veiculoTransp) {
-		this.veiculoTransp = veiculoTransp;
-	}
-	public float getTotal() {
-		return total;
-	}
-	public void setTotal(float total) {
-		this.total = total;
-	}
-	
+
 	@Override
 	public String toString() {
 		return String.valueOf(codPedido) ;

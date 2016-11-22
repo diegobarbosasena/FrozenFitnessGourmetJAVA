@@ -101,10 +101,6 @@ public class PedidosController implements Initializable{
 		
 		List<Pedidos> lstPedido = PedidosDAO.selecionarTodosPedidos();
 		
-		for(Pedidos item : lstPedido){
-			System.out.println(item.getTotal());
-		}
-		
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);
 	}

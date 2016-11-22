@@ -88,7 +88,7 @@ TextField, PasswordField, DatePicker{
 }
 .tooltip {
     -fx-background-radius: 2 2 2 2;
-    -fx-background-color: #00B348;
+    -fx-background-color: #FFF;
     -fx-text-fill: #00B348;
     -fx-font-size: 1.1em;
 }
@@ -121,5 +121,7 @@ ListView:hover{
 	-fx-text-fill: #00B348;
  	-fx-font-weight:bold; 
  }
- 
+ #lblTotal{
+ 	-fx-text-fill: #00B348;
+ }
 

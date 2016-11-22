@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Tab;
 import javafx.scene.control.Button;
 
-public class PedidoTelefoneController implements Initializable{
+public class PedidosTelefoneController implements Initializable{
 	
 	@FXML private AnchorPane anpPedidoTelefone;
 	@FXML private TabPane tbpPedidoTel;

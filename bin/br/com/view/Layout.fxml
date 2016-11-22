@@ -57,7 +57,7 @@
                                 <tabs>
                                     <Tab text="Pedido por telelefone">
                                       <content>
-                                        <fx:include fx:id="anpPedidoTelefone" source="PedidoTelefone.fxml" />
+                                        <fx:include fx:id="anpPedidoTelefone" source="PedidosTelefone.fxml" />
                                       </content>
                                     </Tab>
                                     <Tab text="Pedidos">
