@@ -8,16 +8,19 @@ import br.com.DAO.CidadeDAO;
 import br.com.DAO.EnderecoDAO;
 import br.com.DAO.EstadoDAO;
 import br.com.DAO.TransportadoraDAO;
+import br.com.DAO.VeiculoTranspDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cidade;
 import br.com.model.Endereco;
 import br.com.model.Estado;
+import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
+import br.com.model.VeiculoTransp;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,84 +37,188 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class TransportadoraController implements Initializable {
+public class TransportadoraController implements Initializable{
+	@FXML
+	private AnchorPane acpTransp;
+	@FXML
+	private TabPane tpTransp;
+	@FXML
+	private Tab tabVisualizar;
+	@FXML 
+	private Tab tabCadastrarVeiculo;
+	@FXML
+	private TextField txtBuscaTrans;
+	@FXML
+	private Button btnNovaTransportadora;
+	@FXML
+	private Button btnEditarTrans;
+	@FXML
+	private Button btnExcluirTrans;
+	@FXML
+	private Button btnAddVeic;
+	@FXML
+	private TableView <Transportadora>tvTransp;
+	@FXML
+	private TableColumn <Transportadora, String> tbcRazao;
+	@FXML
+	private TableColumn <Transportadora, String> tbcTelCont;
+	@FXML
+	private TableColumn <Transportadora, String> tbcEmailCont;
+	@FXML
+	private TableColumn <Transportadora, String> tbcResp;
+	@FXML
+	private TableColumn <Transportadora, String> tbcEndereco;
+	@FXML
+	private Button btnEditarVeic;
+	@FXML
+	private Button btnExcluirVeic;
+	@FXML
+	private TableView <VeiculoTransp> tbvVeiculoTransp;
+	@FXML
+	private TableColumn <VeiculoTransp,TipoVeiculo> tbcTipoVeic;
+	@FXML
+	private TableColumn <VeiculoTransp,String> tbcPlacaVeic;
+	@FXML
+	private Tab tabCadastrar;
+	@FXML
+	private Label lblEdicaoCadas;
+	@FXML
+	private Label lblRazao;
+	@FXML
+	private TextField txtRazao;
+	@FXML
+	private Label lblNomeFantasia;
+	@FXML
+	private TextField txtNomeFant;
+	@FXML
+	private Label lblCnpjTransp;
+	@FXML
+	private TextField txtCnpjTransp;
+	@FXML
+	private Label lblTelPrin;
+	@FXML
+	private TextField txtTelPrin;
+	@FXML
+	private Label lblTelCont;
+	@FXML
+	private TextField txtTelCont;
+	@FXML
+	private Label lblEmailPrin;
+	@FXML
+	private TextField txtEmailPrin;
+	@FXML
+	private Label lblEmailCont;
+	@FXML
+	private TextField txtEmailCont;
+	@FXML
+	private Label lblResponsavel;
+	@FXML
+	private TextField txtResponsavelTransp;
+	@FXML
+	private Label lblEnd;
+	@FXML
+	private TextField txtEndTransp;
+	@FXML
+	private Label lblNroTransp;
+	@FXML
+	private TextField txtNroTransp;
+	@FXML
+	private Label lblCepTransp;
+	@FXML
+	private TextField txtCepTransp;
+	@FXML
+	private Label lblBairroTransp;
+	@FXML
+	private TextField txtBairroTransp;
+	@FXML
+	private Label lblComplementoTransp;
+	@FXML
+	private TextField txtComplementoTransp;
+	@FXML
+	private Label lblEstadoTransp;
+	@FXML
+	private ComboBox <Estado> cboEstadoTransp;
+	@FXML
+	private Label lblCidadeTransp;
+	@FXML
+	private ComboBox <Cidade> cboCidadeTransp;
+	@FXML
+	private Button btnCadastrarTrans;
+	@FXML
+	private Button btnConcluido;
+	@FXML
+	private Button btnCancelarTransp;
+	@FXML
+	private Label lblCadAtrVeic;
+	@FXML
+	private Label lblTransp;
+	@FXML
+	private TextField txtTransp;
+	@FXML
+	private Label lblTipoVeic;
+	@FXML
+	private TextField txtTipoVeic;
+	@FXML
+	private Label lblPlaca;
+	@FXML
+	private TextField txtPlaca;
+	@FXML
+	private Button btnCadastrarVeiculo;
+	@FXML
+	private Button btnCancelarVeiculo;
 	
-	@FXML private AnchorPane acpTransp;	
-	@FXML private TextField txtBuscaTrans;
-	@FXML private Button btnBuscaTrans;
-	@FXML private Button btnNovaTransportadora;
-	@FXML private Button btnEditarTrans;
-	@FXML private Button btnExcluirTrans;
-	@FXML private TabPane tpTransp;
-	@FXML private Tab tabVisualizar;
-	@FXML private Tab tabCadastrar;
-	@FXML private TableView <Transportadora> tvTransp;
-	@FXML private TableColumn <Transportadora, String> clnTransp;
-	@FXML private TableColumn <Transportadora, String> clnCnpj;
-	@FXML private TableColumn <Transportadora, String> clnEmail;
-	@FXML private TableColumn <Transportadora, String> clnFone;
-	@FXML private TableColumn <Transportadora, String> clnResp;
-	@FXML private TableColumn <Transportadora, Endereco> clnEndereco;
-	@FXML private Label lblEdicaoCadas;
-	@FXML private Label lblNomeTrans;
-	@FXML private TextField txtNomeTrans;
-	@FXML private Label lblEmailTrans;
-	@FXML private TextField txtEmailTrans;
-	@FXML private Label lblTelefoneTrans;
-	@FXML private TextField txtTelefoneTrans;
-	@FXML private Label lblCnpjTransp;
-	@FXML private TextField txtCnpjTransp;
-	@FXML private Label lblResponsavelTrans;
-	@FXML private TextField txtResponsavelTransp;	
-	@FXML private Label lblLogradouroTransp;
-	@FXML private TextField txtLogradouroTransp;
-	@FXML private Label lblNroTransp;
-	@FXML private TextField txtNroTransp;
-	@FXML private Label lblCepTransp;
-	@FXML private TextField txtCepTransp;
-	@FXML private Label lblBairroTransp;
-	@FXML private TextField txtBairroTransp;
-	@FXML private Label lblComplementoTransp;
-	@FXML private TextField txtComplementoTransp;
-	@FXML private Label lblCidadeTransp;
-	@FXML private ComboBox <Cidade> cboCidadeTransp;
-	@FXML private Label lblEstadoTransp;
-	@FXML private ComboBox <Estado> cboEstadoTransp;
-	@FXML private Button btnCadastrarTrans;
-	@FXML private Button btnConcluido;
-	@FXML private Button btnCancelarTransp;
-
 	boolean modoEdicao = false;
-	String filter_cidade = "";
-	String filter_estado = "";
 	
-	public ObservableList<Cidade> cidades;
-	public ObservableList<Estado> estados;
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		Mascaras.mascaraCEP(txtCepTransp);
 		Mascaras.mascaraCNPJ(txtCnpjTransp);
-		Mascaras.mascaraTelefone(txtTelefoneTrans);
-		Mascaras.mascaraEmail(txtEmailTrans);
-		Mascaras.mascaraData(txtNomeTrans);
-	
+		Mascaras.mascaraTelefone(txtTelPrin);
+		Mascaras.mascaraTelefone(txtTelCont);
+		Mascaras.mascaraEmail(txtEmailPrin);
+		Mascaras.mascaraEmail(txtEmailCont);
+		Mascaras.mascaraCEP(txtCepTransp);
+		
 		preencherTransportadora();
 		initTooltip();
 		
 		tabCadastrar.setDisable(true);
+		tabCadastrarVeiculo.setDisable(true);
 	
 		txtBuscaTrans.textProperty().addListener(a -> {
 			if(!txtBuscaTrans.getText().isEmpty())
 				buscarTransportadora();
+			else
+				preencherTransportadora();
 		});
 
 		btnNovaTransportadora.setOnAction(b -> nova());
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());
+		
+		btnAddVeic.setOnAction(a -> {
+			if (tvTransp.getSelectionModel().getSelectedItem() != null){
+				adicionarVeiculo();
+			}	
+			else{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Transportadora", "ERRO", "Selecione um item da tabela.");
+			}
+		});
+		
+		tvTransp.getSelectionModel().getSelectedIndices().addListener(new ListChangeListener<Integer>() {
+			@Override
+			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Integer> arg0) {		
+				if (tvTransp.getSelectionModel().getSelectedIndices() != null)
+					preencherVeiculo();
+			}
+		});
+		
+		btnCancelarVeiculo.setOnAction(h -> cancelarVeiculo());
+		btnCadastrarVeiculo.setOnAction(l -> cadastrarVeiculo());
+		
 	}
-
+	
 	public void popularComboBox() {
 		cboCidadeTransp.getItems().clear();
 		cboCidadeTransp.getItems().addAll(CidadeDAO.selecionarTodasCidades());
@@ -135,13 +242,11 @@ public class TransportadoraController implements Initializable {
 	
 	public void preencherTransportadora(){
 		
-		clnTransp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("nomeTransportadora"));
-		clnCnpj.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("cnpjTransportadora"));
-		clnEmail.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailTransportadora"));
-		clnFone.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneTransportadora"));
-		clnResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
-		
-		clnEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, Endereco>("endereco"));
+		tbcRazao.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("razaoSocial"));
+		tbcEmailCont.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailContato"));
+		tbcEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("endereco"));
+		tbcResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
+		tbcTelCont.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneContato"));
 		
 		List<Transportadora> lst = TransportadoraDAO.selecionarTodas();
 		
@@ -151,7 +256,7 @@ public class TransportadoraController implements Initializable {
 	
 	public void initTooltip() {
 		
-		Tooltip.install(txtNomeTrans, new Tooltip("Digite aqui o nome da transportadora."));	
+		Tooltip.install(txtRazao, new Tooltip("Digite aqui a Razão Social."));	
 	}
 	
 	public void nova() {
@@ -204,25 +309,24 @@ public class TransportadoraController implements Initializable {
 			
 			if(
 					validarCamposTransportadora( 
-							txtNomeTrans.getText(), 
-							txtCnpjTransp.getText(), 
-							txtEmailTrans.getText(), 
-							txtResponsavelTransp.getText(), 
-							txtTelefoneTrans.getText(), 
-							txtLogradouroTransp.getText(), 
-							txtCepTransp.getText(), 
-							txtNroTransp.getText(), 
-							txtBairroTransp.getText()
+							txtBairroTransp.getText(),
+							txtCepTransp.getText(),
+							txtCnpjTransp.getText(),
+							txtEmailCont.getText(),
+							txtEmailPrin.getText(),
+							txtTelPrin.getText(),
+							txtTelCont.getText(),
+							txtEndTransp.getText(),
+							txtNomeFant.getText(),
+							txtNroTransp.getText(),
+							txtRazao.getText(),
+							txtResponsavelTransp.getText()
 							)	
 				)		
 			{
 						
-				/*PopUpController erro = new PopUpController("ERRO", "Preencha todos os campos!", "OK");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);*/
-				
 				Alerta alertaErro = new Alerta(); 
-				alertaErro.alertaWarning("Transportadora", "ERRO", "Preencha todos os campos!");
+				alertaErro.alertaErro("Transportadora", "ERRO", "Preencha todos os campos!");
 			}
 			else{
 				
@@ -232,16 +336,19 @@ public class TransportadoraController implements Initializable {
 				novoEnde.setBairro(txtBairroTransp.getText());
 				novoEnde.setCep(txtCepTransp.getText());
 				novoEnde.setComplemento(txtComplementoTransp.getText());
-				novoEnde.setLogradouro(txtLogradouroTransp.getText());
+				novoEnde.setLogradouro(txtEndTransp.getText());
 				novoEnde.setNumero(txtNroTransp.getText());
 				
 				novoEnde.setCidade(cboCidadeTransp.getSelectionModel().getSelectedItem());
 				
-				novaTrans.setNomeTransportadora(txtNomeTrans.getText());
 				novaTrans.setCnpjTransportadora(txtCnpjTransp.getText());
-				novaTrans.setEmailTransportadora(txtEmailTrans.getText());
+				novaTrans.setEmailContato(txtEmailCont.getText());
+				novaTrans.setEmailPrincipal(txtEmailPrin.getText());
+				novaTrans.setTelefonePrincipal(txtTelPrin.getText());
+				novaTrans.setTelefoneContato(txtTelCont.getText());
+				novaTrans.setNomeFantasia(txtNomeFant.getText());
+				novaTrans.setRazaoSocial(txtRazao.getText());
 				novaTrans.setResponsavelTransportadora(txtResponsavelTransp.getText());
-				novaTrans.setTelefoneTransportadora(txtTelefoneTrans.getText());
 				
 				if(EnderecoDAO.insertEndereco(novoEnde) && TransportadoraDAO.insertTransportadora(novaTrans)){
 					
@@ -264,9 +371,8 @@ public class TransportadoraController implements Initializable {
 					popularComboBox();
 				}
 				else{
-					PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser cadastrada", "OK");
-					Janelas je = new Janelas();
-					je.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+					Alerta alertaErro = new Alerta(); 
+					alertaErro.alertaErro("Transportadora", "ERRO", "Transportadora não pode ser cadastrada!");	
 				}
 			}	
 		}
@@ -275,9 +381,8 @@ public class TransportadoraController implements Initializable {
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
 			if(tn == null){
-				PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");	
 			}
 			else{
 				
@@ -287,13 +392,16 @@ public class TransportadoraController implements Initializable {
 				lblEdicaoCadas.setText("Atualizar Transportadora");
 				btnCadastrarTrans.setText("Atualizar");
 
-				txtNomeTrans.setText(tn.getNomeTransportadora());
-				txtEmailTrans.setText(tn.getEmailTransportadora());
-				txtTelefoneTrans.setText(tn.getTelefoneTransportadora());
 				txtCnpjTransp.setText(tn.getCnpjTransportadora());
+				txtEmailCont.setText(tn.getEmailContato());
+				txtEmailPrin.setText(tn.getEmailPrincipal());
+				txtTelPrin.setText(tn.getTelefonePrincipal());
+				txtTelCont.setText(tn.getTelefoneContato());
+				txtNomeFant.setText(tn.getNomeFantasia());
+				txtRazao.setText(tn.getRazaoSocial());
 				txtResponsavelTransp.setText(tn.getResponsavelTransportadora());
 				
-				txtLogradouroTransp.setText(tn.getEndereco().getLogradouro());
+				txtEndTransp.setText(tn.getEndereco().getLogradouro());
 				txtCepTransp.setText(tn.getEndereco().getCep());
 				txtNroTransp.setText(tn.getEndereco().getNumero());
 				txtBairroTransp.setText(tn.getEndereco().getBairro());
@@ -358,18 +466,20 @@ public class TransportadoraController implements Initializable {
 		
 		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		
-		Transportadora up = new Transportadora();
+		Transportadora upTransp = new Transportadora();
 		Endereco upEn = new Endereco();
 		
-		up.setCnpjTransportadora(txtCnpjTransp.getText());
-		up.setNomeTransportadora(txtNomeTrans.getText());
-		up.setEmailTransportadora(txtEmailTrans.getText());
-		up.setResponsavelTransportadora(txtResponsavelTransp.getText());
-		up.setTelefoneTransportadora(txtTelefoneTrans.getText());
-		
-		up.setCodTransportadora(codTrans.getCodTransportadora());
+		upTransp.setCodTransportadora(codTrans.getCodTransportadora());
+		upTransp.setCnpjTransportadora(txtCnpjTransp.getText());
+		upTransp.setEmailContato(txtEmailCont.getText());
+		upTransp.setEmailPrincipal(txtEmailPrin.getText());
+		upTransp.setTelefonePrincipal(txtTelPrin.getText());
+		upTransp.setTelefoneContato(txtTelCont.getText());
+		upTransp.setNomeFantasia(txtNomeFant.getText());
+		upTransp.setRazaoSocial(txtRazao.getText());
+		upTransp.setResponsavelTransportadora(txtResponsavelTransp.getText());
 	
-		upEn.setLogradouro(txtLogradouroTransp.getText());
+		upEn.setLogradouro(txtEndTransp.getText());
 		upEn.setCep(txtCepTransp.getText());
 		upEn.setNumero(txtNroTransp.getText());
 		upEn.setBairro(txtBairroTransp.getText());
@@ -381,15 +491,18 @@ public class TransportadoraController implements Initializable {
 		
 		if(
 				validarCamposTransportadora( 
-					txtNomeTrans.getText(), 
-					txtCnpjTransp.getText(), 
-					txtEmailTrans.getText(), 
-					txtResponsavelTransp.getText(), 
-					txtTelefoneTrans.getText(), 
-					txtLogradouroTransp.getText(), 
-					txtCepTransp.getText(), 
-					txtNroTransp.getText(), 
-					txtBairroTransp.getText()
+						txtBairroTransp.getText(),
+						txtCepTransp.getText(),
+						txtCnpjTransp.getText(),
+						txtEmailCont.getText(),
+						txtEmailPrin.getText(),
+						txtTelPrin.getText(),
+						txtTelCont.getText(),
+						txtEndTransp.getText(),
+						txtNomeFant.getText(),
+						txtNroTransp.getText(),
+						txtRazao.getText(),
+						txtResponsavelTransp.getText()
 				)
 		){	
 			
@@ -399,7 +512,7 @@ public class TransportadoraController implements Initializable {
 		}
 		else{
 			
-			if(TransportadoraDAO.update(up) && EnderecoDAO.updateEnde(upEn)){
+			if(TransportadoraDAO.update(upTransp) && EnderecoDAO.updateEnde(upEn)){
 				
 				limparTrans();
 				
@@ -445,10 +558,9 @@ public class TransportadoraController implements Initializable {
 		
 		Transportadora t = tvTransp.getSelectionModel().getSelectedItem();
 		
-		if(t == null){
-			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+		if(t == null){	
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
 		}
 		else{
 		
@@ -463,9 +575,8 @@ public class TransportadoraController implements Initializable {
 				preencherTransportadora();
 			}
 			else{
-				PopUpController erro = new PopUpController("ERRO", "Transportadora não pode ser excluída", "Fechar");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+				Alerta alertaWarning = new Alerta(); 
+				alertaWarning.alertaWarning("Transportadora", "AVISO!", "Transportadora não pode ser excluida!");
 			}
 		}
 	}
@@ -475,11 +586,10 @@ public class TransportadoraController implements Initializable {
 		List<Transportadora> lstTransFilt = TransportadoraDAO.filtrar("%"+txtBuscaTrans.getText()+"%");
 			
 		if (lstTransFilt.isEmpty()){
-				
-			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
-				
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaWarning("Transportadora", "", "Nenhum registro encontrado!");
+		
 			txtBuscaTrans.clear();
 			preencherTransportadora();
 		}
@@ -506,19 +616,68 @@ public class TransportadoraController implements Initializable {
 	}
 	
 	public void limparTrans() {
-		txtCnpjTransp.clear();
-		txtEmailTrans.clear();
-		txtNomeTrans.clear();
-		txtResponsavelTransp.clear();
-		txtTelefoneTrans.clear();	
 		txtBairroTransp.clear();
+		txtBuscaTrans.clear();
 		txtCepTransp.clear();
+		txtCnpjTransp.clear();
 		txtComplementoTransp.clear();
-		txtLogradouroTransp.clear();
+		txtEmailCont.clear();
+		txtEmailPrin.clear();
+		txtTelPrin.clear();
+		txtTelCont.clear();
+		txtEndTransp.clear();
+		txtNomeFant.clear();
 		txtNroTransp.clear();
+		txtRazao.clear();
+		txtResponsavelTransp.clear();
 		
 		cboCidadeTransp.valueProperty().set(null);
 		cboEstadoTransp.valueProperty().set(null);
 	}
 
+	public void preencherVeiculo(){
+		
+		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
+		
+		tbcTipoVeic.setCellValueFactory(new PropertyValueFactory<VeiculoTransp, TipoVeiculo>("tipoVeiculo"));
+		tbcPlacaVeic.setCellValueFactory(new PropertyValueFactory<VeiculoTransp ,String>("placaVeiculo"));
+		
+		if (transp != null){
+			List<VeiculoTransp> lstVeiculo = VeiculoTranspDAO.filtrarVeiculo(transp.getCodTransportadora());
+			tbvVeiculoTransp.getItems().clear();
+			tbvVeiculoTransp.getItems().addAll(lstVeiculo);
+		}	
+	}
+	
+	private void adicionarVeiculo() {
+		
+		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
+		
+		tabVisualizar.setDisable(true);
+		tabCadastrarVeiculo.setDisable(false);
+		
+		tpTransp.getSelectionModel().select(2);
+		
+		txtTransp.setText(transp.getRazaoSocial());
+	}
+	
+	private void cadastrarVeiculo() {
+		
+	}
+	
+	private void cancelarVeiculo (){
+		tpTransp.getSelectionModel().select(0);
+		
+		tabVisualizar.setDisable(false);
+		tabCadastrarVeiculo.setDisable(true);
+		
+		limparVeiculo();
+	}
+	
+	public void limparVeiculo(){
+		txtTipoVeic.clear();
+		txtPlaca.clear();
+	}
+	
+	
 }

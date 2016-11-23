@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="acpTransp" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
+<AnchorPane fx:id="acpTransp" prefHeight="402.0" prefWidth="870.0" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
    <children>
-      <TabPane fx:id="tpTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <TabPane fx:id="tpTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="tabVisualizar" text="Visualizar">
             <content>
               <AnchorPane>
                      <children>
-                        <SplitPane dividerPositions="0.14" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.08644067796610169, 0.5932203389830508, 0.6813559322033899" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane maxHeight="50.0" minHeight="50.0" SplitPane.resizableWithParent="false">
                                  <children>
@@ -26,12 +33,17 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarTrans" styleClass="botao" text="Editar" textAlignment="CENTER">
+                                    <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnExcluirTrans" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="10.0" mnemonicParsing="false" onAction="#excluirTrans" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                    <Button fx:id="btnExcluirTrans" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnAddVeic" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Adicionar Veículo">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -42,13 +54,36 @@
                                  <children>
                                     <TableView fx:id="tvTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
-                                          <TableColumn fx:id="clnTransp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Transportadora" />
-                                          <TableColumn fx:id="clnCnpj" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Cnpj" />
-                                          <TableColumn fx:id="clnEmail" maxWidth="1000.0" minWidth="180.0" prefWidth="180.0" text="E-mail" />
-                                          <TableColumn fx:id="clnFone" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Telefone" />
-                                          <TableColumn fx:id="clnResp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Responsável" />
-                                          <TableColumn fx:id="clnEndereco" maxWidth="1000.0" minWidth="180.0" prefWidth="180.0" text="Endereço" />
+                                          <TableColumn fx:id="tbcRazao" maxWidth="1000.0" minWidth="170.0" prefWidth="170.0" text="Razão social" />
+                                          <TableColumn fx:id="tbcTelCont" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Tel contato" />
+                                          <TableColumn fx:id="tbcEmailCont" maxWidth="1000.0" minWidth="180.0" prefWidth="180.0" text="E-mail contato" />
+                                          <TableColumn fx:id="tbcResp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Responsável" />
+                                          <TableColumn fx:id="tbcEndereco" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Endereço" />
                                        </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxHeight="50.0" minHeight="50.0">
+                                 <children>
+                                    <Button fx:id="btnEditarVeic" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar Veículo">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnExcluirVeic" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir Veículo">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="80.0" prefWidth="866.0">
+                                 <children>
+                                    <TableView fx:id="tbvVeiculoTransp" layoutX="29.0" layoutY="14.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                      <columns>
+                                        <TableColumn fx:id="tbcTipoVeic" maxWidth="10000.0" minWidth="100.0" prefWidth="100.0" text="Tipo Veículo" />
+                                        <TableColumn fx:id="tbcPlacaVeic" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Placa" />
+                                      </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
@@ -58,7 +93,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabCadastrar" text="Cadastrar">
+          <Tab fx:id="tabCadastrar" text="Cadastrar Transportadora">
             <content>
               <AnchorPane style="-fx-background-color: #FFF;">
                      <children>
@@ -66,85 +101,103 @@
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Pane prefHeight="375.0">
+                                    <Pane prefHeight="375.0" prefWidth="868.0">
                                        <children>
-                                          <Label fx:id="lblEdicaoCadas" layoutX="15.0" layoutY="15.0" text="Cadastrar Tansportadora">
+                                          <Label fx:id="lblEdicaoCadas" layoutX="12.0" layoutY="15.0" text="Cadastrar Tansportadora">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="lblNomeTrans" layoutX="15.0" layoutY="58.0" text="Nome Transportadora">
+                                          <Label fx:id="lblRazao" layoutX="12.0" layoutY="58.0" text="Razão social">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNomeTrans" layoutX="15.0" layoutY="78.0" prefWidth="200.0" promptText="Digite o nome da Transportadora" styleClass="focus" />
-                                          <Label fx:id="lblEmailTrans" layoutX="245.0" layoutY="58.0" text="Email Transportadora">
+                                          <TextField fx:id="txtRazao" layoutX="12.0" layoutY="78.0" prefWidth="200.0" promptText="Digite a Razão social da empresa" styleClass="focus" />
+                                          <Label fx:id="lblNomeFantasia" layoutX="226.0" layoutY="58.0" text="Nome fantasia">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtEmailTrans" layoutX="245.0" layoutY="78.0" prefWidth="200.0" promptText="Digite o email da Transportadora" styleClass="focus" />
-                                          <Label fx:id="lblTelefoneTrans" layoutX="475.0" layoutY="58.0" text="Telefone">
+                                          <TextField fx:id="txtNomeFant" layoutX="226.0" layoutY="78.0" prefWidth="200.0" promptText="Digite o Nome fantasia da empresa" styleClass="focus" />
+                                          <Label fx:id="lblCnpjTransp" layoutX="442.0" layoutY="58.0" text="Cnpj">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtTelefoneTrans" layoutX="475.0" layoutY="78.0" prefWidth="200.0" promptText="(00)0000-0000" styleClass="focus" />
-                                          <Label fx:id="lblCnpjTransp" layoutX="15.0" layoutY="120.0" text="Cnpj">
+                                          <TextField fx:id="txtCnpjTransp" layoutX="442.0" layoutY="78.0" prefWidth="200.0" promptText="00.000.000/0000-00" styleClass="focus" />
+                                          <Label fx:id="lblTelPrin" layoutX="658.0" layoutY="58.0" text="Telefone principal">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCnpjTransp" layoutX="15.0" layoutY="140.0" prefWidth="200.0" promptText="00.000.000/0000-00" styleClass="focus" />
-                                          <Label fx:id="lblResponsavelTrans" layoutX="245.0" layoutY="120.0" text="Responsável">
+                                          <TextField fx:id="txtTelPrin" layoutX="658.0" layoutY="78.0" prefWidth="200.0" promptText="(00)0000-0000" styleClass="focus" />
+                                          <Label fx:id="lblTelCont" layoutX="12.0" layoutY="116.0" text="Telefone contato">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtResponsavelTransp" layoutX="245.0" layoutY="140.0" prefWidth="200.0" promptText="Nome do Responsável " styleClass="focus" />
-                                          <Label fx:id="lblLogradouroTransp" layoutX="475.0" layoutY="120.0" text="Endereço">
+                                          <TextField fx:id="txtTelCont" layoutX="12.0" layoutY="136.0" prefWidth="200.0" promptText="(00)0000-0000" styleClass="focus" />
+                                          <Label fx:id="lblEmailPrin" layoutX="226.0" layoutY="116.0" text="E-mail principal">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtLogradouroTransp" layoutX="475.0" layoutY="140.0" prefWidth="200.0" promptText="Rua , Av" styleClass="focus" />
-                                          <Label fx:id="lblNroTransp" layoutX="15.0" layoutY="180.0" text="Número">
+                                          <TextField fx:id="txtEmailPrin" layoutX="226.0" layoutY="136.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
+                                          <Label fx:id="lblEmailCont" layoutX="442.0" layoutY="116.0" text="E-mail contato">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtNroTransp" layoutX="15.0" layoutY="200.0" prefWidth="200.0" promptText="Número pode conter letras" styleClass="focus" />
-                                          <Label fx:id="lblCepTransp" layoutX="245.0" layoutY="180.0" text="Cep">
+                                          <TextField fx:id="txtEmailCont" layoutX="442.0" layoutY="136.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
+                                          <Label fx:id="lblResponsavel" layoutX="658.0" layoutY="116.0" text="Responsável">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtCepTransp" layoutX="245.0" layoutY="200.0" prefWidth="200.0" promptText="00000-000" styleClass="focus" />
-                                          <Label fx:id="lblBairroTransp" layoutX="475.0" layoutY="180.0" text="Bairro">
+                                          <TextField fx:id="txtResponsavelTransp" layoutX="658.0" layoutY="136.0" prefWidth="200.0" promptText="Nome do Responsável " styleClass="focus" />
+                                          <Label fx:id="lblEnd" layoutX="12.0" layoutY="180.0" text="Endereço">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtBairroTransp" layoutX="475.0" layoutY="200.0" prefWidth="200.0" promptText="Digite o Bairro" styleClass="focus" />
-                                          <Label fx:id="lblComplementoTransp" layoutX="15.0" layoutY="240.0" text="Complemento">
+                                          <TextField fx:id="txtEndTransp" layoutX="12.0" layoutY="200.0" prefWidth="200.0" promptText="Rua , Av" styleClass="focus" />
+                                          <Label fx:id="lblNroTransp" layoutX="226.0" layoutY="180.0" text="Número">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="txtComplementoTransp" layoutX="15.0" layoutY="260.0" prefWidth="200.0" styleClass="focus" />
-                                          <Label fx:id="lblEstadoTransp" layoutX="245.0" layoutY="240.0" text="Estado">
+                                          <TextField fx:id="txtNroTransp" layoutX="226.0" layoutY="200.0" prefWidth="200.0" promptText="Número pode conter letras" styleClass="focus" />
+                                          <Label fx:id="lblCepTransp" layoutX="442.0" layoutY="180.0" text="Cep">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboEstadoTransp" layoutX="245.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione um Estado" styleClass="focus" />
-                                          <Label fx:id="lblCidadeTransp" layoutX="475.0" layoutY="240.0" text="Cidade">
+                                          <TextField fx:id="txtCepTransp" layoutX="442.0" layoutY="200.0" prefWidth="200.0" promptText="00000-000" styleClass="focus" />
+                                          <Label fx:id="lblBairroTransp" layoutX="658.0" layoutY="180.0" text="Bairro">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cboCidadeTransp" layoutX="475.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione uma Cidade" styleClass="focus" />
+                                          <TextField fx:id="txtBairroTransp" layoutX="658.0" layoutY="200.0" prefWidth="200.0" promptText="Digite o Bairro" styleClass="focus" />
+                                          <Label fx:id="lblComplementoTransp" layoutX="12.0" layoutY="239.0" text="Complemento">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtComplementoTransp" layoutX="12.0" layoutY="259.0" prefWidth="200.0" styleClass="focus" />
+                                          <Label fx:id="lblEstadoTransp" layoutX="226.0" layoutY="240.0" text="Estado">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboEstadoTransp" layoutX="226.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione um Estado" styleClass="focus" />
+                                          <Label fx:id="lblCidadeTransp" layoutX="442.0" layoutY="240.0" text="Cidade">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboCidadeTransp" layoutX="442.0" layoutY="260.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione uma Cidade" styleClass="focus" />
                                           <Button fx:id="btnCadastrarTrans" layoutX="14.0" layoutY="324.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
                                              <font>
                                                 <Font size="14.0" />
@@ -169,6 +222,59 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab fx:id="tabCadastrarVeiculo" text="Cadastrar Veículo">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="370.0" prefWidth="868.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Pane prefHeight="230.0" prefWidth="264.0">
+                                       <children>
+                                          <Label fx:id="lblCadAtrVeic" layoutX="10.0" layoutY="22.0" text="Cadastrar/Atribuir veículo">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblTransp" disable="true" layoutX="10.0" layoutY="59.0" text="Transportadora">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtTransp" disable="true" layoutX="10.0" layoutY="79.0" prefHeight="27.0" prefWidth="244.0" />
+                                          <Label fx:id="lblTipoVeic" layoutX="10.0" layoutY="117.0" text="Tipo Veículo">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtTipoVeic" layoutX="10.0" layoutY="137.0" promptText="Ex: Moto, Van, Caminhão" />
+                                          <Label fx:id="lblPlaca" layoutX="173.0" layoutY="117.0" text="Placa Veículo">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtPlaca" alignment="CENTER" layoutX="173.0" layoutY="137.0" prefHeight="27.0" prefWidth="82.0" promptText="AAA-0000" />
+                                          <Button fx:id="btnCadastrarVeiculo" layoutX="86.0" layoutY="192.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnCancelarVeiculo" layoutX="182.0" layoutY="192.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

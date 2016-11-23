@@ -14,6 +14,7 @@ import br.com.model.Pedidos;
 import br.com.model.Status;
 import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
+import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -138,10 +139,9 @@ public class AcompanhamentoController implements Initializable{
 		
 		Pedidos pdAcom = tvPedidosAcompa.getSelectionModel().getSelectedItem();
 		
-		if(pdAcom == null){
-			PopUpController erro = new PopUpController("ERRO", "Nenhum item selecionado", "Fechar");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Acompanhamento", false, erro);
+		if(pdAcom == null){		
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Pedidos", "ERRO", "Nenhum item selecionado.");
 		}
 		else{
 			tpAcomp.getSelectionModel().select(1);
@@ -281,7 +281,7 @@ public class AcompanhamentoController implements Initializable{
 					lblVeículo.setDisable(false);
 					cboVeiculo.setDisable(false);
 					
-					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeTransportadora());	
+					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeFantasia());	
 					
 					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);

@@ -49,7 +49,7 @@ public class VeiculoTransp {
 	
 	@Override
 	public String toString() {
-		return codVeiculoTransp + placaVeiculo + codTipoVeiculo + codTransportadora + transportadora ;
+		return placaVeiculo ;
 	}
 
 }

@@ -46,12 +46,14 @@ public class PedidosDAO {
 				vt.setTransportadora(t);
 				
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
-				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
-				t.setEmailTransportadora(rs.getString("emailTransportadora"));
-				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setRazaoSocial(rs.getString("razaoSocial"));
+				t.setNomeFantasia(rs.getString("nomeFantasia"));
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				t.setTelefoneContato(rs.getString("telefoneContato"));
+				t.setEmailPrincipal(rs.getString("emailPrincipal"));
+				t.setEmailContato(rs.getString("emailContato"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-				t.setCodEndereco(rs.getInt("codEndereco"));
 				
 				cl.setCodCliente(rs.getInt("codCliente"));
 				cl.setNomeCliente(rs.getString("nomeCliente"));
@@ -124,12 +126,14 @@ public class PedidosDAO {
 				vt.setTransportadora(t);
 				
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
-				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
-				t.setEmailTransportadora(rs.getString("emailTransportadora"));
-				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setRazaoSocial(rs.getString("razaoSocial"));
+				t.setNomeFantasia(rs.getString("nomeFantasia"));
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				t.setTelefoneContato(rs.getString("telefoneContato"));
+				t.setEmailPrincipal(rs.getString("emailPrincipal"));
+				t.setEmailContato(rs.getString("emailContato"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-				t.setCodEndereco(rs.getInt("codEndereco"));
 				
 				cl.setCodCliente(rs.getInt("codCliente"));
 				cl.setNomeCliente(rs.getString("nomeCliente"));

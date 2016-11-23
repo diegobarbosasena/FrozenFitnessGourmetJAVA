@@ -6,6 +6,22 @@ import javafx.scene.control.Alert.AlertType;
 
 public class Alerta {
 
+	public void alertaErro(String titulo, String header, String mensagem) {
+		
+		Alert alert = new Alert(AlertType.ERROR);
+		
+		alert.setTitle(titulo);
+		alert.setHeaderText(header);
+		alert.setContentText(mensagem);
+		
+		DialogPane dialogPane = alert.getDialogPane();
+		
+		dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
+		dialogPane.getStyleClass().add("myDialog");
+
+		alert.showAndWait();
+	}
+	
 	public void alertaWarning(String titulo, String header, String mensagem) {
 		
 		Alert alert = new Alert(AlertType.WARNING);

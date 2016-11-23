@@ -19,8 +19,10 @@ public class TransportadoraDAO {
 		
 		String sqlSelectPesq = "SELECT "
 				+ "t.*, e.* "
-				+ "FROM tblTransportadora AS t INNER JOIN tblEndereco AS e "
-				+ "ON (t.codEndereco = e.codEndereco) WHERE nomeTransportadora LIKE ? "
+				+ "FROM tblTransportadora t "
+				+ "LEFT JOIN tblEndereco e "
+				+ "ON (t.codEndereco = e.codEndereco) "
+				+ "WHERE razaoSocial LIKE ? "
 				+ "ORDER BY codTransportadora DESC ;";
 	
 		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
@@ -36,7 +38,6 @@ public class TransportadoraDAO {
 			while(rs.next()){
 				
 				Transportadora tp = new Transportadora();
-				
 				Endereco e = new Endereco();
 				
 				e.setCodEndereco(rs.getInt("codEndereco"));
@@ -47,10 +48,13 @@ public class TransportadoraDAO {
 				e.setComplemento(rs.getString("complemento"));
 				
 				tp.setCodTransportadora(rs.getInt("codTransportadora"));
-				tp.setNomeTransportadora(rs.getString("nomeTransportadora"));
-				tp.setEmailTransportadora(rs.getString("emailTransportadora"));
-				tp.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				tp.setRazaoSocial(rs.getString("razaoSocial"));
+				tp.setNomeFantasia(rs.getString("nomeFantasia"));
 				tp.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				tp.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				tp.setTelefoneContato(rs.getString("telefoneContato"));
+				tp.setEmailPrincipal(rs.getString("emailPrincipal"));
+				tp.setEmailContato(rs.getString("emailContato"));
 				tp.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
 				
 				tp.setEndereco(e);
@@ -70,8 +74,8 @@ public class TransportadoraDAO {
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlSelect = "SELECT t.*, e.* "
-				+ "FROM tblTransportadora AS t "
-				+ "INNER JOIN tblEndereco AS e "
+				+ "FROM tblTransportadora t "
+				+ "INNER JOIN tblEndereco e "
 				+ "ON (t.codEndereco = e.codEndereco) "
 				+ "ORDER BY codTransportadora DESC; ";
 
@@ -96,12 +100,15 @@ public class TransportadoraDAO {
 				e.setCodCidade(rs.getInt("codCidade"));
 					
 				t.setCodTransportadora(rs.getInt("codTransportadora"));
-				t.setNomeTransportadora(rs.getString("nomeTransportadora"));
+				t.setRazaoSocial(rs.getString("razaoSocial"));
+				t.setNomeFantasia(rs.getString("nomeFantasia"));
 				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
-				t.setEmailTransportadora(rs.getString("emailTransportadora"));
-				t.setTelefoneTransportadora(rs.getString("telefoneTransportadora"));
+				t.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				t.setTelefoneContato(rs.getString("telefoneContato"));
+				t.setEmailPrincipal(rs.getString("emailPrincipal"));
+				t.setEmailContato(rs.getString("emailContato"));
 				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
-			
+				
 				t.setEndereco(e);
 				
 				lstTransp.add(t);			
@@ -116,22 +123,26 @@ public class TransportadoraDAO {
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
-		String sqlInsertTransp = "INSERT INTO tblTransportadora "
-				+ "(nomeTransportadora, emailTransportadora, telefoneTransportadora, cnpjTransportadora, responsavelTransportadora, codEndereco) "
-				+ "VALUES ( ?, ?, ?, ?, ?, ?); ";
+		String sqlInsertTransp = "INSERT INTO `tblTransportadora` "
+				+ "(`razaoSocial`, `nomeFantasia`, `cnpjTransportadora`, `telefonePrincipal`, `telefoneContato`, "
+				+ "`emailPrincipal`, `emailContato`, `responsavelTransportadora`, `codEndereco`) "
+				+ "VALUES ( ?, ?, ?, ?, ?, ?,? ,?,?); ";
 			
 		PreparedStatement parametros;
 		
 		try {		
 			parametros = c.prepareStatement(sqlInsertTransp);
 			
-			parametros.setString(1, novaTrans.getNomeTransportadora());
-			parametros.setString(2, novaTrans.getEmailTransportadora());
-			parametros.setString(3, novaTrans.getTelefoneTransportadora());
-			parametros.setString(4, novaTrans.getCnpjTransportadora());
-			parametros.setString(5, novaTrans.getResponsavelTransportadora());
+			parametros.setString(1, novaTrans.getRazaoSocial());
+			parametros.setString(2, novaTrans.getNomeFantasia());
+			parametros.setString(3, novaTrans.getCnpjTransportadora());
+			parametros.setString(4, novaTrans.getTelefonePrincipal());
+			parametros.setString(5, novaTrans.getTelefoneContato());
+			parametros.setString(6, novaTrans.getEmailPrincipal());
+			parametros.setString(7, novaTrans.getEmailContato());
+			parametros.setString(8, novaTrans.getResponsavelTransportadora());
 			
-			parametros.setInt(6, EnderecoDAO.buscarUltimoIdEndereco());
+			parametros.setInt(9, EnderecoDAO.buscarUltimoIdEndereco());
 			
 			parametros.executeUpdate();
 			
@@ -148,7 +159,7 @@ public class TransportadoraDAO {
 	public static boolean deleteTransp(int codTransp ){
 		
 		Connection c = MySqlConexao.ConectarDb();
-		String sqlDeletar = "DELETE FROM tblTransportadora WHERE codTransportadora = ?;";
+		String sqlDeletar = "DELETE FROM tblTransportadora WHERE codTransportadora = ? ; ";
 		
 		PreparedStatement parametros;
 		try {
@@ -166,29 +177,33 @@ public class TransportadoraDAO {
 		}	
 	}
 	
-	public static boolean update(Transportadora up){
+	public static boolean update(Transportadora updateTransp){
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
-		String sqlAtualizar = "UPDATE "
-				+ "tblTransportadora set nomeTransportadora = ?, emailTransportadora = ?, "
-				+ "telefoneTransportadora = ?, cnpjTransportadora = ?, responsavelTransportadora = ? "
-				+ "WHERE codTransportadora = ?";
+		String sqlAtualizar = "UPDATE tblTransportadora "
+				+ "SET razaoSocial = ?, nomeFantasia = ?, cnpjTransportadora = ?, telefonePrincipal = ?, "
+				+ "telefoneContato = ?, emailPrincipal = ?, emailContato = ?, responsavelTransportadora = ? "
+				+ "WHERE codTransportadora = ? ; ";
 
 		PreparedStatement parametros;
 			
 		try {
 			parametros = c.prepareStatement(sqlAtualizar);
 			
-			parametros.setInt(6, up.getCodTransportadora());
-			parametros.setString(1, up.getNomeTransportadora());
-			parametros.setString(2, up.getEmailTransportadora());
-			parametros.setString(3, up.getTelefoneTransportadora());
-			parametros.setString(4, up.getCnpjTransportadora());
-			parametros.setString(5, up.getResponsavelTransportadora());
-					
+			parametros.setString(1, updateTransp.getRazaoSocial());
+			parametros.setString(2, updateTransp.getNomeFantasia());
+			parametros.setString(3, updateTransp.getCnpjTransportadora());
+			parametros.setString(4, updateTransp.getTelefonePrincipal());
+			parametros.setString(5, updateTransp.getTelefoneContato());
+			parametros.setString(6, updateTransp.getEmailPrincipal());
+			parametros.setString(7, updateTransp.getEmailContato());
+			parametros.setString(8, updateTransp.getResponsavelTransportadora());
+			parametros.setInt(9, updateTransp.getCodTransportadora());
+			
 			parametros.executeUpdate();
 		
+			System.out.println(parametros);
 			c.close();
 			
 			return true;

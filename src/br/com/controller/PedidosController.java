@@ -11,7 +11,7 @@ import br.com.ajudantes.Mascaras;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
-import br.com.view.Janelas;
+import br.com.view.Alerta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class PedidosController implements Initializable{
 	
@@ -60,11 +59,10 @@ public class PedidosController implements Initializable{
 		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
 			
 		if (lstPediFilt.isEmpty()){
-				
-			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Pedidos", false, erro);
-				
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaWarning("Transportadora", "ERRO", "Nenhum registro encontrado!");
+
 			txtPedido.clear();
 		}
 		else{

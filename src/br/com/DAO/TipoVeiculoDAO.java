@@ -53,7 +53,7 @@ public class TipoVeiculoDAO {
 				+ "ON (vt.codTransportadora = t.codTransportadora) "
 				+ "INNER JOIN tblTipoVeiculo AS tv "
 				+ "ON (tv.codTipoVeiculo = vt.codTipoVeiculo) "
-				+ "WHERE t.nomeTransportadora = ? ;";
+				+ "WHERE t.razaoSocial = ? ;";
 		
 		List <TipoVeiculo> lstVeicuTranspFiltro = new ArrayList<>(); 
 		
