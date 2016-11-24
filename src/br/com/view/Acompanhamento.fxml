@@ -20,7 +20,12 @@
                               <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" SplitPane.resizableWithParent="false">
                                  <children>
                                     <TextField fx:id="txtPediAcomp" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                                    <Button fx:id="btnEditarPediAcom" layoutX="221.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
+                                    <Button fx:id="btnEditarPediAcom" layoutX="306.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnAtualizarAcom" layoutX="221.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -31,9 +36,10 @@
                                  <children>
                                     <TableView fx:id="tvPedidosAcompa" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
-                                          <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Cod. Pedido" />
+                                          <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod. Pedido" />
                                           <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />
-                                          <TableColumn fx:id="tcPrecoAcomp" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Preço" />
+                                          <TableColumn fx:id="tcPrecoAcomp" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Preço" />
+                                          <TableColumn fx:id="tcDtEntregaAcomp" maxWidth="1000.0" minWidth="110.0" prefWidth="110.0" text="Data de entrega" />
                                           <TableColumn fx:id="tcStatusAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Status" />
                                           <TableColumn fx:id="tcTranspAcomp" maxWidth="1000.0" minWidth="190.0" prefWidth="190.0" text="Transportadora" />
                                           <TableColumn fx:id="tcVeiculoAcomp" maxWidth="1000.0" minWidth="150.0" prefWidth="150.0" text="Veículo" />

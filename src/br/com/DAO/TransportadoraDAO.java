@@ -22,7 +22,7 @@ public class TransportadoraDAO {
 				+ "FROM tblTransportadora t "
 				+ "LEFT JOIN tblEndereco e "
 				+ "ON (t.codEndereco = e.codEndereco) "
-				+ "WHERE razaoSocial LIKE ? "
+				+ "WHERE t.razaoSocial LIKE ? "
 				+ "ORDER BY codTransportadora DESC ;";
 	
 		List <Transportadora> lstTranspPesq = new ArrayList<>(); 
@@ -31,7 +31,7 @@ public class TransportadoraDAO {
 		
 		try {
 			parametros = c.prepareStatement(sqlSelectPesq);
-			
+		
 			parametros.setString(1, nomePesquisa);	
 			ResultSet rs = parametros.executeQuery();
 
@@ -202,8 +202,7 @@ public class TransportadoraDAO {
 			parametros.setInt(9, updateTransp.getCodTransportadora());
 			
 			parametros.executeUpdate();
-		
-			System.out.println(parametros);
+
 			c.close();
 			
 			return true;

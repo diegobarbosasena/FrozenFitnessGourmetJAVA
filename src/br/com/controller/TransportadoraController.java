@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import br.com.DAO.CidadeDAO;
 import br.com.DAO.EnderecoDAO;
 import br.com.DAO.EstadoDAO;
+import br.com.DAO.TipoVeiculoDAO;
 import br.com.DAO.TransportadoraDAO;
 import br.com.DAO.VeiculoTranspDAO;
 import br.com.ajudantes.Mascaras;
@@ -38,136 +39,78 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class TransportadoraController implements Initializable{
-	@FXML
-	private AnchorPane acpTransp;
-	@FXML
-	private TabPane tpTransp;
-	@FXML
-	private Tab tabVisualizar;
-	@FXML 
-	private Tab tabCadastrarVeiculo;
-	@FXML
-	private TextField txtBuscaTrans;
-	@FXML
-	private Button btnNovaTransportadora;
-	@FXML
-	private Button btnEditarTrans;
-	@FXML
-	private Button btnExcluirTrans;
-	@FXML
-	private Button btnAddVeic;
-	@FXML
-	private TableView <Transportadora>tvTransp;
-	@FXML
-	private TableColumn <Transportadora, String> tbcRazao;
-	@FXML
-	private TableColumn <Transportadora, String> tbcTelCont;
-	@FXML
-	private TableColumn <Transportadora, String> tbcEmailCont;
-	@FXML
-	private TableColumn <Transportadora, String> tbcResp;
-	@FXML
-	private TableColumn <Transportadora, String> tbcEndereco;
-	@FXML
-	private Button btnEditarVeic;
-	@FXML
-	private Button btnExcluirVeic;
-	@FXML
-	private TableView <VeiculoTransp> tbvVeiculoTransp;
-	@FXML
-	private TableColumn <VeiculoTransp,TipoVeiculo> tbcTipoVeic;
-	@FXML
-	private TableColumn <VeiculoTransp,String> tbcPlacaVeic;
-	@FXML
-	private Tab tabCadastrar;
-	@FXML
-	private Label lblEdicaoCadas;
-	@FXML
-	private Label lblRazao;
-	@FXML
-	private TextField txtRazao;
-	@FXML
-	private Label lblNomeFantasia;
-	@FXML
-	private TextField txtNomeFant;
-	@FXML
-	private Label lblCnpjTransp;
-	@FXML
-	private TextField txtCnpjTransp;
-	@FXML
-	private Label lblTelPrin;
-	@FXML
-	private TextField txtTelPrin;
-	@FXML
-	private Label lblTelCont;
-	@FXML
-	private TextField txtTelCont;
-	@FXML
-	private Label lblEmailPrin;
-	@FXML
-	private TextField txtEmailPrin;
-	@FXML
-	private Label lblEmailCont;
-	@FXML
-	private TextField txtEmailCont;
-	@FXML
-	private Label lblResponsavel;
-	@FXML
-	private TextField txtResponsavelTransp;
-	@FXML
-	private Label lblEnd;
-	@FXML
-	private TextField txtEndTransp;
-	@FXML
-	private Label lblNroTransp;
-	@FXML
-	private TextField txtNroTransp;
-	@FXML
-	private Label lblCepTransp;
-	@FXML
-	private TextField txtCepTransp;
-	@FXML
-	private Label lblBairroTransp;
-	@FXML
-	private TextField txtBairroTransp;
-	@FXML
-	private Label lblComplementoTransp;
-	@FXML
-	private TextField txtComplementoTransp;
-	@FXML
-	private Label lblEstadoTransp;
-	@FXML
-	private ComboBox <Estado> cboEstadoTransp;
-	@FXML
-	private Label lblCidadeTransp;
-	@FXML
-	private ComboBox <Cidade> cboCidadeTransp;
-	@FXML
-	private Button btnCadastrarTrans;
-	@FXML
-	private Button btnConcluido;
-	@FXML
-	private Button btnCancelarTransp;
-	@FXML
-	private Label lblCadAtrVeic;
-	@FXML
-	private Label lblTransp;
-	@FXML
-	private TextField txtTransp;
-	@FXML
-	private Label lblTipoVeic;
-	@FXML
-	private TextField txtTipoVeic;
-	@FXML
-	private Label lblPlaca;
-	@FXML
-	private TextField txtPlaca;
-	@FXML
-	private Button btnCadastrarVeiculo;
-	@FXML
-	private Button btnCancelarVeiculo;
+	
+	@FXML private AnchorPane acpTransp;
+	@FXML private TabPane tpTransp;
+	@FXML private Tab tabVisualizar;
+	@FXML private Tab tabCadastrarVeiculo;
+	@FXML private TextField txtBuscaTrans;
+	@FXML private Button btnNovaTransportadora;
+	@FXML private Button btnEditarTrans;
+	@FXML private Button btnExcluirTrans;
+	@FXML private Button btnAddVeic;
+	@FXML private TableView <Transportadora>tvTransp;
+	@FXML private TableColumn <Transportadora, String> tbcRazao;
+	@FXML private TableColumn <Transportadora, String> tbcTelCont;
+	@FXML private TableColumn <Transportadora, String> tbcEmailCont;
+	@FXML private TableColumn <Transportadora, String> tbcResp;
+	@FXML private TableColumn <Transportadora, String> tbcEndereco;
+	@FXML private Button btnEditarVeic;
+	@FXML private Button btnExcluirVeic;
+	@FXML private TableView <VeiculoTransp> tbvVeiculoTransp;
+	@FXML private TableColumn <VeiculoTransp,TipoVeiculo> tbcTipoVeic;
+	@FXML private TableColumn <VeiculoTransp,String> tbcPlacaVeic;
+	@FXML private Tab tabCadastrar;
+	@FXML private Label lblEdicaoCadas;
+	@FXML private Label lblRazao;
+	@FXML private TextField txtRazao;
+	@FXML private Label lblNomeFantasia;
+	@FXML private TextField txtNomeFant;
+	@FXML private Label lblCnpjTransp;
+	@FXML private TextField txtCnpjTransp;
+	@FXML private Label lblTelPrin;
+	@FXML private TextField txtTelPrin;
+	@FXML private Label lblTelCont;
+	@FXML private TextField txtTelCont;
+	@FXML private Label lblEmailPrin;
+	@FXML private TextField txtEmailPrin;
+	@FXML private Label lblEmailCont;
+	@FXML private TextField txtEmailCont;
+	@FXML private Label lblResponsavel;
+	@FXML private TextField txtResponsavelTransp;
+	@FXML private Label lblEnd;
+	@FXML private TextField txtEndTransp;
+	@FXML private Label lblNroTransp;
+	@FXML private TextField txtNroTransp;
+	@FXML private Label lblCepTransp;
+	@FXML private TextField txtCepTransp;
+	@FXML private Label lblBairroTransp;
+	@FXML private TextField txtBairroTransp;
+	@FXML private Label lblComplementoTransp;
+	@FXML private TextField txtComplementoTransp;
+	@FXML private Label lblEstadoTransp;
+	@FXML private ComboBox <Estado> cboEstadoTransp;
+	@FXML private Label lblCidadeTransp;
+	@FXML private ComboBox <Cidade> cboCidadeTransp;
+	@FXML private Button btnCadastrarTrans;
+	@FXML private Button btnConcluido;
+	@FXML private Button btnCancelarTransp;
+	@FXML private Label lblCadAtrVeic;
+	@FXML private Label lblTransp;
+	@FXML private TextField txtTransp;
+	@FXML private Label lblTipoVeic;
+	@FXML private TextField txtTipoVeic;
+	@FXML private Label lblPlaca;
+	@FXML private TextField txtPlaca;
+	@FXML private Button btnCadastrarVeiculo;
+	@FXML private Button btnConcluidoVeiculo;
+	@FXML private Button btnCancelarVeiculo;
+	@FXML private Button btnAtualizarTransp;
+	@FXML private Button btnAtualizarVeiculo;
+	@FXML private TextField txtBuscaVeiculo;
 	
 	boolean modoEdicao = false;
+	boolean modoEdicaoVeic = false;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -180,6 +123,7 @@ public class TransportadoraController implements Initializable{
 		Mascaras.mascaraCEP(txtCepTransp);
 		
 		preencherTransportadora();
+		preencherVeiculo();
 		initTooltip();
 		
 		tabCadastrar.setDisable(true);
@@ -191,7 +135,15 @@ public class TransportadoraController implements Initializable{
 			else
 				preencherTransportadora();
 		});
+		
+		txtBuscaVeiculo.textProperty().addListener(g -> {
+			if(! txtBuscaVeiculo.getText().isEmpty())
+				buscarVeiculo();
+			else
+				preencherVeiculo();
+		});
 
+		btnAtualizarTransp.setOnAction(k -> preencherTransportadora());
 		btnNovaTransportadora.setOnAction(b -> nova());
 		btnEditarTrans.setOnAction(c -> editarTrans());
 		btnExcluirTrans.setOnAction(d -> excluirTrans());
@@ -202,7 +154,7 @@ public class TransportadoraController implements Initializable{
 			}	
 			else{
 				Alerta alertaErro = new Alerta(); 
-				alertaErro.alertaErro("Transportadora", "ERRO", "Selecione um item da tabela.");
+				alertaErro.alertaErro("Transportadora", "ERRO", "Selecione um item da tabela abaixo.");
 			}
 		});
 		
@@ -214,8 +166,20 @@ public class TransportadoraController implements Initializable{
 			}
 		});
 		
+		btnCadastrarVeiculo.setOnAction(l -> adicionarVeiculo());
+		btnEditarVeic.setOnAction(e -> {
+			if(tbvVeiculoTransp.getSelectionModel().getSelectedItem() != null){
+				editarVeiculo();
+			}
+			else{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Transportadora", "ERRO", "Selecione um item da tabela abaixo.");
+			}
+		});
+		
+		btnAtualizarVeiculo.setOnAction(m -> preencherVeiculo());
 		btnCancelarVeiculo.setOnAction(h -> cancelarVeiculo());
-		btnCadastrarVeiculo.setOnAction(l -> cadastrarVeiculo());
+		btnExcluirVeic.setOnAction(c -> excluirVeiculo());
 		
 	}
 	
@@ -264,7 +228,7 @@ public class TransportadoraController implements Initializable{
 		limparTrans();
 		popularComboBox();
 		
-		tabCadastrar.setText("Cadastrar");
+		tabCadastrar.setText("Cadastrar transportadora");
 		tpTransp.getSelectionModel().select(1);
 		
 		lblEdicaoCadas.setText("Cadastrar transportadora");
@@ -381,8 +345,10 @@ public class TransportadoraController implements Initializable{
 			Transportadora tn = tvTransp.getSelectionModel().getSelectedItem();
 			
 			if(tn == null){
+				tabCadastrar.setDisable(true);
+				tabCadastrar.setText("Cadastrar transportadora");
 				Alerta alertaErro = new Alerta(); 
-				alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");	
+				alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
 			}
 			else{
 				
@@ -427,7 +393,7 @@ public class TransportadoraController implements Initializable{
 					}
 				}
 				
-				btnCadastrarTrans.setOnAction(l -> atualizar());
+				btnCadastrarTrans.setOnAction(l -> atualizarTransportadora());
 				btnCancelarTransp.setOnAction(m -> cancelar());
 				btnConcluido.setOnAction(n -> concluido());
 				
@@ -462,7 +428,7 @@ public class TransportadoraController implements Initializable{
 		return preenchido;
 	}
 	
-	public void atualizar(){
+	public void atualizarTransportadora(){
 		
 		Transportadora codTrans = tvTransp.getSelectionModel().getSelectedItem();
 		
@@ -528,11 +494,9 @@ public class TransportadoraController implements Initializable{
 				
 				modoEdicao = false;
 			}
-			else{
-				
-				PopUpController erro = new PopUpController("ERRO", "Erro ao atualizar Transportadora!", "Fechar");
-				Janelas e = new Janelas();
-				e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);	
+			else{	
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Veículo", "ERRO", "Erro ao atualizar Transportadora!");
 			}
 		}
 			
@@ -542,7 +506,7 @@ public class TransportadoraController implements Initializable{
 			
 		popularComboBox();
 		
-		tabCadastrar.setText("Editar");
+		tabCadastrar.setText("Atualizar transportadora");
 		tabCadastrar.setDisable(false);
 		
 		btnCadastrarTrans.setDisable(false);
@@ -604,6 +568,7 @@ public class TransportadoraController implements Initializable{
 		
 		tabCadastrar.setDisable(true);
 		tabVisualizar.setDisable(false);
+		tabCadastrarVeiculo.setDisable(true);
 	}
 	
 	public void cancelar(){
@@ -635,6 +600,7 @@ public class TransportadoraController implements Initializable{
 		cboEstadoTransp.valueProperty().set(null);
 	}
 
+	
 	public void preencherVeiculo(){
 		
 		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
@@ -646,26 +612,208 @@ public class TransportadoraController implements Initializable{
 			List<VeiculoTransp> lstVeiculo = VeiculoTranspDAO.filtrarVeiculo(transp.getCodTransportadora());
 			tbvVeiculoTransp.getItems().clear();
 			tbvVeiculoTransp.getItems().addAll(lstVeiculo);
-		}	
+		}
+		else{
+			List<VeiculoTransp> lstVeiculo = VeiculoTranspDAO.obterTodosVeiculos();
+			tbvVeiculoTransp.getItems().clear();
+			tbvVeiculoTransp.getItems().addAll(lstVeiculo);
+		}
+		
 	}
-	
-	private void adicionarVeiculo() {
+		
+	public void adicionarVeiculo() {
 		
 		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
 		
+		limparVeiculo();
+		
 		tabVisualizar.setDisable(true);
 		tabCadastrarVeiculo.setDisable(false);
+		lblCadAtrVeic.setText("Cadastrar Veículo");
 		
 		tpTransp.getSelectionModel().select(2);
-		
 		txtTransp.setText(transp.getRazaoSocial());
+		
+		btnConcluidoVeiculo.setDisable(true);
+		btnCancelarTransp.setDisable(false);
+		btnCadastrarTrans.setDisable(false);
+		
+		btnCadastrarVeiculo.setOnAction(t -> inserirVeiculo());
+		btnCadastrarVeiculo.setOnKeyPressed(b -> {
+			if (b.getCode() == KeyCode.ENTER){
+				inserirVeiculo();
+			}
+		});
+		
+		btnCancelarVeiculo.setOnAction(n -> cancelarVeiculo());
+		btnCancelarVeiculo.setOnKeyPressed(l -> {
+			if (l.getCode() == KeyCode.ENTER)
+				cancelarVeiculo();
+		});
 	}
 	
-	private void cadastrarVeiculo() {
+	public void inserirVeiculo() {
+		
+		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
+	
+		if(!modoEdicaoVeic){
+			
+			if( validarCamposVeiculo( txtPlaca.getText() , txtTipoVeic.getText()) )		
+			{		
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Veículo", "ERRO", "Preencha todos os campos!");
+			}
+			else{
+				
+				TipoVeiculo novoTp = new TipoVeiculo();
+				VeiculoTransp novoVt = new VeiculoTransp();
+				
+				novoTp.setNomeTipoVeiculo(txtTipoVeic.getText());
+				novoVt.setPlacaVeiculo(txtPlaca.getText());
+				novoVt.setCodTransportadora(transp.getCodTransportadora());
+				
+				if(TipoVeiculoDAO.insertTipoVeiculo(novoTp) && VeiculoTranspDAO.insertVeiculoTransp(novoVt)){
+					
+					PopUpController sucesso = new PopUpController("SUCESSO", "Veiculo cadastrado com sucesso!", "Ok");
+					Janelas jn = new Janelas();
+					jn.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, sucesso);
+					
+					
+					btnConcluidoVeiculo.setDisable(false);
+					btnConcluidoVeiculo.setOnAction(j -> concluidoVeiculo());	
+					btnConcluidoVeiculo.setOnKeyPressed(k -> {
+					    if (k.getCode() == KeyCode.ENTER) {
+					    	concluidoVeiculo();
+					    }
+					});
+					
+					btnCadastrarVeiculo.setDisable(true);
+					btnCancelarVeiculo.setDisable(true);
+				
+					limparVeiculo();
+				}
+				else{
+					Alerta alertaErro = new Alerta(); 
+					alertaErro.alertaErro("Veículo", "ERRO", "Veículo não pode ser cadastrado!");	
+				}
+			}	
+		}
+		else{
+		
+			VeiculoTransp vt = tbvVeiculoTransp.getSelectionModel().getSelectedItem();
+			
+			if(vt == null){
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Veículo", "ERRO", "Selecione um item da tabela abaixo!");
+			}
+			else{
+				
+				tabVisualizar.setDisable(true);
+				tpTransp.getSelectionModel().select(2);
+				
+				lblCadAtrVeic.setText("Atualizar Veículo");
+				btnCadastrarVeiculo.setText("Atualizar");
+
+				txtPlaca.setText(vt.getPlacaVeiculo());
+				txtTipoVeic.setText(vt.getTipoVeiculo().getNomeTipoVeiculo());
+				
+				
+				btnCadastrarTrans.setOnAction(l -> atualizarVeiculo());
+				btnCancelarTransp.setOnAction(m -> cancelarVeiculo());
+				btnConcluidoVeiculo.setOnAction(n -> concluidoVeiculo());
+				
+				modoEdicaoVeic = false;	
+			}
+		}
 		
 	}
 	
-	private void cancelarVeiculo (){
+	public void atualizarVeiculo() {
+		
+		VeiculoTransp codVeiculo = tbvVeiculoTransp.getSelectionModel().getSelectedItem();
+		
+		VeiculoTransp upVeiculo = new VeiculoTransp();
+		TipoVeiculo upTipo = new TipoVeiculo();
+		
+		upVeiculo.setCodTipoVeiculo(codVeiculo.getCodVeiculoTransp());
+		upVeiculo.setPlacaVeiculo(txtPlaca.getText());
+		upTipo.setNomeTipoVeiculo(txtTipoVeic.getText());
+		
+		if( validarCamposVeiculo( txtPlaca.getText() , txtTipoVeic.getText()) )		
+		{			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Veículo", "ERRO", "Preencha todos os campos!");
+		}
+		else{
+			
+			if(TipoVeiculoDAO.updateTipoVeiculo(upTipo) && VeiculoTranspDAO.updateVeiculoTransp(upVeiculo)){
+				
+				limparVeiculo();
+				
+				PopUpController sucesso = new PopUpController("SUCESSO", "Veículo Atualizado com sucesso!", "OK");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, sucesso);
+				
+				btnConcluidoVeiculo.setDisable(false);
+				btnCadastrarVeiculo.setDisable(true);	
+				btnCancelarVeiculo.setDisable(true);
+				
+				preencherTransportadora();
+				
+				modoEdicaoVeic = false;
+			}
+			else{
+				
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Veículo", "ERRO", "Erro ao atualizar Veículo!");
+			}
+		}
+	}
+	
+	public void editarVeiculo(){
+		
+		tabCadastrarVeiculo.setDisable(false);
+		tabCadastrarVeiculo.setText("Editar veiculo");
+		tabVisualizar.setDisable(true);
+		
+		btnCadastrarVeiculo.setDisable(false);
+		btnCancelarVeiculo.setDisable(false);
+		btnConcluidoVeiculo.setDisable(true);
+		
+		modoEdicaoVeic = true;
+		
+		inserirVeiculo();
+	}
+
+	private void excluirVeiculo(){
+		
+		VeiculoTransp vt = tbvVeiculoTransp.getSelectionModel().getSelectedItem();
+		
+		if(vt == null){	
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
+		}
+		else{
+		
+			if(VeiculoTranspDAO.deleteVeiculoTransp(vt.getCodVeiculoTransp()) ){
+				
+				TipoVeiculoDAO.deleteTipoVeiculo(vt.getTipoVeiculo().getCodTipoVeiculo());
+				
+				PopUpController erro = new PopUpController("SUCESSO", "Veiculo Excluido com Sucesso", "OK");
+				Janelas j = new Janelas();
+				j.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, erro);
+				
+				preencherVeiculo();
+			}
+			else{
+				Alerta alertaWarning = new Alerta(); 
+				alertaWarning.alertaWarning("Veiculo", "AVISO!", "Veículo não pode ser excluido!");
+			}
+		}
+		
+	}
+	
+	public void cancelarVeiculo (){
 		tpTransp.getSelectionModel().select(0);
 		
 		tabVisualizar.setDisable(false);
@@ -674,10 +822,49 @@ public class TransportadoraController implements Initializable{
 		limparVeiculo();
 	}
 	
+	public void concluidoVeiculo(){
+		
+		tpTransp.getSelectionModel().select(0);
+		tabVisualizar.setDisable(false);
+		tabCadastrar.setDisable(true);
+		tabCadastrarVeiculo.setDisable(true);
+	}
+	
 	public void limparVeiculo(){
 		txtTipoVeic.clear();
 		txtPlaca.clear();
 	}
 	
+	public boolean validarCamposVeiculo(String... camposVeiculo) {
+		
+		boolean preenchido = false;
+		for(String item : camposVeiculo){
+			if(item.isEmpty()){
+				preenchido = true;
+				break;
+			}else{
+				preenchido = false;
+			}
+		}
+		return preenchido;
+	}
+	
+	private void buscarVeiculo(){
+		
+		List<VeiculoTransp> lstVeicFilt = VeiculoTranspDAO.buscarVeiculo("%"+txtBuscaVeiculo.getText()+"%");
+		
+		if (lstVeicFilt.isEmpty()){
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaWarning("Veículo", "", "Nenhum registro encontrado!");
+		
+			txtBuscaVeiculo.clear();
+			preencherVeiculo();
+		}
+		else{
+			tbvVeiculoTransp.getItems().clear();
+			tbvVeiculoTransp.getItems().addAll(lstVeicFilt);
+		}
+	}
 	
 }

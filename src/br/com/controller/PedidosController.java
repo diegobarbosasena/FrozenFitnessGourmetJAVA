@@ -20,14 +20,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
 public class PedidosController implements Initializable{
 	
 	@FXML private AnchorPane anpPedidos;
-	
 	@FXML private TableView <Pedidos> tvPedidos;
-	
 	@FXML private TableColumn <Pedidos, String> tcCodPed;
 	@FXML private TableColumn <Pedidos, String> tcTipoPed;
 	@FXML private TableColumn <Pedidos, String> tcDtComp;
@@ -37,7 +36,8 @@ public class PedidosController implements Initializable{
 	@FXML private TableColumn <Pedidos, String> tcPreco;
 	
 	@FXML private TextField txtPedido;
-	@FXML private Button btnEditPedido;
+	@FXML private Button btnAtualizar;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -46,12 +46,19 @@ public class PedidosController implements Initializable{
 		
 		preencherPedidos();
 		
+		btnAtualizar.setOnAction(a -> preencherPedidos());
+		btnAtualizar.setOnKeyPressed(e -> {
+		    if (e.getCode() == KeyCode.ENTER) {
+		    	preencherPedidos();
+		    }
+		});
+		
 		txtPedido.textProperty().addListener(a -> {
 			if(!txtPedido.getText().isEmpty())
 				buscarPedido();
 			else
 				preencherPedidos();
-		});
+		});	
 	}
 	
 	private void buscarPedido() {
@@ -102,5 +109,5 @@ public class PedidosController implements Initializable{
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido);
 	}
-	
+
 }

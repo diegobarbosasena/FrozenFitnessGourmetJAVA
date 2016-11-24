@@ -43,7 +43,7 @@ public class TipoVeiculoDAO {
 		return lstTv;
 	}
 	
-	public static List<TipoVeiculo> filtrarTransp(String nomeFiltroTrans){
+	public static List<TipoVeiculo> filtrarTransp(int codTrans){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
@@ -53,7 +53,7 @@ public class TipoVeiculoDAO {
 				+ "ON (vt.codTransportadora = t.codTransportadora) "
 				+ "INNER JOIN tblTipoVeiculo AS tv "
 				+ "ON (tv.codTipoVeiculo = vt.codTipoVeiculo) "
-				+ "WHERE t.razaoSocial = ? ;";
+				+ "WHERE t.codTransportadora = ? " ;
 		
 		List <TipoVeiculo> lstVeicuTranspFiltro = new ArrayList<>(); 
 		
@@ -62,7 +62,7 @@ public class TipoVeiculoDAO {
 		try {
 			parametros = c.prepareStatement(sqlSelectPesq);
 			
-			parametros.setString(1, nomeFiltroTrans);	
+			parametros.setInt(1, codTrans);	
 			ResultSet rs = parametros.executeQuery();
 
 			while(rs.next()){
@@ -87,5 +87,98 @@ public class TipoVeiculoDAO {
 		}	
 		return lstVeicuTranspFiltro;
 	}
+
+	public static boolean insertTipoVeiculo(TipoVeiculo novoVeiculo) {
+		
+		Connection c = MySqlConexao.ConectarDb();
+			
+		String sqlInsertTransp = "INSERT INTO tblTipoVeiculo (nomeTipoVeiculo) VALUES (?)";
+			
+		PreparedStatement parametros;
+		
+		try {		
+			parametros = c.prepareStatement(sqlInsertTransp);
+			
+			parametros.setString(1, novoVeiculo.getNomeTipoVeiculo());
+			
+			parametros.executeUpdate();
+			
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			return false;
+		}
+	}
 	
+	public static boolean updateTipoVeiculo(TipoVeiculo updateTipoVeiculo){
+		
+		Connection c = MySqlConexao.ConectarDb();
+			
+		String sqlAtualizar = "UPDATE tblTipoVeiculo SET "
+				+ "nomeTipoVeiculo = ? WHERE codTipoVeiculo = ? ; ";
+
+		PreparedStatement parametros;
+			
+		try {
+			parametros = c.prepareStatement(sqlAtualizar);
+			
+			parametros.setString(1, updateTipoVeiculo.getNomeTipoVeiculo());
+			parametros.setInt(2, updateTipoVeiculo.getCodTipoVeiculo());
+			
+			parametros.executeUpdate();
+		
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			return false;	
+		}
+	}
+	
+	public static int buscarUltimoIdTipoVeiculo() {
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectUltimoId = "SELECT * FROM tblTipoVeiculo ORDER BY codTipoVeiculo DESC LIMIT 1";
+
+		int ultimo_id = 0;
+		
+		ResultSet rs;
+		try {
+			rs = c.createStatement().executeQuery(sqlSelectUltimoId);
+
+			while(rs.next()){
+				ultimo_id = rs.getInt("codTipoVeiculo");
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ultimo_id;	
+	}
+	
+	public static boolean deleteTipoVeiculo(int codTipoVeiculo){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		String sqlDeletar = "DELETE FROM tblTipoVeiculo WHERE codTipoVeiculo = ? ; ";
+		
+		PreparedStatement parametros;
+		try {
+			parametros = c.prepareStatement(sqlDeletar);
+			parametros.setInt(1, codTipoVeiculo);
+			parametros.executeUpdate();
+				
+			c.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();	
+			return false;
+		}	
+	}
 }

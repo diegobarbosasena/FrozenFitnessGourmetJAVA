@@ -1,6 +1,8 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,6 +18,7 @@ import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -49,6 +52,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private TableColumn <Pedidos, Transportadora> tcTranspAcomp;
 	@FXML private TableColumn <Pedidos, TipoVeiculo> tcVeiculoAcomp;
 	@FXML private TableColumn <Pedidos, Number>tcPrecoAcomp;
+	@FXML private TableColumn <Pedidos, String>tcDtEntregaAcomp;
 	@FXML private Label lblCodPed;
 	@FXML private Label lblNomeClien;
 	@FXML private Label lblStatus;
@@ -61,6 +65,8 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Button btnAtualizarPediAcomp;
 	@FXML private Button btnCancelarPediAcomp;
 	@FXML private Button btnConcPediAcomp;
+	@FXML private Button btnAtualizarAcom;
+	
 	
 
 	@Override
@@ -70,6 +76,14 @@ public class AcompanhamentoController implements Initializable{
 		
 		preencherPedidosAcompanhamento();
 		popularComboBox();
+		
+		btnAtualizarAcom.setOnAction(a -> preencherPedidosAcompanhamento());
+		btnAtualizarAcom.setOnKeyPressed(e -> {
+		    if (e.getCode() == KeyCode.ENTER) {
+		    	preencherPedidosAcompanhamento();
+		    	popularComboBox();
+		    }
+		});
 		
 		txtPediAcomp.textProperty().addListener(f ->{
 			if(!txtPediAcomp.getText().isEmpty())
@@ -82,8 +96,7 @@ public class AcompanhamentoController implements Initializable{
 		cboVeiculo.setDisable(true);
 		
 		btnEditarPediAcom.setOnAction(c -> editarAcomp());
-		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());
-		
+		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());	
 	} 
 	
 	private void buscarPedido() {
@@ -119,12 +132,21 @@ public class AcompanhamentoController implements Initializable{
 		tcTranspAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Transportadora>("transportadora"));
 		tcPrecoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Number>("total"));
 		tcVeiculoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, TipoVeiculo>("tipoVeiculo"));
-	
+		
+		tcDtEntregaAcomp.setCellValueFactory( 		
+			dtEntrega -> {
+				SimpleStringProperty propriedade = new SimpleStringProperty();
+				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+				propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
+				
+				return propriedade;
+			}
+		);
+		
 		List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();
 		
 		tvPedidosAcompa.getItems().clear();
-		tvPedidosAcompa.getItems().addAll(lstPedidos);
-		
+		tvPedidosAcompa.getItems().addAll(lstPedidos);	
 	}
 	
 	private void cancelarAcompa() {
@@ -281,7 +303,8 @@ public class AcompanhamentoController implements Initializable{
 					lblVeículo.setDisable(false);
 					cboVeiculo.setDisable(false);
 					
-					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getNomeFantasia());	
+					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO
+							.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getCodTransportadora());	
 					
 					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);
@@ -292,8 +315,7 @@ public class AcompanhamentoController implements Initializable{
 					cboVeiculo.getSelectionModel().clearSelection();
 				}
 			}
-		});
-		
+		});	
 	}
 	
 	private void limparAcompanhamento() {

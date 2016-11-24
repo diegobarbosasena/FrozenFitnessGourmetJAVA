@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="acpTransp" prefHeight="402.0" prefWidth="870.0" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
+<AnchorPane fx:id="acpTransp" prefHeight="402.0" prefWidth="870.0" style="-fx-background-color: #fff;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.TransportadoraController">
    <children>
       <TabPane fx:id="tpTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -27,23 +31,28 @@
                           <items>
                             <AnchorPane maxHeight="50.0" minHeight="50.0" SplitPane.resizableWithParent="false">
                                  <children>
-                                    <TextField fx:id="txtBuscaTrans" layoutX="10.0" layoutY="12.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
-                                    <Button fx:id="btnNovaTransportadora" alignment="CENTER" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Nova" textAlignment="CENTER">
+                                    <TextField fx:id="txtBuscaTrans" layoutX="10.0" layoutY="12.0" maxWidth="200.0" minWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
+                                    <Button fx:id="btnAtualizarTransp" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="284.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" textAlignment="CENTER">
+                                    <Button fx:id="btnNovaTransportadora" alignment="CENTER" layoutX="305.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Nova" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnExcluirTrans" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                    <Button fx:id="btnEditarTrans" alignment="CENTER" layoutX="369.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnAddVeic" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Adicionar Veículo">
+                                    <Button fx:id="btnExcluirTrans" alignment="CENTER" contentDisplay="CENTER" layoutX="436.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnAddVeic" layoutX="507.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Adicionar Veículo">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -65,12 +74,18 @@
                               </AnchorPane>
                               <AnchorPane maxHeight="50.0" minHeight="50.0">
                                  <children>
-                                    <Button fx:id="btnEditarVeic" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar Veículo">
+                                    <TextField fx:id="txtBuscaVeiculo" layoutX="10.0" layoutY="12.0" maxWidth="200.0" minWidth="200.0" promptText="Digite o tipo do Veículo" styleClass="focus" />
+                                    <Button fx:id="btnAtualizarVeiculo" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar Veículo">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnExcluirVeic" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir Veículo">
+                                    <Button fx:id="btnEditarVeic" layoutX="355.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar Veículo">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnExcluirVeic" layoutX="471.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir Veículo">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -255,7 +270,12 @@
                                              </font>
                                           </Label>
                                           <TextField fx:id="txtPlaca" alignment="CENTER" layoutX="173.0" layoutY="137.0" prefHeight="27.0" prefWidth="82.0" promptText="AAA-0000" />
-                                          <Button fx:id="btnCadastrarVeiculo" layoutX="86.0" layoutY="192.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                          <Button fx:id="btnCadastrarVeiculo" layoutX="8.0" layoutY="192.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnConcluidoVeiculo" layoutX="94.0" layoutY="192.0" mnemonicParsing="false" styleClass="botao" text="Concluido">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

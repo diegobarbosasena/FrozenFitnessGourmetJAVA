@@ -6,18 +6,18 @@
 	<queryString>
 		<![CDATA[SELECT
 	p.*, vt.*, cl.*, s.*, tv.*, t.*, v.*
-FROM tblPedido AS p
-LEFT JOIN tblCliente AS cl
+FROM tblPedido p
+LEFT JOIN tblCliente cl
 ON (p.codCliente = cl.codCliente)
-LEFT JOIN tblStatus AS s
+LEFT JOIN tblStatus s
 ON (p.codStatus = s.codStatus )
-LEFT JOIN tblVeiculoTransp AS vt
+LEFT JOIN tblVeiculoTransp vt
 ON (p.codVeiculoTransp = vt.codVeiculoTransp)
-LEFT JOIN tblTipoVeiculo AS tv
+LEFT JOIN tblTipoVeiculo tv
 ON (tv.codTipoVeiculo = vt.codTipoVeiculo)
-LEFT JOIN tblTransportadora AS t
+LEFT JOIN tblTransportadora t
 ON (t.codTransportadora = vt.codTransportadora)
-LEFT JOIN tblTipoVeiculo AS v
+LEFT JOIN tblTipoVeiculo v
 ON (v.codTipoVeiculo = vt.codTipoVeiculo)
 ORDER BY codPedido DESC]]>
 	</queryString>
@@ -87,16 +87,25 @@ ORDER BY codPedido DESC]]>
 	<field name="nomeTipoVeiculo" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nomeTransportadora" class="java.lang.String">
+	<field name="razaoSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomeFantasia" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="cnpjTransportadora" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="emailTransportadora" class="java.lang.String">
+	<field name="telefonePrincipal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="telefoneTransportadora" class="java.lang.String">
+	<field name="telefoneContato" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emailPrincipal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emailContato" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="responsavelTransportadora" class="java.lang.String">
@@ -115,7 +124,7 @@ ORDER BY codPedido DESC]]>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Calibri" size="22" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Relatório de pedidos semanal]]></text>
+				<text><![CDATA[Relatório de pedidos]]></text>
 			</staticText>
 		</band>
 	</title>
