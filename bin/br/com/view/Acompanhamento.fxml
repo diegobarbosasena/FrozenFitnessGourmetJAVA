@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="anpAcompanhamento" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.AcompanhamentoController">
    <children>
-      <TabPane fx:id="tpAcomp" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <TabPane fx:id="tpAcomp" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
           <Tab fx:id="tabVisuaAcomp" text="Visualizar">
                <content>
@@ -17,7 +17,7 @@
                      <children>
                         <SplitPane dividerPositions="0.1424802110817942" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <items>
-                              <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" SplitPane.resizableWithParent="false">
+                              <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
                                     <TextField fx:id="txtPediAcomp" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
                                     <Button fx:id="btnEditarPediAcom" layoutX="306.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
@@ -34,7 +34,7 @@
                               </AnchorPane>
                               <AnchorPane>
                                  <children>
-                                    <TableView fx:id="tvPedidosAcompa" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <TableView fx:id="tvPedidosAcompa" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
                                           <TableColumn fx:id="tcCodPedAcomp" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod. Pedido" />
                                           <TableColumn fx:id="tcClientePedAcomp" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cliente" />

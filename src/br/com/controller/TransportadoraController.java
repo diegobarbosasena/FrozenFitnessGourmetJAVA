@@ -2,6 +2,7 @@ package br.com.controller;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.com.DAO.CidadeDAO;
@@ -24,8 +25,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -795,22 +801,38 @@ public class TransportadoraController implements Initializable{
 		}
 		else{
 		
-			if(VeiculoTranspDAO.deleteVeiculoTransp(vt.getCodVeiculoTransp()) ){
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setTitle("Veículo");
+			a.setHeaderText("Deseja excluir veículo?");
+			a.setContentText("Tem certeza?");
+			
+			ButtonType sim = new ButtonType("Sim");
+			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
+			
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
+			
+			a.getButtonTypes().setAll(sim, nao);
+			
+			Optional<ButtonType> resultado = a.showAndWait();
+			
+			if (resultado.get() == sim){
+			
+				if(VeiculoTranspDAO.deleteVeiculoTransp(vt.getCodVeiculoTransp()) ){
+					
+					TipoVeiculoDAO.deleteTipoVeiculo(vt.getTipoVeiculo().getCodTipoVeiculo());
+					
+					Alerta aS = new Alerta();
+					aS.alertaInformation("Veículo", "Sucesso", "Veiculo Excluído com Sucesso");
 				
-				TipoVeiculoDAO.deleteTipoVeiculo(vt.getTipoVeiculo().getCodTipoVeiculo());
-				
-				PopUpController erro = new PopUpController("SUCESSO", "Veiculo Excluido com Sucesso", "OK");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, erro);
-				
-				preencherVeiculo();
-			}
-			else{
-				Alerta alertaWarning = new Alerta(); 
-				alertaWarning.alertaWarning("Veiculo", "AVISO!", "Veículo não pode ser excluido!");
-			}
+					preencherVeiculo();
+				}
+				else{
+					Alerta alertaWarning = new Alerta(); 
+					alertaWarning.alertaWarning("Veiculo", "AVISO!", "Veículo não pode ser excluido!");
+				}
+			}	
 		}
-		
 	}
 	
 	public void cancelarVeiculo (){

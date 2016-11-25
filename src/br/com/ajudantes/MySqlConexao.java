@@ -3,9 +3,7 @@ package br.com.ajudantes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import br.com.controller.PopUpController;
-import br.com.view.Janelas;
-import javafx.stage.Stage;
+import br.com.view.Alerta;
 
 public class MySqlConexao {
 
@@ -35,9 +33,8 @@ public class MySqlConexao {
 			c = DriverManager.getConnection(jdbc + ip + "/" + db + "?useSSL=false", usuario, senha);
 			
 		} catch (Exception e) {	
-			PopUpController erro = new PopUpController("ERRO", "ERRO AO CONECTAR COM O DATABASE", "Ok");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "ERRO DE CONEXÃO", false, erro);
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("ERRO", "ERRO DE CONEXÃO", "ERRO AO CONECTAR COM O BANCO DE DADOS.");
 		}
 		return c;	
 	}

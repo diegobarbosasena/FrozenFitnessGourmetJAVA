@@ -16,7 +16,7 @@
    <children>
       <SplitPane dividerPositions="0.06224899598393574" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF; -fx-border-color: #BDBDBD; -fx-border-width: 0px 0px 1px 0px;" SplitPane.resizableWithParent="false">
                <children>
                   <MenuBar layoutY="4.0" style="-fx-background-color: #FFF;">
                     <menus>
@@ -53,7 +53,7 @@
                         <fx:include fx:id="anpInfo" source="Informacoes.fxml" />
                         <AnchorPane>
                            <children>
-                              <TabPane fx:id="tpDesk" style="-fx-border-color: #666; -fx-border-width: 1px; -fx-background-color: #FFF;" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <TabPane fx:id="tpDesk" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <tabs>
                                     <Tab text="Pedido por telelefone">
                                       <content>

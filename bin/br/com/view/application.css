@@ -15,29 +15,26 @@
      * the control doesn't have focus or the row of a previously selected item.
     -fx-selection-bar-non-focused: lightgrey;
     
-    /* The color to use in ListView/TreeView/TableView to indicate hover.
-    -fx-cell-hover-color: #cce3f4;
  */
  
- *{ -fx-text-fill: #666; }
-.border{
-	-fx-border-color: #666;
-}
+ *{ 
+ 	-fx-text-fill: #707070;
+ 	-fx-font-family: "Comic Sans MS"; 
+ }
 .botao{
 	-fx-background-color: #FFF;
 	-fx-text-fill: #00B348;
-	-fx-border-radius: 2px ;
 }
 .botao:focused{
 	-fx-background-color: #FFF;
 	-fx-text-fill: #E08A2C;
 	-fx-border-color: #E08A2C;
-	-fx-border-radius: 2px ;
+	-fx-border-radius: 12px ;
 }
 .botao:hover{
 	-fx-background-color: #FFF;
 	-fx-border-color: #00B348;
-	-fx-border-radius: 2px ;
+	-fx-border-radius: 12px ;
 	-fx-text-fill: #00B348;
 }
 TextField, PasswordField, DatePicker{
@@ -49,12 +46,56 @@ TextField, PasswordField, DatePicker{
 	-fx-background-color: #FFF #E08A2C;
 	-fx-border-color: #E08A2C;
 }
-.tab-pane > .tab-header-area > .headers-region > .tab:selected {    
+.tab{
+	-fx-opacity: 1;
+	-fx-tab-min-height: 2em; 
+	-fx-tab-max-height: 2em; 
+	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */	
+}
+.tab .tab-label { 
+    -fx-text-fill: #707070;
+    -fx-font-size: 1.1em;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+    -fx-effect: null;
+}
+.tab-pane .tab-header-area  .headers-region .tab:selected .focus-indicator{ 
+	-fx-border-width: 0px;
+}
+.tab:top {
+	-fx-background-color: null;
+}
+.tab:right {
+	-fx-background-color: null;
+}
+.tab:bottom {
+	-fx-background-color: null;
+}
+.tab:left {
+	-fx-background-color: null;
+}
+.tab:hover {
+	-fx-border-color: #00B348;
+	-fx-background-color: #FFF;
 	-fx-border-width: 1px 1px 0px 1px;
-    -fx-border-color: #00B348;
 	-fx-border-radius: 4px 4px 0px 0px;
 }
-.tab-pane > .tab-header-area > .headers-region >.tab:selected .focus-indicator{ -fx-border-width: 0px; }
+.tab:selected {
+	-fx-border-color: #E08A2C;
+	-fx-background-color: #FFF;
+	-fx-border-width: 1px 1px 0px 1px;
+	-fx-border-radius: 4px 4px 0px 0px;
+}
+.tab:disabled:hover {
+	-fx-border-color: #FFF;
+	-fx-background-color: #FFF;
+	-fx-text-fill: #E08A2C;
+	-fx-opacity: 0.5;
+}
+.tab:disabled {
+	-fx-opacity: 0.5;
+}
 .menu:hover { 
 	-fx-border-color: #00B348;
 	-fx-background-color: #FFF;
@@ -74,36 +115,16 @@ TextField, PasswordField, DatePicker{
 	-fx-border-radius: 2px;
 }
 .split-pane *.split-pane-divider {
-    -fx-padding: 0 1 0 1;
+    -fx-padding: 0;
 }
-
 #btnSplash, #btnSplash:focused,#btnSplash:hover {
 	-fx-background-color: #F0F0F0;
-}
-.separator *.line { 
-	-fx-border-style: solid;
-	-fx-border-width: 1px;
-	-fx-border-color: #BDBDBD;
-	-fx-background-insets: 0;
 }
 .tooltip {
     -fx-background-radius: 2 2 2 2;
     -fx-background-color: #FFF;
     -fx-text-fill: #00B348;
     -fx-font-size: 1.1em;
-}
-ListView{ 
-	-fx-border-color: #E08A2C;
-	-fx-background-insets: 0; 
-	-fx-border-radius: 5px;
-}
-ListView:focused{ 
-	-fx-border-color: #00B348; 
-	-fx-background-insets: 0; 
-	-fx-border-radius: 5px;
-}
-ListView:hover{ 
-	-fx-cell-hover-color: #00B348;
 }
 .dialog-pane .button{
    -fx-background-color: #FFF;
@@ -113,7 +134,6 @@ ListView:hover{
    /*-fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0); */
    -fx-cursor:hand;
  }
-
 .dialog-pane .button:hover{     
 	-fx-background-color: #FFF;
 	-fx-border-color: #00B348;
@@ -121,7 +141,15 @@ ListView:hover{
 	-fx-text-fill: #00B348;
  	-fx-font-weight:bold; 
  }
- #lblTotal{
+ #lblTotal{ 
  	-fx-text-fill: #00B348;
  }
 
+#piInicializa{
+	-fx-progress-color: red;
+}
+
+ 
+ 
+ 
+ 

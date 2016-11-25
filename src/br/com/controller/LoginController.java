@@ -3,6 +3,7 @@ package br.com.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,11 +58,8 @@ public class LoginController implements Initializable{
 			login.close();
 		}
 		else{
-			
-			PopUpController erro = new PopUpController("ERRO DE LOGIN", "Usuário e Senha incorretos!", "Fechar");
-
-			Janelas erroLogin = new Janelas();
-			erroLogin.abrirPopup("PopUp.fxml", new Stage(), "Erro de Login", false, erro);
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Login", "ERRO", "Usuário e Senha incorretos!");
 			
 			limparLogin();
 		}

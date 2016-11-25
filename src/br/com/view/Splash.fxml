@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="348.0" prefWidth="550.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.SplashController">
+<AnchorPane prefHeight="348.0" prefWidth="550.0" style="-fx-border-color: #00B348; -fx-border-width: 1; -fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.SplashController">
    <children>
-      <Button id="btnSplash" fx:id="btnSplash" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@application.css">
+      <Button id="btnSplash" fx:id="btnSplash" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #FFF;" stylesheets="@application.css">
          <graphic>
             <ImageView fitHeight="202.0" fitWidth="488.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imagens/logoo.png" />
+                  <Image url="@imagens/logo.png" />
                </image>
             </ImageView>
          </graphic>
@@ -42,5 +42,6 @@
             <Image url="@imagens/iconeEmp.png" />
          </image>
       </ImageView>
+      <ProgressIndicator fx:id="piInicializa" layoutX="224.0" layoutY="234.0" progress="0.0" />
    </children>
 </AnchorPane>

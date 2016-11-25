@@ -11,7 +11,7 @@
    <children>
       <SplitPane dividerPositions="0.2" orientation="VERTICAL" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <items>
-          <AnchorPane maxHeight="70.0" minHeight="70.0" prefHeight="70.0" SplitPane.resizableWithParent="false">
+          <AnchorPane maxHeight="70.0" minHeight="70.0" prefHeight="70.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                <children>
                   <RadioButton fx:id="rbSemanal" layoutX="11.0" layoutY="31.0" mnemonicParsing="false" text="Semanal" textFill="#666666">
                      <font>

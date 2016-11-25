@@ -29,7 +29,7 @@
                      <children>
                         <SplitPane dividerPositions="0.08644067796610169, 0.5932203389830508, 0.6813559322033899" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane maxHeight="50.0" minHeight="50.0" SplitPane.resizableWithParent="false">
+                            <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
                                     <TextField fx:id="txtBuscaTrans" layoutX="10.0" layoutY="12.0" maxWidth="200.0" minWidth="200.0" promptText="Digite o nome da transportadora" styleClass="focus" />
                                     <Button fx:id="btnAtualizarTransp" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
@@ -61,7 +61,7 @@
                               </AnchorPane>
                             <AnchorPane>
                                  <children>
-                                    <TableView fx:id="tvTransp" style="-fx-border-color: #666; -fx-border-width: 0.5;" styleClass="focus" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <TableView fx:id="tvTransp" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
                                           <TableColumn fx:id="tbcRazao" maxWidth="1000.0" minWidth="170.0" prefWidth="170.0" text="Razão social" />
                                           <TableColumn fx:id="tbcTelCont" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Tel contato" />
@@ -72,7 +72,7 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxHeight="50.0" minHeight="50.0">
+                              <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;">
                                  <children>
                                     <TextField fx:id="txtBuscaVeiculo" layoutX="10.0" layoutY="12.0" maxWidth="200.0" minWidth="200.0" promptText="Digite o tipo do Veículo" styleClass="focus" />
                                     <Button fx:id="btnAtualizarVeiculo" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar Veículo">
@@ -94,7 +94,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="80.0" prefWidth="866.0">
                                  <children>
-                                    <TableView fx:id="tbvVeiculoTransp" layoutX="29.0" layoutY="14.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <TableView fx:id="tbvVeiculoTransp" layoutX="29.0" layoutY="14.0" style="-fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                       <columns>
                                         <TableColumn fx:id="tbcTipoVeic" maxWidth="10000.0" minWidth="100.0" prefWidth="100.0" text="Tipo Veículo" />
                                         <TableColumn fx:id="tbcPlacaVeic" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Placa" />

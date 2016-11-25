@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anpPedidoTelefone" prefHeight="595.0" prefWidth="971.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosTelefoneController">
+<AnchorPane fx:id="anpPedidoTelefone" prefHeight="595.0" prefWidth="971.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosTelefoneController">
    <children>
-      <TabPane fx:id="tbpPedidoTel" style="-fx-border-color: #666; -fx-border-width: 0.5;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <TabPane fx:id="tbpPedidoTel" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
           <Tab fx:id="tabCadClien" text="Cadastro de Cliente">
             <content>
@@ -21,7 +21,7 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="61.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Pane prefHeight="72.0" prefWidth="723.0">
+                                          <Pane prefHeight="72.0" prefWidth="723.0" style="-fx-background-color: #FFF;">
                                              <children>
                                                 <Label fx:id="lblECliente" layoutX="15.0" layoutY="11.0" text="É cliente">
                                                    <font>
@@ -48,7 +48,7 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Pane prefHeight="161.0" prefWidth="666.0">
+                                          <Pane prefHeight="161.0" prefWidth="666.0" style="-fx-background-color: #FFF;">
                                              <children>
                                                 <Label fx:id="lblClienteFisico" layoutX="15.0" layoutY="10.0" text="Cliente Físico">
                                                    <font>
@@ -120,7 +120,7 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="100.0" prefWidth="672.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Pane prefHeight="157.0" prefWidth="664.0">
+                                          <Pane prefHeight="157.0" prefWidth="664.0" style="-fx-background-color: #FFF;">
                                              <children>
                                                 <Label fx:id="lblClienteJuridico" layoutX="15.0" layoutY="6.0" text="Cliente Jurídico">
                                                    <font>
@@ -183,7 +183,7 @@
                               </AnchorPane>
                               <AnchorPane>
                                  <children>
-                                    <TableView style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <TableView AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                       <columns>
                                         <TableColumn maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Logradouro" />
                                         <TableColumn maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cep" />
@@ -197,7 +197,7 @@
                                  </children></AnchorPane>
                               <AnchorPane maxHeight="53.0" minHeight="53.0" SplitPane.resizableWithParent="false">
                                  <children>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="963.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="963.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Pane prefHeight="50.0" prefWidth="500.0">
                                              <children>
@@ -234,7 +234,7 @@
                      <children>
                         <SplitPane dividerPositions="0.20646319569120286, 0.9030520646319569" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane maxHeight="114.0" minHeight="114.0" SplitPane.resizableWithParent="false">
+                            <AnchorPane maxHeight="114.0" minHeight="114.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
                                     <TextField layoutX="14.0" layoutY="71.0" prefHeight="27.0" prefWidth="247.0" />
                                     <Label layoutX="21.0" layoutY="51.0" text="Nome Cliente">
@@ -259,14 +259,14 @@
                                  <children>
                                     <SplitPane dividerPositions="0.4297606659729448, 0.558792924037461" prefHeight="167.0" prefWidth="963.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFF;">
                                              <children>
                                                 <Label layoutX="164.0" layoutY="14.0" text="Pratos">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TableView layoutX="34.0" layoutY="48.0" style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
+                                                <TableView layoutX="34.0" layoutY="48.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
                                                   <columns>
                                                     <TableColumn minWidth="100.0" prefWidth="100.0" text="Nome do prato" />
                                                     <TableColumn prefWidth="75.0" text="Preço" />
@@ -275,7 +275,7 @@
                                                 </TableView>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane maxWidth="122.0" minWidth="122.0" SplitPane.resizableWithParent="false">
+                                          <AnchorPane maxWidth="122.0" minWidth="122.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                              <children>
                                                 <Button layoutX="10.0" layoutY="170.0" mnemonicParsing="false" styleClass="botao" text="Apagar tudo">
                                                    <font>
@@ -294,9 +294,9 @@
                                                 </Button>
                                              </children>
                                           </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFF;">
                                              <children>
-                                                <TableView style="-fx-border-color: #666; -fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
+                                                <TableView AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="45.0">
                                                    <columns>
                                                       <TableColumn minWidth="100.0" prefWidth="100.0" text="Nome do prato" />
                                                       <TableColumn prefWidth="75.0" text="Preço" />
@@ -314,7 +314,7 @@
                                     </SplitPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxHeight="53.0" minHeight="53.0" SplitPane.resizableWithParent="false">
+                              <AnchorPane maxHeight="53.0" minHeight="53.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="963.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
