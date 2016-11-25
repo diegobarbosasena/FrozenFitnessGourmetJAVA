@@ -36,7 +36,7 @@ public class PedidosController implements Initializable{
 	@FXML private TableColumn <Pedidos, String> tcPreco;
 	
 	@FXML private TextField txtPedido;
-	@FXML private Button btnAtualizar;
+	@FXML private Button btnAtualizarPedido;
 
 
 	@Override
@@ -46,8 +46,8 @@ public class PedidosController implements Initializable{
 		
 		preencherPedidos();
 		
-		btnAtualizar.setOnAction(a -> preencherPedidos());
-		btnAtualizar.setOnKeyPressed(e -> {
+		btnAtualizarPedido.setOnAction(a -> preencherPedidos());
+		btnAtualizarPedido.setOnKeyPressed(e -> {
 		    if (e.getCode() == KeyCode.ENTER) {
 		    	preencherPedidos();
 		    }
@@ -78,7 +78,7 @@ public class PedidosController implements Initializable{
 		}
 	}
 	
-	private void preencherPedidos(){
+	public void preencherPedidos(){
 		
 		tcCodPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("codPedido"));
 		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("tipoPedido"));

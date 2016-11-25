@@ -13,7 +13,7 @@
           <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                <children>
                   <TextField fx:id="txtPedido" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                  <Button fx:id="btnAtualizar" layoutX="223.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                  <Button fx:id="btnAtualizarPedido" layoutX="223.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                      <font>
                         <Font size="14.0" />
                      </font>

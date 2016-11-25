@@ -6,13 +6,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
-
-import javafx.scene.control.TabPane;
-
-import javafx.scene.control.Tab;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.stage.Stage;
 
 public class LayoutController implements Initializable {
 	
@@ -27,58 +29,105 @@ public class LayoutController implements Initializable {
 	@FXML private MenuItem miTransp;
 	@FXML private TabPane tpDesk;
 	@FXML private Tab tabTransp;
+	@FXML private MenuItem miAtualizar;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tpDesk.getSelectionModel().select(0);
 		
+		miPedidoTel.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT1, KeyCombination.CONTROL_DOWN ));
 		miPedidoTel.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(0);
 			}
 		});
+		miPedidos.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT2, KeyCombination.CONTROL_DOWN ));
 		miPedidos.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(1);
 			}
 		});
+		miAcompa.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT3, KeyCombination.CONTROL_DOWN ));
 		miAcompa.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(2);
 			}
 		});
+		miVendas.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT4, KeyCombination.CONTROL_DOWN ));
 		miVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(3);
 			}
 		});
+		miRelatorios.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT5, KeyCombination.CONTROL_DOWN ));
 		miRelatorios.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(4);
 			}
 		});
+		miFatura.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT6, KeyCombination.CONTROL_DOWN ));
 		miFatura.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(5);
 			}
 		});
+		miGrafiVendas.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT7, KeyCombination.CONTROL_DOWN ));
 		miGrafiVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(6);
 			}
 		});
+		
+		miTransp.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT8, KeyCombination.CONTROL_DOWN ));
 		miTransp.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(7);
 			}
+		});
+		
+		miAtualizar.setAccelerator(new KeyCodeCombination(KeyCode.F5));
+		miAtualizar.setOnAction(new javafx.event.EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				Stage stage = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizarTransp =(Button)stage.getScene().lookup("#btnAtualizarTransp");
+				
+				if(btnAtualizarTransp != null){
+					btnAtualizarTransp.fire();					
+				}
+				
+				Stage pedidos = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizarPedidos =(Button)pedidos.getScene().lookup("#btnAtualizarPedido");
+				
+				if(btnAtualizarPedidos != null){
+					btnAtualizarPedidos.fire();
+				}
+				
+				Stage acompanhamento = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizarAcom =(Button)acompanhamento.getScene().lookup("#btnAtualizarAcom");
+				
+				if(btnAtualizarAcom != null){
+					btnAtualizarAcom.fire();
+				}
+				
+				Stage veiculo = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizarVeiculo =(Button)veiculo.getScene().lookup("#btnAtualizarVeiculo");
+				
+				if(btnAtualizarVeiculo != null){
+					btnAtualizarVeiculo.fire();
+				}
+				
+			}	
 		});
 		
 	}

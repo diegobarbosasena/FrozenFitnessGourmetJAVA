@@ -2,7 +2,6 @@ package br.com.DAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class EstadoDAO {
 			
 				lstEstado.add(es);
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

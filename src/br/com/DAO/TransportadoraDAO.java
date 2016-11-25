@@ -150,8 +150,7 @@ public class TransportadoraDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {		
 			return false;
 		}
 	}
@@ -171,8 +170,7 @@ public class TransportadoraDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {
 			return false;
 		}	
 	}
@@ -207,8 +205,7 @@ public class TransportadoraDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {
 			return false;	
 		}
 	}

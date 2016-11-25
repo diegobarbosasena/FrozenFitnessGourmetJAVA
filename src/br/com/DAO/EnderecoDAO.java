@@ -3,7 +3,6 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import br.com.ajudantes.MySqlConexao;
 import br.com.model.Endereco;
@@ -37,8 +36,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 			return false;
 		}
 		
@@ -59,8 +57,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {	
 			return false;
 		}
 	}
@@ -82,9 +79,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 			parametros.setString(3, upEnde.getNumero());
 			parametros.setString(4, upEnde.getBairro());
 			parametros.setString(5, upEnde.getComplemento());
-			
 			parametros.setInt(6, upEnde.getCidade().getCodCidade());
-		
 			parametros.setInt(7, upEnde.getCodEndereco());
 			
 			parametros.executeUpdate();
@@ -93,8 +88,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {	
 			return false;	
 		}
 	
@@ -115,7 +109,7 @@ public static boolean insertEndereco(Endereco novoEnde) {
 			while(rs.next()){
 				ultimo_id = rs.getInt("codEndereco");
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ultimo_id;	

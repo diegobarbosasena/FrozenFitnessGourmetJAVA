@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class ClienteDAO {
 				
 				lstCliente.add(cl);			
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return lstCliente;
@@ -72,8 +71,7 @@ public class ClienteDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 			return false;
 		}
 	}
@@ -95,8 +93,7 @@ public class ClienteDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 			return false;
 		}	
 	}
@@ -116,7 +113,7 @@ public class ClienteDAO {
 			while(rs.next()){
 				ultimo_id = rs.getInt("codEndereco");
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ultimo_id;	

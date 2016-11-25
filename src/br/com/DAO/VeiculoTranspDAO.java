@@ -3,10 +3,8 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import br.com.ajudantes.MySqlConexao;
 import br.com.model.TipoVeiculo;
@@ -49,7 +47,7 @@ public class VeiculoTranspDAO {
 				lstVeiculo.add(vt);
 	
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return lstVeiculo;
@@ -104,12 +102,10 @@ public class VeiculoTranspDAO {
 				vt.setTransportadora(t);
 				
 				lstVeiculoTransp.add(vt);
-	
 			}	
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			//e.printStackTrace();
 		}
-		
 		return lstVeiculoTransp;
 	}
 	
@@ -152,10 +148,9 @@ public class VeiculoTranspDAO {
 				lstVeiculoTransp.add(vt);
 			}	
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			//e.printStackTrace();
 		}
-		System.out.println(lstVeiculoTransp);
 		return lstVeiculoTransp;	
 	}
 	
@@ -181,8 +176,7 @@ public class VeiculoTranspDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {	
 			return false;
 		}
 	}
@@ -209,8 +203,7 @@ public class VeiculoTranspDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {	
 			return false;	
 		}
 	}
@@ -230,8 +223,7 @@ public class VeiculoTranspDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {	
 			return false;
 		}	
 	}

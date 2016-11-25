@@ -157,24 +157,24 @@
                                                    </font>
                                                 </Label>
                                                 <TextField layoutX="15.0" layoutY="120.0" styleClass="focus" />
-                                                <Label fx:id="lblTelSecuJuridico" layoutX="179.0" layoutY="100.0" text="Telefone contato">
+                                                <Label fx:id="lblTelSecuJuridico" layoutX="198.0" layoutY="100.0" text="Telefone contato">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="168.0" layoutY="120.0" styleClass="focus" />
-                                                <Label layoutX="336.0" layoutY="100.0" text="E-mail principal">
+                                                <TextField layoutX="187.0" layoutY="120.0" styleClass="focus" />
+                                                <Label layoutX="355.0" layoutY="100.0" text="E-mail principal">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="329.0" layoutY="119.0" />
-                                                <Label layoutX="504.0" layoutY="100.0" text="E-mail contato">
+                                                <TextField layoutX="348.0" layoutY="119.0" />
+                                                <Label layoutX="523.0" layoutY="100.0" text="E-mail contato">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="498.0" layoutY="119.0" />
+                                                <TextField layoutX="517.0" layoutY="119.0" />
                                              </children>
                                           </Pane>
                                        </children>

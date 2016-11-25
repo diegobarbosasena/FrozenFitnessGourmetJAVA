@@ -26,7 +26,7 @@ public class PedidosDAO {
 		List<Pedidos> lstPedidos = new ArrayList<>();
 		
 		ResultSet rs;
-		try {
+		try {	
 			rs = c.createStatement().executeQuery(sqlSelect);
 			
 			while (rs.next()){
@@ -88,8 +88,8 @@ public class PedidosDAO {
 							
 				lstPedidos.add(p);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+		
 		}
 		return lstPedidos;
 	}
@@ -170,7 +170,7 @@ public class PedidosDAO {
 			}
 			c.close();
 			
-		} catch (SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}	
 		return lstPediPesq;
@@ -199,8 +199,7 @@ public class PedidosDAO {
 				
 				return true;
 				
-			} catch (SQLException e) {
-				e.printStackTrace();	
+			} catch (Exception e) {
 				return false;	
 			}		
 		}
@@ -220,8 +219,7 @@ public class PedidosDAO {
 				
 				return true;
 				
-			} catch (SQLException e) {
-				e.printStackTrace();	
+			} catch (Exception e) {	
 				return false;	
 			}
 		}
@@ -241,8 +239,7 @@ public class PedidosDAO {
 				
 				return true;
 				
-			} catch (SQLException e) {
-				e.printStackTrace();	
+			} catch (Exception e) {
 				return false;	
 			}
 		}

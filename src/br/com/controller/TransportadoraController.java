@@ -185,8 +185,7 @@ public class TransportadoraController implements Initializable{
 		
 		btnAtualizarVeiculo.setOnAction(m -> preencherVeiculo());
 		btnCancelarVeiculo.setOnAction(h -> cancelarVeiculo());
-		btnExcluirVeic.setOnAction(c -> excluirVeiculo());
-		
+		btnExcluirVeic.setOnAction(c -> excluirVeiculo());	
 	}
 	
 	public void popularComboBox() {
@@ -224,8 +223,7 @@ public class TransportadoraController implements Initializable{
 		tvTransp.getItems().addAll(lst);
 	}
 	
-	public void initTooltip() {
-		
+	public void initTooltip() {	
 		Tooltip.install(txtRazao, new Tooltip("Digite aqui a Razão Social."));	
 	}
 	
@@ -322,9 +320,8 @@ public class TransportadoraController implements Initializable{
 				
 				if(EnderecoDAO.insertEndereco(novoEnde) && TransportadoraDAO.insertTransportadora(novaTrans)){
 					
-					PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora cadastrada com sucesso!", "Ok");
-					Janelas jn = new Janelas();
-					jn.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
+					Alerta sucesso = new Alerta();
+					sucesso.alertaInformation("Transportadora", "Sucesso", "Transportadora cadastrada com sucesso!");
 					
 					btnConcluido.setDisable(false);
 					btnConcluido.setOnAction(j -> concluido());	
@@ -353,6 +350,7 @@ public class TransportadoraController implements Initializable{
 			if(tn == null){
 				tabCadastrar.setDisable(true);
 				tabCadastrar.setText("Cadastrar transportadora");
+				
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
 			}
@@ -477,10 +475,8 @@ public class TransportadoraController implements Initializable{
 						txtResponsavelTransp.getText()
 				)
 		){	
-			
-			PopUpController erro = new PopUpController("ERRO", "Preencha Todos os campos", "Fechar");
-			Janelas e = new Janelas();
-			e.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Transportadora", "ERRO", "Preencha Todos os campos!");
 		}
 		else{
 			
@@ -488,10 +484,9 @@ public class TransportadoraController implements Initializable{
 				
 				limparTrans();
 				
-				PopUpController sucesso = new PopUpController("SUCESSO", "Transportadora Atualizada com sucesso!", "OK");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, sucesso);
-				
+				Alerta sucesso = new Alerta();
+				sucesso.alertaInformation("Transportadora", "Sucesso", "Transportadora atualizada com sucesso!");
+			
 				btnConcluido.setDisable(false);	
 				btnCancelarTransp.setDisable(true);
 				btnCadastrarTrans.setDisable(true);
@@ -756,9 +751,8 @@ public class TransportadoraController implements Initializable{
 				
 				limparVeiculo();
 				
-				PopUpController sucesso = new PopUpController("SUCESSO", "Veículo Atualizado com sucesso!", "OK");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, sucesso);
+				Alerta alertaInfo = new Alerta();
+				alertaInfo.alertaInformation("Veículo", "SUCESSO", "Veículo Atualizado com sucesso!");
 				
 				btnConcluidoVeiculo.setDisable(false);
 				btnCadastrarVeiculo.setDisable(true);	
@@ -768,8 +762,7 @@ public class TransportadoraController implements Initializable{
 				
 				modoEdicaoVeic = false;
 			}
-			else{
-				
+			else{	
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Veículo", "ERRO", "Erro ao atualizar Veículo!");
 			}

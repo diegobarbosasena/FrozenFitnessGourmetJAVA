@@ -3,7 +3,6 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +33,10 @@ public class TipoVeiculoDAO {
 				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
 				
 				lstTv.add(tv);
-	
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return lstTv;
 	}
 	
@@ -82,7 +79,7 @@ public class TipoVeiculoDAO {
 			}
 			c.close();
 			
-		} catch (SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}	
 		return lstVeicuTranspFiltro;
@@ -97,18 +94,16 @@ public class TipoVeiculoDAO {
 		PreparedStatement parametros;
 		
 		try {		
-			parametros = c.prepareStatement(sqlInsertTransp);
+			parametros = c.prepareStatement(sqlInsertTransp);	
 			
 			parametros.setString(1, novoVeiculo.getNomeTipoVeiculo());
-			
 			parametros.executeUpdate();
 			
 			c.close();
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {		
 			return false;
 		}
 	}
@@ -117,8 +112,7 @@ public class TipoVeiculoDAO {
 		
 		Connection c = MySqlConexao.ConectarDb();
 			
-		String sqlAtualizar = "UPDATE tblTipoVeiculo SET "
-				+ "nomeTipoVeiculo = ? WHERE codTipoVeiculo = ? ; ";
+		String sqlAtualizar = "UPDATE tblTipoVeiculo SET nomeTipoVeiculo = ? WHERE codTipoVeiculo = ? ; ";
 
 		PreparedStatement parametros;
 			
@@ -134,8 +128,7 @@ public class TipoVeiculoDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {		
 			return false;	
 		}
 	}
@@ -155,7 +148,7 @@ public class TipoVeiculoDAO {
 			while(rs.next()){
 				ultimo_id = rs.getInt("codTipoVeiculo");
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ultimo_id;	
@@ -176,8 +169,7 @@ public class TipoVeiculoDAO {
 			
 			return true;
 			
-		} catch (SQLException e) {
-			e.printStackTrace();	
+		} catch (Exception e) {
 			return false;
 		}	
 	}

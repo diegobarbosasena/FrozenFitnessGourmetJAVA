@@ -3,7 +3,6 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public static List<Cidade> selecionarTodasCidades(){
 			
 				lstCidade.add(ci);
 			}	
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 		return lstCidade;
@@ -89,7 +88,7 @@ public static List<Cidade> selecionarTodasCidades(){
 			}
 			c.close();
 			
-		} catch (SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}	
 		return lstCidadePesq;

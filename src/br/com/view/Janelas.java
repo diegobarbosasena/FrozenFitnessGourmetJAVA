@@ -1,7 +1,5 @@
 package br.com.view;
 
-import java.io.IOException;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,12 +20,12 @@ public class Janelas extends Stage{
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
 			
-			javafx.scene.image.Image icone = new javafx.scene.image.Image(
-					getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
+			javafx.scene.image.Image icone = new javafx.scene.image
+					.Image(getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
 			
 			primaryStage.getIcons().add(icone);
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -42,7 +40,7 @@ public class Janelas extends Stage{
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 	}
@@ -68,7 +66,7 @@ public class Janelas extends Stage{
 					.Image(getClass().getResourceAsStream("/br/com/view/imagens/icone.png"));
 			stage.getIcons().add(icone);
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 	}
@@ -95,7 +93,7 @@ public class Janelas extends Stage{
 			
 			primaryStage.getIcons().add(icone);
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -19,7 +19,8 @@
  
  *{ 
  	-fx-text-fill: #707070;
- 	-fx-font-family: "Comic Sans MS"; 
+ 	/*-fx-font-family: "Comic Sans MS";
+ 	-fx-font-family: Arial; */
  }
 .botao{
 	-fx-background-color: #FFF;
