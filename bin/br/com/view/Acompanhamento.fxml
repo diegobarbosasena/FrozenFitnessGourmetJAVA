@@ -15,21 +15,37 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <SplitPane dividerPositions="0.1424802110817942" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.1424802110817942, 0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <items>
-                              <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                              <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
-                                    <TextField fx:id="txtPediAcomp" layoutX="10.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o número do pedido" styleClass="focus" />
-                                    <Button fx:id="btnEditarPediAcom" layoutX="306.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
+                                    <TextField fx:id="txtPediAcomp" layoutX="10.0" layoutY="12.0" promptText="Digite o número do pedido" styleClass="focus" />
+                                    <Button fx:id="btnEditarPediAcom" layoutX="256.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="btnAtualizarAcom" layoutX="221.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
+                                    <Button fx:id="btnAtualizarAcom" layoutX="171.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;">
+                                 <children>
+                                    <Label fx:id="lblFiltroStatus" layoutX="7.0" text="Filtrar por status">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <RadioButton fx:id="rbtTodos" layoutX="7.0" layoutY="26.0" mnemonicParsing="false" text="Todos pedidos" />
+                                    <RadioButton fx:id="rbtAgradPag" layoutX="118.0" layoutY="26.0" mnemonicParsing="false" text="Aguardando Pagamento" />
+                                    <RadioButton fx:id="rbtAguarSepa" layoutX="280.0" layoutY="26.0" mnemonicParsing="false" text="Aguardando separação" />
+                                    <RadioButton fx:id="rbtPratoProdu" layoutX="436.0" layoutY="26.0" mnemonicParsing="false" text="Prato em produção" />
+                                    <RadioButton fx:id="rbtEnviadoTransp" layoutX="571.0" layoutY="26.0" mnemonicParsing="false" text="Enviado para a transportadora" />
+                                    <RadioButton fx:id="rbtProdTransporte" layoutX="763.0" layoutY="26.0" mnemonicParsing="false" text="Produto em transporte" />
+                                    <RadioButton fx:id="rbtEntregue" layoutX="913.0" layoutY="26.0" mnemonicParsing="false" text="Produto Entregue" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane>

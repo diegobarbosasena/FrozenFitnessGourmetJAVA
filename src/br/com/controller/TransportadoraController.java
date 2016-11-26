@@ -19,7 +19,6 @@ import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
 import br.com.model.VeiculoTransp;
 import br.com.view.Alerta;
-import br.com.view.Janelas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -40,6 +39,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -320,8 +320,8 @@ public class TransportadoraController implements Initializable{
 				
 				if(EnderecoDAO.insertEndereco(novoEnde) && TransportadoraDAO.insertTransportadora(novaTrans)){
 					
-					Alerta sucesso = new Alerta();
-					sucesso.alertaInformation("Transportadora", "Sucesso", "Transportadora cadastrada com sucesso!");
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Transportadora", "Sucesso", "Transportadora cadastrada com sucesso!");
 					
 					btnConcluido.setDisable(false);
 					btnConcluido.setOnAction(j -> concluido());	
@@ -484,9 +484,9 @@ public class TransportadoraController implements Initializable{
 				
 				limparTrans();
 				
-				Alerta sucesso = new Alerta();
-				sucesso.alertaInformation("Transportadora", "Sucesso", "Transportadora atualizada com sucesso!");
-			
+				Alerta aletaInfo = new Alerta();
+				aletaInfo.alertaInformation("Transportadora", "Sucesso", "Transportadora atualizada com sucesso!");
+				
 				btnConcluido.setDisable(false);	
 				btnCancelarTransp.setDisable(true);
 				btnCadastrarTrans.setDisable(true);
@@ -528,21 +528,41 @@ public class TransportadoraController implements Initializable{
 			alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
 		}
 		else{
+			
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setTitle("Transportadora");
+			a.setHeaderText("Deseja excluir Transportadora?");
+			a.setContentText("Tem certeza?");
+			
+			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+			
+			ButtonType sim = new ButtonType("Sim");
+			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
+			
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
+			
+			a.getButtonTypes().setAll(sim, nao);
+			
+			Optional<ButtonType> resultado = a.showAndWait();
+			
+			if (resultado.get() == sim){
 		
-			if(TransportadoraDAO.deleteTransp(t.getCodTransportadora()) ){
-				
-				EnderecoDAO.deleteEnde(t.getEndereco().getCodEndereco());
-				
-				PopUpController erro = new PopUpController("SUCESSO", "Transportadora excluída com sucesso!", "OK");
-				Janelas j = new Janelas();
-				j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
-				
-				preencherTransportadora();
-			}
-			else{
-				Alerta alertaWarning = new Alerta(); 
-				alertaWarning.alertaWarning("Transportadora", "AVISO!", "Transportadora não pode ser excluida!");
-			}
+				if(TransportadoraDAO.deleteTransp(t.getCodTransportadora()) ){
+					
+					EnderecoDAO.deleteEnde(t.getEndereco().getCodEndereco());
+					
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Transportadora", "Sucesso", "Transportadora excluída com sucesso!");
+					
+					preencherTransportadora();
+				}
+				else{
+					Alerta alertaWarning = new Alerta(); 
+					alertaWarning.alertaWarning("Transportadora", "AVISO!", "Transportadora não pode ser excluida!");
+				}
+			}	
 		}
 	}
 	
@@ -675,11 +695,9 @@ public class TransportadoraController implements Initializable{
 				
 				if(TipoVeiculoDAO.insertTipoVeiculo(novoTp) && VeiculoTranspDAO.insertVeiculoTransp(novoVt)){
 					
-					PopUpController sucesso = new PopUpController("SUCESSO", "Veiculo cadastrado com sucesso!", "Ok");
-					Janelas jn = new Janelas();
-					jn.abrirPopup("PopUp.fxml", new Stage(), "Veiculo", false, sucesso);
-					
-					
+					Alerta alertaInfo = new Alerta();
+					alertaInfo.alertaInformation("Veículo", "SUCESSO", "Veículo cadastrado com sucesso!");
+
 					btnConcluidoVeiculo.setDisable(false);
 					btnConcluidoVeiculo.setOnAction(j -> concluidoVeiculo());	
 					btnConcluidoVeiculo.setOnKeyPressed(k -> {
@@ -790,7 +808,7 @@ public class TransportadoraController implements Initializable{
 		
 		if(vt == null){	
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Transportadora", "ERRO", "Nenhum item selecionado!");
+			alertaErro.alertaErro("Veículo", "ERRO", "Nenhum item selecionado!");
 		}
 		else{
 		
@@ -801,6 +819,9 @@ public class TransportadoraController implements Initializable{
 			
 			ButtonType sim = new ButtonType("Sim");
 			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
+			
+			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
 			
 			DialogPane dialogPane = a.getDialogPane();
 			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
@@ -815,8 +836,8 @@ public class TransportadoraController implements Initializable{
 					
 					TipoVeiculoDAO.deleteTipoVeiculo(vt.getTipoVeiculo().getCodTipoVeiculo());
 					
-					Alerta aS = new Alerta();
-					aS.alertaInformation("Veículo", "Sucesso", "Veiculo Excluído com Sucesso");
+					Alerta alertaInfo = new Alerta();
+					alertaInfo.alertaInformation("Veículo", "Sucesso", "Veiculo Excluído com Sucesso");
 				
 					preencherVeiculo();
 				}

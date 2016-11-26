@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
@@ -37,9 +38,10 @@
                           <MenuItem fx:id="miAtualizar" mnemonicParsing="false" text="Atualizar" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
+                      <Menu mnemonicParsing="false" text="Sobre">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem fx:id="miFrozen" mnemonicParsing="false" text="Frozen Fitness Gourmet" />
+                              <MenuItem fx:id="miSmart" mnemonicParsing="false" text="Smart Software" />
                         </items>
                       </Menu>
                     </menus>

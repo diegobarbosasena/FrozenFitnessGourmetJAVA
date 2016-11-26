@@ -3,6 +3,7 @@ package br.com.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.view.Alerta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,9 +28,12 @@ public class LayoutController implements Initializable {
 	@FXML private MenuItem miFatura;
 	@FXML private MenuItem miGrafiVendas;
 	@FXML private MenuItem miTransp;
+	@FXML private MenuItem miAtualizar;
 	@FXML private TabPane tpDesk;
 	@FXML private Tab tabTransp;
-	@FXML private MenuItem miAtualizar;
+	
+	@FXML private MenuItem miFrozen;
+	@FXML private MenuItem miSmart;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -129,7 +133,34 @@ public class LayoutController implements Initializable {
 				
 			}	
 		});
+	
+		miFrozen.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN));
+		miFrozen.setOnAction(new javafx.event.EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				Alerta a = new Alerta();
+				a.alertSobreFrozen();
+			}		
+		});
 		
+		miSmart.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN));
+		miSmart.setOnAction(new javafx.event.EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				Alerta a = new Alerta();
+				a.alertSobreSmart();
+			}		
+		});
+		
+		
+		
+		
+			
+			
 	}
 
 }

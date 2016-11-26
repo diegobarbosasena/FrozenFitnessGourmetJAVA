@@ -60,49 +60,49 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="15.0" layoutY="65.0" prefWidth="200.0" />
+                                                <TextField layoutX="15.0" layoutY="65.0" prefWidth="200.0" styleClass="focus" />
                                                 <Label fx:id="lblCpfFisico" layoutX="226.0" layoutY="45.0" text="Cpf">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="226.0" layoutY="65.0" />
+                                                <TextField layoutX="226.0" layoutY="65.0" styleClass="focus" />
                                                 <Label fx:id="lblDtNasc" layoutX="388.0" layoutY="45.0" text="Data de nascimento">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="388.0" layoutY="65.0" prefHeight="27.0" prefWidth="125.0" />
+                                                <TextField layoutX="388.0" layoutY="65.0" prefHeight="27.0" prefWidth="125.0" styleClass="focus" />
                                                 <Label fx:id="lblPeso" layoutX="524.0" layoutY="45.0" text="Peso">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="524.0" layoutY="65.0" prefHeight="27.0" prefWidth="56.0" />
+                                                <TextField layoutX="524.0" layoutY="65.0" prefHeight="27.0" prefWidth="56.0" styleClass="focus" />
                                                 <Label fx:id="lblAltura" layoutX="592.0" layoutY="45.0" text="Altura">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="592.0" layoutY="65.0" prefHeight="27.0" prefWidth="48.0" />
+                                                <TextField layoutX="592.0" layoutY="65.0" prefHeight="27.0" prefWidth="48.0" styleClass="focus" />
                                                 <Label fx:id="lblTelFisico" layoutX="15.0" layoutY="102.0" text="Telefone">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="15.0" layoutY="122.0" />
+                                                <TextField layoutX="15.0" layoutY="122.0" styleClass="focus" />
                                                 <Label fx:id="lblCelFisico" layoutX="217.0" layoutY="102.0" text="Celular">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="187.0" layoutY="122.0" />
+                                                <TextField layoutX="187.0" layoutY="122.0" styleClass="focus" />
                                                 <Label fx:id="lblEmailFisico" layoutX="410.0" layoutY="102.0" text="E-mail">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="354.0" layoutY="122.0" />
+                                                <TextField layoutX="354.0" layoutY="122.0" styleClass="focus" />
                                                 <Label fx:id="lblSexo" layoutX="537.0" layoutY="102.0" text="Sexo">
                                                    <font>
                                                       <Font size="14.0" />
@@ -132,25 +132,25 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="15.0" layoutY="63.0" />
+                                                <TextField layoutX="15.0" layoutY="63.0" styleClass="focus" />
                                                 <Label layoutX="205.0" layoutY="40.0" text="Razão Social">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="185.0" layoutY="63.0" />
+                                                <TextField layoutX="185.0" layoutY="63.0" styleClass="focus" />
                                                 <Label layoutX="385.0" layoutY="40.0" text="Cnpj/Cpf">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="349.0" layoutY="63.0" />
+                                                <TextField layoutX="349.0" layoutY="63.0" styleClass="focus" />
                                                 <Label layoutX="532.0" layoutY="40.0" text="Inscrição estadual">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="513.0" layoutY="63.0" />
+                                                <TextField layoutX="513.0" layoutY="63.0" styleClass="focus" />
                                                 <Label fx:id="lblTelPrincJuridico" layoutX="15.0" layoutY="100.0" text="Telefone Principal">
                                                    <font>
                                                       <Font size="14.0" />
@@ -168,13 +168,13 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="348.0" layoutY="119.0" />
+                                                <TextField layoutX="348.0" layoutY="119.0" styleClass="focus" />
                                                 <Label layoutX="523.0" layoutY="100.0" text="E-mail contato">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField layoutX="517.0" layoutY="119.0" />
+                                                <TextField layoutX="517.0" layoutY="119.0" styleClass="focus" />
                                              </children>
                                           </Pane>
                                        </children>

@@ -26,11 +26,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -66,6 +68,14 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Button btnCancelarPediAcomp;
 	@FXML private Button btnConcPediAcomp;
 	@FXML private Button btnAtualizarAcom;
+	@FXML private Label lblFiltroStatus;
+	@FXML private RadioButton rbtTodos;
+	@FXML private RadioButton rbtAgradPag;
+	@FXML private RadioButton rbtAguarSepa;
+	@FXML private RadioButton rbtPratoProdu;
+	@FXML private RadioButton rbtEnviadoTransp;
+	@FXML private RadioButton rbtProdTransporte;
+	@FXML private RadioButton rbtEntregue;
 	
 	
 
@@ -76,6 +86,7 @@ public class AcompanhamentoController implements Initializable{
 		
 		preencherPedidosAcompanhamento();
 		popularComboBox();
+		RadioButton();
 		
 		btnAtualizarAcom.setOnAction(a -> preencherPedidosAcompanhamento());
 		btnAtualizarAcom.setOnKeyPressed(e -> {
@@ -99,19 +110,35 @@ public class AcompanhamentoController implements Initializable{
 		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());	
 	} 
 	
+	private void RadioButton() {
+		
+		final ToggleGroup tgFiltarPedidos = new ToggleGroup();
+	
+		rbtTodos.setToggleGroup(tgFiltarPedidos);
+		rbtAgradPag.setToggleGroup(tgFiltarPedidos);
+		rbtAguarSepa.setToggleGroup(tgFiltarPedidos);
+		rbtPratoProdu.setToggleGroup(tgFiltarPedidos);
+		rbtEnviadoTransp.setToggleGroup(tgFiltarPedidos);
+		rbtProdTransporte.setToggleGroup(tgFiltarPedidos);
+		rbtEntregue.setToggleGroup(tgFiltarPedidos);
+		
+		rbtTodos.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtAgradPag.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtAguarSepa.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtPratoProdu.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtEnviadoTransp.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtProdTransporte.setOnAction(c -> preencherPedidosAcompanhamento());
+		rbtEntregue.setOnAction(c -> preencherPedidosAcompanhamento());
+	}
+
 	private void buscarPedido() {
 		
-		int codPedido = 0;
-		
-		codPedido = Integer.parseInt(txtPediAcomp.getText());
-		
-		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(codPedido);
+		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPediAcomp.getText()));
 		
 		if (lstPediFilt.isEmpty()){
 				
-			PopUpController erro = new PopUpController("ERRO", "Nenhum registro encontrado!", "OK");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Transportadora", false, erro);
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Pedidos", "ERRO", "Nenhum registro encontrado!");
 				
 			lstPediFilt.clear();
 			txtPediAcomp.clear();
@@ -143,10 +170,59 @@ public class AcompanhamentoController implements Initializable{
 			}
 		);
 		
-		List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();
-		
+		List<Pedidos> lstPedidos1 = PedidosDAO.selecionarTodosPedidos();	
 		tvPedidosAcompa.getItems().clear();
-		tvPedidosAcompa.getItems().addAll(lstPedidos);	
+		tvPedidosAcompa.getItems().addAll(lstPedidos1);	
+		
+		if (rbtTodos.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();	
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtAgradPag.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(1);	
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtAguarSepa.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(2);
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtPratoProdu.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(3);
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtEnviadoTransp.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(4);
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtProdTransporte.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(5);
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtEntregue.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(6);
+			tvPedidosAcompa.getItems().clear();
+			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+		}
+				
 	}
 	
 	private void cancelarAcompa() {

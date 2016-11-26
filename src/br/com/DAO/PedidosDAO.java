@@ -3,7 +3,6 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,7 +170,89 @@ public class PedidosDAO {
 			c.close();
 			
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			
+		}	
+		return lstPediPesq;
+	}
+	
+	public static List<Pedidos> filtrarPedidosStatus(int codStatus) {
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectPesqPedido = "CALL pcd_filtro_status(?)";
+		
+		List <Pedidos> lstPediPesq = new ArrayList<>(); 
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlSelectPesqPedido);
+			
+			parametros.setInt(1, codStatus);	
+			ResultSet rs = parametros.executeQuery();
+
+			while(rs.next()){
+				
+				Pedidos p = new Pedidos();
+				Cliente cl = new Cliente();
+				Status s = new Status();
+				TipoVeiculo tv = new TipoVeiculo();
+				Transportadora t = new Transportadora();
+				VeiculoTransp vt = new VeiculoTransp();
+				
+				vt.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
+				vt.setPlacaVeiculo(rs.getString("placaVeiculo"));
+				vt.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				vt.setCodTransportadora(rs.getInt("codTransportadora"));
+				
+				vt.setTransportadora(t);
+				
+				t.setCodTransportadora(rs.getInt("codTransportadora"));
+				t.setRazaoSocial(rs.getString("razaoSocial"));
+				t.setNomeFantasia(rs.getString("nomeFantasia"));
+				t.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				t.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				t.setTelefoneContato(rs.getString("telefoneContato"));
+				t.setEmailPrincipal(rs.getString("emailPrincipal"));
+				t.setEmailContato(rs.getString("emailContato"));
+				t.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				
+				cl.setCodCliente(rs.getInt("codCliente"));
+				cl.setNomeCliente(rs.getString("nomeCliente"));
+				cl.setCpfCliente(rs.getString("cpfCliente"));
+				cl.setDtNascCliente(rs.getDate("dtNascCliente"));
+				cl.setPeso(rs.getFloat("peso"));
+				cl.setAltura(rs.getFloat("altura"));
+				cl.setTelefoneCliente(rs.getString("telefoneCliente"));
+				cl.setCelularCliente(rs.getString("celularCliente"));
+				cl.setEmailCliente(rs.getString("emailCliente"));
+				
+				s.setCodStatus(rs.getInt("codStatus"));
+				s.setStatusPedido(rs.getString("statusPedido"));
+				
+				tv.setCodTipoVeiculo(rs.getInt("codTipoVeiculo"));
+				tv.setNomeTipoVeiculo(rs.getString("nomeTipoVeiculo"));
+				
+				p.setCodPedido(rs.getInt("codPedido"));
+				p.setTipoPedido(rs.getString("tipoPedido"));
+				p.setDtEntrega(rs.getDate("dtEntrega"));
+				p.setDtCompra(rs.getDate("dtCompra"));
+				p.setTotal(rs.getFloat("total"));
+				p.setCodCliente(rs.getInt("codCliente"));
+				p.setCodStatus(rs.getInt("codStatus"));
+				p.setCodVeiculoTransp(rs.getInt("codVeiculoTransp"));
+				
+				p.setTipoVeiculo(tv);
+				p.setTransportadora(t);
+				p.setCliente(cl);
+				p.setStatus(s);
+				p.setVeiculoTransp(vt);
+					
+				lstPediPesq.add(p);			
+			}
+			c.close();
+			
+		} catch (Exception e1) {
+			
 		}	
 		return lstPediPesq;
 	}
