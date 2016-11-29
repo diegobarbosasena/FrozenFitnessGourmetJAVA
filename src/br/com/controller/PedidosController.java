@@ -19,9 +19,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 
 public class PedidosController implements Initializable{
 	
@@ -37,6 +40,14 @@ public class PedidosController implements Initializable{
 	
 	@FXML private TextField txtPedido;
 	@FXML private Button btnAtualizarPedido;
+	@FXML private Label lblFiltroStatusPedi;
+	@FXML private RadioButton rbtTodosPedi;
+	@FXML private RadioButton rbtAgradPagPedi;
+	@FXML private RadioButton rbtAguarSepaPedi;
+	@FXML private RadioButton rbtPratoProduPedi;
+	@FXML private RadioButton rbtEnviadoTranspPedi;
+	@FXML private RadioButton rbtProdTransportePedi;
+	@FXML private RadioButton rbtEntreguePedi;
 
 
 	@Override
@@ -45,6 +56,7 @@ public class PedidosController implements Initializable{
 		Mascaras.mascaraNumeroInteiro(txtPedido);
 		
 		preencherPedidos();
+		buttonRadio();
 		
 		btnAtualizarPedido.setOnAction(a -> preencherPedidos());
 		btnAtualizarPedido.setOnKeyPressed(e -> {
@@ -61,6 +73,28 @@ public class PedidosController implements Initializable{
 		});	
 	}
 	
+	private void buttonRadio() {
+				
+		final ToggleGroup tgFiltarPedi = new ToggleGroup();
+		
+		rbtTodosPedi.setToggleGroup(tgFiltarPedi);
+		rbtAgradPagPedi.setToggleGroup(tgFiltarPedi);
+		rbtAguarSepaPedi.setToggleGroup(tgFiltarPedi);
+		rbtPratoProduPedi.setToggleGroup(tgFiltarPedi);
+		rbtEnviadoTranspPedi.setToggleGroup(tgFiltarPedi);
+		rbtProdTransportePedi.setToggleGroup(tgFiltarPedi);
+		rbtEntreguePedi.setToggleGroup(tgFiltarPedi);
+		
+		rbtTodosPedi.setOnAction(c -> preencherPedidos());
+		rbtAgradPagPedi.setOnAction(c -> preencherPedidos());
+		rbtAguarSepaPedi.setOnAction(c -> preencherPedidos());
+		rbtPratoProduPedi.setOnAction(c -> preencherPedidos());
+		rbtEnviadoTranspPedi.setOnAction(c -> preencherPedidos());
+		rbtProdTransportePedi.setOnAction(c -> preencherPedidos());
+		rbtEntreguePedi.setOnAction(c -> preencherPedidos());
+			
+	}
+
 	private void buscarPedido() {
 		
 		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
@@ -104,10 +138,62 @@ public class PedidosController implements Initializable{
 		tcStatus.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		tcPreco.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("total"));
 		
-		List<Pedidos> lstPedido = PedidosDAO.selecionarTodosPedidos();
+		List<Pedidos> lstPedido2 = PedidosDAO.selecionarTodosPedidos();
 		
 		tvPedidos.getItems().clear();
-		tvPedidos.getItems().addAll(lstPedido);
+		tvPedidos.getItems().addAll(lstPedido2);
+		
+
+		if (rbtTodosPedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();	
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtAgradPagPedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(1);	
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtAguarSepaPedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(2);
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtPratoProduPedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(3);
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtEnviadoTranspPedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(4);
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtProdTransportePedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(5);
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		if (rbtEntreguePedi.isSelected()){
+			
+			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(6);
+			tvPedidos.getItems().clear();
+			tvPedidos.getItems().addAll(lstPedidos);		
+		}
+		
+		
 	}
 
 }

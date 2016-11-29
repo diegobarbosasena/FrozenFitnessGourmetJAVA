@@ -3,7 +3,6 @@ package br.com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +62,8 @@ public class TransportadoraDAO {
 			}
 			c.close();
 			
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (Exception e1) {
+			
 		}	
 		return lstTranspPesq;
 	}
@@ -113,8 +112,8 @@ public class TransportadoraDAO {
 				
 				lstTransp.add(t);			
 			}	
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			
 		}
 		return lstTransp;
 	}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -7,228 +8,357 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anpPedidoTelefone" prefHeight="595.0" prefWidth="971.0" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosTelefoneController">
+<AnchorPane fx:id="anpPedidoTelefone" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosTelefoneController">
    <children>
       <TabPane fx:id="tbpPedidoTel" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
-          <Tab fx:id="tabCadClien" text="Cadastro de Cliente">
-            <content>
-              <AnchorPane>
+            <Tab fx:id="tabVisuClien" text="Visualizar Clientes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.127208480565371, 0.4134275618374558, 0.6978798586572438, 0.9045936395759717" orientation="VERTICAL" prefHeight="349.0" prefWidth="645.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.38998211091234347, 0.7334525939177102" orientation="VERTICAL" prefHeight="561.0" prefWidth="967.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane maxHeight="70.0" minHeight="70.0" SplitPane.resizableWithParent="false">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFF;">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="61.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Pane prefHeight="72.0" prefWidth="723.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <Label fx:id="lblECliente" layoutX="15.0" layoutY="11.0" text="É cliente">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <RadioButton layoutX="14.0" layoutY="37.0" mnemonicParsing="false" text="Sim" />
-                                                <RadioButton layoutX="65.0" layoutY="37.0" mnemonicParsing="false" text="Não" />
-                                                <ComboBox layoutX="151.0" layoutY="33.0" prefWidth="150.0" promptText="Selecione o cliente" />
-                                                <RadioButton layoutX="355.0" layoutY="37.0" mnemonicParsing="false" text="Físico" />
-                                                <RadioButton layoutX="420.0" layoutY="37.0" mnemonicParsing="false" text="Jurídico" />
-                                                <Label layoutX="151.0" layoutY="11.0" text="Nome/Cnpj/Cpf Cliente">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane maxHeight="160.0" minHeight="160.0" SplitPane.resizableWithParent="false">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Pane prefHeight="161.0" prefWidth="666.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <Label fx:id="lblClienteFisico" layoutX="15.0" layoutY="10.0" text="Cliente Físico">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label fx:id="lblNomeFisico" layoutX="15.0" layoutY="45.0" text="Nome do Cliente">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="15.0" layoutY="65.0" prefWidth="200.0" styleClass="focus" />
-                                                <Label fx:id="lblCpfFisico" layoutX="226.0" layoutY="45.0" text="Cpf">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="226.0" layoutY="65.0" styleClass="focus" />
-                                                <Label fx:id="lblDtNasc" layoutX="388.0" layoutY="45.0" text="Data de nascimento">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="388.0" layoutY="65.0" prefHeight="27.0" prefWidth="125.0" styleClass="focus" />
-                                                <Label fx:id="lblPeso" layoutX="524.0" layoutY="45.0" text="Peso">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="524.0" layoutY="65.0" prefHeight="27.0" prefWidth="56.0" styleClass="focus" />
-                                                <Label fx:id="lblAltura" layoutX="592.0" layoutY="45.0" text="Altura">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="592.0" layoutY="65.0" prefHeight="27.0" prefWidth="48.0" styleClass="focus" />
-                                                <Label fx:id="lblTelFisico" layoutX="15.0" layoutY="102.0" text="Telefone">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="15.0" layoutY="122.0" styleClass="focus" />
-                                                <Label fx:id="lblCelFisico" layoutX="217.0" layoutY="102.0" text="Celular">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="187.0" layoutY="122.0" styleClass="focus" />
-                                                <Label fx:id="lblEmailFisico" layoutX="410.0" layoutY="102.0" text="E-mail">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="354.0" layoutY="122.0" styleClass="focus" />
-                                                <Label fx:id="lblSexo" layoutX="537.0" layoutY="102.0" text="Sexo">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <RadioButton layoutX="521.0" layoutY="127.0" mnemonicParsing="false" text="M" />
-                                                <RadioButton layoutX="575.0" layoutY="127.0" mnemonicParsing="false" text="F" />
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane maxHeight="160.0" minHeight="160.0" SplitPane.resizableWithParent="false">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="672.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Pane prefHeight="157.0" prefWidth="664.0" style="-fx-background-color: #FFF;">
-                                             <children>
-                                                <Label fx:id="lblClienteJuridico" layoutX="15.0" layoutY="6.0" text="Cliente Jurídico">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="15.0" layoutY="40.0" text="Nome/Contato">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="15.0" layoutY="63.0" styleClass="focus" />
-                                                <Label layoutX="205.0" layoutY="40.0" text="Razão Social">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="185.0" layoutY="63.0" styleClass="focus" />
-                                                <Label layoutX="385.0" layoutY="40.0" text="Cnpj/Cpf">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="349.0" layoutY="63.0" styleClass="focus" />
-                                                <Label layoutX="532.0" layoutY="40.0" text="Inscrição estadual">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="513.0" layoutY="63.0" styleClass="focus" />
-                                                <Label fx:id="lblTelPrincJuridico" layoutX="15.0" layoutY="100.0" text="Telefone Principal">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="15.0" layoutY="120.0" styleClass="focus" />
-                                                <Label fx:id="lblTelSecuJuridico" layoutX="198.0" layoutY="100.0" text="Telefone contato">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="187.0" layoutY="120.0" styleClass="focus" />
-                                                <Label layoutX="355.0" layoutY="100.0" text="E-mail principal">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="348.0" layoutY="119.0" styleClass="focus" />
-                                                <Label layoutX="523.0" layoutY="100.0" text="E-mail contato">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <TextField layoutX="517.0" layoutY="119.0" styleClass="focus" />
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <TableView AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <Label fx:id="lblClienteFisi" layoutX="10.0" layoutY="10.0" text="Clientes Físicos">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtBuscaClienFisico" layoutX="164.0" layoutY="13.0" prefWidth="200.0" promptText="Digite o nome do cliente" styleClass="focus" />
+                                    <Button fx:id="btnAtualizaFisico" layoutX="374.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar" />
+                                    <Button fx:id="btnNovoClienFisico" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Novo cliente" />
+                                    <Button fx:id="btnEditarClienteFisico" layoutX="568.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" />
+                                    <Button fx:id="btnEcluirClienFisico" layoutX="635.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" />
+                                    <Button fx:id="btnAdicionarEndeFisico" layoutX="706.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Adicionar endereço" />
+                                    <TableView fx:id="tbwClienteFisico" layoutX="14.0" layoutY="30.0" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                                       <columns>
-                                        <TableColumn maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Logradouro" />
-                                        <TableColumn maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cep" />
-                                          <TableColumn maxWidth="1000.0" minWidth="60.0" prefWidth="60.0" text="Número" />
-                                          <TableColumn maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Bairro" />
-                                          <TableColumn maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Complemento" />
-                                          <TableColumn maxWidth="1000.0" minWidth="60.0" prefWidth="60.0" text="Estado" />
-                                          <TableColumn maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Cidade" />
+                                          <TableColumn fx:id="tbcCodClienteFisico" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod cliente" />
+                                        <TableColumn fx:id="tbcNomeFisi" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Nome" />
+                                        <TableColumn fx:id="tbcCpfFisi" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Cpf" />
+                                          <TableColumn fx:id="tbcDtNascFisi" maxWidth="1000.0" minWidth="120.0" prefWidth="120.0" text="Data de nascimento" />
+                                          <TableColumn fx:id="tbcTelFisi" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Telefone" />
+                                          <TableColumn fx:id="tbcCelFisi" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Celular" />
+                                          <TableColumn fx:id="tbcEmailFisi" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="E-mail" />
+                                          <TableColumn fx:id="tbcSexoFisi" maxWidth="1000.0" minWidth="50.0" prefWidth="50.0" text="Sexo" />
                                       </columns>
                                     </TableView>
-                                 </children></AnchorPane>
-                              <AnchorPane maxHeight="53.0" minHeight="53.0" SplitPane.resizableWithParent="false">
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
                                  <children>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="963.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Pane prefHeight="50.0" prefWidth="500.0">
-                                             <children>
-                                                <Button fx:id="btnAddEndereco" layoutX="174.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Adicionar Endereço">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button fx:id="btnCadastrar" layoutX="325.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button layoutX="415.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </HBox>
+                                    <Label fx:id="lblClienteJuri" layoutX="10.0" layoutY="11.0" text="Clientes Jurídicos">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtBuscaClienJuridico" layoutX="164.0" layoutY="12.0" prefWidth="200.0" promptText="Digite o nome do cliente" styleClass="focus" />
+                                    <Button fx:id="btnAtualizaJuridico" layoutX="374.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Atualizar" />
+                                    <Button fx:id="btnNovoClienteJuridico" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Novo cliente" />
+                                    <Button fx:id="btnEditarClienteJuri" layoutX="568.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" />
+                                    <Button fx:id="btnExcluirJuri" layoutX="635.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" />
+                                    <Button fx:id="btnAdicionarEndeJuri" layoutX="708.0" layoutY="11.0" mnemonicParsing="false" styleClass="botao" text="Adicionar endereço" />
+                                    <TableView fx:id="tbwClienteJuridico" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                       <columns>
+                                          <TableColumn fx:id="tbcCodJuri" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod cliente" />
+                                          <TableColumn fx:id="tbcNomeJuri" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Nome/Contato" />
+                                          <TableColumn fx:id="tbcRazaoJuri" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Razão social" />
+                                          <TableColumn fx:id="tbcTelPricJuri" maxWidth="1000.0" minWidth="110.0" prefWidth="110.0" text="Telefone principal" />
+                                          <TableColumn fx:id="tbcTelContJuri" maxWidth="1000.0" minWidth="110.0" prefWidth="110.0" text="Telefone contato" />
+                                          <TableColumn fx:id="tbcEmailPricJuri" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="E-mail principal" />
+                                          <TableColumn fx:id="tbcEmailContaJuri" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="E-mail contato" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFF;">
+                                 <children>
+                                    <Label layoutX="10.0" layoutY="6.0" text="Endereços">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="tbwEndereco" layoutX="14.0" layoutY="14.0" prefHeight="165.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                                      <columns>
+                                        <TableColumn fx:id="tbcLogradouro" minWidth="200.0" prefWidth="200.0" text="Logradouro" />
+                                        <TableColumn fx:id="tbcCep" minWidth="100.0" prefWidth="100.0" text="Cep" />
+                                          <TableColumn fx:id="tbcNro" minWidth="60.0" prefWidth="60.0" text="Número" />
+                                          <TableColumn fx:id="tbcBairro" minWidth="140.0" prefWidth="140.0" text="Bairro" />
+                                          <TableColumn fx:id="tbcComplemento" minWidth="120.0" prefWidth="120.0" text="Complemento" />
+                                          <TableColumn fx:id="tbcCidade" minWidth="180.0" prefWidth="180.0" text="Cidade" />
+                                          <TableColumn fx:id="tbcEstado" minWidth="50.0" prefWidth="50.0" text="Estado" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="btnEditarEndereco" layoutX="114.0" layoutY="4.0" mnemonicParsing="false" styleClass="botao" text="Editar endereço" />
                                  </children>
                               </AnchorPane>
                           </items>
                         </SplitPane>
                      </children>
                   </AnchorPane>
+              </content>
+            </Tab>
+          <Tab fx:id="tabCadClien" text="Cadastro de Cliente">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="967.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="445.0" prefWidth="967.0">
+                                 <children>
+                                    <Pane prefHeight="445.0" prefWidth="867.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.127208480565371, 0.4134275618374558, 0.6978798586572438" orientation="VERTICAL" prefHeight="416.0" prefWidth="864.0">
+                                            <items>
+                                              <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                                   <children>
+                                                      <RadioButton fx:id="rbJuridico" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Jurídico" />
+                                                      <RadioButton fx:id="rbFisico" layoutX="94.0" layoutY="10.0" mnemonicParsing="false" text="Físico" />
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                                   <children>
+                                                      <Label fx:id="lblClienteFisico" layoutX="14.0" layoutY="1.0" text="Cliente Físico">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lblNomeFisico" layoutX="23.0" layoutY="27.0" text="Nome do Cliente">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtNomeClienFisi" layoutX="14.0" layoutY="53.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblCpfFisico" layoutX="338.0" layoutY="27.0" text="Cpf">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtCpfClienFisi" layoutX="261.0" layoutY="53.0" maxWidth="100.0" styleClass="focus" />
+                                                      <Label fx:id="lblDtNasc" layoutX="425.0" layoutY="27.0" text="Data de nascimento">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtDtNascClienFisi" layoutX="425.0" layoutY="53.0" prefHeight="27.0" prefWidth="125.0" styleClass="focus" />
+                                                      <Label fx:id="lblPeso" layoutX="581.0" layoutY="27.0" text="Peso">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtPesoClienFisi" layoutX="583.0" layoutY="53.0" prefHeight="27.0" prefWidth="56.0" styleClass="focus" />
+                                                      <Label fx:id="lblAltura" layoutX="653.0" layoutY="27.0" text="Altura">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtAlturaClienFisi" layoutX="667.0" layoutY="53.0" prefHeight="27.0" prefWidth="48.0" styleClass="focus">
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                      </TextField>
+                                                      <Label fx:id="lblTelFisico" layoutX="21.0" layoutY="90.0" text="Telefone">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTelClienFisi" layoutX="25.0" layoutY="119.0" maxWidth="100.0" styleClass="focus" />
+                                                      <Label fx:id="lblCelFisico" layoutX="228.0" layoutY="90.0" text="Celular">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtCelClienFisi" layoutX="227.0" layoutY="119.0" maxWidth="100.0" styleClass="focus" />
+                                                      <Label fx:id="lblEmailFisico" layoutX="413.0" layoutY="90.0" text="E-mail">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtEmailClienFisi" layoutX="413.0" layoutY="119.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblSexo" layoutX="629.0" layoutY="90.0" text="Sexo">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <RadioButton fx:id="rbSexoM" layoutX="628.0" layoutY="124.0" mnemonicParsing="false" text="M" />
+                                                      <RadioButton fx:id="rbSexoF" layoutX="679.0" layoutY="124.0" mnemonicParsing="false" text="F" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                                   <children>
+                                                      <Label fx:id="lblClienteJuridico" text="Cliente Jurídico">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lblNomeContato" layoutX="20.0" layoutY="36.0" text="Nome/Contato">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtNomeClienJuri" layoutX="14.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblRazaoClienteJuri" layoutX="252.0" layoutY="17.0" text="Razão Social">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtRazaoClienJuri" layoutX="252.0" layoutY="46.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblCnpjClienJuri" layoutX="474.0" layoutY="17.0" text="Cnpj">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtCnpjClienJuri" layoutX="474.0" layoutY="46.0" maxWidth="125.0" promptText="00.000.000/000-00" styleClass="focus" />
+                                                      <Label fx:id="lblInscricao" layoutX="626.0" layoutY="17.0" text="Inscrição estadual">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtInscricao" layoutX="626.0" layoutY="46.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblTelPrincJuridico" layoutX="45.0" layoutY="91.0" text="Telefone Principal">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTelPrinClienJuri" layoutX="46.0" layoutY="121.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
+                                                      <Label fx:id="lblTelSecuJuridico" layoutX="231.0" layoutY="101.0" text="Telefone contato">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTelContClienJuri" layoutX="231.0" layoutY="125.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
+                                                      <Label fx:id="lblEmailPrincJuridico" layoutX="404.0" layoutY="91.0" text="E-mail principal">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtEmailPrinClienJuri" layoutX="404.0" layoutY="125.0" prefWidth="200.0" styleClass="focus" />
+                                                      <Label fx:id="lblEmailContJuridico" layoutX="636.0" layoutY="91.0" text="E-mail contato">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtEmailContClienJuri" layoutX="636.0" layoutY="125.0" prefWidth="200.0" styleClass="focus" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane maxHeight="53.0" minHeight="53.0" SplitPane.resizableWithParent="false">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="965.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Pane minHeight="50.0" prefHeight="50.0">
+                                                               <children>
+                                                                  <Button fx:id="btnCadastrarCliente" layoutX="325.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                                  <Button layoutX="415.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                               </children>
+                                                            </Pane>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabCadPedi" text="Pedido">
+            <Tab fx:id="tabCadEnde" text="Cadastro Endereço">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="967.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Pane prefHeight="260.0">
+                                       <children>
+                                          <Label fx:id="lblCadasEnder" layoutY="2.0" text="Cadastro de Endereço">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNomeClienteEnd" layoutY="54.0" />
+                                          <Label fx:id="lblLogradouro" layoutY="93.0" text="Logradouro">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtLogradouro" layoutY="113.0" prefWidth="200.0" promptText="Rua, Av" styleClass="focus" />
+                                          <Label fx:id="lblCep" layoutX="228.0" layoutY="93.0" text="Cep">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtCep" layoutX="228.0" layoutY="113.0" prefWidth="75.0" promptText="00000-000" styleClass="focus" />
+                                          <Label fx:id="lblNro" layoutX="334.0" layoutY="93.0" text="Número">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtNro" layoutX="334.0" layoutY="113.0" prefWidth="55.0" styleClass="focus" />
+                                          <Label fx:id="lblBairro" layoutX="420.0" layoutY="93.0" text="Bairro">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtBairro" layoutX="420.0" layoutY="113.0" prefWidth="200.0" promptText="Digite o bairro" />
+                                          <Label fx:id="lblComplemento" layoutY="157.0" text="Complemento">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="txtComplemento" layoutY="177.0" prefWidth="200.0" promptText="Casa, Apt" styleClass="focus" />
+                                          <Label fx:id="lblEstado" layoutX="210.0" layoutY="157.0" text="Estado">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboEstado" layoutX="210.0" layoutY="177.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione um estado" styleClass="focus" />
+                                          <Label fx:id="lblCidade" layoutX="420.0" layoutY="157.0" text="Cidade">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cboCidade" layoutX="420.0" layoutY="177.0" minWidth="200.0" prefWidth="200.0" promptText="Selecione uma cidade" styleClass="focus" />
+                                          <Button fx:id="btnCadastrarEndereco" layoutX="437.0" layoutY="224.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnCancelar" layoutX="526.0" layoutY="224.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="lblNomeClienteEnde" layoutX="1.0" layoutY="34.0" text="Nome cliente">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab fx:id="tabCadPedi" text="Efetuar Pedido">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

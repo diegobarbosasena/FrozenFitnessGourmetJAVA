@@ -3,9 +3,12 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fd" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-	p.*, vt.*, cl.*, s.*, tv.*, t.*, v.*
+	p.*, vt.*, cl.*, s.*, tv.*, t.*, v.*, (SELECT SUM(p.total)) as total_pedidos
 FROM tblPedido p
 LEFT JOIN tblCliente cl
 ON (p.codCliente = cl.codCliente)
@@ -19,7 +22,7 @@ LEFT JOIN tblTransportadora t
 ON (t.codTransportadora = vt.codTransportadora)
 LEFT JOIN tblTipoVeiculo v
 ON (v.codTipoVeiculo = vt.codTipoVeiculo)
-ORDER BY codPedido DESC]]>
+group by  codPedido]]>
 	</queryString>
 	<field name="codPedido" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -114,6 +117,7 @@ ORDER BY codPedido DESC]]>
 	<field name="codEndereco" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="total_pedidos" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -149,14 +153,14 @@ ORDER BY codPedido DESC]]>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[Nome do Cliente]]></text>
+				<text><![CDATA[Nome do cliente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="425" y="0" width="130" height="20" uuid="fd84ab77-8dcc-49f7-9e45-4041c919fb6a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[Valor total]]></text>
+				<text><![CDATA[ Total pedido]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -189,9 +193,21 @@ ORDER BY codPedido DESC]]>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="465" y="8" width="100" height="20" uuid="10343268-9f70-4897-9545-7a0e8c7f3ac1"/>
+				<textFieldExpression><![CDATA[
+$F{total_pedidos}
+]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="22" width="305" height="20" uuid="712de271-e398-4c71-a9f1-942f2b58bf2a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>

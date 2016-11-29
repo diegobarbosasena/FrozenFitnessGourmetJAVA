@@ -31,6 +31,7 @@
 .botao{
 	-fx-background-color: #FFF;
 	-fx-text-fill: #00B348;
+	-fx-font-size: 14px;
 }
 .botao:focused{
 	-fx-background-color: #FFF;
@@ -122,7 +123,7 @@ TextField, PasswordField, DatePicker{
 	-fx-border-radius: 2px;
 }
 .split-pane *.split-pane-divider {
-    -fx-padding: 0;
+    -fx-padding: 1;
 }
 #btnSplash, #btnSplash:focused,#btnSplash:hover {
 	-fx-background-color: #F0F0F0;

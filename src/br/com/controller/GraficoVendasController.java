@@ -181,8 +181,8 @@ public class GraficoVendasController implements Initializable {
 		
 		try {
 			Connection c = MySqlConexao.ConectarDb();
-			HashMap parametro = new HashMap();
-			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_semanal.jasper", parametro, c);
+			//HashMap parametro = new HashMap();
+			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_semanal.jasper", new HashMap<>(), c);
 			JasperViewer jw = new JasperViewer(jp);
 			jw.setVisible(true);
 			

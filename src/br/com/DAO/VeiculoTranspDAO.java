@@ -103,8 +103,9 @@ public class VeiculoTranspDAO {
 				
 				lstVeiculoTransp.add(vt);
 			}	
+			
 		} catch (Exception e) {
-			//e.printStackTrace();
+			
 		}
 		return lstVeiculoTransp;
 	}
@@ -149,7 +150,7 @@ public class VeiculoTranspDAO {
 			}	
 			
 		} catch (Exception e) {
-			//e.printStackTrace();
+			
 		}
 		return lstVeiculoTransp;	
 	}

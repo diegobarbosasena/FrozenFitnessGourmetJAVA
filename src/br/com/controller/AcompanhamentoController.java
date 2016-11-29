@@ -86,7 +86,7 @@ public class AcompanhamentoController implements Initializable{
 		
 		preencherPedidosAcompanhamento();
 		popularComboBox();
-		RadioButton();
+		radioButton();
 		
 		btnAtualizarAcom.setOnAction(a -> preencherPedidosAcompanhamento());
 		btnAtualizarAcom.setOnKeyPressed(e -> {
@@ -110,7 +110,7 @@ public class AcompanhamentoController implements Initializable{
 		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());	
 	} 
 	
-	private void RadioButton() {
+	private void radioButton() {
 		
 		final ToggleGroup tgFiltarPedidos = new ToggleGroup();
 	

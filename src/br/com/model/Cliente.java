@@ -10,6 +10,7 @@ public class Cliente {
 	private Date dtNascCliente;
 	private float peso;
 	private float altura;
+	private String sexo;
 	private String telefoneCliente;
 	private String celularCliente;
 	private String emailCliente;
@@ -69,10 +70,17 @@ public class Cliente {
 	public void setEmailCliente(String emailCliente) {
 		this.emailCliente = emailCliente;
 	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 	
 	@Override
 	public String toString() {
 		return "Nome: " + nomeCliente + ", Cpf: " + cpfCliente + "";
 	}
+	
 	
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -8,7 +9,7 @@
 
 <AnchorPane fx:id="anpPedidos" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosController">
    <children>
-      <SplitPane dividerPositions="0.1424802110817942" orientation="VERTICAL" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <SplitPane dividerPositions="0.1424802110817942, 0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <items>
           <AnchorPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                <children>
@@ -18,6 +19,25 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;">
+               <children>
+                  <Label fx:id="lblFiltroStatusPedi" layoutX="10.0" text="Filtrar por status">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="rbtTodosPedi" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" text="Todos pedidos" />
+                  <RadioButton fx:id="rbtAgradPagPedi" layoutX="119.0" layoutY="25.0" mnemonicParsing="false" text="Aguardando Pagamento" />
+                  <RadioButton fx:id="rbtAguarSepaPedi" layoutX="280.0" layoutY="25.0" mnemonicParsing="false" text="Aguardando separação" />
+                  <RadioButton fx:id="rbtPratoProduPedi" layoutX="434.0" layoutY="25.0" mnemonicParsing="false" text="Prato em produção" />
+                  <RadioButton fx:id="rbtEnviadoTranspPedi" layoutX="568.0" layoutY="25.0" mnemonicParsing="false" text="Enviado para a transportadora" />
+                  <RadioButton fx:id="rbtProdTransportePedi" layoutX="759.0" layoutY="25.0" mnemonicParsing="false" text="Produto em transporte" />
+                  <RadioButton fx:id="rbtEntreguePedi" layoutX="911.0" layoutY="25.0" mnemonicParsing="false" text="Produto Entregue">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding></RadioButton>
                </children>
             </AnchorPane>
           <AnchorPane>

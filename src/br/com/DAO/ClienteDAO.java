@@ -28,6 +28,46 @@ public class ClienteDAO {
 				
 				Cliente cl = new Cliente();
 				
+				cl.setCodCliente(rs.getInt("codCliente"));
+				cl.setNomeCliente(rs.getString("nomeCliente"));
+				cl.setCpfCliente(rs.getString("cpfCliente"));
+				cl.setDtNascCliente(rs.getDate("dtNascCliente"));
+				cl.setPeso(rs.getFloat("peso"));
+				cl.setAltura(rs.getFloat("altura"));
+				cl.setEmailCliente(rs.getString("emailCliente"));
+				cl.setTelefoneCliente(rs.getString("telefoneCliente"));
+				cl.setCelularCliente(rs.getString("celularCliente"));
+				cl.setSexo(rs.getString("sexo"));
+				
+				lstCliente.add(cl);			
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lstCliente;
+	}
+	
+	public static List<Cliente> filtrarCliente(String nomePesquisa){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectPesq = "SELECT * FROM tblCliente WHERE nomeCliente LIKE ? ;";
+	
+		List <Cliente> lstCliePesq = new ArrayList<>(); 
+		
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlSelectPesq);
+		
+			parametros.setString(1, nomePesquisa);	
+			ResultSet rs = parametros.executeQuery();
+
+			while(rs.next()){
+				
+				Cliente cl = new Cliente();
+				
+				cl.setCodCliente(rs.getInt("codCliente"));
 				cl.setNomeCliente(rs.getString("nomeCliente"));
 				cl.setCpfCliente(rs.getString("cpfCliente"));
 				cl.setDtNascCliente(rs.getDate("dtNascCliente"));
@@ -37,12 +77,14 @@ public class ClienteDAO {
 				cl.setCelularCliente(rs.getString("celularCliente"));
 				cl.setCelularCliente(rs.getString("celularCliente"));
 				
-				lstCliente.add(cl);			
-			}	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return lstCliente;
+				lstCliePesq.add(cl);					
+			}
+			c.close();
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}	
+		return lstCliePesq;
 	}
 
 	public static boolean inserirCliente(Cliente cliente){
@@ -96,27 +138,6 @@ public class ClienteDAO {
 		} catch (Exception e) {
 			return false;
 		}	
-	}
-	
-	public static int buscarUltimoIdCliente() {
-		
-		Connection c = MySqlConexao.ConectarDb();
-		
-		String sqlSelectUltimoId = "SELECT * FROM tblCliente ORDER BY codEndereco DESC LIMIT 1";
-
-		int ultimo_id = 0;
-		
-		ResultSet rs;
-		try {
-			rs = c.createStatement().executeQuery(sqlSelectUltimoId);
-
-			while(rs.next()){
-				ultimo_id = rs.getInt("codEndereco");
-			}	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ultimo_id;	
 	}
 		
 }

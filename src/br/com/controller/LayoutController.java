@@ -131,6 +131,22 @@ public class LayoutController implements Initializable {
 					btnAtualizarVeiculo.fire();
 				}
 				
+				Stage pedTel = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizaJuridico =(Button)pedTel.getScene().lookup("#btnAtualizaJuridico");
+				
+				if(btnAtualizaJuridico != null){
+					btnAtualizaJuridico.fire();
+				}
+				
+				Stage pedTel1 = (Stage)tpDesk.getScene().getWindow();
+				Button btnAtualizaFisico =(Button)pedTel1.getScene().lookup("#btnAtualizaFisico");
+				
+				if(btnAtualizaFisico != null){
+					btnAtualizaFisico.fire();
+				}
+				
+				
+				
 			}	
 		});
 	

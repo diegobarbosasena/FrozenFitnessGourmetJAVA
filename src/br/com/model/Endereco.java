@@ -62,10 +62,10 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return logradouro + ", "+" n°" +  numero +", "+ bairro ;	
-	}
+	}*/
 	
 		
 }

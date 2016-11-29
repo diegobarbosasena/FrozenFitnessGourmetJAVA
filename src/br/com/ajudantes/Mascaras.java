@@ -153,11 +153,11 @@ public class Mascaras {
                 if(textField.getText().length()==10) event.consume();
 
                 if(textField.getText().length()==2){
-                    textField.setText(textField.getText()+"/");
+                    textField.setText(textField.getText()+"-");
                     textField.positionCaret(textField.getText().length());
                 }
                 if(textField.getText().length()==5){
-                    textField.setText(textField.getText()+"/");
+                    textField.setText(textField.getText()+"-");
                     textField.positionCaret(textField.getText().length());
                 }
             }
