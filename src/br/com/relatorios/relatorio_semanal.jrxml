@@ -6,9 +6,15 @@
 	<parameter name="fd" class="java.lang.Double">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="titulo_relatorio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codPedido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-	p.*, vt.*, cl.*, s.*, tv.*, t.*, v.*, (SELECT SUM(p.total)) as total_pedidos
+	p.*, vt.*, cl.*, s.*, tv.*, t.*, v.*
 FROM tblPedido p
 LEFT JOIN tblCliente cl
 ON (p.codCliente = cl.codCliente)
@@ -22,7 +28,8 @@ LEFT JOIN tblTransportadora t
 ON (t.codTransportadora = vt.codTransportadora)
 LEFT JOIN tblTipoVeiculo v
 ON (v.codTipoVeiculo = vt.codTipoVeiculo)
-group by  codPedido]]>
+WHERE p.codPedido = $P{codPedido}
+]]>
 	</queryString>
 	<field name="codPedido" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -117,7 +124,6 @@ group by  codPedido]]>
 	<field name="codEndereco" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="total_pedidos" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -137,6 +143,10 @@ group by  codPedido]]>
 			<line>
 				<reportElement x="0" y="0" width="555" height="2" uuid="4579186a-d19e-4acb-ad5f-31da9a3f93d6"/>
 			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="2" width="305" height="20" uuid="712de271-e398-4c71-a9f1-942f2b58bf2a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -195,19 +205,22 @@ group by  codPedido]]>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="465" y="8" width="100" height="20" uuid="10343268-9f70-4897-9545-7a0e8c7f3ac1"/>
-				<textFieldExpression><![CDATA[
-$F{total_pedidos}
-]]></textFieldExpression>
+				<reportElement x="434" y="34" width="80" height="20" uuid="875c0687-48fd-479d-91f3-51db6eda0ebb"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="34" width="40" height="20" uuid="0c9433f3-341e-4587-af5a-f82661c1764d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch">
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="22" width="305" height="20" uuid="712de271-e398-4c71-a9f1-942f2b58bf2a"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>

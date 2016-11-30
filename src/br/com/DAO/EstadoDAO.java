@@ -33,9 +33,10 @@ public class EstadoDAO {
 				lstEstado.add(es);
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+		
 		}
 		
 		return lstEstado;
 	}
+	
 }

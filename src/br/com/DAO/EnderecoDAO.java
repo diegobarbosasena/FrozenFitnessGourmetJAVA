@@ -177,12 +177,16 @@ public class EnderecoDAO {
 
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlFiltroEndereco = "SELECT  cidade.*, estado.*, endereco.*, clie_ende.*, cliente.* "
-				+ "FROM tblEstado estado LEFT JOIN tblCidade cidade "
-				+ "ON (cidade.codEstado = estado.codEstado) "
-				+ "LEFT JOIN tblEndereco endereco ON (cidade.codCidade = endereco.codCidade) "
-				+ "LEFT JOIN tblClienteEnd clie_ende ON (endereco.codEndereco = clie_ende.codEndereco) "
-				+ "LEFT JOIN tblCliente cliente ON (cliente.codCliente = clie_ende.codCliente) "
+		String sqlFiltroEndereco = "SELECT cidade.*, estado.*, endereco.*, clie_ende.*, cliente.* "
+				+ "FROM tblCidade cidade "
+				+ "INNER JOIN tblEstado estado "
+				+ "ON(cidade.codEstado = estado.codEstado) "
+				+ "INNER JOIN  tblEndereco endereco "
+				+ "ON(endereco.codCidade = cidade.codCidade) "
+				+ "INNER JOIN tblClienteEnd clie_ende "
+				+ "ON(endereco.codEndereco = clie_ende.codEndereco)"
+				+ "INNER JOIN tblCliente cliente "
+				+ "ON(clie_ende.codCliente = cliente.codCliente) "
 				+ "WHERE cliente.codCliente = ? ;";
 		
 		List <ClienteEndereco> lstClienteEndereco = new ArrayList<>(); 

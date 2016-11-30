@@ -18,23 +18,19 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 public class LayoutController implements Initializable {
-	
+
 	@FXML private Menu mnVisualizar;
 	@FXML private MenuItem miPedidoTel;
 	@FXML private MenuItem miPedidos;
 	@FXML private MenuItem miAcompa;
-	@FXML private MenuItem miVendas;
-	@FXML private MenuItem miRelatorios;
-	@FXML private MenuItem miFatura;
 	@FXML private MenuItem miGrafiVendas;
 	@FXML private MenuItem miTransp;
 	@FXML private MenuItem miAtualizar;
-	@FXML private TabPane tpDesk;
-	@FXML private Tab tabTransp;
-	
 	@FXML private MenuItem miFrozen;
 	@FXML private MenuItem miSmart;
-	
+	@FXML private TabPane tpDesk;
+	@FXML private Tab tabTransp;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tpDesk.getSelectionModel().select(0);
@@ -60,40 +56,20 @@ public class LayoutController implements Initializable {
 				tpDesk.getSelectionModel().select(2);
 			}
 		});
-		miVendas.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT4, KeyCombination.CONTROL_DOWN ));
-		miVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
+	
+		miGrafiVendas.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT4, KeyCombination.CONTROL_DOWN ));
+		miGrafiVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				tpDesk.getSelectionModel().select(3);
 			}
 		});
-		miRelatorios.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT5, KeyCombination.CONTROL_DOWN ));
-		miRelatorios.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				tpDesk.getSelectionModel().select(4);
-			}
-		});
-		miFatura.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT6, KeyCombination.CONTROL_DOWN ));
-		miFatura.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				tpDesk.getSelectionModel().select(5);
-			}
-		});
-		miGrafiVendas.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT7, KeyCombination.CONTROL_DOWN ));
-		miGrafiVendas.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				tpDesk.getSelectionModel().select(6);
-			}
-		});
 		
-		miTransp.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT8, KeyCombination.CONTROL_DOWN ));
+		miTransp.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT5, KeyCombination.CONTROL_DOWN ));
 		miTransp.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				tpDesk.getSelectionModel().select(7);
+				tpDesk.getSelectionModel().select(4);
 			}
 		});
 		

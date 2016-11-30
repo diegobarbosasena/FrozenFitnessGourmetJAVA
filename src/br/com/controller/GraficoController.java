@@ -2,14 +2,17 @@ package br.com.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import br.com.ajudantes.MySqlConexao;
+import br.com.view.Alerta;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -18,12 +21,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.Tab;
+import javafx.scene.chart.LineChart;
 
-public class GraficoVendasController implements Initializable {
+public class GraficoController implements Initializable {
 	
 	@FXML private AnchorPane anpGrafVendas;
 	@FXML private RadioButton rbSemanal;
@@ -34,9 +39,26 @@ public class GraficoVendasController implements Initializable {
 	@FXML private Label lblDtFim;
 	@FXML private DatePicker dtpInicio;
 	@FXML private DatePicker dtpFim;
-	@FXML private BarChart<String, Number> brcGrafVendas;
+	@FXML private BarChart<String, Number>brcGrafVendas;
+	@FXML private NumberAxis yEixo;
 	@FXML private CategoryAxis xEixo;
+	
 	@FXML private Button btnRelatorio;
+	@FXML TabPane tbpGraficos;
+	@FXML Tab tabVendas;
+	@FXML Tab tabFaturamento;
+	@FXML RadioButton rbSemanal1;
+	@FXML RadioButton rbMensal1;
+	@FXML RadioButton rbTrimestral1;
+	@FXML RadioButton rbPeriodo1;
+	@FXML Label lblDtInicial1;
+	@FXML Label lblDtFim1;
+	@FXML DatePicker dtpInicio1;
+	@FXML DatePicker dtpFim1;
+	@FXML Button btnRelatorio1;
+	@FXML LineChart <String, Number>lcFaturamento;
+	@FXML CategoryAxis xEixoLC;
+	@FXML NumberAxis yEixoLC;
 	
 	
 	@Override
@@ -52,6 +74,7 @@ public class GraficoVendasController implements Initializable {
 		
 		xEixo.tickLabelFontProperty().set(Font.font(14));
 		brcGrafVendas.setTitle("Gráfico de Vendas");
+		brcGrafVendas.setStyle(".default-color0.chart-bar { -fx-bar-fill: #00B348 }");
 		
 		btnRelatorio.setOnAction(r -> gerarRelatorio());
 	}
@@ -138,11 +161,47 @@ public class GraficoVendasController implements Initializable {
 	
 	}
 	
+
 	private void preencherGraficoPeriodo() {
 		
 		desabilitaAbilitaData(false);
-	}
+		
+		brcGrafVendas.setTitle("foi sim");
 
+		XYChart.Series<String, Number> estados = new XYChart.Series<>();
+		
+		try {
+			Connection c = MySqlConexao.ConectarDb();
+			
+			String sqlSelectEstado = "SELECT "
+					+ "pedido.*, cliente.*, clie_ende.*, endereco.*, cidade.*, estado.* "
+					+ "FROM tblPedido pedido INNER JOIN tblCliente cliente "
+					+ "ON(pedido.codCliente = cliente.codCliente) "
+					+ "INNER JOIN tblClienteEnd clie_ende "
+					+ "ON(cliente.codCliente = clie_ende.codCliente) "
+					+ "INNER JOIN tblEndereco endereco "
+					+ "ON(clie_ende.codEndereco = endereco.codEndereco) "
+					+ "INNER JOIN tblCidade cidade "
+					+ "ON(endereco.codCidade = cidade.codCidade) "
+					+ "INNER JOIN tblEstado estado "
+					+ "ON(cidade.codEstado = estado.codEstado)" ;
+
+			ResultSet rs = c.createStatement().executeQuery(sqlSelectEstado);
+
+			while(rs.next()){
+				
+				estados.getData().addAll(new XYChart.Data(rs.getString("nomeEstado"), rs.getInt("total")));
+			}
+			estados.setName("Estados");
+			
+			brcGrafVendas.getData().clear();
+			brcGrafVendas.getData().add(estados);
+			
+		} catch (Exception e) {
+		
+		}
+	}
+	
 	private void desabilitaAbilitaData(boolean falso) {
 		
 		dtpInicio.setDisable(falso);
@@ -155,39 +214,29 @@ public class GraficoVendasController implements Initializable {
 		dtpInicio.setValue(null);
 		dtpFim.setValue(null);
 	}
-	
-	/*public void writeExcel() throws Exception {
-	    Writer writer = null;
-	    try {
-	        File file = new File("C:\\Person.csv.");
-	        writer = new BufferedWriter(new FileWriter(file));
-	       
-			for (Pedidos p : ) {
 
-	            String text = p.getCodPedido() + "," + p.getDtCompra() + "," + p.getStatus() + "\n";
-
-	            writer.write(text);
-	        }
-	    } catch (Exception ex) {
-	        ex.printStackTrace();
-	    }
-	    finally {
-
-	        writer.flush();
-	        writer.close();
-	    } 
-	}*/
 	public void gerarRelatorio(){
 		
 		try {
 			Connection c = MySqlConexao.ConectarDb();
-			//HashMap parametro = new HashMap();
-			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_semanal.jasper", new HashMap<>(), c);
-			JasperViewer jw = new JasperViewer(jp);
-			jw.setVisible(true);
+	
+			HashMap<String, Object> parametros = new HashMap<String, Object>();
 			
-		} catch (JRException e) {
-			e.printStackTrace();
+			parametros.put("titulo", "relatorio mensal");
+			parametros.put("total_pedido", 200.32);
+			parametros.put("cod_pedido", 2);
+
+			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio.jasper", parametros, c);			
+			JasperViewer jw = new JasperViewer(jp , false);
+			
+			if (jw != null)
+				jw.setVisible(true);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
 		}
 	}
 }
