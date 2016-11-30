@@ -13,8 +13,8 @@ public class MySqlConexao {
 //		String ip = "10.107.134.60";
 //		String ip = "10.107.144.26";
 //		String ip = "10.107.134.54";
-		String ip = "192.168.1.34";
-//		String ip = "10.107.140.14";
+//		String ip = "192.168.1.34";
+		String ip = "10.107.140.14";
 		String db = "dbsmartgourmet";
 		String usuario = "root";
 		String senha = "root" ;

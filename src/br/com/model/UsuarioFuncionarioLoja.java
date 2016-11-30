@@ -6,6 +6,8 @@ public class UsuarioFuncionarioLoja {
 	private int codUsuario;
 	private int codUsuarioFuncionarioLoja;
 	
+	private FuncionarioLoja funcionarioLoja;
+	private Usuario usuario;
 	
 	public int getCodFuncionarioLoja() {
 		return codFuncionarioLoja;
@@ -24,6 +26,18 @@ public class UsuarioFuncionarioLoja {
 	}
 	public void setCodUsuarioFuncionarioLoja(int codUsuarioFuncionarioLoja) {
 		this.codUsuarioFuncionarioLoja = codUsuarioFuncionarioLoja;
+	}
+	public FuncionarioLoja getFuncionarioLoja() {
+		return funcionarioLoja;
+	}
+	public void setFuncionarioLoja(FuncionarioLoja funcionarioLoja) {
+		this.funcionarioLoja = funcionarioLoja;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

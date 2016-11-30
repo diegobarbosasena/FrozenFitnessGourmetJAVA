@@ -1,8 +1,11 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.DAO.UsuarioFuncionarioLojaDAO;
+import br.com.model.UsuarioFuncionarioLoja;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
 import javafx.fxml.FXML;
@@ -47,7 +50,35 @@ public class LoginController implements Initializable{
 	@FXML
 	private void login() {
 
-		if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
+		List<UsuarioFuncionarioLoja> lstRetorno = UsuarioFuncionarioLojaDAO.filtrarUsuario();
+		
+		System.out.println(lstRetorno.get(0).getUsuario().getNomeUsuario());
+		System.out.println(lstRetorno.get(0).getUsuario().getSenha());
+		
+		for (UsuarioFuncionarioLoja usuarioFuncionarioLoja : lstRetorno) {
+		
+			if(		txtUsuario.getText().contains(usuarioFuncionarioLoja.getUsuario().getNomeUsuario()) && 
+					txtUsuario.getText().contains(usuarioFuncionarioLoja.getUsuario().getSenha())){
+			
+				
+				limparLogin();
+				
+				Janelas layout = new Janelas();
+				layout.abrir("Layout.fxml", new Stage(), "", true);
+				
+				Stage login = (Stage)btnEntrar.getScene().getWindow();
+				login.close();
+				break;
+			}
+			else{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Login", "ERRO", "Usuário e Senha incorretos!");
+				
+				limparLogin();
+			}
+		}
+		
+		/*if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
 			
 			limparLogin();
 			
@@ -56,13 +87,8 @@ public class LoginController implements Initializable{
 			
 			Stage login = (Stage)btnEntrar.getScene().getWindow();
 			login.close();
-		}
-		else{
-			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Login", "ERRO", "Usuário e Senha incorretos!");
-			
-			limparLogin();
-		}
+		}*/
+		
 	}
 	private void limparLogin(){
 		txtUsuario.clear();
