@@ -24,7 +24,7 @@ public class LoginController implements Initializable{
 	@FXML private PasswordField txtSenha;
 	@FXML private AnchorPane anpLogin;
 	
-	public String usuario_login;
+	public static String usuario_login;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -62,7 +62,7 @@ public class LoginController implements Initializable{
 				
 			){
 					
-				usuario_login = usuarioFuncionarioLoja.getUsuario().getNomeUsuario().toString();
+				usuario_login = usuarioFuncionarioLoja.getUsuario().getNomeUsuario();
 					
 				limparLogin();
 				

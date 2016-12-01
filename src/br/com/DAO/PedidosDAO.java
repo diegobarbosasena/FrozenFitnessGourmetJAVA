@@ -307,34 +307,17 @@ public class PedidosDAO {
 	
 	public static boolean updatePedido(Integer codVeic, Integer codPed, Integer codStat){
 		
-		Connection c = MySqlConexao.ConectarDb();
+		boolean retorno = false;
 		
-		String sqlAtualizarPedido = "";
-		PreparedStatement parametros;
+		switch (codStat) {
 		
-		if (codVeic != null){
-			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ?, codVeiculoTransp = ? WHERE codPedido = ? ;";
+		case 1:
 			
-			try {
-				parametros = c.prepareStatement(sqlAtualizarPedido);
-				
-				parametros.setInt(1, codStat);
-				parametros.setInt(2, codVeic);
-				parametros.setInt(3, codPed);
-				
-				parametros.executeUpdate();
+			Connection c = MySqlConexao.ConectarDb();
 			
-				c.close();
-				
-				return true;
-				
-			} catch (Exception e) {
-				return false;	
-			}		
-		}
-		
-		else if (codVeic == null) {
-			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = null WHERE codPedido = ? ;";
+			PreparedStatement parametros;
+			
+			String sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = null WHERE codPedido = ? ;";
 			
 			try {
 				parametros = c.prepareStatement(sqlAtualizarPedido);
@@ -346,31 +329,143 @@ public class PedidosDAO {
 			
 				c.close();
 				
-				return true;
+				retorno = true;
 				
 			} catch (Exception e) {	
-				return false;	
+				e.printStackTrace();
+				
+				retorno =  false;	
 			}
-		}
-		else{
-			sqlAtualizarPedido = "UPDATE tblPedido SET codStatus = ? WHERE codPedido = ? ;";
+		break;	
+		case 2:
 			
-
+			Connection c1 = MySqlConexao.ConectarDb();
+			
+			PreparedStatement parametros1;
+			
+			String sqlAtualizarPedido1 = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = null WHERE codPedido = ? ;";
+			
 			try {
-				parametros = c.prepareStatement(sqlAtualizarPedido);
+				parametros1 = c1.prepareStatement(sqlAtualizarPedido1);
 				
-				parametros.setInt(1, codStat);
-				parametros.setInt(2, codPed);
+				parametros1.setInt(1, codStat);
+				parametros1.setInt(2, codPed);
 				
-				parametros.executeUpdate();
-			
-				c.close();
+				parametros1.executeUpdate();
 				
-				return true;
+				c1.close();
+				
+				retorno = true;
 				
 			} catch (Exception e) {
-				return false;	
+				
+				e.printStackTrace();
+				retorno = false;	
 			}
+		break;	
+		case 3:
+			Connection c2 = MySqlConexao.ConectarDb();
+			
+			PreparedStatement parametros2;
+			
+			String sqlAtualizarPedido2 = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = null WHERE codPedido = ? ;";
+			
+			try {
+				parametros2 = c2.prepareStatement(sqlAtualizarPedido2);
+				
+				parametros2.setInt(1, codStat);
+				parametros2.setInt(2, codPed);
+				
+				parametros2.executeUpdate();
+			
+				c2.close();
+				
+				retorno = true;
+				
+			} catch (Exception e) {	
+				e.printStackTrace();
+				retorno = false;	
+			}
+		break;	
+		case 4:
+			Connection c3 = MySqlConexao.ConectarDb();
+			
+			PreparedStatement parametros3;
+			
+			String sqlAtualizarPedido3 = "UPDATE tblPedido SET codStatus = ? , codVeiculoTransp = ? WHERE codPedido = ? ;";
+			
+			try {
+				parametros3 = c3.prepareStatement(sqlAtualizarPedido3);
+				
+				parametros3.setInt(1, codStat);
+				parametros3.setInt(2, codVeic);
+				parametros3.setInt(3, codPed);
+				
+				parametros3.executeUpdate();
+			
+				c3.close();
+				
+				retorno = true;
+				
+			} catch (Exception e) {	
+				e.printStackTrace();
+				retorno = false;	
+			}
+		break;	
+		case 5:
+			
+			Connection c4 = MySqlConexao.ConectarDb();
+			
+			PreparedStatement parametros4;
+			
+			String sqlAtualizarPedido4 = "UPDATE tblPedido SET codStatus = ? WHERE codPedido = ? ;";
+			
+			try {
+				parametros4 = c4.prepareStatement(sqlAtualizarPedido4);
+				
+				parametros4.setInt(1, codStat);
+				parametros4.setInt(2, codPed);
+				
+				parametros4.executeUpdate();
+			
+				c4.close();
+				
+				retorno = true;
+				
+			} catch (Exception e) {	
+				e.printStackTrace();
+				retorno = false;	
+			}
+		break;	
+		case 6:
+			
+			Connection c5 = MySqlConexao.ConectarDb();
+			
+			PreparedStatement parametros5;
+			
+			String sqlAtualizarPedido5 = "UPDATE tblPedido SET codStatus = ? WHERE codPedido = ? ;";
+			
+			try {
+				parametros5 = c5.prepareStatement(sqlAtualizarPedido5);
+				
+				parametros5.setInt(1, codStat);
+				parametros5.setInt(2, codPed);
+				
+				parametros5.executeUpdate();
+			
+				c5.close();
+				
+				retorno = true;
+				
+			} catch (Exception e) {	
+				e.printStackTrace();
+				retorno = false;	
+			}
+
+		default:
+			break;
 		}
+		
+		return retorno;
 	}
 }

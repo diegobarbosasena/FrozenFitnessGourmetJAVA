@@ -287,7 +287,7 @@ public class AcompanhamentoController implements Initializable{
 				}
 			}
 		}
-		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());		
+		btnAtualizarPediAcomp.setOnAction(c -> atualizarPedido());
 	}
 
 	private void atualizarPedido() {

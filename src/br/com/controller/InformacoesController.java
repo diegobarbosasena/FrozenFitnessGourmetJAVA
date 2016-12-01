@@ -26,6 +26,8 @@ public class InformacoesController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		btnSair.setOnAction(s -> sair());
 		
+		lblUsuario.setText(LoginController.usuario_login);
+		
 		SimpleDateFormat d = new SimpleDateFormat("dd/MM/YYYY");
 		lblData.setText(d.format(new Date()));
 			
