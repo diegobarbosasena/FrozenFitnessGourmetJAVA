@@ -11,7 +11,7 @@
    <children>
       <TabPane fx:id="tpAcomp" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
-          <Tab fx:id="tabVisuaAcomp" text="Visualizar">
+          <Tab fx:id="tabVisuaAcomp" closable="false" text="Visualizar">
                <content>
                   <AnchorPane>
                      <children>
@@ -69,7 +69,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="tabEditAcomp" text="Editar">
+          <Tab fx:id="tabEditAcomp" closable="false" text="Editar">
                <content>
                   <AnchorPane style="-fx-background-color: #FFF;">
                      <children>

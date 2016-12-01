@@ -54,27 +54,27 @@
                            <children>
                               <TabPane fx:id="tpDesk" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <tabs>
-                                    <Tab text="Pedido por telelefone">
+                                    <Tab closable="false" text="Pedido por telelefone">
                                       <content>
                                         <fx:include fx:id="anpPedidoTelefone" source="PedidosTelefone.fxml" />
                                       </content>
                                     </Tab>
-                                    <Tab text="Pedidos">
+                                    <Tab closable="false" text="Pedidos">
                                       <content>
                                       	<fx:include fx:id="anpPedidos" source="Pedidos.fxml" />
                                       </content>
                                     </Tab>
-                                    <Tab text="Acompanhamento">
+                                    <Tab closable="false" text="Acompanhamento">
                                       <content>
                                         <fx:include fx:id="anpAcompanhamento" source="Acompanhamento.fxml" />
                                       </content>
                                     </Tab>
-                                  <Tab text="Gráfico/Relatórios">
+                                  <Tab closable="false" text="Gráfico/Relatórios">
                                     <content>
                                       <fx:include fx:id="anpGraficos" source="Graficos.fxml" /> 
                                     </content>
                                   </Tab>
-                                  <Tab fx:id="tabTransp" text="Transportadoras">
+                                  <Tab fx:id="tabTransp" closable="false" text="Transportadoras">
                                     <content>
                                       <fx:include fx:id="acpTransp" source="Transportadora.fxml" /> 
                                     </content>

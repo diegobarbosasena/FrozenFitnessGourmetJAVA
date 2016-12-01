@@ -1,8 +1,8 @@
 package br.com.controller;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import br.com.view.Janelas;
@@ -21,12 +21,10 @@ public class InformacoesController implements Initializable{
 	@FXML private Label lblHora;
 	@FXML private Label lblData;
 	@FXML private Button btnSair;
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		btnSair.setOnAction(s -> sair());
-		
-		lblUsuario.setText(System.getProperty("user.name"));
 		
 		SimpleDateFormat d = new SimpleDateFormat("dd/MM/YYYY");
 		lblData.setText(d.format(new Date()));
@@ -44,7 +42,7 @@ public class InformacoesController implements Initializable{
 					});
 					try {
 						Thread.sleep(1000);
-					} catch (InterruptedException ex) {
+					} catch (Exception ex) {
 						break;
 					}
 				}

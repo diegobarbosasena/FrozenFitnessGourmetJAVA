@@ -24,8 +24,11 @@ public class LoginController implements Initializable{
 	@FXML private PasswordField txtSenha;
 	@FXML private AnchorPane anpLogin;
 	
+	public String usuario_login;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		btnEntrar.setOnAction(x -> login());
 		
 		btnEntrar.setOnKeyPressed(e -> {
@@ -47,20 +50,20 @@ public class LoginController implements Initializable{
 		});	
 	}
 	
-	@FXML
-	private void login() {
+	@FXML 
+	public void login() {
 
 		List<UsuarioFuncionarioLoja> lstRetorno = UsuarioFuncionarioLojaDAO.filtrarUsuario();
 		
-		System.out.println(lstRetorno.get(0).getUsuario().getNomeUsuario());
-		System.out.println(lstRetorno.get(0).getUsuario().getSenha());
-		
 		for (UsuarioFuncionarioLoja usuarioFuncionarioLoja : lstRetorno) {
-		
-			if(		txtUsuario.getText().contains(usuarioFuncionarioLoja.getUsuario().getNomeUsuario()) && 
-					txtUsuario.getText().contains(usuarioFuncionarioLoja.getUsuario().getSenha())){
 			
+			if(		txtUsuario.getText().equals(usuarioFuncionarioLoja.getUsuario().getNomeUsuario()) && 
+					txtSenha.getText().equals(usuarioFuncionarioLoja.getUsuario().getSenha())
 				
+			){
+					
+				usuario_login = usuarioFuncionarioLoja.getUsuario().getNomeUsuario().toString();
+					
 				limparLogin();
 				
 				Janelas layout = new Janelas();
@@ -77,21 +80,10 @@ public class LoginController implements Initializable{
 				limparLogin();
 			}
 		}
-		
-		/*if(txtUsuario.getText().equals("teste") && txtSenha.getText().equals("123")){
-			
-			limparLogin();
-			
-			Janelas layout = new Janelas();
-			layout.abrir("Layout.fxml", new Stage(), "", true);
-			
-			Stage login = (Stage)btnEntrar.getScene().getWindow();
-			login.close();
-		}*/
-		
 	}
 	private void limparLogin(){
 		txtUsuario.clear();
 		txtSenha.clear();
 	}
+
 }

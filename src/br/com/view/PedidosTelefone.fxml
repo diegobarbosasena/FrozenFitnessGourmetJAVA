@@ -12,7 +12,7 @@
    <children>
       <TabPane fx:id="tbpPedidoTel" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
-            <Tab fx:id="tabVisuClien" text="Visualizar Clientes">
+            <Tab fx:id="tabVisuClien" closable="false" text="Visualizar Clientes">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -98,7 +98,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab fx:id="tabCadClien" text="Cadastro de Cliente">
+          <Tab fx:id="tabCadClien" closable="false" text="Cadastro de Cliente">
             <content>
               <AnchorPane>
                      <children>
@@ -275,7 +275,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabCadEnde" text="Cadastro Endereço">
+            <Tab fx:id="tabCadEnde" closable="false" text="Cadastro Endereço">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -358,7 +358,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab fx:id="tabCadPedi" text="Efetuar Pedido">
+          <Tab fx:id="tabCadPedi" closable="false" text="Efetuar Pedido">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

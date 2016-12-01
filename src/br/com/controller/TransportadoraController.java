@@ -60,7 +60,14 @@ public class TransportadoraController implements Initializable{
 	@FXML private TableColumn <Transportadora, String> tbcTelCont;
 	@FXML private TableColumn <Transportadora, String> tbcEmailCont;
 	@FXML private TableColumn <Transportadora, String> tbcResp;
-	@FXML private TableColumn <Transportadora, String> tbcEndereco;
+	@FXML private TableView <Endereco> tbwEnderecoTransp;
+	@FXML private TableColumn <Endereco, String> tbcLogradouroTransp;
+	@FXML private TableColumn <Endereco, String> tbcCepTransp;
+	@FXML private TableColumn <Endereco, String> tbcNroTransp;
+	@FXML private TableColumn <Endereco, String> tbcBairroTransp;
+	@FXML private TableColumn <Endereco, String> tbcComplementoTransp;
+	@FXML private TableColumn <Endereco, Cidade> tbcCidadeTransp;
+	@FXML private TableColumn <Estado, String> tbcEstadoTransp;
 	@FXML private Button btnEditarVeic;
 	@FXML private Button btnExcluirVeic;
 	@FXML private TableView <VeiculoTransp> tbvVeiculoTransp;
@@ -118,6 +125,7 @@ public class TransportadoraController implements Initializable{
 	boolean modoEdicao = false;
 	boolean modoEdicaoVeic = false;
 	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -169,6 +177,7 @@ public class TransportadoraController implements Initializable{
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Integer> arg0) {		
 				if (tvTransp.getSelectionModel().getSelectedIndices() != null)
 					preencherVeiculo();
+					preencherEnderecoTransportadora();
 			}
 		});
 		
@@ -213,7 +222,6 @@ public class TransportadoraController implements Initializable{
 		
 		tbcRazao.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("razaoSocial"));
 		tbcEmailCont.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("emailContato"));
-		tbcEndereco.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("endereco"));
 		tbcResp.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("responsavelTransportadora"));
 		tbcTelCont.setCellValueFactory(new PropertyValueFactory<Transportadora, String>("telefoneContato"));
 		
@@ -221,6 +229,26 @@ public class TransportadoraController implements Initializable{
 		
 		tvTransp.getItems().clear();
 		tvTransp.getItems().addAll(lst);
+	}
+	
+	public void preencherEnderecoTransportadora(){
+		
+		Transportadora transp = tvTransp.getSelectionModel().getSelectedItem();
+		
+		tbcLogradouroTransp.setCellValueFactory(new PropertyValueFactory<Endereco, String>("logradouro"));
+		tbcCepTransp.setCellValueFactory(new PropertyValueFactory<Endereco, String>("cep"));
+		tbcNroTransp.setCellValueFactory(new PropertyValueFactory<Endereco, String>("numero"));
+		tbcBairroTransp.setCellValueFactory(new PropertyValueFactory<Endereco, String>("bairro"));
+		tbcComplementoTransp.setCellValueFactory(new PropertyValueFactory<Endereco, String>("complemento"));
+		tbcCidadeTransp.setCellValueFactory(new PropertyValueFactory<Endereco, Cidade>("cidade"));
+		tbcEstadoTransp.setCellValueFactory(new PropertyValueFactory<Estado, String>("estado"));
+		
+		if(transp != null){
+			List<Endereco> lstEndereco = EnderecoDAO.filtrarEnderecoTransportadora(transp.getCodTransportadora());
+			
+			tbwEnderecoTransp.getItems().clear();
+			tbwEnderecoTransp.getItems().addAll(lstEndereco);
+		}
 	}
 	
 	public void initTooltip() {	

@@ -12,6 +12,7 @@ import br.com.model.Cliente;
 import br.com.model.ClienteEndereco;
 import br.com.model.Endereco;
 import br.com.model.Estado;
+import br.com.model.Transportadora;
 
 public class EnderecoDAO {
 	
@@ -151,6 +152,75 @@ public class EnderecoDAO {
 		return lstEnde;
 	}
 	
+	public static List<Endereco> filtrarEnderecoTransportadora(int codEnde){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelectPesq = "SELECT transportadora.*, endereco.*, cidade.*, endereco.*, estado.* "
+				+ "FROM tblTransportadora transportadora "
+				+ "INNER JOIN tblEndereco endereco "
+				+ "ON(transportadora.codEndereco = endereco.codEndereco) "
+				+ "INNER JOIN tblCidade cidade "
+				+ "ON(cidade.codCidade = endereco.codCidade) "
+				+ "INNER JOIN tblEstado estado "
+				+ "ON(cidade.codEstado = estado.codEstado) "
+				+ "WHERE codTransportadora = ?;";
+	
+		List <Endereco> lstEndeTransp = new ArrayList<>(); 
+		
+		PreparedStatement parametros;
+		
+		try {
+			parametros = c.prepareStatement(sqlSelectPesq);
+		
+			parametros.setInt(1, codEnde);	
+			ResultSet rs = parametros.executeQuery();
+
+			while(rs.next()){
+				
+				Transportadora transportadora = new Transportadora();
+				Endereco endereco = new Endereco();
+				Cidade cidade = new Cidade();
+				Estado estado = new Estado();
+				
+				estado.setCodEstado(rs.getInt("codEndereco"));
+				estado.setNomeEstado(rs.getString("nomeEstado"));
+				estado.setUf(rs.getString("uf"));
+				
+				cidade.setCodCidade(rs.getInt("codCidade"));
+				cidade.setCodEstado(rs.getInt("codEstado"));
+				cidade.setNomeCidade(rs.getString("nomeCidade"));
+				cidade.setEstado(estado);
+				
+				endereco.setCodEndereco(rs.getInt("codEndereco"));
+				endereco.setLogradouro(rs.getString("logradouro"));
+				endereco.setCep(rs.getString("cep"));
+				endereco.setNumero(rs.getString("numero"));
+				endereco.setBairro(rs.getString("bairro"));
+				endereco.setComplemento(rs.getString("complemento"));
+				endereco.setCodCidade(rs.getInt("codCidade"));
+				endereco.setCidade(cidade);	
+				
+				transportadora.setCodTransportadora(rs.getInt("codTransportadora"));
+				transportadora.setRazaoSocial(rs.getString("razaoSocial"));
+				transportadora.setNomeFantasia(rs.getString("nomeFantasia"));
+				transportadora.setCnpjTransportadora(rs.getString("cnpjTransportadora"));
+				transportadora.setTelefonePrincipal(rs.getString("telefonePrincipal"));
+				transportadora.setTelefoneContato(rs.getString("telefoneContato"));
+				transportadora.setEmailPrincipal(rs.getString("emailPrincipal"));
+				transportadora.setEmailContato(rs.getString("emailContato"));
+				transportadora.setResponsavelTransportadora(rs.getString("responsavelTransportadora"));
+				transportadora.setCodEndereco(rs.getInt("codEndereco"));
+				transportadora.setEndereco(endereco);
+				
+				lstEndeTransp.add(endereco);			
+			}
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return lstEndeTransp;
+	}
 	
 	public static int buscarUltimoIdEndereco() {
 		
