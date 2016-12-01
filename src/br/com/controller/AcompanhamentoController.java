@@ -1,8 +1,10 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -11,13 +13,13 @@ import br.com.DAO.StatusDAO;
 import br.com.DAO.TipoVeiculoDAO;
 import br.com.DAO.TransportadoraDAO;
 import br.com.ajudantes.Mascaras;
+import br.com.ajudantes.MySqlConexao;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
 import br.com.model.TipoVeiculo;
 import br.com.model.Transportadora;
 import br.com.view.Alerta;
-import br.com.view.Janelas;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -36,7 +38,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class AcompanhamentoController implements Initializable{
 	
@@ -76,9 +80,10 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private RadioButton rbtEnviadoTransp;
 	@FXML private RadioButton rbtProdTransporte;
 	@FXML private RadioButton rbtEntregue;
+	@FXML private Button btnGeraRelaAcom;
 	
+	int cod_status = 0;
 	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -87,6 +92,8 @@ public class AcompanhamentoController implements Initializable{
 		preencherPedidosAcompanhamento();
 		popularComboBox();
 		radioButton();
+		
+		btnGeraRelaAcom.setOnAction(d -> gerarRelatorioAcompanhamento());
 		
 		btnAtualizarAcom.setOnAction(a -> preencherPedidosAcompanhamento());
 		btnAtualizarAcom.setOnKeyPressed(e -> {
@@ -185,7 +192,9 @@ public class AcompanhamentoController implements Initializable{
 			
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(1);	
 			tvPedidosAcompa.getItems().clear();
-			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			tvPedidosAcompa.getItems().addAll(lstPedidos);	
+			
+			cod_status = 1;
 		}
 		
 		if (rbtAguarSepa.isSelected()){
@@ -193,34 +202,44 @@ public class AcompanhamentoController implements Initializable{
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(2);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			
+			cod_status = 2;
 		}
 		
 		if (rbtPratoProdu.isSelected()){
 			
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(3);
 			tvPedidosAcompa.getItems().clear();
-			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			tvPedidosAcompa.getItems().addAll(lstPedidos);	
+			
+			cod_status = 3;
 		}
 		
 		if (rbtEnviadoTransp.isSelected()){
 			
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(4);
 			tvPedidosAcompa.getItems().clear();
-			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			tvPedidosAcompa.getItems().addAll(lstPedidos);
+			
+			cod_status = 4;
 		}
 		
 		if (rbtProdTransporte.isSelected()){
 			
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(5);
 			tvPedidosAcompa.getItems().clear();
-			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			tvPedidosAcompa.getItems().addAll(lstPedidos);
+			
+			cod_status = 5;
 		}
 		
 		if (rbtEntregue.isSelected()){
 			
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(6);
 			tvPedidosAcompa.getItems().clear();
-			tvPedidosAcompa.getItems().addAll(lstPedidos);		
+			tvPedidosAcompa.getItems().addAll(lstPedidos);	
+			
+			cod_status = 6;
 		}
 				
 	}
@@ -299,9 +318,8 @@ public class AcompanhamentoController implements Initializable{
 		
 		if(PedidosDAO.updatePedido(codVeic, codPed, codStat)){
 			
-			PopUpController sucesso = new PopUpController("SUCESSO", "Pedido Atualizado com sucesso!", "OK");
-			Janelas j = new Janelas();
-			j.abrirPopup("PopUp.fxml", new Stage(), "Pedidos", false, sucesso);	
+			Alerta aletaInfo = new Alerta();
+			aletaInfo.alertaInformation("Pedidos", "SUCESSO", "Pedido Atualizado com sucesso!");
 			
 			preencherPedidosAcompanhamento();
 			
@@ -392,6 +410,32 @@ public class AcompanhamentoController implements Initializable{
 				}
 			}
 		});	
+	}
+	
+	public void gerarRelatorioAcompanhamento(){
+		
+		try {
+			Connection c = MySqlConexao.ConectarDb();
+	
+			HashMap<String, Object> parametros = new HashMap<String, Object>();
+			
+			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("total_pedido", "R$ " + PedidosDAO.somarTodosPedidos(cod_status));
+			parametros.put("cod_pedido", cod_status);
+			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.png");
+
+			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio.jasper", parametros, c);			
+			JasperViewer jw = new JasperViewer(jp , false);
+			
+			if (jw != null)
+				jw.setVisible(true);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
+		}
 	}
 	
 	private void limparAcompanhamento() {

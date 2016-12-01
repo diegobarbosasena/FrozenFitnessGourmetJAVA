@@ -11,8 +11,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 	 	Janelas splash = new Janelas();
-		splash.abrirSplash("Splash.fxml", primaryStage);
-		//splash.abrir("Layout.fxml", primaryStage, null, true);
+		//splash.abrirSplash("Splash.fxml", primaryStage);
+		splash.abrir("Layout.fxml", primaryStage, null, true);
 	}
 
 	public static void main(String[] args) {

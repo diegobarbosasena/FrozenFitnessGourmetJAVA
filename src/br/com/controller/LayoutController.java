@@ -128,7 +128,6 @@ public class LayoutController implements Initializable {
 	
 		miFrozen.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN));
 		miFrozen.setOnAction(new javafx.event.EventHandler<ActionEvent>(){
-
 			@Override
 			public void handle(ActionEvent arg0) {
 				
@@ -139,20 +138,13 @@ public class LayoutController implements Initializable {
 		
 		miSmart.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN));
 		miSmart.setOnAction(new javafx.event.EventHandler<ActionEvent>(){
-
 			@Override
 			public void handle(ActionEvent arg0) {
 				
 				Alerta a = new Alerta();
 				a.alertSobreSmart();
 			}		
-		});
-		
-		
-		
-		
-			
-			
+		});			
 	}
 
 }

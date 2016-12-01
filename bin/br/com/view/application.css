@@ -61,7 +61,7 @@ TextField, PasswordField, DatePicker{
 	-fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */	
 }
 .tab .tab-label { 
-    -fx-text-fill: #707070;
+    -fx-text-fill: #666;
     -fx-font-size: 1.1em;
 }
 .tab-pane .tab-header-area .tab-header-background {
@@ -125,7 +125,7 @@ TextField, PasswordField, DatePicker{
 .split-pane *.split-pane-divider {
     -fx-padding: 1;
 }
-#btnSplash, #btnSplash:focused,#btnSplash:hover {
+#btnSplash, #btnSplash:focused, #btnSplash:hover {
 	-fx-background-color: #F0F0F0;
 }
 .tooltip {
@@ -154,6 +154,10 @@ TextField, PasswordField, DatePicker{
 .default-color0.chart-bar { -fx-bar-fill: #00B348; }
 .default-color1.chart-bar { -fx-bar-fill: #E08A2C; }
 .default-color2.chart-bar { -fx-bar-fill: #666; }
+
+.default-color0.chart-series-line { -fx-stroke: #00B348; }
+.default-color1.chart-series-line { -fx-stroke: #E08A2C; }
+.default-color2.chart-series-line { -fx-stroke: #666; }
  
  
  

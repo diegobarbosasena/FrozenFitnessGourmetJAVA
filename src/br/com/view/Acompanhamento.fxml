@@ -30,6 +30,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
+                                    <Button fx:id="btnGeraRelaAcom" layoutX="370.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Gerar Relatório" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane maxHeight="50.0" minHeight="50.0" style="-fx-background-color: #FFF;">

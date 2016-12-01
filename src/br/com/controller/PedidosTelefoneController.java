@@ -45,9 +45,8 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnEditarClienteFisico;
 	@FXML private Button btnEcluirClienFisico;
 	@FXML private Button btnAdicionarEndeFisico;
+	
 	@FXML private TableView <Cliente>tbwClienteFisico;
-	
-	
 	@FXML private TableColumn <Cliente, String>tbcNomeFisi;
 	@FXML private TableColumn <Cliente, String> tbcCpfFisi;
 	@FXML private TableColumn <Cliente, String> tbcTelFisi;
@@ -82,7 +81,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private TableColumn <Endereco, String> tbcBairro;
 	@FXML private TableColumn <Endereco, String> tbcComplemento;
 	@FXML private TableColumn <Endereco, Cidade> tbcCidade;
-	@FXML private TableColumn <Endereco, Estado> tbcEstado;
+	@FXML private TableColumn <Cidade, Estado> tbcEstado;
 	
 	@FXML private Button btnEditarEndereco;
 	@FXML private Tab tabCadClien;
@@ -149,9 +148,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnCadastrarCliente;
 	@FXML private Button btnCadastrarEndereco;
 	
-	
-	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -278,10 +275,10 @@ public class PedidosTelefoneController implements Initializable{
 		tbcBairro.setCellValueFactory(new PropertyValueFactory<Endereco, String>("bairro"));
 		tbcComplemento.setCellValueFactory(new PropertyValueFactory<Endereco, String>("endereco"));
 		tbcCidade.setCellValueFactory(new PropertyValueFactory<Endereco, Cidade>("cidade"));
-		tbcEstado.setCellValueFactory(new PropertyValueFactory<Endereco, Estado>("estado"));
+		tbcEstado.setCellValueFactory(new PropertyValueFactory<Cidade, Estado>("estado"));
 	
 		if (cliente != null){
-			List<Endereco> lstClienteEnd = EnderecoDAO.filtrarEndereco(cliente.getCodCliente());
+			List<Endereco> lstClienteEnd = EnderecoDAO.filtrarEnderecoCliente(cliente.getCodCliente());
 			tbwEndereco.getItems().clear();
 			tbwEndereco.getItems().addAll(lstClienteEnd);
 		}

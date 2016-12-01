@@ -61,7 +61,7 @@
                               </AnchorPane>
                             <AnchorPane>
                                  <children>
-                                    <TableView fx:id="tvTransp" prefHeight="107.0" prefWidth="873.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tvTransp" prefHeight="107.0" prefWidth="873.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
                                           <TableColumn fx:id="tbcRazao" maxWidth="1000.0" minWidth="170.0" prefWidth="170.0" text="Razão social" />
                                           <TableColumn fx:id="tbcTelCont" maxWidth="1000.0" minWidth="100.0" prefWidth="100.0" text="Tel contato" />
@@ -73,7 +73,7 @@
                               </AnchorPane>
                               <AnchorPane maxHeight="150.0" minHeight="50.0">
                                  <children>
-                                    <TableView fx:id="tbwEnderecoTransp" prefHeight="166.0" prefWidth="873.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tbwEnderecoTransp" prefHeight="166.0" prefWidth="873.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <columns>
                                           <TableColumn fx:id="tbcLogradouroTransp" minWidth="200.0" prefWidth="200.0" text="Logradouro" />
                                           <TableColumn fx:id="tbcCepTransp" minWidth="100.0" prefWidth="100.0" text="Cep" />
@@ -108,7 +108,7 @@
                               </AnchorPane>
                               <AnchorPane>
                                  <children>
-                                    <TableView fx:id="tbvVeiculoTransp" layoutX="29.0" layoutY="14.0" prefHeight="56.0" prefWidth="873.0" style="-fx-border-width: 0.5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tbvVeiculoTransp" layoutX="29.0" layoutY="14.0" prefHeight="56.0" prefWidth="873.0" style="-fx-border-width: 0.5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                       <columns>
                                         <TableColumn fx:id="tbcTipoVeic" maxWidth="10000.0" minWidth="100.0" prefWidth="100.0" text="Tipo Veículo" />
                                         <TableColumn fx:id="tbcPlacaVeic" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Placa" />

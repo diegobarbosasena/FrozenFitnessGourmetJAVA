@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.MySqlConexao;
 import br.com.view.Alerta;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -44,25 +46,27 @@ public class GraficoController implements Initializable {
 	@FXML private CategoryAxis xEixo;
 	
 	@FXML private Button btnRelatorio;
-	@FXML TabPane tbpGraficos;
-	@FXML Tab tabVendas;
-	@FXML Tab tabFaturamento;
-	@FXML RadioButton rbSemanal1;
-	@FXML RadioButton rbMensal1;
-	@FXML RadioButton rbTrimestral1;
-	@FXML RadioButton rbPeriodo1;
-	@FXML Label lblDtInicial1;
-	@FXML Label lblDtFim1;
-	@FXML DatePicker dtpInicio1;
-	@FXML DatePicker dtpFim1;
-	@FXML Button btnRelatorio1;
-	@FXML LineChart <String, Number>lcFaturamento;
-	@FXML CategoryAxis xEixoLC;
-	@FXML NumberAxis yEixoLC;
+	@FXML private TabPane tbpGraficos;
+	@FXML private Tab tabVendas;
+	@FXML private Tab tabFaturamento;
+	@FXML private RadioButton rbSemanal1;
+	@FXML private RadioButton rbMensal1;
+	@FXML private RadioButton rbTrimestral1;
+	@FXML private RadioButton rbPeriodo1;
+	@FXML private Label lblDtInicial1;
+	@FXML private Label lblDtFim1;
+	@FXML private DatePicker dtpInicio1;
+	@FXML private DatePicker dtpFim1;
+	@FXML private Button btnRelatorio1;
+	@FXML private LineChart<String, Number> lcFaturamento;
+	@FXML private CategoryAxis xEixoLC;
+	@FXML private NumberAxis yEixoLC;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		btnRelatorio1.setOnAction(d -> populateLineChart());
 		
 		radioButtonGroup();
 		brcGrafVendas.setAnimated(false);
@@ -222,9 +226,10 @@ public class GraficoController implements Initializable {
 	
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
 			
-			parametros.put("titulo", "relatorio mensal");
-			parametros.put("total_pedido", 200.32);
-			parametros.put("cod_pedido", 2);
+			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("total_pedido", "R$ " + PedidosDAO.somarTodosPedidos(1));
+			parametros.put("cod_pedido", 3);
+			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.png");
 
 			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio.jasper", parametros, c);			
 			JasperViewer jw = new JasperViewer(jp , false);
@@ -238,5 +243,39 @@ public class GraficoController implements Initializable {
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
 		}
+	}
+	
+	private void populateLineChart(){
+		
+		lcFaturamento.setCreateSymbols(false);
+		lcFaturamento.setAnimated(false);
+	
+		
+		xEixoLC.setLabel("ano");
+		
+		//lcFaturamento =  new LineChart<>(xEixoLC, yEixoLC);
+	
+		XYChart.Series series = new XYChart.Series();
+		series.setName("faturamento");
+		
+		lcFaturamento.setTitle("Gráfico de faturamento");
+		
+		series.getData().add(new XYChart.Data("Jan", 23));
+        series.getData().add(new XYChart.Data("Feb", 14));
+        series.getData().add(new XYChart.Data("Mar", 15));
+        series.getData().add(new XYChart.Data("Apr", 24));
+        series.getData().add(new XYChart.Data("May", 34));
+        series.getData().add(new XYChart.Data("Jun", 36));
+        series.getData().add(new XYChart.Data("Jul", 22));
+        series.getData().add(new XYChart.Data("Aug", 45));
+        series.getData().add(new XYChart.Data("Sep", 43));
+        series.getData().add(new XYChart.Data("Oct", 17));
+        series.getData().add(new XYChart.Data("Nov", 29));
+        series.getData().add(new XYChart.Data("Dec", 25));
+		
+		lcFaturamento.getData().clear();
+		lcFaturamento.getData().add(series);
+		
+		
 	}
 }

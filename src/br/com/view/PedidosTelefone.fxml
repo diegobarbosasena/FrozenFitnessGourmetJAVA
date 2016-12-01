@@ -18,7 +18,7 @@
                      <children>
                         <SplitPane dividerPositions="0.38998211091234347, 0.7334525939177102" orientation="VERTICAL" prefHeight="561.0" prefWidth="967.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFF;">
+                            <AnchorPane minHeight="110.0" style="-fx-background-color: #FFF;">
                                  <children>
                                     <Label fx:id="lblClienteFisi" layoutX="10.0" layoutY="10.0" text="Clientes Físicos">
                                        <font>
@@ -31,7 +31,7 @@
                                     <Button fx:id="btnEditarClienteFisico" layoutX="568.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" />
                                     <Button fx:id="btnEcluirClienFisico" layoutX="635.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" />
                                     <Button fx:id="btnAdicionarEndeFisico" layoutX="706.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Adicionar endereço" />
-                                    <TableView fx:id="tbwClienteFisico" layoutX="14.0" layoutY="30.0" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                    <TableView fx:id="tbwClienteFisico" layoutX="14.0" layoutY="30.0" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="50.0">
                                       <columns>
                                           <TableColumn fx:id="tbcCodClienteFisico" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod cliente" />
                                         <TableColumn fx:id="tbcNomeFisi" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Nome" />
@@ -45,7 +45,7 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
+                              <AnchorPane minHeight="110.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
                                  <children>
                                     <Label fx:id="lblClienteJuri" layoutX="10.0" layoutY="11.0" text="Clientes Jurídicos">
                                        <font>
@@ -58,7 +58,7 @@
                                     <Button fx:id="btnEditarClienteJuri" layoutX="568.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Editar" />
                                     <Button fx:id="btnExcluirJuri" layoutX="635.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao" text="Excluir" />
                                     <Button fx:id="btnAdicionarEndeJuri" layoutX="708.0" layoutY="11.0" mnemonicParsing="false" styleClass="botao" text="Adicionar endereço" />
-                                    <TableView fx:id="tbwClienteJuridico" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                    <TableView fx:id="tbwClienteJuridico" prefHeight="257.0" prefWidth="965.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="50.0">
                                        <columns>
                                           <TableColumn fx:id="tbcCodJuri" maxWidth="1000.0" minWidth="90.0" prefWidth="90.0" text="Cod cliente" />
                                           <TableColumn fx:id="tbcNomeJuri" maxWidth="1000.0" minWidth="200.0" prefWidth="200.0" text="Nome/Contato" />
@@ -71,14 +71,14 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFF;">
+                            <AnchorPane minHeight="110.0" style="-fx-background-color: #FFF;">
                                  <children>
                                     <Label layoutX="10.0" layoutY="6.0" text="Endereços">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="tbwEndereco" layoutX="14.0" layoutY="14.0" prefHeight="165.0" prefWidth="965.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                                    <TableView fx:id="tbwEndereco" layoutX="14.0" layoutY="14.0" prefHeight="165.0" prefWidth="965.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="38.0">
                                       <columns>
                                         <TableColumn fx:id="tbcLogradouro" minWidth="200.0" prefWidth="200.0" text="Logradouro" />
                                         <TableColumn fx:id="tbcCep" minWidth="100.0" prefWidth="100.0" text="Cep" />

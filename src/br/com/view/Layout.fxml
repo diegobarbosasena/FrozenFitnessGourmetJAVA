@@ -17,7 +17,7 @@
    <children>
       <SplitPane dividerPositions="0.06224899598393574" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF; -fx-border-color: #BDBDBD; -fx-border-width: 0px 0px 1px 0px;" SplitPane.resizableWithParent="false">
+          <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF; -fx-border-color: #BDBDBD; -fx-border-width: 0px 0px 0.5px 0px;" SplitPane.resizableWithParent="false">
                <children>
                   <MenuBar layoutY="4.0" style="-fx-background-color: #FFF;">
                     <menus>

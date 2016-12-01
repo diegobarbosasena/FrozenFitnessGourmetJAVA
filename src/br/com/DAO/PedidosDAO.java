@@ -175,6 +175,54 @@ public class PedidosDAO {
 		return lstPediPesq;
 	}
 	
+	public static Float somarTodosPedidos(int codStatus){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelect = "SELECT SUM(total) total FROM tblPedido WHERE codStatus = ?;";
+		
+		Float total = null;
+		
+		PreparedStatement parametros;
+		try {	
+			parametros = c.prepareStatement(sqlSelect);
+			
+			parametros.setInt(1, codStatus);	
+			ResultSet rs = parametros.executeQuery();
+			
+			while (rs.next()){
+					
+				 total =(float) rs.getFloat("total");
+			}
+		} catch (Exception e) {
+		
+		}
+		return total;
+	}
+	
+	public static Float somarTodosPedidos(){
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlSelect = "SELECT SUM(total) total FROM tblPedido;";
+		
+		Float total = null;
+		
+		ResultSet rs;
+		
+		try {	
+				
+			rs = c.createStatement().executeQuery(sqlSelect);
+			while (rs.next()){
+					
+				 total =(float) rs.getFloat("total");
+			}
+		} catch (Exception e) {
+		
+		}
+		return total;
+	}
+	
 	public static List<Pedidos> filtrarPedidosStatus(int codStatus) {
 		
 		Connection c = MySqlConexao.ConectarDb();

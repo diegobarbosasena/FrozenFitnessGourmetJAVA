@@ -164,7 +164,7 @@ public class EnderecoDAO {
 				+ "ON(cidade.codCidade = endereco.codCidade) "
 				+ "INNER JOIN tblEstado estado "
 				+ "ON(cidade.codEstado = estado.codEstado) "
-				+ "WHERE codTransportadora = ?;";
+				+ "WHERE transportadora.codTransportadora = ?;";
 	
 		List <Endereco> lstEndeTransp = new ArrayList<>(); 
 		
@@ -243,7 +243,7 @@ public class EnderecoDAO {
 		return ultimo_id;	
 	}
 	
-	public static List<ClienteEndereco> filtrarEndereco_(int codCliente) {
+	public static List<Endereco> filtrarEnderecoCliente(int codCliente) {
 
 		Connection c = MySqlConexao.ConectarDb();
 		
@@ -254,12 +254,12 @@ public class EnderecoDAO {
 				+ "INNER JOIN  tblEndereco endereco "
 				+ "ON(endereco.codCidade = cidade.codCidade) "
 				+ "INNER JOIN tblClienteEnd clie_ende "
-				+ "ON(endereco.codEndereco = clie_ende.codEndereco)"
+				+ "ON(endereco.codEndereco = clie_ende.codEndereco) "
 				+ "INNER JOIN tblCliente cliente "
 				+ "ON(clie_ende.codCliente = cliente.codCliente) "
 				+ "WHERE cliente.codCliente = ? ;";
 		
-		List <ClienteEndereco> lstClienteEndereco = new ArrayList<>(); 
+		List <Endereco> lstClienteEndereco = new ArrayList<>(); 
 		
 		PreparedStatement p; 
 		try {
@@ -313,7 +313,7 @@ public class EnderecoDAO {
 				clie_ende.setCliente(cliente);
 				
 				
-				lstClienteEndereco.add(clie_ende);
+				lstClienteEndereco.add(endereco);
 			}	
 		} catch (Exception e) {
 			//e.printStackTrace();

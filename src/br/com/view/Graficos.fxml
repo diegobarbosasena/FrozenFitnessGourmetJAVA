@@ -62,17 +62,18 @@
                                  <children>
                                     <BarChart fx:id="brcGrafVendas" layoutX="28.0" layoutY="-92.0" stylesheets="@application.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                                       <xAxis>
-                                        <CategoryAxis side="BOTTOM" tickLabelFill="#666666" fx:id="xEixo" />
+                                        <CategoryAxis side="BOTTOM" tickLabelFill="#666666" fx:id="xEixo">
+                                             <tickLabelFont>
+                                                <Font size="12.0" />
+                                             </tickLabelFont></CategoryAxis>
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis fx:id="yEixo" side="LEFT" />
+                                        <NumberAxis fx:id="yEixo" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font size="12.0" />
+                                             </tickLabelFont></NumberAxis>
                                       </yAxis>
                                     </BarChart>
-                                    <Label layoutX="26.0" layoutY="14.0" style="fx-font-weight: bold; -fx-font-size: 1.4em;" text="Vendas" textAlignment="CENTER" textFill="#666666">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
                                  </children>
                               </AnchorPane>
                           </items>
@@ -83,9 +84,9 @@
           </Tab>
           <Tab fx:id="tabFaturamento" closable="false" text="Faturamento">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane>
                      <children>
-                        <SplitPane dividerPositions="0.2" orientation="VERTICAL">
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="508.0" prefWidth="705.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                            <items>
                               <AnchorPane maxHeight="70.0" minHeight="70.0" prefHeight="70.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
                                  <children>
@@ -130,17 +131,18 @@
                               </AnchorPane>
                               <AnchorPane style="-fx-background-color: #FFF;">
                                  <children>
-                                    <Label layoutX="26.0" layoutY="14.0" style="fx-font-weight: bold; -fx-font-size: 1.4em;" text="Vendas" textAlignment="CENTER" textFill="#666666">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <LineChart fx:id="lcFaturamento" prefHeight="398.0" prefWidth="699.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                                    <LineChart fx:id="lcFaturamento" prefHeight="367.0" prefWidth="679.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                                       <xAxis>
-                                        <CategoryAxis side="BOTTOM" fx:id="xEixoLC" />
+                                        <CategoryAxis side="BOTTOM" tickLabelFill="#666666" fx:id="xEixoLC">
+                                             <tickLabelFont>
+                                                <Font size="12.0" />
+                                             </tickLabelFont></CategoryAxis>
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis fx:id="yEixoLC" side="LEFT" />
+                                        <NumberAxis fx:id="yEixoLC" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font size="12.0" />
+                                             </tickLabelFont></NumberAxis>
                                       </yAxis>
                                     </LineChart>
                                  </children>

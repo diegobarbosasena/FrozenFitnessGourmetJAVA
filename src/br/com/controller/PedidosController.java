@@ -1,13 +1,16 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.Mascaras;
+import br.com.ajudantes.MySqlConexao;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;
@@ -23,6 +26,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
@@ -48,6 +54,7 @@ public class PedidosController implements Initializable{
 	@FXML private RadioButton rbtEnviadoTranspPedi;
 	@FXML private RadioButton rbtProdTransportePedi;
 	@FXML private RadioButton rbtEntreguePedi;
+	@FXML private Button btnRelaPedi;
 
 
 	@Override
@@ -57,6 +64,8 @@ public class PedidosController implements Initializable{
 		
 		preencherPedidos();
 		buttonRadio();
+		
+		btnRelaPedi.setOnAction(r -> gerarRelatorioPedido());
 		
 		btnAtualizarPedido.setOnAction(a -> preencherPedidos());
 		btnAtualizarPedido.setOnKeyPressed(e -> {
@@ -192,8 +201,32 @@ public class PedidosController implements Initializable{
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
-		
 	}
+	
+	public void gerarRelatorioPedido(){
+		
+		try {
+			Connection c = MySqlConexao.ConectarDb();
+	
+			HashMap<String, Object> parametros = new HashMap<String, Object>();
+			
+			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("total", "R$ " + PedidosDAO.somarTodosPedidos());
+			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.png");
+
+			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_pedidos.jasper", parametros, c);			
+			JasperViewer jw = new JasperViewer(jp , false);
+			
+			if (jw != null)
+				jw.setVisible(true);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
+		}
+	}
+	
 
 }
