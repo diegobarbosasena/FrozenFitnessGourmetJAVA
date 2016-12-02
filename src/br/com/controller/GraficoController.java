@@ -2,9 +2,13 @@ package br.com.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import com.mysql.fabric.xmlrpc.base.Data;
 
 import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.MySqlConexao;
@@ -14,31 +18,27 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
-import javafx.geometry.Side;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.Tab;
-import javafx.scene.chart.LineChart;
 
 public class GraficoController implements Initializable {
 	
@@ -191,8 +191,6 @@ public class GraficoController implements Initializable {
 		final Node node = data.getNode();
 		final Text dataText = new Text(data.getYValue() + "");
 
-		
-		
 		node.parentProperty().addListener(new ChangeListener<Parent>() {
 			@Override public void changed(ObservableValue<? extends Parent> ov, Parent oldParent, Parent parent) {
 				Group parentGroup = (Group) parent;
@@ -217,8 +215,10 @@ public class GraficoController implements Initializable {
 				
 	}
 
-
 	private void preencherGraficoPeriodo() {
+		
+		String dataIn = "2016-11-1";
+		String dataOut = "2016-12-30";
 		
 		desabilitaAbilitaData(false);
 		
@@ -226,38 +226,63 @@ public class GraficoController implements Initializable {
 
 		XYChart.Series<String, Number> estados = new XYChart.Series<>();
 		
+		Connection c = MySqlConexao.ConectarDb();
+			
+		String sqlSelectEstado = " SELECT sum(pedido.total) total , COUNT(pedido.total) total_pedido, estado.* "
+				+ "FROM tblPedido pedido "
+				+ "INNER JOIN tblCliente cliente "
+				+ "ON(pedido.codCliente = cliente.codCliente) "
+				+ "INNER JOIN tblClienteEnd clie_ende "
+				+ "ON(cliente.codCliente = clie_ende.codCliente) "
+				+ "INNER JOIN tblEndereco endereco "
+				+ "ON(clie_ende.codEndereco = endereco.codEndereco) "
+				+ "INNER JOIN tblCidade cidade "
+				+ "ON(endereco.codCidade = cidade.codCidade) "
+				+ "RIGHT JOIN tblEstado estado "
+				+ "ON(cidade.codEstado = estado.codEstado) "
+				+ "BETWEEN ? AND ? "
+				+ "GROUP BY estado.codEstado ; ";
+
+			System.out.println(sqlSelectEstado);
+		PreparedStatement parametros;
+		
 		try {
-			Connection c = MySqlConexao.ConectarDb();
+			//2016-07-30  SELECT * FROM `tblPedido` WHERE (dtCompra BETWEEN '2016-07-30 00:00:00' AND '2016-07-30 00:00:00')
 			
-			String sqlSelectEstado = "SELECT "
-					+ "pedido.*, cliente.*, clie_ende.*, endereco.*, cidade.*, estado.* "
-					+ "FROM tblPedido pedido INNER JOIN tblCliente cliente "
-					+ "ON(pedido.codCliente = cliente.codCliente) "
-					+ "INNER JOIN tblClienteEnd clie_ende "
-					+ "ON(cliente.codCliente = clie_ende.codCliente) "
-					+ "INNER JOIN tblEndereco endereco "
-					+ "ON(clie_ende.codEndereco = endereco.codEndereco) "
-					+ "INNER JOIN tblCidade cidade "
-					+ "ON(endereco.codCidade = cidade.codCidade) "
-					+ "INNER JOIN tblEstado estado "
-					+ "ON(cidade.codEstado = estado.codEstado)" ;
+			
+			
+			
+			/*SELECT sum(pedido.total) total, pedido.codPedido , COUNT(pedido.total) total_pedido, estado.* FROM tblPedido pedido INNER JOIN tblCliente cliente ON(pedido.codCliente = cliente.codCliente) INNER JOIN tblClienteEnd clie_ende ON(cliente.codCliente = clie_ende.codCliente) INNER JOIN tblEndereco endereco ON(clie_ende.codEndereco = endereco.codEndereco) INNER JOIN tblCidade cidade ON(endereco.codCidade = cidade.codCidade) RIGHT JOIN tblEstado estado 
+			ON(cidade.codEstado = estado.codEstado) GROUP BY estado.codEstado
+			WHERE (pedido.dtCompra BETWEEN '2016-07-30 00:00:00' AND '2016-07-30 00:00:00')*/
 
-			ResultSet rs = c.createStatement().executeQuery(sqlSelectEstado);
 
+			
+			
+			
+			parametros = c.prepareStatement(sqlSelectEstado);
+			
+			parametros.setString(1, " "+Date.valueOf(dataIn)+" ");
+			parametros.setString(2, " "+Date.valueOf(dataOut)+" ");
+			
+			/*parametros.setString(1, String.valueOf(dtpInicio.getValue()));
+			parametros.setString(2, String.valueOf(dtpFim.getValue()));*/
+			
+			ResultSet rs = parametros.executeQuery();		
+				
 			while(rs.next()){
-				
-				estados.getData().addAll(new XYChart.Data(rs.getString("nomeEstado"), rs.getInt("total")));
-				
+				estados.getData().addAll(new XYChart.Data(rs.getString("nomeEstado"), rs.getInt("total_pedido")));
 			}
+			
+			c.close();
+			
 			estados.setName("Estados");
-			
-			
 			
 			brcGrafVendas.getData().clear();
 			brcGrafVendas.getData().add(estados);
 			
 		} catch (Exception e) {
-		
+			e.printStackTrace();
 		}
 	}
 	
