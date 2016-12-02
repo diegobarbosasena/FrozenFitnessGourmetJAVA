@@ -252,9 +252,10 @@ public class GraficoController implements Initializable {
 			
 			
 			
-			/*SELECT sum(pedido.total) total, pedido.codPedido , COUNT(pedido.total) total_pedido, estado.* FROM tblPedido pedido INNER JOIN tblCliente cliente ON(pedido.codCliente = cliente.codCliente) INNER JOIN tblClienteEnd clie_ende ON(cliente.codCliente = clie_ende.codCliente) INNER JOIN tblEndereco endereco ON(clie_ende.codEndereco = endereco.codEndereco) INNER JOIN tblCidade cidade ON(endereco.codCidade = cidade.codCidade) RIGHT JOIN tblEstado estado 
-			ON(cidade.codEstado = estado.codEstado) GROUP BY estado.codEstado
-			WHERE (pedido.dtCompra BETWEEN '2016-07-30 00:00:00' AND '2016-07-30 00:00:00')*/
+			/*SELECT sum(pedido.total) total, COUNT(pedido.total) total_pedido, estado.* FROM tblPedido pedido INNER JOIN tblCliente cliente ON(pedido.codCliente = cliente.codCliente) INNER JOIN tblClienteEnd clie_ende ON(cliente.codCliente = clie_ende.codCliente) INNER JOIN tblEndereco endereco ON(clie_ende.codEndereco = endereco.codEndereco) INNER JOIN tblCidade cidade ON(endereco.codCidade = cidade.codCidade) RIGHT JOIN tblEstado estado 
+ON(cidade.codEstado = estado.codEstado) 
+WHERE (pedido.dtCompra BETWEEN '2016-07-25' AND '2016-07-30')
+GROUP BY estado.codEstado*/
 
 
 			
