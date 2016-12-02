@@ -9,20 +9,30 @@ import java.util.ResourceBundle;
 import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.MySqlConexao;
 import br.com.view.Alerta;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Side;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -145,13 +155,17 @@ public class GraficoController implements Initializable {
 		limpaData();
 		desabilitaAbilitaData(true);
 		
-		XYChart.Data<String, Number> perdaPeso = new XYChart.Data<String, Number>("Perda de Peso", 150.102);
-		XYChart.Data<String, Number> ganhoMassa = new XYChart.Data<String, Number>("Ganho de Massa", 95.530);
-		XYChart.Data<String, Number> forcaResis = new XYChart.Data<String, Number>("Força e Resistencia", 110.120);
+		XYChart.Data<String, Number> perdaPeso = new XYChart.Data<String, Number>("Perda de Peso", 150.10);
+		XYChart.Data<String, Number> ganhoMassa = new XYChart.Data<String, Number>("Ganho de Massa", 95.53);
+		XYChart.Data<String, Number> forcaResis = new XYChart.Data<String, Number>("Força e Resistencia", 110.12);
+		
+		System.out.println(forcaResis.getNode());
+		System.out.println(ganhoMassa.getNode());
+		System.out.println(perdaPeso.getNode());
 		
 		XYChart.Series<String, Number> categorias = new XYChart.Series<String, Number>();
 		categorias.setName("Categorias");
-		categorias.getData().addAll(perdaPeso, ganhoMassa, forcaResis);
+		categorias.getData().addAll(perdaPeso, ganhoMassa, forcaResis);	
 		
 		XYChart.Data<String, Number> total = new XYChart.Data<String, Number>("Total", 355.752);
 		
@@ -159,12 +173,50 @@ public class GraficoController implements Initializable {
 		totalCatego.setName("Total");
 		totalCatego.getData().add(total);
 		
+		
+		
+		displayLabelForData(forcaResis);
+		displayLabelForData(ganhoMassa);
+		displayLabelForData(perdaPeso);
+		displayLabelForData(total);
+
 		brcGrafVendas.getData().clear();
 		brcGrafVendas.getData().add(categorias);
 		brcGrafVendas.getData().add(totalCatego);
-	
+		
+		
 	}
 	
+	private void displayLabelForData(XYChart.Data<String, Number> data) {
+		final Node node = data.getNode();
+		final Text dataText = new Text(data.getYValue() + "");
+
+		
+		
+		node.parentProperty().addListener(new ChangeListener<Parent>() {
+			@Override public void changed(ObservableValue<? extends Parent> ov, Parent oldParent, Parent parent) {
+				Group parentGroup = (Group) parent;
+				parentGroup.getChildren().add(dataText);
+			}
+		});
+
+		node.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
+			@Override public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
+				dataText.setLayoutX(
+						Math.round(
+								bounds.getMinX() + bounds.getWidth() / 2 - dataText.prefWidth(-1) / 2
+								)
+						);
+				dataText.setLayoutY(
+						Math.round(
+								bounds.getMinY() - dataText.prefHeight(-1) * 0.5
+								)
+						);
+			}
+		});
+				
+	}
+
 
 	private void preencherGraficoPeriodo() {
 		
@@ -195,8 +247,11 @@ public class GraficoController implements Initializable {
 			while(rs.next()){
 				
 				estados.getData().addAll(new XYChart.Data(rs.getString("nomeEstado"), rs.getInt("total")));
+				
 			}
 			estados.setName("Estados");
+			
+			
 			
 			brcGrafVendas.getData().clear();
 			brcGrafVendas.getData().add(estados);
