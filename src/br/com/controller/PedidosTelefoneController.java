@@ -15,6 +15,7 @@ import br.com.model.Cliente;
 import br.com.model.ClienteJuridico;
 import br.com.model.Endereco;
 import br.com.model.Estado;
+import br.com.view.Alerta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -81,12 +82,10 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private TableColumn <Endereco, String> tbcBairro;
 	@FXML private TableColumn <Endereco, String> tbcComplemento;
 	@FXML private TableColumn <Endereco, Cidade> tbcCidade;
-	@FXML private TableColumn <Cidade, Estado> tbcEstado;
+	@FXML private TableColumn <Endereco, String> tbcEstado;
 	
 	@FXML private Button btnEditarEndereco;
 	@FXML private Tab tabCadClien;
-	@FXML private RadioButton rbJuridico;
-	@FXML private RadioButton rbFisico;
 	@FXML private Label lblClienteFisico;
 	@FXML private Label lblNomeFisico;
 	@FXML private TextField txtNomeClienFisi;
@@ -147,7 +146,14 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Tab tabCadPedi;
 	@FXML private Button btnCadastrarCliente;
 	@FXML private Button btnCadastrarEndereco;
+	@FXML private Button btnConcluidoPedTel;
 	
+	
+	private boolean modo_edicao = false;
+	
+	String sexoSelecionado = "";
+	
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -163,7 +169,7 @@ public class PedidosTelefoneController implements Initializable{
 		Mascaras.mascaraTelefone(txtTelContClienJuri);
 		Mascaras.mascaraTelefone(txtTelPrinClienJuri);
 		Mascaras.mascaraCPF(txtCpfClienFisi);
-		
+	
 		btnAtualizaFisico.setOnAction(k -> preencherClienteFisico());
 		btnAtualizaFisico.setOnKeyPressed(e -> {
 		    if (e.getCode() == KeyCode.ENTER) {
@@ -207,7 +213,6 @@ public class PedidosTelefoneController implements Initializable{
 		});
 		
 		btnNovoClienFisico.setOnAction(c -> cadastrarFisico());
-	
 		
 		btnNovoClienteJuridico.setOnAction(f -> cadastrarJuridico());
 	}
@@ -239,9 +244,11 @@ public class PedidosTelefoneController implements Initializable{
 			dtNacs -> {
 				SimpleStringProperty propriedade = new SimpleStringProperty();
 				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+				if(dtNacs.getValue().getDtNascCliente() != null){
 				propriedade.setValue(dF.format(dtNacs.getValue().getDtNascCliente()));
+				
+				}
 				return propriedade;
-			
 		});
 		
 		tbcTelFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefoneCliente"));
@@ -255,9 +262,131 @@ public class PedidosTelefoneController implements Initializable{
 		tbwClienteFisico.getItems().addAll(lstClienteFisico);	
 	}
 	
+	
 	private void cadastrarFisico() {
 		
+		tbpPedidoTel.getSelectionModel().select(1);
+		tabCadClien.setDisable(false);
+		tabVisuClien.setDisable(true);
 		
+		desabilitaFisico(false);
+	
+		btnCadastrarCliente.setText("Cadastrar");
+		btnCadastrarCliente.setOnAction(f -> inserirFisico());
+		
+		
+	}
+	
+
+	private void inserirFisico() {
+		
+		if(! modo_edicao){
+		
+		/*	if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
+			{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Pedidos Telefone", "ERRO", "Preencha todos os campos!");	
+			}
+			else{*/
+				
+			Cliente cli = new Cliente();
+			/*	
+				if(rbSexoM.isSelected()){
+					sexoSelecionado = "M";
+				}
+				if(rbSexoF.isSelected()){
+					sexoSelecionado = "F";
+				}
+				
+				Cliente cliente = new Cliente();
+				
+				cliente.setNomeCliente(txtNomeClienFisi.getText());
+				cliente.setCpfCliente(txtCpfClienFisi.getText());
+				cliente.setTelefoneCliente(txtTelClienFisi.getText());
+				cliente.setCelularCliente(txtCelClienFisi.getText());
+				cliente.setEmailCliente(txtEmailClienFisi.getText());
+				cliente.setSexo(sexoSelecionado);
+				
+				
+				Double peso = Double.parseDouble(txtPesoClienFisi.getText());
+				Double altura = Double.parseDouble(txtAlturaClienFisi.getText());
+			
+				txtDtNascClienFisi.getUserData();
+				
+				
+				cliente.setPeso(peso);
+				cliente.setAltura(altura);
+					
+				
+				System.out.println("data " +txtDtNascClienFisi.getUserData());
+				System.out.println("altura parsada " +altura);
+				
+				*/
+				
+				
+				cli.setAltura(Float.parseFloat("1.23"));
+				cli.setCelularCliente("123");
+				cli.setCpfCliente("123");
+				
+				cli.setEmailCliente("ca@cds.com");
+				cli.setNomeCliente("nome cliente");
+				cli.setPeso(Float.parseFloat("12.3"));
+				cli.setSexo("M");
+				cli.setTelefoneCliente("123");
+				
+				if(ClienteDAO.inserirCliente(cli)){
+					System.out.println("CHEGOU");
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Pedido telefone", "Sucesso", "Cliente cadastrado com sucesso!");
+					
+				}
+			
+			/*	
+			}*/
+				
+			
+			
+			
+			
+		}
+		
+	}
+	
+	public boolean validarCamposFisico(String... camposFisico) {
+		
+		boolean preenchido = false;
+		for(String item : camposFisico){
+			if(item.isEmpty()){
+				preenchido = true;
+				break;
+			}else{
+				preenchido = false;
+			}
+		}
+		return preenchido;
+	}
+
+	public void desabilitaFisico(boolean desabilitar) {
+		lblClienteFisico.setDisable(desabilitar);
+		lblNomeFisico.setDisable(desabilitar);
+		txtNomeClienFisi.setDisable(desabilitar);
+		lblTelFisico.setDisable(desabilitar);
+		txtTelClienFisi.setDisable(desabilitar);
+		lblCpfFisico.setDisable(desabilitar);
+		txtCpfClienFisi.setDisable(desabilitar);
+		lblCelFisico.setDisable(desabilitar);
+		txtCelClienFisi.setDisable(desabilitar);
+		lblDtNasc.setDisable(desabilitar);
+		txtDtNascClienFisi.setDisable(desabilitar);
+		lblEmailFisico.setDisable(desabilitar);
+		txtEmailClienFisi.setDisable(desabilitar);
+		lblPeso.setDisable(desabilitar);
+		txtPesoClienFisi.setDisable(desabilitar);
+		lblAltura.setDisable(desabilitar);
+		txtAlturaClienFisi.setDisable(desabilitar);
+		lblSexo.setDisable(desabilitar);
+		rbSexoM.setDisable(desabilitar);
+		rbSexoF.setDisable(desabilitar);
 	}
 	
 	private void cadastrarJuridico(){
@@ -275,7 +404,7 @@ public class PedidosTelefoneController implements Initializable{
 		tbcBairro.setCellValueFactory(new PropertyValueFactory<Endereco, String>("bairro"));
 		tbcComplemento.setCellValueFactory(new PropertyValueFactory<Endereco, String>("endereco"));
 		tbcCidade.setCellValueFactory(new PropertyValueFactory<Endereco, Cidade>("cidade"));
-		tbcEstado.setCellValueFactory(new PropertyValueFactory<Cidade, Estado>("estado"));
+		tbcEstado.setCellValueFactory(new PropertyValueFactory<Endereco, String>("codEstado"));
 	
 		if (cliente != null){
 			List<Endereco> lstClienteEnd = EnderecoDAO.filtrarEnderecoCliente(cliente.getCodCliente());
@@ -306,14 +435,14 @@ public class PedidosTelefoneController implements Initializable{
 	
 	private void groupRadio() {
 		
-		final ToggleGroup clienteFJ = new ToggleGroup();
 		final ToggleGroup sexo = new ToggleGroup();
 		
 		rbSexoF.setToggleGroup(sexo);
 		rbSexoM.setToggleGroup(sexo);
 		
-		rbFisico.setToggleGroup(clienteFJ);
-		rbJuridico.setToggleGroup(clienteFJ);		
+		
+		
+		
 	}
 
 }

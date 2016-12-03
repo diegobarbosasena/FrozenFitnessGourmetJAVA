@@ -15,7 +15,7 @@ public class Cliente {
 	private String celularCliente;
 	private String emailCliente;
 	
-	
+
 	public int getCodCliente() {
 		return codCliente;
 	}
@@ -52,6 +52,12 @@ public class Cliente {
 	public void setAltura(float altura) {
 		this.altura = altura;
 	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 	public String getTelefoneCliente() {
 		return telefoneCliente;
 	}
@@ -70,13 +76,7 @@ public class Cliente {
 	public void setEmailCliente(String emailCliente) {
 		this.emailCliente = emailCliente;
 	}
-	public String getSexo() {
-		return sexo;
-	}
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-	
+
 	@Override
 	public String toString() {
 		return "Nome: " + nomeCliente + ", Cpf: " + cpfCliente + "";

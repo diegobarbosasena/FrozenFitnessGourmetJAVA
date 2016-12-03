@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="anpPedidoTelefone" style="-fx-background-color: #FFF;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.PedidosTelefoneController">
    <children>
-      <TabPane fx:id="tbpPedidoTel" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <TabPane fx:id="tbpPedidoTel" prefHeight="595.0" prefWidth="971.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
         <tabs>
             <Tab fx:id="tabVisuClien" closable="false" text="Visualizar Clientes">
               <content>
@@ -106,167 +106,150 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="445.0" prefWidth="967.0">
                                  <children>
-                                    <Pane prefHeight="445.0" prefWidth="867.0">
-                                       <children>
-                                          <SplitPane dividerPositions="0.127208480565371, 0.4134275618374558, 0.6978798586572438" orientation="VERTICAL" prefHeight="416.0" prefWidth="864.0">
-                                            <items>
-                                              <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
-                                                   <children>
-                                                      <RadioButton fx:id="rbJuridico" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Jurídico" />
-                                                      <RadioButton fx:id="rbFisico" layoutX="94.0" layoutY="10.0" mnemonicParsing="false" text="Físico" />
-                                                   </children>
-                                                </AnchorPane>
-                                              <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
-                                                   <children>
-                                                      <Label fx:id="lblClienteFisico" layoutX="10.0" layoutY="6.0" text="Cliente Físico">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label fx:id="lblNomeFisico" layoutX="10.0" layoutY="42.0" text="Nome do Cliente">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtNomeClienFisi" layoutX="10.0" layoutY="62.0" prefWidth="200.0" styleClass="focus" />
-                                                      <Label fx:id="lblCpfFisico" layoutX="260.0" layoutY="42.0" text="Cpf">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtCpfClienFisi" layoutX="260.0" layoutY="62.0" maxWidth="100.0" promptText="000.000.000-00" styleClass="focus" />
-                                                      <Label fx:id="lblDtNasc" layoutX="425.0" layoutY="42.0" text="Data de nascimento">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtDtNascClienFisi" layoutX="425.0" layoutY="62.0" prefHeight="27.0" prefWidth="125.0" styleClass="focus" />
-                                                      <Label fx:id="lblPeso" layoutX="583.0" layoutY="42.0" text="Peso">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtPesoClienFisi" layoutX="583.0" layoutY="62.0" prefHeight="27.0" prefWidth="56.0" styleClass="focus" />
-                                                      <Label fx:id="lblAltura" layoutX="668.0" layoutY="42.0" text="Altura">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtAlturaClienFisi" layoutX="668.0" layoutY="62.0" prefHeight="27.0" prefWidth="48.0" promptText="0.00" styleClass="focus">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </TextField>
-                                                      <Label fx:id="lblTelFisico" layoutX="10.0" layoutY="100.0" text="Telefone">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtTelClienFisi" layoutX="10.0" layoutY="120.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
-                                                      <Label fx:id="lblCelFisico" layoutX="228.0" layoutY="100.0" text="Celular">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtCelClienFisi" layoutX="227.0" layoutY="120.0" maxWidth="100.0" promptText="(00)00000-0000" styleClass="focus" />
-                                                      <Label fx:id="lblEmailFisico" layoutX="413.0" layoutY="100.0" text="E-mail">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtEmailClienFisi" layoutX="413.0" layoutY="120.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
-                                                      <Label fx:id="lblSexo" layoutX="629.0" layoutY="100.0" text="Sexo">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <RadioButton fx:id="rbSexoM" layoutX="628.0" layoutY="124.0" mnemonicParsing="false" text="M" />
-                                                      <RadioButton fx:id="rbSexoF" layoutX="679.0" layoutY="124.0" mnemonicParsing="false" text="F" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
-                                                   <children>
-                                                      <Label fx:id="lblClienteJuridico" layoutX="10.0" layoutY="8.0" text="Cliente Jurídico">
-                                                         <font>
-                                                            <Font size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label fx:id="lblNomeContato" layoutX="10.0" layoutY="40.0" text="Nome/Contato">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtNomeClienJuri" layoutX="10.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
-                                                      <Label fx:id="lblRazaoClienteJuri" layoutX="252.0" layoutY="40.0" text="Razão Social">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtRazaoClienJuri" layoutX="252.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
-                                                      <Label fx:id="lblCnpjClienJuri" layoutX="474.0" layoutY="40.0" text="Cnpj">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtCnpjClienJuri" layoutX="474.0" layoutY="60.0" maxWidth="125.0" promptText="00.000.000/000-00" styleClass="focus" />
-                                                      <Label fx:id="lblInscricao" layoutX="626.0" layoutY="40.0" text="Inscrição estadual">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtInscricao" layoutX="626.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
-                                                      <Label fx:id="lblTelPrincJuridico" layoutX="10.0" layoutY="102.0" text="Telefone Principal">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtTelPrinClienJuri" layoutX="10.0" layoutY="122.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
-                                                      <Label fx:id="lblTelSecuJuridico" layoutX="231.0" layoutY="102.0" text="Telefone contato">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtTelContClienJuri" layoutX="231.0" layoutY="122.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
-                                                      <Label fx:id="lblEmailPrincJuridico" layoutX="404.0" layoutY="102.0" text="E-mail principal">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtEmailPrinClienJuri" layoutX="404.0" layoutY="122.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
-                                                      <Label fx:id="lblEmailContJuridico" layoutX="636.0" layoutY="102.0" text="E-mail contato">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtEmailContClienJuri" layoutX="636.0" layoutY="122.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane maxHeight="53.0" minHeight="53.0" SplitPane.resizableWithParent="false">
-                                                   <children>
-                                                      <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="965.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <children>
-                                                            <Pane minHeight="50.0" prefHeight="50.0">
-                                                               <children>
-                                                                  <Button fx:id="btnCadastrarCliente" layoutX="325.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
-                                                                     <font>
-                                                                        <Font size="14.0" />
-                                                                     </font>
-                                                                  </Button>
-                                                                  <Button layoutX="415.0" layoutY="12.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
-                                                                     <font>
-                                                                        <Font size="14.0" />
-                                                                     </font>
-                                                                  </Button>
-                                                               </children>
-                                                            </Pane>
-                                                         </children>
-                                                      </HBox>
-                                                   </children>
-                                                </AnchorPane>
-                                            </items>
-                                          </SplitPane>
-                                       </children>
-                                    </Pane>
+                                    <SplitPane dividerPositions="0.127208480565371, 0.4134275618374558" orientation="VERTICAL">
+                                      <items>
+                                        <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <Label fx:id="lblClienteFisico" layoutX="10.0" layoutY="6.0" text="Cliente Físico">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="lblNomeFisico" layoutX="10.0" layoutY="42.0" text="Nome do Cliente">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtNomeClienFisi" layoutX="10.0" layoutY="62.0" prefWidth="200.0" styleClass="focus" />
+                                                <Label fx:id="lblCpfFisico" layoutX="260.0" layoutY="42.0" text="Cpf">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtCpfClienFisi" layoutX="260.0" layoutY="62.0" maxWidth="100.0" promptText="000.000.000-00" styleClass="focus" />
+                                                <Label fx:id="lblDtNasc" layoutX="425.0" layoutY="42.0" text="Data de nascimento">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtDtNascClienFisi" layoutX="413.0" layoutY="63.0" />
+                                                <Label fx:id="lblPeso" layoutX="583.0" layoutY="42.0" text="Peso">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtPesoClienFisi" layoutX="583.0" layoutY="62.0" prefHeight="27.0" prefWidth="56.0" styleClass="focus" />
+                                                <Label fx:id="lblAltura" layoutX="668.0" layoutY="42.0" text="Altura">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtAlturaClienFisi" layoutX="668.0" layoutY="62.0" prefHeight="27.0" prefWidth="48.0" promptText="0.00" styleClass="focus">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </TextField>
+                                                <Label fx:id="lblTelFisico" layoutX="10.0" layoutY="100.0" text="Telefone">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtTelClienFisi" layoutX="10.0" layoutY="120.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
+                                                <Label fx:id="lblCelFisico" layoutX="228.0" layoutY="100.0" text="Celular">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtCelClienFisi" layoutX="227.0" layoutY="120.0" maxWidth="100.0" promptText="(00)00000-0000" styleClass="focus" />
+                                                <Label fx:id="lblEmailFisico" layoutX="413.0" layoutY="100.0" text="E-mail">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtEmailClienFisi" layoutX="413.0" layoutY="120.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
+                                                <Label fx:id="lblSexo" layoutX="629.0" layoutY="100.0" text="Sexo">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <RadioButton fx:id="rbSexoM" layoutX="628.0" layoutY="124.0" mnemonicParsing="false" text="M" />
+                                                <RadioButton fx:id="rbSexoF" layoutX="679.0" layoutY="124.0" mnemonicParsing="false" text="F" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="160.0" minHeight="160.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <Label fx:id="lblClienteJuridico" layoutX="10.0" layoutY="8.0" text="Cliente Jurídico">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="lblNomeContato" layoutX="10.0" layoutY="40.0" text="Nome/Contato">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtNomeClienJuri" layoutX="10.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
+                                                <Label fx:id="lblRazaoClienteJuri" layoutX="252.0" layoutY="40.0" text="Razão Social">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtRazaoClienJuri" layoutX="252.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
+                                                <Label fx:id="lblCnpjClienJuri" layoutX="474.0" layoutY="40.0" text="Cnpj">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtCnpjClienJuri" layoutX="474.0" layoutY="60.0" maxWidth="125.0" promptText="00.000.000/000-00" styleClass="focus" />
+                                                <Label fx:id="lblInscricao" layoutX="626.0" layoutY="40.0" text="Inscrição estadual">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtInscricao" layoutX="626.0" layoutY="60.0" prefWidth="200.0" styleClass="focus" />
+                                                <Label fx:id="lblTelPrincJuridico" layoutX="10.0" layoutY="102.0" text="Telefone Principal">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtTelPrinClienJuri" layoutX="10.0" layoutY="122.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
+                                                <Label fx:id="lblTelSecuJuridico" layoutX="231.0" layoutY="102.0" text="Telefone contato">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtTelContClienJuri" layoutX="231.0" layoutY="122.0" maxWidth="100.0" promptText="(00)0000-0000" styleClass="focus" />
+                                                <Label fx:id="lblEmailPrincJuridico" layoutX="404.0" layoutY="102.0" text="E-mail principal">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtEmailPrinClienJuri" layoutX="404.0" layoutY="122.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
+                                                <Label fx:id="lblEmailContJuridico" layoutX="636.0" layoutY="102.0" text="E-mail contato">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="txtEmailContClienJuri" layoutX="636.0" layoutY="122.0" prefWidth="200.0" promptText="exemplo@exemplo" styleClass="focus" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="55.0" prefWidth="836.0" style="-fx-background-color: #FFF;" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <Button fx:id="btnCadastrarCliente" layoutX="31.0" layoutY="45.0" mnemonicParsing="false" styleClass="botao" text="Cadastrar">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnConcluidoPedTel" layoutX="125.0" layoutY="45.0" mnemonicParsing="false" styleClass="botao" text="Concluído" />
+                                                <Button layoutX="225.0" layoutY="45.0" mnemonicParsing="false" styleClass="botao" text="Cancelar">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
                                  </children>
                               </HBox>
                            </children>

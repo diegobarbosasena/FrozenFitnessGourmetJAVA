@@ -93,19 +93,20 @@ public class ClienteDAO {
 		
 		String sqlInsertCliente = "INSERT INTO tblCliente "
 				+ "(nomeCliente, cpfCliente, dtNascCliente, peso, altura, telefoneCliente, celularCliente, emailCliente, sexo) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?); ";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?); ";
 		
 		try {
 			PreparedStatement parametros = c.prepareStatement(sqlInsertCliente);
 			
 			parametros.setString(1, cliente.getNomeCliente());
 			parametros.setString(2, cliente.getCpfCliente());
-			parametros.setDate(3, (Date) cliente.getDtNascCliente());
-			parametros.setFloat(4, cliente.getPeso());
-			parametros.setFloat(5, cliente.getAltura());
+			parametros.setDate(3,  (Date) cliente.getDtNascCliente());
+			parametros.setDouble(4, cliente.getPeso());
+			parametros.setDouble(5, cliente.getAltura());
 			parametros.setString(6, cliente.getTelefoneCliente());
 			parametros.setString(7, cliente.getCelularCliente());
 			parametros.setString(8, cliente.getEmailCliente());
+			parametros.setString(9, cliente.getSexo());
 			
 			parametros.executeUpdate();
 			
@@ -114,6 +115,7 @@ public class ClienteDAO {
 			return true;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
