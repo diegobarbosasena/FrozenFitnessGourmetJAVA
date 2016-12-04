@@ -303,24 +303,8 @@ public class TransportadoraController implements Initializable{
 		
 		if(!modoEdicao){
 			
-			if(
-					validarCamposTransportadora( 
-							txtBairroTransp.getText(),
-							txtCepTransp.getText(),
-							txtCnpjTransp.getText(),
-							txtEmailCont.getText(),
-							txtEmailPrin.getText(),
-							txtTelPrin.getText(),
-							txtTelCont.getText(),
-							txtEndTransp.getText(),
-							txtNomeFant.getText(),
-							txtNroTransp.getText(),
-							txtRazao.getText(),
-							txtResponsavelTransp.getText()
-							)	
-				)		
-			{
-						
+			if(validarCamposTransportadora(txtBairroTransp.getText(),txtCepTransp.getText(),txtCnpjTransp.getText(),txtEmailCont.getText(),txtEmailPrin.getText(),txtTelPrin.getText(),txtTelCont.getText(),txtEndTransp.getText(),txtNomeFant.getText(),txtNroTransp.getText(),txtRazao.getText(),txtResponsavelTransp.getText()))		
+			{		
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Transportadora", "ERRO", "Preencha todos os campos!");
 			}
@@ -487,22 +471,8 @@ public class TransportadoraController implements Initializable{
 		
 		upEn.setCidade(cboCidadeTransp.getSelectionModel().getSelectedItem());
 		
-		if(
-				validarCamposTransportadora( 
-						txtBairroTransp.getText(),
-						txtCepTransp.getText(),
-						txtCnpjTransp.getText(),
-						txtEmailCont.getText(),
-						txtEmailPrin.getText(),
-						txtTelPrin.getText(),
-						txtTelCont.getText(),
-						txtEndTransp.getText(),
-						txtNomeFant.getText(),
-						txtNroTransp.getText(),
-						txtRazao.getText(),
-						txtResponsavelTransp.getText()
-				)
-		){	
+		if(validarCamposTransportadora(txtBairroTransp.getText(),txtCepTransp.getText(),txtCnpjTransp.getText(),txtEmailCont.getText(),txtEmailPrin.getText(),txtTelPrin.getText(),txtTelCont.getText(),txtEndTransp.getText(),txtNomeFant.getText(),txtNroTransp.getText(),txtRazao.getText(),txtResponsavelTransp.getText()))
+		{	
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Transportadora", "ERRO", "Preencha Todos os campos!");
 		}
@@ -525,7 +495,7 @@ public class TransportadoraController implements Initializable{
 			}
 			else{	
 				Alerta alertaErro = new Alerta(); 
-				alertaErro.alertaErro("Veículo", "ERRO", "Erro ao atualizar Transportadora!");
+				alertaErro.alertaErro("Transportadora", "ERRO", "Erro ao atualizar Transportadora!");
 			}
 		}
 			

@@ -1,14 +1,17 @@
 package br.com.controller;
 
 import java.net.URL;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import br.com.DAO.ClienteDAO;
 import br.com.DAO.ClienteJuridicoDAO;
 import br.com.DAO.EnderecoDAO;
+import br.com.ajudantes.FormataData;
 import br.com.ajudantes.Mascaras;
 import br.com.model.Cidade;
 import br.com.model.Cliente;
@@ -20,8 +23,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
@@ -31,8 +39,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class PedidosTelefoneController implements Initializable{
 	
@@ -147,11 +157,15 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnCadastrarCliente;
 	@FXML private Button btnCadastrarEndereco;
 	@FXML private Button btnConcluidoPedTel;
-	
+	@FXML private Button btnCancelarCadClien;
+	@FXML private Label lblClienteFisicoCada;
 	
 	private boolean modo_edicao = false;
 	
 	String sexoSelecionado = "";
+	
+	
+	
 	
 
 
@@ -169,6 +183,7 @@ public class PedidosTelefoneController implements Initializable{
 		Mascaras.mascaraTelefone(txtTelContClienJuri);
 		Mascaras.mascaraTelefone(txtTelPrinClienJuri);
 		Mascaras.mascaraCPF(txtCpfClienFisi);
+		Mascaras.mascaraData(txtDtNascClienFisi);
 	
 		btnAtualizaFisico.setOnAction(k -> preencherClienteFisico());
 		btnAtualizaFisico.setOnKeyPressed(e -> {
@@ -213,6 +228,8 @@ public class PedidosTelefoneController implements Initializable{
 		});
 		
 		btnNovoClienFisico.setOnAction(c -> cadastrarFisico());
+		btnEcluirClienFisico.setOnAction(e -> excluirClienteFisico());
+		btnEditarClienteFisico.setOnAction(f -> editarFisico());
 		
 		btnNovoClienteJuridico.setOnAction(f -> cadastrarJuridico());
 	}
@@ -239,14 +256,14 @@ public class PedidosTelefoneController implements Initializable{
 		tbcCodClienteFisico.setCellValueFactory(new PropertyValueFactory<Cliente, String>("codCliente"));
 		tbcNomeFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nomeCliente"));
 		tbcCpfFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpfCliente"));
-		
+		tbcDtNascFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dtNascCliente"));
+			
 		tbcDtNascFisi.setCellValueFactory(
 			dtNacs -> {
 				SimpleStringProperty propriedade = new SimpleStringProperty();
 				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
 				if(dtNacs.getValue().getDtNascCliente() != null){
-				propriedade.setValue(dF.format(dtNacs.getValue().getDtNascCliente()));
-				
+					propriedade.setValue(dF.format(dtNacs.getValue().getDtNascCliente()));
 				}
 				return propriedade;
 		});
@@ -267,30 +284,55 @@ public class PedidosTelefoneController implements Initializable{
 		
 		tbpPedidoTel.getSelectionModel().select(1);
 		tabCadClien.setDisable(false);
+		tabCadClien.setText("Cadastrar cliente");
+		lblClienteFisicoCada.setText("Cadastrar cliente físico");
 		tabVisuClien.setDisable(true);
 		
+		btnConcluidoPedTel.setDisable(true);
+		
 		desabilitaFisico(false);
+		desabilitaJuridico(true);
 	
 		btnCadastrarCliente.setText("Cadastrar");
 		btnCadastrarCliente.setOnAction(f -> inserirFisico());
+		btnCadastrarCliente.setOnKeyPressed(f -> {
+		    if (f.getCode() == KeyCode.ENTER) {
+		    	inserirFisico();
+		    }
+		});
+		
+		btnCancelar.setOnAction(l -> cancelar());
+		btnCancelar.setOnKeyPressed(i -> {
+		    if (i.getCode() == KeyCode.ENTER) {
+		    	cancelar();
+		    }
+		});	
 		
 		
 	}
 	
+	private void cancelar() {
+		tbpPedidoTel.getSelectionModel().select(0);
+		
+		tabCadClien.setDisable(true);
+		tabVisuClien.setDisable(false);
+		
+		limparClienteFisico();
+	}
 
 	private void inserirFisico() {
 		
 		if(! modo_edicao){
 		
-		/*	if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
+			if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
 			{
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Pedidos Telefone", "ERRO", "Preencha todos os campos!");	
 			}
-			else{*/
+			else{
 				
-			Cliente cli = new Cliente();
-			/*	
+				Cliente cliente = new Cliente();
+				
 				if(rbSexoM.isSelected()){
 					sexoSelecionado = "M";
 				}
@@ -298,60 +340,236 @@ public class PedidosTelefoneController implements Initializable{
 					sexoSelecionado = "F";
 				}
 				
-				Cliente cliente = new Cliente();
-				
-				cliente.setNomeCliente(txtNomeClienFisi.getText());
-				cliente.setCpfCliente(txtCpfClienFisi.getText());
-				cliente.setTelefoneCliente(txtTelClienFisi.getText());
+				cliente.setAltura(Float.parseFloat(txtAlturaClienFisi.getText()));
 				cliente.setCelularCliente(txtCelClienFisi.getText());
+				cliente.setCpfCliente(txtCpfClienFisi.getText());
 				cliente.setEmailCliente(txtEmailClienFisi.getText());
+				cliente.setNomeCliente(txtNomeClienFisi.getText());
+				cliente.setPeso(Float.parseFloat(txtPesoClienFisi.getText()));
 				cliente.setSexo(sexoSelecionado);
+				cliente.setTelefoneCliente(txtTelClienFisi.getText());
 				
+				try {
+					cliente.setDtNascCliente(FormataData.formataData(txtDtNascClienFisi.getText()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
-				Double peso = Double.parseDouble(txtPesoClienFisi.getText());
-				Double altura = Double.parseDouble(txtAlturaClienFisi.getText());
-			
-				txtDtNascClienFisi.getUserData();
-				
-				
-				cliente.setPeso(peso);
-				cliente.setAltura(altura);
+				if(ClienteDAO.inserirCliente(cliente)){
 					
-				
-				System.out.println("data " +txtDtNascClienFisi.getUserData());
-				System.out.println("altura parsada " +altura);
-				
-				*/
-				
-				
-				cli.setAltura(Float.parseFloat("1.23"));
-				cli.setCelularCliente("123");
-				cli.setCpfCliente("123");
-				
-				cli.setEmailCliente("ca@cds.com");
-				cli.setNomeCliente("nome cliente");
-				cli.setPeso(Float.parseFloat("12.3"));
-				cli.setSexo("M");
-				cli.setTelefoneCliente("123");
-				
-				if(ClienteDAO.inserirCliente(cli)){
-					System.out.println("CHEGOU");
 					Alerta aletaInfo = new Alerta();
 					aletaInfo.alertaInformation("Pedido telefone", "Sucesso", "Cliente cadastrado com sucesso!");
+			
+					btnCancelarCadClien.setDisable(true);
+					btnCadastrarCliente.setDisable(true);
 					
+					btnConcluidoPedTel.setDisable(false);
+					btnConcluidoPedTel.setOnAction(j -> concluido());	
+					btnConcluidoPedTel.setOnKeyPressed(k -> {
+					    if (k.getCode() == KeyCode.ENTER) {
+					    	concluido();
+					    }
+					});
+					
+					limparClienteFisico();
+					preencherClienteFisico();
+					preencherEnderecoFisico();
 				}
+				else{
+					
+					Alerta alertaErro = new Alerta(); 
+					alertaErro.alertaErro("Pedido telefone", "ERRO", "Cliente não cadastrado!");
+				}
+			}
+		}
+		else{
 			
-			/*	
-			}*/
+			Cliente clie = tbwClienteFisico.getSelectionModel().getSelectedItem();
+		
+			if(clie == null){
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Pedido telefone", "ERRO", "Nenhum item selecionado!");
+			}
+			else{
+				tabVisuClien.setDisable(true);
+				tabCadClien.setDisable(false);
+				tbpPedidoTel.getSelectionModel().select(1);
 				
+				lblClienteFisicoCada.setText("Atualizar cliente físico");
+				btnCadastrarCliente.setText("Atualizar");
+				
+				txtNomeClienFisi.setText(clie.getNomeCliente());
+				txtTelClienFisi.setText(clie.getTelefoneCliente());
+				txtCpfClienFisi.setText(clie.getCpfCliente());
+				txtCelClienFisi.setText(clie.getCelularCliente());
+				txtEmailClienFisi.setText(clie.getEmailCliente());
+				txtPesoClienFisi.setText(String.valueOf(clie.getPeso()));
+				txtAlturaClienFisi.setText(String.valueOf(clie.getAltura()));
 			
+				String sexodobanco = clie.getSexo();
+				
+				if(sexodobanco == "M"){
+					rbSexoM.setSelected(true);
+				}
+				if(sexodobanco == "F"){
+					rbSexoF.setSelected(true);
+				}
+				
+				Date data_nasc = clie.getDtNascCliente();
+				String dataBr =	FormataData.formataDataBr(data_nasc);
 			
-			
+				txtDtNascClienFisi.setText(dataBr);
+					
+				btnCadastrarCliente.setOnAction(c -> atualizarClienteFisico());
+				btnCancelarCadClien.setOnAction(c -> cancelar());
+				btnConcluidoPedTel.setOnAction(d -> concluido());
+			}
 			
 		}
 		
 	}
+
+	private void atualizarClienteFisico() {
+		
+		Cliente codClienteUp = tbwClienteFisico.getSelectionModel().getSelectedItem();
+		
+		Cliente clienteUp = new Cliente();
+		
+		if(rbSexoM.isSelected()){
+			sexoSelecionado = "M";
+		}
+		if(rbSexoF.isSelected()){
+			sexoSelecionado = "F";
+		}
+		
+		clienteUp.setCodCliente(codClienteUp.getCodCliente());
+		
+		clienteUp.setAltura(Float.parseFloat(txtAlturaClienFisi.getText()));
+		clienteUp.setCelularCliente(txtCelClienFisi.getText());
+		clienteUp.setCpfCliente(txtCpfClienFisi.getText());
+		clienteUp.setEmailCliente(txtEmailClienFisi.getText());
+		clienteUp.setNomeCliente(txtNomeClienFisi.getText());
+		clienteUp.setPeso(Float.parseFloat(txtPesoClienFisi.getText()));
+		clienteUp.setSexo(sexoSelecionado);
+		clienteUp.setTelefoneCliente(txtTelClienFisi.getText());
+		
+		try {
+			clienteUp.setDtNascCliente(FormataData.formataData(txtDtNascClienFisi.getText()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
+		{
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Atualizar cliente físico", "ERRO", "Preencha todos os campos!");	
+		}
+		else{
+			
+			if(ClienteDAO.updateCliente(clienteUp)){
+				
+				limparClienteFisico();
+				
+				Alerta aletaInfo = new Alerta();
+				aletaInfo.alertaInformation("Cliente físico", "Sucesso", "Cliente atualizado com sucesso!");
+				
+				btnConcluidoPedTel.setDisable(false);
+				btnCancelarCadClien.setDisable(true);
+				btnCadastrarCliente.setDisable(true);
+				
+				preencherClienteFisico();
+				preencherClienteJuridico();
+				preencherEnderecoFisico();
+				
+				modo_edicao = false;
+			}
+			else{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Cliente físico", "ERRO", "Erro ao atualizar Cliente físico!");
+			}
+		}	
+	}
 	
+	public void editarFisico(){
+		
+		tabCadClien.setText("Atualizar cliente fisíco");
+		tabCadClien.setDisable(false);
+		
+		btnCadastrarCliente.setDisable(false);
+		btnCancelarCadClien.setDisable(false);
+		btnConcluidoPedTel.setDisable(true);
+		
+		modo_edicao = true;
+		
+		inserirFisico();
+	}
+	
+
+	public void excluirClienteFisico(){
+		
+		Cliente cl = tbwClienteFisico.getSelectionModel().getSelectedItem();
+		
+		if(cl == null){
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Cliente físico", "ERRO", "Nenhum item selecionado!");
+		}
+		else{
+			
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setTitle("Transportadora");
+			a.setHeaderText("Deseja excluir Cliente ?");
+			a.setContentText("Tem certeza?");
+			
+			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+			
+			ButtonType sim = new ButtonType("Sim");
+			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
+			
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
+			
+			a.getButtonTypes().setAll(sim, nao);
+			
+			Optional<ButtonType> resultado = a.showAndWait();
+			
+			if (resultado.get() == sim){
+				
+				if(ClienteDAO.deleteCliente(cl.getCodCliente())){
+				
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Cliente físico", "Sucesso", "Cliente excluído com sucesso!");
+					
+					preencherClienteFisico();
+				}
+				else{
+					Alerta alertaWarning = new Alerta(); 
+					alertaWarning.alertaWarning("Cliente físico", "AVISO!", "Cliente não pode ser excluido!");
+				}
+			}
+		}
+	}
+	
+	private void limparClienteFisico() {
+		txtNomeClienFisi.clear();
+		txtTelClienFisi.clear();
+		txtCpfClienFisi.clear();
+		txtCelClienFisi.clear();
+		txtDtNascClienFisi.clear();
+		txtEmailClienFisi.clear();
+		txtPesoClienFisi.clear();
+		txtAlturaClienFisi.clear();
+		rbSexoM.setSelected(false);
+		rbSexoF.setSelected(false);
+	}
+
+	private void concluido() {
+		tbpPedidoTel.getSelectionModel().select(0);
+		
+		tabVisuClien.setDisable(false);
+		tabCadClien.setDisable(true);
+	}
+
 	public boolean validarCamposFisico(String... camposFisico) {
 		
 		boolean preenchido = false;
@@ -365,9 +583,23 @@ public class PedidosTelefoneController implements Initializable{
 		}
 		return preenchido;
 	}
+	
+	public boolean validarCamposJuridico(String... camposJuridico) {
+		
+		boolean preenchido = false;
+		for(String item : camposJuridico){
+			if(item.isEmpty()){
+				preenchido = true;
+				break;
+			}else{
+				preenchido = false;
+			}
+		}
+		return preenchido;
+	}
 
 	public void desabilitaFisico(boolean desabilitar) {
-		lblClienteFisico.setDisable(desabilitar);
+		lblClienteFisicoCada.setDisable(desabilitar);
 		lblNomeFisico.setDisable(desabilitar);
 		txtNomeClienFisi.setDisable(desabilitar);
 		lblTelFisico.setDisable(desabilitar);
@@ -387,6 +619,26 @@ public class PedidosTelefoneController implements Initializable{
 		lblSexo.setDisable(desabilitar);
 		rbSexoM.setDisable(desabilitar);
 		rbSexoF.setDisable(desabilitar);
+	}
+	
+	public void desabilitaJuridico(boolean habilitar){
+		lblClienteJuridico.setDisable(habilitar);
+		lblNomeContato.setDisable(habilitar);
+		txtNomeClienJuri.setDisable(habilitar);
+		lblTelPrincJuridico.setDisable(habilitar);
+		txtTelPrinClienJuri.setDisable(habilitar);
+		lblRazaoClienteJuri.setDisable(habilitar);
+		txtRazaoClienJuri.setDisable(habilitar);
+		lblTelSecuJuridico.setDisable(habilitar);
+		txtTelContClienJuri.setDisable(habilitar);
+		lblCnpjClienJuri.setDisable(habilitar);
+		txtCnpjClienJuri.setDisable(habilitar);
+		lblEmailPrincJuridico.setDisable(habilitar);
+		txtEmailPrinClienJuri.setDisable(habilitar);
+		lblInscricao.setDisable(habilitar);
+		txtInscricao.setDisable(habilitar);
+		lblEmailContJuridico.setDisable(habilitar);
+		txtEmailContClienJuri.setDisable(habilitar);
 	}
 	
 	private void cadastrarJuridico(){

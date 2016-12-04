@@ -258,7 +258,7 @@ public class EnderecoDAO {
 				+ "INNER JOIN tblCliente cliente "
 				+ "ON(clie_ende.codCliente = cliente.codCliente) "
 				+ "WHERE cliente.codCliente = ? ;";
-		System.out.println(sqlFiltroEndereco);
+		
 		List <Endereco> lstClienteEndereco = new ArrayList<>(); 
 		
 		PreparedStatement p; 

@@ -1,6 +1,6 @@
 package br.com.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Cliente {
 
@@ -81,6 +81,5 @@ public class Cliente {
 	public String toString() {
 		return "Nome: " + nomeCliente + ", Cpf: " + cpfCliente + "";
 	}
-	
-	
+
 }
