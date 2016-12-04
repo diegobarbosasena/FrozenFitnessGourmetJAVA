@@ -18,7 +18,7 @@ public class SplashController implements Initializable{
 	@FXML private Button btnSplash;
 	@FXML private ProgressIndicator piInicializa;
 
-	private int tempo = 2000;
+	private int tempo = 2500;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

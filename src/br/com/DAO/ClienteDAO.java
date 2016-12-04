@@ -178,6 +178,5 @@ public class ClienteDAO {
 			return false;	
 		}
 	}
-
-		
+	
 }

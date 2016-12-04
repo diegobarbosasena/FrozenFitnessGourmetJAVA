@@ -5,6 +5,7 @@ public class ClienteJuridico {
 	private int codClienteJuridico;
 	private String nomeContato;
 	private String razaoSocial;
+	private String cnpj;
 	private String inscricaoEstadual;
 	private String telefonePrincipal;
 	private String telefoneContato;
@@ -29,6 +30,12 @@ public class ClienteJuridico {
 	}
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 	public String getInscricaoEstadual() {
 		return inscricaoEstadual;

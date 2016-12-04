@@ -231,7 +231,9 @@ public class PedidosTelefoneController implements Initializable{
 		btnEcluirClienFisico.setOnAction(e -> excluirClienteFisico());
 		btnEditarClienteFisico.setOnAction(f -> editarFisico());
 		
-		btnNovoClienteJuridico.setOnAction(f -> cadastrarJuridico());
+		btnNovoClienteJuridico.setOnAction(g -> cadastrarJuridico());
+		btnExcluirJuri.setOnAction(c -> excluirClienteJuridico());
+		btnEditarClienteJuri.setOnAction(f -> editarJuridico());
 	}
 
 	private void preencherClienteJuridico() {
@@ -278,7 +280,6 @@ public class PedidosTelefoneController implements Initializable{
 		tbwClienteFisico.getItems().clear();
 		tbwClienteFisico.getItems().addAll(lstClienteFisico);	
 	}
-	
 	
 	private void cadastrarFisico() {
 		
@@ -424,9 +425,7 @@ public class PedidosTelefoneController implements Initializable{
 				btnCancelarCadClien.setOnAction(c -> cancelar());
 				btnConcluidoPedTel.setOnAction(d -> concluido());
 			}
-			
 		}
-		
 	}
 
 	private void atualizarClienteFisico() {
@@ -495,6 +494,9 @@ public class PedidosTelefoneController implements Initializable{
 		tabCadClien.setText("Atualizar cliente fisíco");
 		tabCadClien.setDisable(false);
 		
+		desabilitaJuridico(true);
+		desabilitaFisico(false);
+		
 		btnCadastrarCliente.setDisable(false);
 		btnCancelarCadClien.setDisable(false);
 		btnConcluidoPedTel.setDisable(true);
@@ -504,7 +506,6 @@ public class PedidosTelefoneController implements Initializable{
 		inserirFisico();
 	}
 	
-
 	public void excluirClienteFisico(){
 		
 		Cliente cl = tbwClienteFisico.getSelectionModel().getSelectedItem();
@@ -516,7 +517,7 @@ public class PedidosTelefoneController implements Initializable{
 		else{
 			
 			Alert a = new Alert(AlertType.CONFIRMATION);
-			a.setTitle("Transportadora");
+			a.setTitle("Cliente físico");
 			a.setHeaderText("Deseja excluir Cliente ?");
 			a.setContentText("Tem certeza?");
 			
@@ -643,9 +644,235 @@ public class PedidosTelefoneController implements Initializable{
 	
 	private void cadastrarJuridico(){
 		
+		tbpPedidoTel.getSelectionModel().select(1);
+		tabCadClien.setDisable(false);
+		
+		tabCadClien.setText("Cadastrar cliente");
+		lblClienteJuridico.setText("Cadastrar cliente jurídico");
+		tabVisuClien.setDisable(true);
+		
+		btnConcluidoPedTel.setDisable(true);
+		
+		desabilitaFisico(true);
+		desabilitaJuridico(false);
+		
+		btnCadastrarCliente.setText("Cadastrar");
+		btnCadastrarCliente.setOnAction(f -> inserirJuridico());
+		btnCadastrarCliente.setOnKeyPressed(f -> {
+		    if (f.getCode() == KeyCode.ENTER) {
+		    	inserirJuridico();
+		    }
+		});
+		
+		btnCancelar.setOnAction(l -> cancelar());
+		btnCancelar.setOnKeyPressed(i -> {
+		    if (i.getCode() == KeyCode.ENTER) {
+		    	cancelar();
+		    }
+		});	
 		
 	}
 	
+	private void inserirJuridico() {
+		
+		if(! modo_edicao){
+			
+			if(validarCamposJuridico(txtNomeClienJuri.getText(),txtTelPrinClienJuri.getText(),txtRazaoClienJuri.getText(),txtTelContClienJuri.getText(),txtCnpjClienJuri.getText(),txtEmailPrinClienJuri.getText(),txtEmailContClienJuri.getText()))
+			{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Pedidos Telefone", "ERRO", "Preencha todos os campos!");	
+			}
+			else{
+				
+				ClienteJuridico clienteJuridico = new ClienteJuridico();
+				
+				clienteJuridico.setNomeContato(txtNomeClienJuri.getText());
+				clienteJuridico.setRazaoSocial(txtRazaoClienJuri.getText());
+				clienteJuridico.setInscricaoEstadual(txtInscricao.getText());
+				clienteJuridico.setCnpj(txtCnpjClienJuri.getText());
+				clienteJuridico.setTelefonePrincipal(txtTelPrinClienJuri.getText());
+				clienteJuridico.setTelefoneContato(txtTelContClienJuri.getText());
+				clienteJuridico.setEmailPrincipal(txtEmailPrinClienJuri.getText());
+				clienteJuridico.setEmailContato(txtEmailContClienJuri.getText());
+				
+				if(ClienteJuridicoDAO.inserirClienteJuridico(clienteJuridico)){
+					
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Pedido telefone", "Sucesso", "Cliente cadastrado com sucesso!");
+			
+					btnCancelarCadClien.setDisable(true);
+					btnCadastrarCliente.setDisable(true);
+					
+					btnConcluidoPedTel.setDisable(false);
+					btnConcluidoPedTel.setOnAction(j -> concluido());	
+					btnConcluidoPedTel.setOnKeyPressed(k -> {
+					    if (k.getCode() == KeyCode.ENTER) {
+					    	concluido();
+					    }
+					});
+					
+					limparClienteJuridico();
+					preencherClienteJuridico();	
+				}
+				else{
+					Alerta alertaErro = new Alerta(); 
+					alertaErro.alertaErro("Pedido telefone", "ERRO", "Cliente não cadastrado!");
+				}	
+			}
+		}
+		else{
+			
+			ClienteJuridico clieJuri = tbwClienteJuridico.getSelectionModel().getSelectedItem();
+			
+			if(clieJuri == null){
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Pedido telefone", "ERRO", "Nenhum item selecionado!");
+			}
+			else{
+				tabVisuClien.setDisable(true);
+				tabCadClien.setDisable(false);
+				tbpPedidoTel.getSelectionModel().select(1);
+				
+				lblClienteJuridico.setText("Atualizar cliente jurídico");
+				btnCadastrarCliente.setText("Atualizar");
+				
+				txtNomeClienJuri.setText(clieJuri.getNomeContato());
+				txtTelPrinClienJuri.setText(clieJuri.getTelefonePrincipal());
+				txtRazaoClienJuri.setText(clieJuri.getRazaoSocial());
+				txtInscricao.setText(clieJuri.getInscricaoEstadual());
+				txtTelContClienJuri.setText(clieJuri.getTelefoneContato());
+				txtCnpjClienJuri.setText(clieJuri.getCnpj());
+				txtEmailPrinClienJuri.setText(clieJuri.getEmailPrincipal());
+				txtEmailContClienJuri.setText(clieJuri.getEmailContato());
+				
+				btnCadastrarCliente.setOnAction(c -> atualizarClienteJuridico());
+				btnCancelarCadClien.setOnAction(c -> cancelar());
+				btnConcluidoPedTel.setOnAction(d -> concluido());
+			}
+		}
+	}
+
+	private void atualizarClienteJuridico() {
+		
+		ClienteJuridico codClieJuriUp = tbwClienteJuridico.getSelectionModel().getSelectedItem();
+		
+		ClienteJuridico clieJuriUp = new ClienteJuridico();
+		
+		
+		clieJuriUp.setCodClienteJuridico(codClieJuriUp.getCodClienteJuridico());
+		clieJuriUp.setNomeContato(txtNomeClienJuri.getText());
+		clieJuriUp.setRazaoSocial(txtRazaoClienJuri.getText());
+		clieJuriUp.setCnpj(txtCnpjClienJuri.getText());
+		clieJuriUp.setInscricaoEstadual(txtInscricao.getText());
+		clieJuriUp.setTelefonePrincipal(txtTelPrinClienJuri.getText());
+		clieJuriUp.setTelefoneContato(txtTelContClienJuri.getText());
+		clieJuriUp.setEmailPrincipal(txtEmailPrinClienJuri.getText());
+		clieJuriUp.setEmailContato(txtEmailContClienJuri.getText());
+		
+		if(validarCamposJuridico(txtNomeClienJuri.getText(),txtTelPrinClienJuri.getText(),txtRazaoClienJuri.getText(),txtTelContClienJuri.getText(),txtCnpjClienJuri.getText(),txtEmailPrinClienJuri.getText(),txtEmailContClienJuri.getText()))
+		{
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Atualizar cliente jurídico", "ERRO", "Preencha todos os campos!");	
+		}
+		else{
+			
+			if(ClienteJuridicoDAO.updateClienteJuridico(clieJuriUp)){
+				
+				limparClienteJuridico();
+				
+				Alerta aletaInfo = new Alerta();
+				aletaInfo.alertaInformation("Cliente jurídico", "Sucesso", "Cliente atualizado com sucesso!");
+				
+				btnConcluidoPedTel.setDisable(false);
+				btnCancelarCadClien.setDisable(true);
+				btnCadastrarCliente.setDisable(true);
+				
+				preencherClienteJuridico();
+				preencherEnderecoFisico();
+				
+				modo_edicao = false;	
+			}
+			else{
+				Alerta alertaErro = new Alerta(); 
+				alertaErro.alertaErro("Cliente jurídico", "ERRO", "Erro ao atualizar Cliente físico!");
+			}
+		}
+		
+	}
+	
+	public void editarJuridico(){
+		
+		tabCadClien.setText("Atualizar cliente jurídico");
+		tabCadClien.setDisable(false);
+		
+		desabilitaFisico(true);
+		desabilitaJuridico(false);
+		
+		btnCadastrarCliente.setDisable(false);
+		btnCancelarCadClien.setDisable(false);
+		btnConcluidoPedTel.setDisable(true);
+		
+		modo_edicao = true;
+		
+		inserirJuridico();	
+	}
+	
+	public void excluirClienteJuridico(){
+		
+		ClienteJuridico cj = tbwClienteJuridico.getSelectionModel().getSelectedItem();
+		
+		if(cj == null){
+			Alerta alertaErro = new Alerta(); 
+			alertaErro.alertaErro("Cliente jurídico", "ERRO", "Nenhum item selecionado!");
+		}
+		else{
+			
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setTitle("Cliente jurídico");
+			a.setHeaderText("Deseja excluir Cliente ?");
+			a.setContentText("Tem certeza?");
+			
+			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+			
+			ButtonType sim = new ButtonType("Sim");
+			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
+			
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
+			
+			a.getButtonTypes().setAll(sim, nao);
+			
+			Optional<ButtonType> resultado = a.showAndWait();
+			
+			if (resultado.get() == sim){
+				
+				if(ClienteJuridicoDAO.deleteCliente(cj.getCodClienteJuridico())){
+				
+					Alerta aletaInfo = new Alerta();
+					aletaInfo.alertaInformation("Cliente jurídico", "Sucesso", "Cliente excluído com sucesso!");
+					
+					preencherClienteJuridico();
+				}
+				else{
+					Alerta alertaWarning = new Alerta(); 
+					alertaWarning.alertaWarning("Cliente jurídico", "AVISO!", "Cliente não pode ser excluido!");
+				}
+			}
+		}
+	}
+
+	private void limparClienteJuridico() {
+		txtNomeClienJuri.clear();
+		txtTelPrinClienJuri.clear();
+		txtRazaoClienJuri.clear();
+		txtTelContClienJuri.clear();
+		txtInscricao.clear();
+		txtCnpjClienJuri.clear();
+		txtEmailPrinClienJuri.clear();
+		txtEmailContClienJuri.clear();
+	}
+
 	private void preencherEnderecoFisico(){
 		
 		Cliente cliente = tbwClienteFisico.getSelectionModel().getSelectedItem();

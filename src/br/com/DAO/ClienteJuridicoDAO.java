@@ -30,6 +30,7 @@ public class ClienteJuridicoDAO {
 				cj.setCodClienteJuridico(rs.getInt("codClienteJuridico"));
 				cj.setNomeContato(rs.getString("nomeContato"));
 				cj.setRazaoSocial(rs.getString("razaoSocial"));
+				cj.setCnpj(rs.getString("cnpj"));
 				cj.setInscricaoEstadual(rs.getString("inscricaoEstadual"));
 				cj.setTelefonePrincipal(rs.getString("telefonePrincipal"));
 				cj.setTelefoneContato(rs.getString("telefoneContato"));
@@ -67,6 +68,7 @@ public class ClienteJuridicoDAO {
 				cj.setCodClienteJuridico(rs.getInt("codClienteJuridico"));
 				cj.setNomeContato(rs.getString("nomeContato"));
 				cj.setRazaoSocial(rs.getString("razaoSocial"));
+				cj.setCnpj(rs.getString("cnpj"));
 				cj.setInscricaoEstadual(rs.getString("inscricaoEstadual"));
 				cj.setTelefonePrincipal(rs.getString("telefonePrincipal"));
 				cj.setTelefoneContato(rs.getString("telefoneContato"));
@@ -87,19 +89,20 @@ public class ClienteJuridicoDAO {
 		Connection c = MySqlConexao.ConectarDb();
 		
 		String sqlInsertCliente = "INSERT INTO tblClienteJuridico "
-				+ "(nomeContato, razaoSocial, inscricaoEstadual, telefonePrincipal, telefoneContato, emailPrincipal, emailContato) "
-				+ "VALUES (?,?,?,?,?,?,?) ; ";
+				+ "(nomeContato,razaoSocial, cnpj, inscricaoEstadual, telefonePrincipal, telefoneContato, emailPrincipal, emailContato) "
+				+ "VALUES (?,?,?,?,?,?,?,?) ; ";
 		
 		try {
 			PreparedStatement parametros = c.prepareStatement(sqlInsertCliente);
 			
 			parametros.setString(1, clienteJuridico.getNomeContato());
 			parametros.setString(2, clienteJuridico.getRazaoSocial());
-			parametros.setString(3, clienteJuridico.getInscricaoEstadual());
-			parametros.setString(4, clienteJuridico.getTelefonePrincipal());
-			parametros.setString(5, clienteJuridico.getTelefoneContato());
-			parametros.setString(6, clienteJuridico.getEmailPrincipal());
-			parametros.setString(7, clienteJuridico.getEmailContato());
+			parametros.setString(3, clienteJuridico.getCnpj());
+			parametros.setString(4, clienteJuridico.getInscricaoEstadual());
+			parametros.setString(5, clienteJuridico.getTelefonePrincipal());
+			parametros.setString(6, clienteJuridico.getTelefoneContato());
+			parametros.setString(7, clienteJuridico.getEmailPrincipal());
+			parametros.setString(8, clienteJuridico.getEmailContato());
 			
 			parametros.executeUpdate();
 			
@@ -108,15 +111,18 @@ public class ClienteJuridicoDAO {
 			return true;
 			
 		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
 			return false;
 		}
 	}
 	
-	public boolean deleteCliente (int codClienteJuridico ){
+	public static boolean deleteCliente (int codClienteJuridico ){
 		
 		Connection c = MySqlConexao.ConectarDb();
 		
-		String sqlDeletarCliente = "DELETE FROM tblClienteJuridico  WHERE codClienteJuridico ? ;" ;
+		String sqlDeletarCliente = "DELETE FROM tblClienteJuridico WHERE codClienteJuridico = ? ;" ;
 		
 		PreparedStatement parametros;
 		
@@ -133,5 +139,41 @@ public class ClienteJuridicoDAO {
 			return false;
 		}	
 	}
+	
+	public static boolean updateClienteJuridico(ClienteJuridico clienJuriUp) {
+		
+		Connection c = MySqlConexao.ConectarDb();
+		
+		String sqlAtualizar = "UPDATE tblClienteJuridico "
+				+ "SET nomeContato = ?, razaoSocial = ?, cnpj = ?, inscricaoEstadual = ?, telefonePrincipal = ?, telefoneContato = ?, emailPrincipal = ?, emailContato = ? "
+				+ "WHERE codClienteJuridico = ?; ";
 
+		PreparedStatement parametros;
+			
+		try {
+			parametros = c.prepareStatement(sqlAtualizar);
+			
+			parametros.setString(1, clienJuriUp.getNomeContato());
+			parametros.setString(2, clienJuriUp.getRazaoSocial());
+			parametros.setString(3, clienJuriUp.getCnpj());
+			parametros.setString(4, clienJuriUp.getInscricaoEstadual());
+			parametros.setString(5, clienJuriUp.getTelefonePrincipal());
+			parametros.setString(6, clienJuriUp.getTelefoneContato());
+			parametros.setString(7, clienJuriUp.getEmailPrincipal());
+			parametros.setString(8, clienJuriUp.getEmailContato());
+			parametros.setInt(9, clienJuriUp.getCodClienteJuridico());
+
+			parametros.executeUpdate();
+
+			c.close();
+			
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return false;	
+		}
+	}
+	
 }

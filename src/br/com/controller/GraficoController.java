@@ -8,19 +8,11 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-
 import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.MySqlConexao;
 import br.com.view.Alerta;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -35,7 +27,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -173,13 +164,6 @@ public class GraficoController implements Initializable {
 		totalCatego.setName("Total");
 		totalCatego.getData().add(total);
 		
-		
-		
-		displayLabelForData(forcaResis);
-		displayLabelForData(ganhoMassa);
-		displayLabelForData(perdaPeso);
-		displayLabelForData(total);
-
 		brcGrafVendas.getData().clear();
 		brcGrafVendas.getData().add(categorias);
 		brcGrafVendas.getData().add(totalCatego);
@@ -187,34 +171,6 @@ public class GraficoController implements Initializable {
 		
 	}
 	
-	private void displayLabelForData(XYChart.Data<String, Number> data) {
-		final Node node = data.getNode();
-		final Text dataText = new Text(data.getYValue() + "");
-
-		node.parentProperty().addListener(new ChangeListener<Parent>() {
-			@Override public void changed(ObservableValue<? extends Parent> ov, Parent oldParent, Parent parent) {
-				Group parentGroup = (Group) parent;
-				parentGroup.getChildren().add(dataText);
-			}
-		});
-
-		node.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
-			@Override public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
-				dataText.setLayoutX(
-						Math.round(
-								bounds.getMinX() + bounds.getWidth() / 2 - dataText.prefWidth(-1) / 2
-								)
-						);
-				dataText.setLayoutY(
-						Math.round(
-								bounds.getMinY() - dataText.prefHeight(-1) * 0.5
-								)
-						);
-			}
-		});
-				
-	}
-
 	private void preencherGraficoPeriodo() {
 		
 		String dataIn = "2016-11-1";
