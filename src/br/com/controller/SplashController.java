@@ -45,7 +45,7 @@ public class SplashController implements Initializable{
 		
 		Janelas login = new Janelas();
 		Stage s = new Stage();
-		login.abrir("login.fxml", s, "Login", false);
+		login.abrir("Login.fxml", s, "Login", false);
 	}
 	
 }
