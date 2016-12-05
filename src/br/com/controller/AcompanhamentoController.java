@@ -63,7 +63,7 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private Label lblNomeClien;
 	@FXML private Label lblStatus;
 	@FXML private Label lblTransp;
-	@FXML private Label lblVeículo;
+	@FXML private Label lblVeiculo;
 	@FXML private ComboBox <Status> cboStatus;
 	@FXML private ComboBox <Transportadora> cboTransp;
 	@FXML private ComboBox <TipoVeiculo> cboVeiculo;
@@ -333,7 +333,7 @@ public class AcompanhamentoController implements Initializable{
 			lblTransp.setDisable(true);
 			cboTransp.setDisable(true);
 			
-			lblVeículo.setDisable(true);
+			lblVeiculo.setDisable(true);
 			cboVeiculo.setDisable(true);
 			
 			btnConcPediAcomp.setOnAction(v -> acompConcluido());
@@ -379,7 +379,7 @@ public class AcompanhamentoController implements Initializable{
 						cboTransp.setDisable(true);
 						cboTransp.getSelectionModel().clearSelection();
 							
-						lblVeículo.setDisable(true);
+						lblVeiculo.setDisable(true);
 						cboVeiculo.setDisable(true);
 						cboVeiculo.getSelectionModel().clearSelection();
 					}	
@@ -394,7 +394,7 @@ public class AcompanhamentoController implements Initializable{
 				
 				if(cboTransp.getSelectionModel().getSelectedItem() != null){
 					
-					lblVeículo.setDisable(false);
+					lblVeiculo.setDisable(false);
 					cboVeiculo.setDisable(false);
 					
 					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO
@@ -404,7 +404,7 @@ public class AcompanhamentoController implements Initializable{
 					cboVeiculo.getItems().addAll(nomeVeiculo);
 				}
 				else{
-					lblVeículo.setDisable(true);
+					lblVeiculo.setDisable(true);
 					cboVeiculo.setDisable(true);
 					cboVeiculo.getSelectionModel().clearSelection();
 				}
@@ -419,10 +419,10 @@ public class AcompanhamentoController implements Initializable{
 	
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
 			
-			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("titulo", "RelatÃ³rio de Pedidos");
 			parametros.put("total_pedido", "R$ " + PedidosDAO.somarTodosPedidos(cod_status));
 			parametros.put("cod_pedido", cod_status);
-			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.png");
+			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.PNG");
 
 			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio.jasper", parametros, c);			
 			JasperViewer jw = new JasperViewer(jp , false);
@@ -434,7 +434,7 @@ public class AcompanhamentoController implements Initializable{
 			System.out.println(e);
 			
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
+			alertaErro.alertaErro("RelatÃ³rio", "ERRO", "Erro ao gerar relatÃ³rio!");
 		}
 	}
 	

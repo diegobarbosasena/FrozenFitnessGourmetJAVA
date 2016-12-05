@@ -210,9 +210,9 @@ public class PedidosController implements Initializable{
 	
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
 			
-			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("titulo", "Relatï¿½rio de Pedidos");
 			parametros.put("total", "R$ " + PedidosDAO.somarTodosPedidos());
-			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.png");
+			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.PNG");
 
 			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_pedidos.jasper", parametros, c);			
 			JasperViewer jw = new JasperViewer(jp , false);
@@ -224,7 +224,7 @@ public class PedidosController implements Initializable{
 			System.out.println(e);
 			
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
+			alertaErro.alertaErro("Relatï¿½rio", "ERRO", "Erro ao gerar relatï¿½rio!");
 		}
 	}
 	
