@@ -17,6 +17,7 @@ public class Janelas extends Stage{
 			root = FXMLLoader.load(getClass().getResource(arquivo));
 			primaryStage.setScene( new Scene(root));
 			primaryStage.setTitle(titulo);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.resizableProperty().set(redimensionar);
 			primaryStage.show();
 			

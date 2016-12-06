@@ -11,14 +11,14 @@ public class MySqlConexao {
 		
 		String jdbc = "jdbc:mysql://";
 //		String ip = "10.107.134.60";
-//		String ip = "10.107.144.26";
+		String ip = "10.107.144.26";
 //		String ip = "10.107.134.54";
 //		String ip = "192.168.1.34";
 //		String ip = "10.107.140.14";
-		String ip = "localhost";
+//		String ip = "localhost";
 		String db = "dbsmartgourmet";
 		String usuario = "root";
-		String senha = "bcd127" ;
+		String senha = "root" ;
 		
 		/* CONEXAO CON SERVIDOR*/
 		/*String ip = "192.168.0.2"

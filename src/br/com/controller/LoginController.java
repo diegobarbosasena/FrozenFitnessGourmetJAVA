@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.DAO.UsuarioFuncionarioLojaDAO;
+import br.com.dao.UsuarioFuncionarioLojaDAO;
 import br.com.model.UsuarioFuncionarioLoja;
 import br.com.view.Alerta;
 import br.com.view.Janelas;
@@ -77,7 +77,7 @@ public class LoginController implements Initializable{
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Login", "ERRO", "Usuário e Senha incorretos!");
 				
-				limparLogin();
+				txtSenha.clear();
 			}
 		}
 	}

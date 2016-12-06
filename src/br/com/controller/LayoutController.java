@@ -30,10 +30,19 @@ public class LayoutController implements Initializable {
 	@FXML private MenuItem miSmart;
 	@FXML private TabPane tpDesk;
 	@FXML private Tab tabTransp;
+	
+	@FXML private Button btnMinimizarPrincipal;
+	@FXML private Button btnMaximizarPrincipal;
+	@FXML private Button btnFecharPrincipal;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tpDesk.getSelectionModel().select(0);
+		
+		btnMinimizarPrincipal.setOnAction(m -> minimizar());
+		btnMaximizarPrincipal.setOnAction(a -> maximizar());
+		btnFecharPrincipal.setOnAction(f -> fechar());
 		
 		miPedidoTel.setAccelerator(new KeyCodeCombination(KeyCode.DIGIT1, KeyCombination.CONTROL_DOWN ));
 		miPedidoTel.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
@@ -145,6 +154,26 @@ public class LayoutController implements Initializable {
 				a.alertSobreSmart();
 			}		
 		});			
+	}
+	
+	private void minimizar() {
+		Stage minimizar =  (Stage)btnMinimizarPrincipal.getScene().getWindow();
+		minimizar.setIconified(true);
+		
+	}
+	
+	private void maximizar() {
+		
+		Stage maximizar =  (Stage)btnMaximizarPrincipal.getScene().getWindow();
+		
+		if (maximizar.isFullScreen() == true)
+			maximizar.setFullScreen(false);
+		else
+			maximizar.setFullScreen(true);
+	}
+	
+	private void fechar() {
+		System.exit(0);
 	}
 
 }

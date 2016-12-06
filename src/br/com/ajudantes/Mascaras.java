@@ -476,7 +476,7 @@ public class Mascaras {
                 textField.positionCaret(textField.getText().length());
             }
         });
-
     }
-
+    
+   
 }

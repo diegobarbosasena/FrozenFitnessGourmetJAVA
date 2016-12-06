@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import br.com.DAO.ClienteDAO;
-import br.com.DAO.ClienteJuridicoDAO;
-import br.com.DAO.EnderecoDAO;
 import br.com.ajudantes.FormataData;
 import br.com.ajudantes.Mascaras;
+import br.com.dao.ClienteDAO;
+import br.com.dao.ClienteJuridicoDAO;
+import br.com.dao.EnderecoDAO;
 import br.com.model.Cidade;
 import br.com.model.Cliente;
 import br.com.model.ClienteJuridico;

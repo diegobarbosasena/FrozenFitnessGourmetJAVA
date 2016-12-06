@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import br.com.DAO.PedidosDAO;
 import br.com.ajudantes.MySqlConexao;
+import br.com.dao.PedidosDAO;
 import br.com.view.Alerta;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -172,13 +172,8 @@ public class GraficoController implements Initializable {
 	}
 	
 	private void preencherGraficoPeriodo() {
-		
-		String dataIn = "2016-11-1";
-		String dataOut = "2016-12-30";
-		
+	
 		desabilitaAbilitaData(false);
-		
-		brcGrafVendas.setTitle("foi sim");
 
 		XYChart.Series<String, Number> estados = new XYChart.Series<>();
 		
@@ -196,30 +191,15 @@ public class GraficoController implements Initializable {
 				+ "ON(endereco.codCidade = cidade.codCidade) "
 				+ "RIGHT JOIN tblEstado estado "
 				+ "ON(cidade.codEstado = estado.codEstado) "
-				+ "BETWEEN ? AND ? "
 				+ "GROUP BY estado.codEstado ; ";
 
-			System.out.println(sqlSelectEstado);
 		PreparedStatement parametros;
 		
 		try {
-			//2016-07-30  SELECT * FROM `tblPedido` WHERE (dtCompra BETWEEN '2016-07-30 00:00:00' AND '2016-07-30 00:00:00')
 			
-			/*SELECT sum(pedido.total) total, COUNT(pedido.total) total_pedido, estado.* FROM tblPedido pedido INNER JOIN tblCliente cliente ON(pedido.codCliente = cliente.codCliente) INNER JOIN tblClienteEnd clie_ende ON(cliente.codCliente = clie_ende.codCliente) INNER JOIN tblEndereco endereco ON(clie_ende.codEndereco = endereco.codEndereco) INNER JOIN tblCidade cidade ON(endereco.codCidade = cidade.codCidade) RIGHT JOIN tblEstado estado 
-ON(cidade.codEstado = estado.codEstado) 
-WHERE (pedido.dtCompra BETWEEN '2016-07-25' AND '2016-07-30')
-GROUP BY estado.codEstado*/
-
-
 			parametros = c.prepareStatement(sqlSelectEstado);
 			
-			parametros.setString(1, " "+Date.valueOf(dataIn)+" ");
-			parametros.setString(2, " "+Date.valueOf(dataOut)+" ");
-			
-			/*parametros.setString(1, String.valueOf(dtpInicio.getValue()));
-			parametros.setString(2, String.valueOf(dtpFim.getValue()));*/
-			
-			ResultSet rs = parametros.executeQuery();		
+			ResultSet rs = 	parametros.executeQuery();
 				
 			while(rs.next()){
 				estados.getData().addAll(new XYChart.Data(rs.getString("nomeEstado"), rs.getInt("total_pedido")));
@@ -269,8 +249,6 @@ GROUP BY estado.codEstado*/
 				jw.setVisible(true);
 			
 		} catch (Exception e) {
-			System.out.println(e);
-			
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
 		}
@@ -282,12 +260,12 @@ GROUP BY estado.codEstado*/
 		lcFaturamento.setAnimated(false);
 	
 		
-		xEixoLC.setLabel("ano");
+		xEixoLC.setLabel("2016");
 		
 		//lcFaturamento =  new LineChart<>(xEixoLC, yEixoLC);
 	
 		XYChart.Series series = new XYChart.Series();
-		series.setName("faturamento");
+		series.setName("Faturamento");
 		
 		lcFaturamento.setTitle("Gráfico de faturamento");
 		
@@ -295,7 +273,7 @@ GROUP BY estado.codEstado*/
         series.getData().add(new XYChart.Data("Feb", 14));
         series.getData().add(new XYChart.Data("Mar", 15));
         series.getData().add(new XYChart.Data("Apr", 24));
-        series.getData().add(new XYChart.Data("May", 34));
+        series.getData().add(new XYChart.Data("May", 4));
         series.getData().add(new XYChart.Data("Jun", 36));
         series.getData().add(new XYChart.Data("Jul", 22));
         series.getData().add(new XYChart.Data("Aug", 45));

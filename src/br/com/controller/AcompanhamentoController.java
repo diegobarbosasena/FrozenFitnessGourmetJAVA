@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.com.DAO.PedidosDAO;
-import br.com.DAO.StatusDAO;
-import br.com.DAO.TipoVeiculoDAO;
-import br.com.DAO.TransportadoraDAO;
 import br.com.ajudantes.Mascaras;
 import br.com.ajudantes.MySqlConexao;
+import br.com.dao.PedidosDAO;
+import br.com.dao.StatusDAO;
+import br.com.dao.TipoVeiculoDAO;
+import br.com.dao.TransportadoraDAO;
 import br.com.model.Cliente;
 import br.com.model.Pedidos;
 import br.com.model.Status;

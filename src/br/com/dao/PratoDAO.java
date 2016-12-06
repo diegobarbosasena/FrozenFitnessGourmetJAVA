@@ -1,4 +1,4 @@
-package br.com.DAO;
+package br.com.dao;
 
 public class PratoDAO {
 

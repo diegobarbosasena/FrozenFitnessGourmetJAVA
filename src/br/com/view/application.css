@@ -45,6 +45,9 @@
 	-fx-border-radius: 12px ;
 	-fx-text-fill: #00B348;
 }
+.botao_janela{
+	-fx-background-color: #FFF;
+}
 TextField, PasswordField, DatePicker{
 	-fx-border-color: #E08A2C;
 	-fx-border-radius: 5;
