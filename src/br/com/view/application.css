@@ -162,6 +162,46 @@ TextField, PasswordField, DatePicker{
 .default-color1.chart-series-line { -fx-stroke: #E08A2C; }
 .default-color2.chart-series-line { -fx-stroke: #666; }
  
- 
- 
+#btnFecharPrincipal{
+ 	-fx-background-image: url(/br/com/imagens/close.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMinimizarPrincipal{
+	-fx-background-image: url(/br/com/imagens/remove.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMaximizarPrincipal{
+	-fx-background-image: url(/br/com/imagens/maximize.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnFecharPrincipal:hover{
+ 	-fx-background-color: #FE7402;
+ 	-fx-border-radius: 4;
+ 	-fx-background-image: url(/br/com/imagens/closee.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMinimizarPrincipal:hover{
+	-fx-border-color: #FE7402;
+	-fx-border-radius: 4;
+	-fx-background-image: url(/br/com/imagens/remove.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMaximizarPrincipal:hover{
+	-fx-border-color: #FE7402;
+	-fx-border-radius: 4;
+	-fx-background-image: url(/br/com/imagens/maximize.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
  

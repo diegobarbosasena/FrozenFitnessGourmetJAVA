@@ -15,7 +15,7 @@
                <children>
                   <ImageView fitHeight="138.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagens/logo.PNG" />
+                        <Image url="/br/com/imagens/logo.PNG" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutY="132.0" prefWidth="255.0" text="Bem vindo(a):" textFill="#666666">

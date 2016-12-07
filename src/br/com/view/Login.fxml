@@ -19,7 +19,7 @@
                      <children>
                         <ImageView fitHeight="142.0" fitWidth="260.0" layoutX="93.0" layoutY="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@imagens/logo.png" />
+                              <Image url="/br/com/imagens/logo.png" />
                            </image>
                        </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="173.0" text="Usuário">

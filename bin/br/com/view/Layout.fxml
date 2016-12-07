@@ -15,58 +15,16 @@
 
 <AnchorPane style="-fx-background-color: #FFF; -fx-border-color: #666; -fx-border-width: 0.5;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LayoutController">
    <children>
-      <SplitPane dividerPositions="0.06224899598393574, 0.5" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.06224899598393574" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-            <AnchorPane maxHeight="35.0">
-               <children>
-                  <HBox alignment="TOP_RIGHT" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="btnMinimizarPrincipal" mnemonicParsing="false" styleClass="botao_janela">
-                           <HBox.margin>
-                              <Insets left="4.0" right="4.0" top="2.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/remove.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="btnMaximizarPrincipal" mnemonicParsing="false" styleClass="botao_janela">
-                           <HBox.margin>
-                              <Insets left="4.0" right="4.0" top="-4.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView  fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/maximize.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="btnFecharPrincipal" mnemonicParsing="false" styleClass="botao_janela">
-                           <HBox.margin>
-                              <Insets left="4.0" right="10.0" top="-4.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/close.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
           <AnchorPane maxHeight="35.0" minHeight="35.0" style="-fx-background-color: #FFF; -fx-border-color: #BDBDBD; -fx-border-width: 0px 0px 0.5px 0px;" SplitPane.resizableWithParent="false">
                <children>
-                  <MenuBar layoutY="4.0" style="-fx-background-color: #FFF;">
+                  <ImageView fitWidth="18.0" layoutX="5.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/br/com/imagens/icone.png" />
+                     </image>
+                  </ImageView>
+                  <MenuBar layoutX="26.0" layoutY="6.0" style="-fx-background-color: #FFF;">
                     <menus>
                       <Menu fx:id="mnVisualizar" mnemonicParsing="false" text="Visualizar">
                         <items>
@@ -90,6 +48,38 @@
                       </Menu>
                     </menus>
                   </MenuBar>
+                  <HBox fx:id="principal" alignment="TOP_RIGHT" layoutX="213.0" prefHeight="35.0" style="-fx-background-color: #FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="btnMinimizarPrincipal" mnemonicParsing="false" styleClass="botao_janela">
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="2.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnMaximizarPrincipal" mnemonicParsing="false" styleClass="botao_janela">
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="2.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnFecharPrincipal" mnemonicParsing="false" styleClass="botao_janela">
+                           <graphic>
+                              <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
           <AnchorPane>

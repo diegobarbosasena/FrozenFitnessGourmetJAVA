@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import br.com.view.Alerta;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class LayoutController implements Initializable {
@@ -35,9 +38,12 @@ public class LayoutController implements Initializable {
 	@FXML private Button btnMaximizarPrincipal;
 	@FXML private Button btnFecharPrincipal;
 	
-
+	@FXML public static HBox principal;
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		tpDesk.getSelectionModel().select(0);
 		
 		btnMinimizarPrincipal.setOnAction(m -> minimizar());
@@ -153,7 +159,9 @@ public class LayoutController implements Initializable {
 				Alerta a = new Alerta();
 				a.alertSobreSmart();
 			}		
-		});			
+		});	
+		
+		
 	}
 	
 	private void minimizar() {
@@ -166,7 +174,7 @@ public class LayoutController implements Initializable {
 		
 		Stage maximizar =  (Stage)btnMaximizarPrincipal.getScene().getWindow();
 		
-		if (maximizar.isFullScreen() == true)
+		if (maximizar.isFullScreen())
 			maximizar.setFullScreen(false);
 		else
 			maximizar.setFullScreen(true);
@@ -175,5 +183,29 @@ public class LayoutController implements Initializable {
 	private void fechar() {
 		System.exit(0);
 	}
+	
+	private static double xOffset = 0;
+    private static double yOffset = 0;
+	
+	public static HBox moverJanela(final Stage primaryStage) {
 
+		principal.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+		
+		principal.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+
+        return principal;
+    }
+	
 }

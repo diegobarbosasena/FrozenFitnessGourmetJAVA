@@ -29,7 +29,7 @@ public class Alerta {
 		dialogPane.getStyleClass().add("myDialog");
 		
 		Stage s = (Stage) alert.getDialogPane().getScene().getWindow();
-		s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+		s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
 
 		alert.showAndWait();	
 	}
@@ -48,7 +48,7 @@ public class Alerta {
 		dialogPane.getStyleClass().add("myDialog");
 
 		Stage s = (Stage) alert.getDialogPane().getScene().getWindow();
-		s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+		s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
 
 		alert.showAndWait();
 	}
@@ -67,7 +67,7 @@ public class Alerta {
 		dialogPane.getStyleClass().add("myDialog");
 		
 		Stage s = (Stage) alert.getDialogPane().getScene().getWindow();
-		s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+		s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
 
 		dialogPane.expandableContentProperty(); 
 
@@ -85,10 +85,10 @@ public class Alerta {
 		alert.setResizable(false);
 		
 		Stage s = (Stage) alert.getDialogPane().getScene().getWindow();
-		s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+		s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
 		
 		DialogPane dialogPane = alert.getDialogPane();
-		dialogPane.setGraphic(new ImageView(this.getClass().getResource("/br/com/view/imagens/logooo.png").toString()));
+		dialogPane.setGraphic(new ImageView(this.getClass().getResource("/br/com/imagens/logooo.png").toString()));
 		dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
 		
 		String msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae enim vitae arcu dignissim semper eu non nisi. Nunc eu suscipit nibh. Sed id vestibulum orci. Suspendisse neque sem, blandit ac luctus dignissim, sagittis non libero. Etiam laoreet mattis commodo. Nam dictum tortor a dolor varius placerat. Sed quis iaculis risus. Aliquam at venenatis ex.";
@@ -128,10 +128,10 @@ public class Alerta {
 		alert.setResizable(false);
 		
 		Stage s = (Stage) alert.getDialogPane().getScene().getWindow();
-		s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
+		s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
 		
 		DialogPane dialogPane = alert.getDialogPane();
-		dialogPane.setGraphic(new ImageView(this.getClass().getResource("/br/com/view/imagens/logooemp.png").toString()));
+		dialogPane.setGraphic(new ImageView(this.getClass().getResource("/br/com/imagens/logooemp.png").toString()));
 		dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
 		
 		String msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae enim vitae arcu dignissim semper eu non nisi. Nunc eu suscipit nibh. Sed id vestibulum orci. Suspendisse neque sem, blandit ac luctus dignissim, sagittis non libero. Etiam laoreet mattis commodo. Nam dictum tortor a dolor varius placerat. Sed quis iaculis risus. Aliquam at venenatis ex.";
