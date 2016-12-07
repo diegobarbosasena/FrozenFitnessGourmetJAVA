@@ -5,7 +5,7 @@ public class Estado {
 	private int codEstado;
 	private String nomeEstado;
 	private String uf;
-	
+
 	public int getCodEstado() {
 		return codEstado;
 	}
@@ -29,5 +29,5 @@ public class Estado {
 	public String toString() {
 		return nomeEstado ;
 	}
-	
+
 }

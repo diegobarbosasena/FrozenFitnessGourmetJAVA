@@ -1,7 +1,7 @@
 package br.com.model;
 
 public class Endereco {
-	
+
 	private int codEndereco;
 	private String logradouro;
 	private String cep;
@@ -9,9 +9,9 @@ public class Endereco {
 	private String bairro;
 	private String complemento;
 	private int codCidade;
-	
+
 	private Cidade cidade;
-		
+
 	public int getCodEndereco() {
 		return codEndereco;
 	}
@@ -54,18 +54,18 @@ public class Endereco {
 	public void setCodCidade(int codCidade) {
 		this.codCidade = codCidade;
 	}
-	
+
 	public Cidade getCidade() {
 		return cidade;
 	}
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
+
 	/*@Override
 	public String toString() {
 		return logradouro + ", "+" n°" +  numero +", "+ bairro ;	
 	}*/
-	
-		
+
+
 }

@@ -6,7 +6,7 @@ public class VeiculoTransp {
 	private String placaVeiculo;
 	private int codTipoVeiculo;
 	private int codTransportadora;
-	
+
 	private TipoVeiculo tipoVeiculo;
 	private Transportadora transportadora;
 
@@ -46,7 +46,7 @@ public class VeiculoTransp {
 	public void setTransportadora(Transportadora transportadora) {
 		this.transportadora = transportadora;
 	}
-	
+
 	@Override
 	public String toString() {
 		return placaVeiculo ;

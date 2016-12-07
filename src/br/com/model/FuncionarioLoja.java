@@ -5,7 +5,7 @@ public class FuncionarioLoja {
 	private int codFuncionarioLoja;	
 	private String nomeFuncionarioLoja;		
 	private String cpfFuncionarioLoja;
-	
+
 	public String getNomeFuncionarioLoja() {
 		return nomeFuncionarioLoja;
 	}
@@ -24,5 +24,5 @@ public class FuncionarioLoja {
 	public void setCodFuncionarioLoja(int codFuncionarioLoja) {
 		this.codFuncionarioLoja = codFuncionarioLoja;
 	}
-	
+
 }

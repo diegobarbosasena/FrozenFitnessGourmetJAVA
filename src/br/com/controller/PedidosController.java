@@ -33,7 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
 public class PedidosController implements Initializable{
-	
+
 	@FXML private AnchorPane anpPedidos;
 	@FXML private TableView <Pedidos> tvPedidos;
 	@FXML private TableColumn <Pedidos, String> tcCodPed;
@@ -43,7 +43,7 @@ public class PedidosController implements Initializable{
 	@FXML private TableColumn <Pedidos, Cliente> tcClien;
 	@FXML private TableColumn <Pedidos, Status> tcStatus;
 	@FXML private TableColumn <Pedidos, String> tcPreco;
-	
+
 	@FXML private TextField txtPedido;
 	@FXML private Button btnAtualizarPedido;
 	@FXML private Label lblFiltroStatusPedi;
@@ -59,21 +59,21 @@ public class PedidosController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		Mascaras.mascaraNumeroInteiro(txtPedido);
-		
+
 		preencherPedidos();
 		buttonRadio();
-		
+
 		btnRelaPedi.setOnAction(r -> gerarRelatorioPedido());
-		
+
 		btnAtualizarPedido.setOnAction(a -> preencherPedidos());
 		btnAtualizarPedido.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.ENTER) {
-		    	preencherPedidos();
-		    }
+			if (e.getCode() == KeyCode.ENTER) {
+				preencherPedidos();
+			}
 		});
-		
+
 		txtPedido.textProperty().addListener(a -> {
 			if(!txtPedido.getText().isEmpty())
 				buscarPedido();
@@ -81,11 +81,11 @@ public class PedidosController implements Initializable{
 				preencherPedidos();
 		});	
 	}
-	
+
 	private void buttonRadio() {
-				
+
 		final ToggleGroup tgFiltarPedi = new ToggleGroup();
-		
+
 		rbtTodosPedi.setToggleGroup(tgFiltarPedi);
 		rbtAgradPagPedi.setToggleGroup(tgFiltarPedi);
 		rbtAguarSepaPedi.setToggleGroup(tgFiltarPedi);
@@ -93,7 +93,7 @@ public class PedidosController implements Initializable{
 		rbtEnviadoTranspPedi.setToggleGroup(tgFiltarPedi);
 		rbtProdTransportePedi.setToggleGroup(tgFiltarPedi);
 		rbtEntreguePedi.setToggleGroup(tgFiltarPedi);
-		
+
 		rbtTodosPedi.setOnAction(c -> preencherPedidos());
 		rbtAgradPagPedi.setOnAction(c -> preencherPedidos());
 		rbtAguarSepaPedi.setOnAction(c -> preencherPedidos());
@@ -101,15 +101,15 @@ public class PedidosController implements Initializable{
 		rbtEnviadoTranspPedi.setOnAction(c -> preencherPedidos());
 		rbtProdTransportePedi.setOnAction(c -> preencherPedidos());
 		rbtEntreguePedi.setOnAction(c -> preencherPedidos());
-			
+
 	}
 
 	private void buscarPedido() {
-		
+
 		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPedido.getText()));
-			
+
 		if (lstPediFilt.isEmpty()){
-			
+
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaWarning("Transportadora", "ERRO", "Nenhum registro encontrado!");
 
@@ -120,113 +120,111 @@ public class PedidosController implements Initializable{
 			tvPedidos.getItems().addAll(lstPediFilt);
 		}
 	}
-	
+
 	public void preencherPedidos(){
-		
+
 		tcCodPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("codPedido"));
 		tcTipoPed.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("tipoPedido"));
-		
+
 		tcDtEntr.setCellValueFactory( 
-			
-			dtEntrega -> {
-				SimpleStringProperty propriedade = new SimpleStringProperty();
-				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
-				propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
-				return propriedade;
-		});
-		
+
+				dtEntrega -> {
+					SimpleStringProperty propriedade = new SimpleStringProperty();
+					DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+					propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
+					return propriedade;
+				});
+
 		tcDtComp.setCellValueFactory( 
 				dtCompra -> {
 					SimpleStringProperty propriedade = new SimpleStringProperty();
 					DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
 					propriedade.setValue(dF.format(dtCompra.getValue().getDtCompra()));
 					return propriedade;
-		});
-			
+				});
+
 		tcClien.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
 		tcStatus.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		tcPreco.setCellValueFactory(new PropertyValueFactory<Pedidos, String>("total"));
-		
+
 		List<Pedidos> lstPedido2 = PedidosDAO.selecionarTodosPedidos();
-		
+
 		tvPedidos.getItems().clear();
 		tvPedidos.getItems().addAll(lstPedido2);
-		
+
 
 		if (rbtTodosPedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();	
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtAgradPagPedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(1);	
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtAguarSepaPedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(2);
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtPratoProduPedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(3);
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtEnviadoTranspPedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(4);
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtProdTransportePedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(5);
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtEntreguePedi.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(6);
 			tvPedidos.getItems().clear();
 			tvPedidos.getItems().addAll(lstPedidos);		
 		}
 	}
-	
+
 	public void gerarRelatorioPedido(){
-		
+
 		try {
 			Connection c = MySqlConexao.ConectarDb();
-	
+
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
-			
-			parametros.put("titulo", "Relatï¿½rio de Pedidos");
+
+			parametros.put("titulo", "Relatório de Pedidos");
 			parametros.put("total", "R$ " + PedidosDAO.somarTodosPedidos());
-			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.PNG");
+			parametros.put("imagem_logo", "src/br/com/imagens/logo.PNG");
 
 			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio_pedidos.jasper", parametros, c);			
 			JasperViewer jw = new JasperViewer(jp , false);
-			
+
 			if (jw != null)
 				jw.setVisible(true);
-			
+
 		} catch (Exception e) {
-			System.out.println(e);
-			
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Relatï¿½rio", "ERRO", "Erro ao gerar relatï¿½rio!");
+			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
 		}
 	}
-	
+
 
 }

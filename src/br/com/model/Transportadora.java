@@ -12,7 +12,7 @@ public class Transportadora {
 	private String emailContato;
 	private String responsavelTransportadora;
 	private int codEndereco;
-	
+
 	private Endereco endereco;
 
 	public int getCodTransportadora() {
@@ -81,10 +81,10 @@ public class Transportadora {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
 	@Override
 	public String toString() {
 		return razaoSocial;
 	}
-	
+
 }

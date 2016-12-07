@@ -5,10 +5,10 @@ public class ClienteJuridicoEndereco {
 	private int codClienteJuridicoEnd;
 	private int codEndereco;
 	private int codClienteJuridico;
-	
+
 	private Endereco endereco;
 	private ClienteJuridico cliente_juridico;
-	
+
 	public int getCodClienteJuridicoEnd() {
 		return codClienteJuridicoEnd;
 	}
@@ -39,7 +39,7 @@ public class ClienteJuridicoEndereco {
 	public void setCliente_juridico(ClienteJuridico cliente_juridico) {
 		this.cliente_juridico = cliente_juridico;
 	}
-	
-	
-	
+
+
+
 }

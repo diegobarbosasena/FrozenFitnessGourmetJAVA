@@ -14,7 +14,7 @@ public class Prato {
 	private float gorduras;
 	private String imagemPrato;
 	private int visitas;
-	
+
 	public int getCodPrato() {
 		return codPrato;
 	}
@@ -87,7 +87,7 @@ public class Prato {
 	public void setVisitas(int visitas) {
 		this.visitas = visitas;
 	}
-	
-	
-	
+
+
+
 }

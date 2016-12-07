@@ -1,10 +1,10 @@
 package br.com.model;
 
 public class TipoUsuario {
-	
+
 	private int codTipoUsuario;
 	private String nomeTipoUsuario;
-	
+
 	public int getCodTipoUsuario() {
 		return codTipoUsuario;
 	}
@@ -17,6 +17,6 @@ public class TipoUsuario {
 	public void setNomeTipoUsuario(String nomeTipoUsuario) {
 		this.nomeTipoUsuario = nomeTipoUsuario;
 	}
-	
-	
+
+
 }

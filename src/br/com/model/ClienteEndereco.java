@@ -5,10 +5,10 @@ public class ClienteEndereco {
 	private int codClienteEnd;
 	private int codEndereco;
 	private int codCliente;
-	
+
 	private Endereco endereco;
 	private Cliente cliente;
-	
+
 	public int getCodClienteEnd() {
 		return codClienteEnd;
 	}
@@ -39,6 +39,6 @@ public class ClienteEndereco {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
+
+
 }

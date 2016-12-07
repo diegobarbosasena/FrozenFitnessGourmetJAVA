@@ -14,7 +14,6 @@ public class Cliente {
 	private String telefoneCliente;
 	private String celularCliente;
 	private String emailCliente;
-	
 
 	public int getCodCliente() {
 		return codCliente;

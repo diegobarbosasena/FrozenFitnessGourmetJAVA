@@ -43,7 +43,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class AcompanhamentoController implements Initializable{
-	
+
 	@FXML private AnchorPane anpAcompanhamento;
 	@FXML private TabPane tpAcomp;
 	@FXML private Tab tabVisuaAcomp;
@@ -81,46 +81,46 @@ public class AcompanhamentoController implements Initializable{
 	@FXML private RadioButton rbtProdTransporte;
 	@FXML private RadioButton rbtEntregue;
 	@FXML private Button btnGeraRelaAcom;
-	
+
 	int cod_status = 0;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		Mascaras.mascaraNumeroInteiro(txtPediAcomp);
-		
+
 		preencherPedidosAcompanhamento();
 		popularComboBox();
 		radioButton();
-		
+
 		btnGeraRelaAcom.setOnAction(d -> gerarRelatorioAcompanhamento());
-		
+
 		btnAtualizarAcom.setOnAction(a -> preencherPedidosAcompanhamento());
 		btnAtualizarAcom.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.ENTER) {
-		    	preencherPedidosAcompanhamento();
-		    	popularComboBox();
-		    }
+			if (e.getCode() == KeyCode.ENTER) {
+				preencherPedidosAcompanhamento();
+				popularComboBox();
+			}
 		});
-		
+
 		txtPediAcomp.textProperty().addListener(f ->{
 			if(!txtPediAcomp.getText().isEmpty())
 				buscarPedido();
 			else
 				preencherPedidosAcompanhamento();
 		});
-		
+
 		tabEditAcomp.setDisable(true);
 		cboVeiculo.setDisable(true);
-		
+
 		btnEditarPediAcom.setOnAction(c -> editarAcomp());
 		btnCancelarPediAcomp.setOnAction(v -> cancelarAcompa());	
 	} 
-	
+
 	private void radioButton() {
-		
+
 		final ToggleGroup tgFiltarPedidos = new ToggleGroup();
-	
+
 		rbtTodos.setToggleGroup(tgFiltarPedidos);
 		rbtAgradPag.setToggleGroup(tgFiltarPedidos);
 		rbtAguarSepa.setToggleGroup(tgFiltarPedidos);
@@ -128,7 +128,7 @@ public class AcompanhamentoController implements Initializable{
 		rbtEnviadoTransp.setToggleGroup(tgFiltarPedidos);
 		rbtProdTransporte.setToggleGroup(tgFiltarPedidos);
 		rbtEntregue.setToggleGroup(tgFiltarPedidos);
-		
+
 		rbtTodos.setOnAction(c -> preencherPedidosAcompanhamento());
 		rbtAgradPag.setOnAction(c -> preencherPedidosAcompanhamento());
 		rbtAguarSepa.setOnAction(c -> preencherPedidosAcompanhamento());
@@ -139,14 +139,14 @@ public class AcompanhamentoController implements Initializable{
 	}
 
 	private void buscarPedido() {
-		
+
 		List<Pedidos> lstPediFilt = PedidosDAO.filtrarPedidos(Integer.parseInt(txtPediAcomp.getText()));
-		
+
 		if (lstPediFilt.isEmpty()){
-				
+
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Pedidos", "ERRO", "Nenhum registro encontrado!");
-				
+
 			lstPediFilt.clear();
 			txtPediAcomp.clear();
 			preencherPedidosAcompanhamento();
@@ -155,107 +155,107 @@ public class AcompanhamentoController implements Initializable{
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPediFilt);
 		}
-		
+
 	}
 
 	private void preencherPedidosAcompanhamento(){
-		
+
 		tcCodPedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Integer>("codPedido"));
 		tcClientePedAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Cliente>("cliente"));
 		tcStatusAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Status>("status"));
 		tcTranspAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Transportadora>("transportadora"));
 		tcPrecoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, Number>("total"));
 		tcVeiculoAcomp.setCellValueFactory(new PropertyValueFactory<Pedidos, TipoVeiculo>("tipoVeiculo"));
-		
+
 		tcDtEntregaAcomp.setCellValueFactory( 		
-			dtEntrega -> {
-				SimpleStringProperty propriedade = new SimpleStringProperty();
-				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
-				propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
-				
-				return propriedade;
-			}
-		);
-		
+				dtEntrega -> {
+					SimpleStringProperty propriedade = new SimpleStringProperty();
+					DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+					propriedade.setValue(dF.format(dtEntrega.getValue().getDtEntrega()));
+
+					return propriedade;
+				}
+				);
+
 		List<Pedidos> lstPedidos1 = PedidosDAO.selecionarTodosPedidos();	
 		tvPedidosAcompa.getItems().clear();
 		tvPedidosAcompa.getItems().addAll(lstPedidos1);	
-		
+
 		if (rbtTodos.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.selecionarTodosPedidos();	
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);		
 		}
-		
+
 		if (rbtAgradPag.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(1);	
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);	
-			
+
 			cod_status = 1;
 		}
-		
+
 		if (rbtAguarSepa.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(2);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);		
-			
+
 			cod_status = 2;
 		}
-		
+
 		if (rbtPratoProdu.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(3);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);	
-			
+
 			cod_status = 3;
 		}
-		
+
 		if (rbtEnviadoTransp.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(4);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);
-			
+
 			cod_status = 4;
 		}
-		
+
 		if (rbtProdTransporte.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(5);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);
-			
+
 			cod_status = 5;
 		}
-		
+
 		if (rbtEntregue.isSelected()){
-			
+
 			List<Pedidos> lstPedidos = PedidosDAO.filtrarPedidosStatus(6);
 			tvPedidosAcompa.getItems().clear();
 			tvPedidosAcompa.getItems().addAll(lstPedidos);	
-			
+
 			cod_status = 6;
 		}
-				
+
 	}
-	
+
 	private void cancelarAcompa() {
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
 		tabVisuaAcomp.setDisable(false);
-		
+
 		limparAcompanhamento();
 	}
 
 	private void editarAcomp() {
-		
+
 		Pedidos pdAcom = tvPedidosAcompa.getSelectionModel().getSelectedItem();
-		
+
 		if(pdAcom == null){		
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Pedidos", "ERRO", "Nenhum item selecionado.");
@@ -264,23 +264,23 @@ public class AcompanhamentoController implements Initializable{
 			tpAcomp.getSelectionModel().select(1);
 			tabEditAcomp.setDisable(false);
 			tabVisuaAcomp.setDisable(true);
-			
+
 			btnConcPediAcomp.setDisable(true);
 			btnAtualizarPediAcomp.setDisable(false);
 			btnCancelarPediAcomp.setDisable(false);
-			
+
 			lblStatus.setDisable(false);
 			cboStatus.setDisable(false);
-			
+
 			popularComboBox();
-		
+
 			txtCodPediAcomp.setText(String.valueOf(pdAcom.getCodPedido()));
 			txtNomeClienAcomp.setText(pdAcom.getCliente().getNomeCliente());
-			
+
 			for(int i=0 ; i < cboStatus.getItems().size();i++){
-				
+
 				Status s = cboStatus.getItems().get(i);
-				
+
 				if(s.getCodStatus() == pdAcom.getStatus().getCodStatus()){
 					cboStatus.getSelectionModel().select(i);
 					break;
@@ -291,51 +291,51 @@ public class AcompanhamentoController implements Initializable{
 	}
 
 	private void atualizarPedido() {
-		
+
 		Integer codStat = null;
 		Integer	codVeic = null;
 		Integer codPed = null;
-		
+
 		btnConcPediAcomp.setDisable(true);
-		
+
 		Pedidos codPedi = tvPedidosAcompa.getSelectionModel().getSelectedItem();
 		Pedidos upPedi = new Pedidos();
-		
+
 		if(cboStatus.getSelectionModel().getSelectedItem() != null)
 			codStat = cboStatus.getSelectionModel().getSelectedItem().getCodStatus();	
-		
+
 		if(cboVeiculo.getSelectionModel().getSelectedItem() != null)
 			codVeic = cboVeiculo.getSelectionModel().getSelectedItem().getCodTipoVeiculo();	
-		
+
 		codPed = codPedi.getCodPedido();
-		
+
 		upPedi.setCodPedido(codPed);
 		upPedi.setCodStatus(codStat);
-		
+
 		if(codVeic != null){
 			upPedi.setCodVeiculoTransp(codVeic);
 		}
-		
+
 		if(PedidosDAO.updatePedido(codVeic, codPed, codStat)){
-			
+
 			Alerta aletaInfo = new Alerta();
 			aletaInfo.alertaInformation("Pedidos", "SUCESSO", "Pedido Atualizado com sucesso!");
-			
+
 			preencherPedidosAcompanhamento();
-			
+
 			btnCancelarPediAcomp.setDisable(true);
 			btnAtualizarPediAcomp.setDisable(true);
 			btnConcPediAcomp.setDisable(false);
-			
+
 			lblStatus.setDisable(true);
 			cboStatus.setDisable(true);
-			
+
 			lblTransp.setDisable(true);
 			cboTransp.setDisable(true);
-			
+
 			lblVeiculo.setDisable(true);
 			cboVeiculo.setDisable(true);
-			
+
 			btnConcPediAcomp.setOnAction(v -> acompConcluido());
 			btnConcPediAcomp.setOnKeyPressed(f -> {
 				if (f.getCode() == KeyCode.ENTER){
@@ -346,39 +346,39 @@ public class AcompanhamentoController implements Initializable{
 	}
 
 	private void acompConcluido() {
-		
+
 		tpAcomp.getSelectionModel().select(0);
 		tabEditAcomp.setDisable(true);
 		tabVisuaAcomp.setDisable(false);
 	}
 
 	private void popularComboBox() {
-		
+
 		if(cboStatus != null){
 			cboStatus.getItems().clear();
 			cboStatus.getItems().addAll(StatusDAO.selecionarTodosStatus());
 		}
-		
+
 		if(cboTransp != null){
 			cboTransp.getItems().clear();
 			cboTransp.getItems().addAll(TransportadoraDAO.selecionarTodas());
 		}
-		
+
 		cboStatus.valueProperty().addListener(new ChangeListener<Status>() {
 			@Override
 			public void changed(ObservableValue<? extends Status> arg0, Status arg1, Status arg2) {
-						
+
 				if(cboStatus.getSelectionModel().getSelectedItem() != null){
-				
+
 					if(cboStatus.getSelectionModel().getSelectedItem().getStatusPedido().equals("Enviado para a Transportadora")){
-							cboTransp.setDisable(false);
-							lblTransp.setDisable(false);
+						cboTransp.setDisable(false);
+						lblTransp.setDisable(false);
 					}
 					else{
 						lblTransp.setDisable(true);
 						cboTransp.setDisable(true);
 						cboTransp.getSelectionModel().clearSelection();
-							
+
 						lblVeiculo.setDisable(true);
 						cboVeiculo.setDisable(true);
 						cboVeiculo.getSelectionModel().clearSelection();
@@ -386,20 +386,20 @@ public class AcompanhamentoController implements Initializable{
 				}	
 			}
 		});
-		
+
 		cboTransp.valueProperty().addListener(new ChangeListener<Transportadora>() {
 			@Override
 			public void changed(ObservableValue<? extends Transportadora> observable, Transportadora oldValue,
 					Transportadora newValue) {
-				
+
 				if(cboTransp.getSelectionModel().getSelectedItem() != null){
-					
+
 					lblVeiculo.setDisable(false);
 					cboVeiculo.setDisable(false);
-					
+
 					List<TipoVeiculo> nomeVeiculo = TipoVeiculoDAO
 							.filtrarTransp(cboTransp.getSelectionModel().getSelectedItem().getCodTransportadora());	
-					
+
 					cboVeiculo.getItems().clear();
 					cboVeiculo.getItems().addAll(nomeVeiculo);
 				}
@@ -411,39 +411,37 @@ public class AcompanhamentoController implements Initializable{
 			}
 		});	
 	}
-	
+
 	public void gerarRelatorioAcompanhamento(){
-		
+
 		try {
 			Connection c = MySqlConexao.ConectarDb();
-	
+
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
-			
-			parametros.put("titulo", "RelatÃ³rio de Pedidos");
+
+			parametros.put("titulo", "Relatório de Pedidos");
 			parametros.put("total_pedido", "R$ " + PedidosDAO.somarTodosPedidos(cod_status));
 			parametros.put("cod_pedido", cod_status);
-			parametros.put("imagem_logo", "src/br/com/view/imagens/logo.PNG");
+			parametros.put("imagem_logo", "src/br/com/imagens/logo.PNG");
 
 			JasperPrint jp = JasperFillManager.fillReport("src/br/com/relatorios/relatorio.jasper", parametros, c);			
 			JasperViewer jw = new JasperViewer(jp , false);
-			
+
 			if (jw != null)
 				jw.setVisible(true);
-			
+
 		} catch (Exception e) {
-			System.out.println(e);
-			
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("RelatÃ³rio", "ERRO", "Erro ao gerar relatÃ³rio!");
+			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
 		}
 	}
-	
+
 	private void limparAcompanhamento() {
-		
+
 		cboVeiculo.getSelectionModel().clearSelection();
 		cboTransp.getSelectionModel().clearSelection();
 		cboStatus.getSelectionModel().clearSelection();
-		
+
 	}
 
 }

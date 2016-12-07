@@ -1,14 +1,14 @@
 package br.com.model;
 
 public class UsuarioFuncionarioLoja {
-	
+
 	private int codFuncionarioLoja;
 	private int codUsuario;
 	private int codUsuarioFuncionarioLoja;
-	
+
 	private FuncionarioLoja funcionarioLoja;
 	private Usuario usuario;
-	
+
 	public int getCodFuncionarioLoja() {
 		return codFuncionarioLoja;
 	}
@@ -39,6 +39,6 @@ public class UsuarioFuncionarioLoja {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
+
+
 }

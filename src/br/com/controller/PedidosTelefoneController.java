@@ -45,7 +45,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class PedidosTelefoneController implements Initializable{
-	
+
 	@FXML private AnchorPane anpPedidoTelefone;
 	@FXML private TabPane tbpPedidoTel;
 	@FXML private Tab tabVisuClien;
@@ -56,7 +56,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnEditarClienteFisico;
 	@FXML private Button btnEcluirClienFisico;
 	@FXML private Button btnAdicionarEndeFisico;
-	
+
 	@FXML private TableView <Cliente>tbwClienteFisico;
 	@FXML private TableColumn <Cliente, String>tbcNomeFisi;
 	@FXML private TableColumn <Cliente, String> tbcCpfFisi;
@@ -66,7 +66,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private TableColumn <Cliente, String> tbcSexoFisi;
 	@FXML private TableColumn <Cliente, String> tbcDtNascFisi;
 	@FXML private TableColumn <Cliente, String> tbcCodClienteFisico;
-	
+
 	@FXML private Label lblClienteJuri;
 	@FXML private TextField txtBuscaClienJuridico;
 	@FXML private Button btnAtualizaJuridico;
@@ -74,7 +74,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnEditarClienteJuri;
 	@FXML private Button btnExcluirJuri;
 	@FXML private Button btnAdicionarEndeJuri;
-	
+
 	@FXML private TableView <ClienteJuridico>tbwClienteJuridico;
 	@FXML private TableColumn <ClienteJuridico ,String>tbcNomeJuri;
 	@FXML private TableColumn <ClienteJuridico ,String> tbcRazaoJuri;
@@ -83,9 +83,9 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private TableColumn <ClienteJuridico ,String> tbcEmailPricJuri;
 	@FXML private TableColumn <ClienteJuridico ,String> tbcEmailContaJuri;
 	@FXML private TableColumn <ClienteJuridico ,String> tbcCodJuri;
-	
+
 	@FXML private TableView <Endereco>tbwEndereco;
-	
+
 	@FXML private TableColumn <Endereco, String>tbcLogradouro;
 	@FXML private TableColumn <Endereco, String> tbcCep;
 	@FXML private TableColumn <Endereco, String> tbcNro;
@@ -93,7 +93,7 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private TableColumn <Endereco, String> tbcComplemento;
 	@FXML private TableColumn <Endereco, Cidade> tbcCidade;
 	@FXML private TableColumn <Endereco, String> tbcEstado;
-	
+
 	@FXML private Button btnEditarEndereco;
 	@FXML private Tab tabCadClien;
 	@FXML private Label lblClienteFisico;
@@ -159,19 +159,14 @@ public class PedidosTelefoneController implements Initializable{
 	@FXML private Button btnConcluidoPedTel;
 	@FXML private Button btnCancelarCadClien;
 	@FXML private Label lblClienteFisicoCada;
-	
-	private boolean modo_edicao = false;
-	
-	String sexoSelecionado = "";
-	
-	
-	
-	
 
+	private boolean modo_edicao = false;
+
+	String sexoSelecionado = "";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		Mascaras.mascaraCNPJ(txtCnpjClienJuri);
 		Mascaras.mascaraAltura(txtAlturaClienFisi);
 		Mascaras.mascaraCEP(txtCep);
@@ -184,31 +179,31 @@ public class PedidosTelefoneController implements Initializable{
 		Mascaras.mascaraTelefone(txtTelPrinClienJuri);
 		Mascaras.mascaraCPF(txtCpfClienFisi);
 		Mascaras.mascaraData(txtDtNascClienFisi);
-	
+
 		btnAtualizaFisico.setOnAction(k -> preencherClienteFisico());
 		btnAtualizaFisico.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.ENTER) {
-		    	preencherClienteFisico();
-		    	
-		    }
+			if (e.getCode() == KeyCode.ENTER) {
+				preencherClienteFisico();
+
+			}
 		});
-		
+
 		btnAtualizaJuridico.setOnAction(g -> preencherClienteJuridico());
 		btnAtualizaJuridico.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.ENTER) {
-		    	preencherClienteJuridico();
-		    	
-		    }
+			if (e.getCode() == KeyCode.ENTER) {
+				preencherClienteJuridico();
+
+			}
 		});
-	
+
 		tabCadClien.setDisable(true);
 		tabCadEnde.setDisable(true);
 		tabCadPedi.setDisable(true);
-		
+
 		preencherClienteFisico();
 		preencherClienteJuridico();
 		groupRadio();
-		
+
 		tbwClienteFisico.getSelectionModel().getSelectedIndices().addListener(new ListChangeListener<Integer>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Integer> c) {
@@ -217,7 +212,7 @@ public class PedidosTelefoneController implements Initializable{
 				}
 			}
 		});
-		
+
 		tbwClienteJuridico.getSelectionModel().getSelectedIndices().addListener(new ListChangeListener<Integer>(){
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Integer> c) {
@@ -226,18 +221,18 @@ public class PedidosTelefoneController implements Initializable{
 				}		
 			}		
 		});
-		
+
 		btnNovoClienFisico.setOnAction(c -> cadastrarFisico());
 		btnEcluirClienFisico.setOnAction(e -> excluirClienteFisico());
 		btnEditarClienteFisico.setOnAction(f -> editarFisico());
-		
+
 		btnNovoClienteJuridico.setOnAction(g -> cadastrarJuridico());
 		btnExcluirJuri.setOnAction(c -> excluirClienteJuridico());
 		btnEditarClienteJuri.setOnAction(f -> editarJuridico());
 	}
 
 	private void preencherClienteJuridico() {
-		
+
 		tbcCodJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("codClienteJuridico"));
 		tbcNomeJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("nomeContato"));
 		tbcRazaoJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("razaoSocial"));
@@ -245,102 +240,100 @@ public class PedidosTelefoneController implements Initializable{
 		tbcTelContJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("telefoneContato"));
 		tbcEmailPricJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("emailPrincipal"));
 		tbcEmailContaJuri.setCellValueFactory(new PropertyValueFactory<ClienteJuridico, String>("emailContato"));
-		
+
 		List<ClienteJuridico> lstClieJuridico = ClienteJuridicoDAO.selecionarTodosClientesJuridicos();
-		
+
 		tbwClienteJuridico.getItems().clear();
 		tbwClienteJuridico.getItems().addAll(lstClieJuridico);
-		
+
 	}
 
 	private void preencherClienteFisico() {
-		
+
 		tbcCodClienteFisico.setCellValueFactory(new PropertyValueFactory<Cliente, String>("codCliente"));
 		tbcNomeFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nomeCliente"));
 		tbcCpfFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpfCliente"));
 		tbcDtNascFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dtNascCliente"));
-			
+
 		tbcDtNascFisi.setCellValueFactory(
-			dtNacs -> {
-				SimpleStringProperty propriedade = new SimpleStringProperty();
-				DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
-				if(dtNacs.getValue().getDtNascCliente() != null){
-					propriedade.setValue(dF.format(dtNacs.getValue().getDtNascCliente()));
-				}
-				return propriedade;
-		});
-		
+				dtNacs -> {
+					SimpleStringProperty propriedade = new SimpleStringProperty();
+					DateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+					if(dtNacs.getValue().getDtNascCliente() != null){
+						propriedade.setValue(dF.format(dtNacs.getValue().getDtNascCliente()));
+					}
+					return propriedade;
+				});
+
 		tbcTelFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefoneCliente"));
 		tbcCelFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("celularCliente"));
 		tbcEmailFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("emailCliente"));
 		tbcSexoFisi.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
-		
+
 		List<Cliente> lstClienteFisico = ClienteDAO.selecionarTodosClientes();
-		
+
 		tbwClienteFisico.getItems().clear();
 		tbwClienteFisico.getItems().addAll(lstClienteFisico);	
 	}
-	
+
 	private void cadastrarFisico() {
-		
+
 		tbpPedidoTel.getSelectionModel().select(1);
 		tabCadClien.setDisable(false);
 		tabCadClien.setText("Cadastrar cliente");
 		lblClienteFisicoCada.setText("Cadastrar cliente físico");
 		tabVisuClien.setDisable(true);
-		
+
 		btnConcluidoPedTel.setDisable(true);
-		
+
 		desabilitaFisico(false);
 		desabilitaJuridico(true);
-	
+
 		btnCadastrarCliente.setText("Cadastrar");
 		btnCadastrarCliente.setOnAction(f -> inserirFisico());
 		btnCadastrarCliente.setOnKeyPressed(f -> {
-		    if (f.getCode() == KeyCode.ENTER) {
-		    	inserirFisico();
-		    }
+			if (f.getCode() == KeyCode.ENTER) {
+				inserirFisico();
+			}
 		});
-		
+
 		btnCancelar.setOnAction(l -> cancelar());
 		btnCancelar.setOnKeyPressed(i -> {
-		    if (i.getCode() == KeyCode.ENTER) {
-		    	cancelar();
-		    }
+			if (i.getCode() == KeyCode.ENTER) {
+				cancelar();
+			}
 		});	
-		
-		
 	}
-	
+
 	private void cancelar() {
 		tbpPedidoTel.getSelectionModel().select(0);
-		
+
 		tabCadClien.setDisable(true);
 		tabVisuClien.setDisable(false);
-		
+
 		limparClienteFisico();
 	}
 
 	private void inserirFisico() {
-		
+
 		if(! modo_edicao){
-		
+
 			if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
 			{
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Pedidos Telefone", "ERRO", "Preencha todos os campos!");	
 			}
 			else{
-				
+
 				Cliente cliente = new Cliente();
-				
+
 				if(rbSexoM.isSelected()){
 					sexoSelecionado = "M";
 				}
 				if(rbSexoF.isSelected()){
 					sexoSelecionado = "F";
 				}
-				
+
 				cliente.setAltura(Float.parseFloat(txtAlturaClienFisi.getText()));
 				cliente.setCelularCliente(txtCelClienFisi.getText());
 				cliente.setCpfCliente(txtCpfClienFisi.getText());
@@ -349,44 +342,43 @@ public class PedidosTelefoneController implements Initializable{
 				cliente.setPeso(Float.parseFloat(txtPesoClienFisi.getText()));
 				cliente.setSexo(sexoSelecionado);
 				cliente.setTelefoneCliente(txtTelClienFisi.getText());
-				
+
 				try {
 					cliente.setDtNascCliente(FormataData.formataData(txtDtNascClienFisi.getText()));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				if(ClienteDAO.inserirCliente(cliente)){
-					
+
 					Alerta aletaInfo = new Alerta();
 					aletaInfo.alertaInformation("Pedido telefone", "Sucesso", "Cliente cadastrado com sucesso!");
-			
+
 					btnCancelarCadClien.setDisable(true);
 					btnCadastrarCliente.setDisable(true);
-					
+
 					btnConcluidoPedTel.setDisable(false);
 					btnConcluidoPedTel.setOnAction(j -> concluido());	
 					btnConcluidoPedTel.setOnKeyPressed(k -> {
-					    if (k.getCode() == KeyCode.ENTER) {
-					    	concluido();
-					    }
+						if (k.getCode() == KeyCode.ENTER) {
+							concluido();
+						}
 					});
-					
+
 					limparClienteFisico();
 					preencherClienteFisico();
 					preencherEnderecoFisico();
 				}
 				else{
-					
 					Alerta alertaErro = new Alerta(); 
 					alertaErro.alertaErro("Pedido telefone", "ERRO", "Cliente não cadastrado!");
 				}
 			}
 		}
 		else{
-			
+
 			Cliente clie = tbwClienteFisico.getSelectionModel().getSelectedItem();
-		
+
 			if(clie == null){
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Pedido telefone", "ERRO", "Nenhum item selecionado!");
@@ -395,10 +387,10 @@ public class PedidosTelefoneController implements Initializable{
 				tabVisuClien.setDisable(true);
 				tabCadClien.setDisable(false);
 				tbpPedidoTel.getSelectionModel().select(1);
-				
+
 				lblClienteFisicoCada.setText("Atualizar cliente físico");
 				btnCadastrarCliente.setText("Atualizar");
-				
+
 				txtNomeClienFisi.setText(clie.getNomeCliente());
 				txtTelClienFisi.setText(clie.getTelefoneCliente());
 				txtCpfClienFisi.setText(clie.getCpfCliente());
@@ -406,21 +398,21 @@ public class PedidosTelefoneController implements Initializable{
 				txtEmailClienFisi.setText(clie.getEmailCliente());
 				txtPesoClienFisi.setText(String.valueOf(clie.getPeso()));
 				txtAlturaClienFisi.setText(String.valueOf(clie.getAltura()));
-			
+
 				String sexodobanco = clie.getSexo();
-				
+
 				if(sexodobanco == "M"){
 					rbSexoM.setSelected(true);
 				}
 				if(sexodobanco == "F"){
 					rbSexoF.setSelected(true);
 				}
-				
+
 				Date data_nasc = clie.getDtNascCliente();
 				String dataBr =	FormataData.formataDataBr(data_nasc);
-			
+
 				txtDtNascClienFisi.setText(dataBr);
-					
+
 				btnCadastrarCliente.setOnAction(c -> atualizarClienteFisico());
 				btnCancelarCadClien.setOnAction(c -> cancelar());
 				btnConcluidoPedTel.setOnAction(d -> concluido());
@@ -429,20 +421,20 @@ public class PedidosTelefoneController implements Initializable{
 	}
 
 	private void atualizarClienteFisico() {
-		
+
 		Cliente codClienteUp = tbwClienteFisico.getSelectionModel().getSelectedItem();
-		
+
 		Cliente clienteUp = new Cliente();
-		
+
 		if(rbSexoM.isSelected()){
 			sexoSelecionado = "M";
 		}
 		if(rbSexoF.isSelected()){
 			sexoSelecionado = "F";
 		}
-		
+
 		clienteUp.setCodCliente(codClienteUp.getCodCliente());
-		
+
 		clienteUp.setAltura(Float.parseFloat(txtAlturaClienFisi.getText()));
 		clienteUp.setCelularCliente(txtCelClienFisi.getText());
 		clienteUp.setCpfCliente(txtCpfClienFisi.getText());
@@ -451,35 +443,35 @@ public class PedidosTelefoneController implements Initializable{
 		clienteUp.setPeso(Float.parseFloat(txtPesoClienFisi.getText()));
 		clienteUp.setSexo(sexoSelecionado);
 		clienteUp.setTelefoneCliente(txtTelClienFisi.getText());
-		
+
 		try {
 			clienteUp.setDtNascCliente(FormataData.formataData(txtDtNascClienFisi.getText()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if(validarCamposFisico(txtNomeClienFisi.getText(),txtDtNascClienFisi.getText(),txtTelClienFisi.getText(),txtCpfClienFisi.getText(),txtCelClienFisi.getText(),txtEmailClienFisi.getText(),txtPesoClienFisi.getText(),txtAlturaClienFisi.getText()))
 		{
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Atualizar cliente físico", "ERRO", "Preencha todos os campos!");	
 		}
 		else{
-			
+
 			if(ClienteDAO.updateCliente(clienteUp)){
-				
+
 				limparClienteFisico();
-				
+
 				Alerta aletaInfo = new Alerta();
 				aletaInfo.alertaInformation("Cliente físico", "Sucesso", "Cliente atualizado com sucesso!");
-				
+
 				btnConcluidoPedTel.setDisable(false);
 				btnCancelarCadClien.setDisable(true);
 				btnCadastrarCliente.setDisable(true);
-				
+
 				preencherClienteFisico();
 				preencherClienteJuridico();
 				preencherEnderecoFisico();
-				
+
 				modo_edicao = false;
 			}
 			else{
@@ -488,59 +480,59 @@ public class PedidosTelefoneController implements Initializable{
 			}
 		}	
 	}
-	
+
 	public void editarFisico(){
-		
+
 		tabCadClien.setText("Atualizar cliente fisíco");
 		tabCadClien.setDisable(false);
-		
+
 		desabilitaJuridico(true);
 		desabilitaFisico(false);
-		
+
 		btnCadastrarCliente.setDisable(false);
 		btnCancelarCadClien.setDisable(false);
 		btnConcluidoPedTel.setDisable(true);
-		
+
 		modo_edicao = true;
-		
+
 		inserirFisico();
 	}
-	
+
 	public void excluirClienteFisico(){
-		
+
 		Cliente cl = tbwClienteFisico.getSelectionModel().getSelectedItem();
-		
+
 		if(cl == null){
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Cliente físico", "ERRO", "Nenhum item selecionado!");
 		}
 		else{
-			
+
 			Alert a = new Alert(AlertType.CONFIRMATION);
 			a.setTitle("Cliente físico");
 			a.setHeaderText("Deseja excluir Cliente ?");
 			a.setContentText("Tem certeza?");
-			
+
 			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
-			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
-			
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
+
 			ButtonType sim = new ButtonType("Sim");
 			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
-			
+
 			DialogPane dialogPane = a.getDialogPane();
 			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
-			
+
 			a.getButtonTypes().setAll(sim, nao);
-			
+
 			Optional<ButtonType> resultado = a.showAndWait();
-			
+
 			if (resultado.get() == sim){
-				
+
 				if(ClienteDAO.deleteCliente(cl.getCodCliente())){
-				
+
 					Alerta aletaInfo = new Alerta();
 					aletaInfo.alertaInformation("Cliente físico", "Sucesso", "Cliente excluído com sucesso!");
-					
+
 					preencherClienteFisico();
 				}
 				else{
@@ -550,7 +542,7 @@ public class PedidosTelefoneController implements Initializable{
 			}
 		}
 	}
-	
+
 	private void limparClienteFisico() {
 		txtNomeClienFisi.clear();
 		txtTelClienFisi.clear();
@@ -566,13 +558,13 @@ public class PedidosTelefoneController implements Initializable{
 
 	private void concluido() {
 		tbpPedidoTel.getSelectionModel().select(0);
-		
+
 		tabVisuClien.setDisable(false);
 		tabCadClien.setDisable(true);
 	}
 
 	public boolean validarCamposFisico(String... camposFisico) {
-		
+
 		boolean preenchido = false;
 		for(String item : camposFisico){
 			if(item.isEmpty()){
@@ -584,9 +576,9 @@ public class PedidosTelefoneController implements Initializable{
 		}
 		return preenchido;
 	}
-	
+
 	public boolean validarCamposJuridico(String... camposJuridico) {
-		
+
 		boolean preenchido = false;
 		for(String item : camposJuridico){
 			if(item.isEmpty()){
@@ -621,7 +613,7 @@ public class PedidosTelefoneController implements Initializable{
 		rbSexoM.setDisable(desabilitar);
 		rbSexoF.setDisable(desabilitar);
 	}
-	
+
 	public void desabilitaJuridico(boolean habilitar){
 		lblClienteJuridico.setDisable(habilitar);
 		lblNomeContato.setDisable(habilitar);
@@ -641,51 +633,51 @@ public class PedidosTelefoneController implements Initializable{
 		lblEmailContJuridico.setDisable(habilitar);
 		txtEmailContClienJuri.setDisable(habilitar);
 	}
-	
+
 	private void cadastrarJuridico(){
-		
+
 		tbpPedidoTel.getSelectionModel().select(1);
 		tabCadClien.setDisable(false);
-		
+
 		tabCadClien.setText("Cadastrar cliente");
 		lblClienteJuridico.setText("Cadastrar cliente jurídico");
 		tabVisuClien.setDisable(true);
-		
+
 		btnConcluidoPedTel.setDisable(true);
-		
+
 		desabilitaFisico(true);
 		desabilitaJuridico(false);
-		
+
 		btnCadastrarCliente.setText("Cadastrar");
 		btnCadastrarCliente.setOnAction(f -> inserirJuridico());
 		btnCadastrarCliente.setOnKeyPressed(f -> {
-		    if (f.getCode() == KeyCode.ENTER) {
-		    	inserirJuridico();
-		    }
+			if (f.getCode() == KeyCode.ENTER) {
+				inserirJuridico();
+			}
 		});
-		
+
 		btnCancelar.setOnAction(l -> cancelar());
 		btnCancelar.setOnKeyPressed(i -> {
-		    if (i.getCode() == KeyCode.ENTER) {
-		    	cancelar();
-		    }
+			if (i.getCode() == KeyCode.ENTER) {
+				cancelar();
+			}
 		});	
-		
+
 	}
-	
+
 	private void inserirJuridico() {
-		
+
 		if(! modo_edicao){
-			
+
 			if(validarCamposJuridico(txtNomeClienJuri.getText(),txtTelPrinClienJuri.getText(),txtRazaoClienJuri.getText(),txtTelContClienJuri.getText(),txtCnpjClienJuri.getText(),txtEmailPrinClienJuri.getText(),txtEmailContClienJuri.getText()))
 			{
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Pedidos Telefone", "ERRO", "Preencha todos os campos!");	
 			}
 			else{
-				
+
 				ClienteJuridico clienteJuridico = new ClienteJuridico();
-				
+
 				clienteJuridico.setNomeContato(txtNomeClienJuri.getText());
 				clienteJuridico.setRazaoSocial(txtRazaoClienJuri.getText());
 				clienteJuridico.setInscricaoEstadual(txtInscricao.getText());
@@ -694,23 +686,23 @@ public class PedidosTelefoneController implements Initializable{
 				clienteJuridico.setTelefoneContato(txtTelContClienJuri.getText());
 				clienteJuridico.setEmailPrincipal(txtEmailPrinClienJuri.getText());
 				clienteJuridico.setEmailContato(txtEmailContClienJuri.getText());
-				
+
 				if(ClienteJuridicoDAO.inserirClienteJuridico(clienteJuridico)){
-					
+
 					Alerta aletaInfo = new Alerta();
 					aletaInfo.alertaInformation("Pedido telefone", "Sucesso", "Cliente cadastrado com sucesso!");
-			
+
 					btnCancelarCadClien.setDisable(true);
 					btnCadastrarCliente.setDisable(true);
-					
+
 					btnConcluidoPedTel.setDisable(false);
 					btnConcluidoPedTel.setOnAction(j -> concluido());	
 					btnConcluidoPedTel.setOnKeyPressed(k -> {
-					    if (k.getCode() == KeyCode.ENTER) {
-					    	concluido();
-					    }
+						if (k.getCode() == KeyCode.ENTER) {
+							concluido();
+						}
 					});
-					
+
 					limparClienteJuridico();
 					preencherClienteJuridico();	
 				}
@@ -721,9 +713,9 @@ public class PedidosTelefoneController implements Initializable{
 			}
 		}
 		else{
-			
+
 			ClienteJuridico clieJuri = tbwClienteJuridico.getSelectionModel().getSelectedItem();
-			
+
 			if(clieJuri == null){
 				Alerta alertaErro = new Alerta(); 
 				alertaErro.alertaErro("Pedido telefone", "ERRO", "Nenhum item selecionado!");
@@ -732,10 +724,10 @@ public class PedidosTelefoneController implements Initializable{
 				tabVisuClien.setDisable(true);
 				tabCadClien.setDisable(false);
 				tbpPedidoTel.getSelectionModel().select(1);
-				
+
 				lblClienteJuridico.setText("Atualizar cliente jurídico");
 				btnCadastrarCliente.setText("Atualizar");
-				
+
 				txtNomeClienJuri.setText(clieJuri.getNomeContato());
 				txtTelPrinClienJuri.setText(clieJuri.getTelefonePrincipal());
 				txtRazaoClienJuri.setText(clieJuri.getRazaoSocial());
@@ -744,7 +736,7 @@ public class PedidosTelefoneController implements Initializable{
 				txtCnpjClienJuri.setText(clieJuri.getCnpj());
 				txtEmailPrinClienJuri.setText(clieJuri.getEmailPrincipal());
 				txtEmailContClienJuri.setText(clieJuri.getEmailContato());
-				
+
 				btnCadastrarCliente.setOnAction(c -> atualizarClienteJuridico());
 				btnCancelarCadClien.setOnAction(c -> cancelar());
 				btnConcluidoPedTel.setOnAction(d -> concluido());
@@ -753,12 +745,12 @@ public class PedidosTelefoneController implements Initializable{
 	}
 
 	private void atualizarClienteJuridico() {
-		
+
 		ClienteJuridico codClieJuriUp = tbwClienteJuridico.getSelectionModel().getSelectedItem();
-		
+
 		ClienteJuridico clieJuriUp = new ClienteJuridico();
-		
-		
+
+
 		clieJuriUp.setCodClienteJuridico(codClieJuriUp.getCodClienteJuridico());
 		clieJuriUp.setNomeContato(txtNomeClienJuri.getText());
 		clieJuriUp.setRazaoSocial(txtRazaoClienJuri.getText());
@@ -768,28 +760,28 @@ public class PedidosTelefoneController implements Initializable{
 		clieJuriUp.setTelefoneContato(txtTelContClienJuri.getText());
 		clieJuriUp.setEmailPrincipal(txtEmailPrinClienJuri.getText());
 		clieJuriUp.setEmailContato(txtEmailContClienJuri.getText());
-		
+
 		if(validarCamposJuridico(txtNomeClienJuri.getText(),txtTelPrinClienJuri.getText(),txtRazaoClienJuri.getText(),txtTelContClienJuri.getText(),txtCnpjClienJuri.getText(),txtEmailPrinClienJuri.getText(),txtEmailContClienJuri.getText()))
 		{
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Atualizar cliente jurídico", "ERRO", "Preencha todos os campos!");	
 		}
 		else{
-			
+
 			if(ClienteJuridicoDAO.updateClienteJuridico(clieJuriUp)){
-				
+
 				limparClienteJuridico();
-				
+
 				Alerta aletaInfo = new Alerta();
 				aletaInfo.alertaInformation("Cliente jurídico", "Sucesso", "Cliente atualizado com sucesso!");
-				
+
 				btnConcluidoPedTel.setDisable(false);
 				btnCancelarCadClien.setDisable(true);
 				btnCadastrarCliente.setDisable(true);
-				
+
 				preencherClienteJuridico();
 				preencherEnderecoFisico();
-				
+
 				modo_edicao = false;	
 			}
 			else{
@@ -797,61 +789,61 @@ public class PedidosTelefoneController implements Initializable{
 				alertaErro.alertaErro("Cliente jurídico", "ERRO", "Erro ao atualizar Cliente físico!");
 			}
 		}
-		
+
 	}
-	
+
 	public void editarJuridico(){
-		
+
 		tabCadClien.setText("Atualizar cliente jurídico");
 		tabCadClien.setDisable(false);
-		
+
 		desabilitaFisico(true);
 		desabilitaJuridico(false);
-		
+
 		btnCadastrarCliente.setDisable(false);
 		btnCancelarCadClien.setDisable(false);
 		btnConcluidoPedTel.setDisable(true);
-		
+
 		modo_edicao = true;
-		
+
 		inserirJuridico();	
 	}
-	
+
 	public void excluirClienteJuridico(){
-		
+
 		ClienteJuridico cj = tbwClienteJuridico.getSelectionModel().getSelectedItem();
-		
+
 		if(cj == null){
 			Alerta alertaErro = new Alerta(); 
 			alertaErro.alertaErro("Cliente jurídico", "ERRO", "Nenhum item selecionado!");
 		}
 		else{
-			
+
 			Alert a = new Alert(AlertType.CONFIRMATION);
 			a.setTitle("Cliente jurídico");
 			a.setHeaderText("Deseja excluir Cliente ?");
 			a.setContentText("Tem certeza?");
-			
+
 			Stage s = (Stage) a.getDialogPane().getScene().getWindow();
-			s.getIcons().add(new Image(this.getClass().getResource("/br/com/view/imagens/icone.png").toString()));
-			
+			s.getIcons().add(new Image(this.getClass().getResource("/br/com/imagens/icone.png").toString()));
+
 			ButtonType sim = new ButtonType("Sim");
 			ButtonType nao = new ButtonType("Não" , ButtonData.CANCEL_CLOSE);
-			
+
 			DialogPane dialogPane = a.getDialogPane();
 			dialogPane.getStylesheets().add(getClass().getResource("/br/com/view/application.css").toExternalForm());
-			
+
 			a.getButtonTypes().setAll(sim, nao);
-			
+
 			Optional<ButtonType> resultado = a.showAndWait();
-			
+
 			if (resultado.get() == sim){
-				
+
 				if(ClienteJuridicoDAO.deleteCliente(cj.getCodClienteJuridico())){
-				
+
 					Alerta aletaInfo = new Alerta();
 					aletaInfo.alertaInformation("Cliente jurídico", "Sucesso", "Cliente excluído com sucesso!");
-					
+
 					preencherClienteJuridico();
 				}
 				else{
@@ -874,9 +866,9 @@ public class PedidosTelefoneController implements Initializable{
 	}
 
 	private void preencherEnderecoFisico(){
-		
+
 		Cliente cliente = tbwClienteFisico.getSelectionModel().getSelectedItem();
-	
+
 		tbcLogradouro.setCellValueFactory(new PropertyValueFactory<Endereco, String>("logradouro"));
 		tbcCep.setCellValueFactory(new PropertyValueFactory<Endereco, String>("cep"));
 		tbcNro.setCellValueFactory(new PropertyValueFactory<Endereco, String>("numero"));
@@ -884,17 +876,17 @@ public class PedidosTelefoneController implements Initializable{
 		tbcComplemento.setCellValueFactory(new PropertyValueFactory<Endereco, String>("endereco"));
 		tbcCidade.setCellValueFactory(new PropertyValueFactory<Endereco, Cidade>("cidade"));
 		tbcEstado.setCellValueFactory(new PropertyValueFactory<Endereco, String>("codEstado"));
-	
+
 		if (cliente != null){
 			List<Endereco> lstClienteEnd = EnderecoDAO.filtrarEnderecoCliente(cliente.getCodCliente());
 			tbwEndereco.getItems().clear();
 			tbwEndereco.getItems().addAll(lstClienteEnd);
 		}
 	}	
-	
+
 	/*private void preencherEnderecoJuridico(){	
 		ClienteJuridico clie_juri = tbwClienteJuridico.getSelectionModel().getSelectedItem();
-		
+
 		tbcLogradouro.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Endereco>("codEndereco"));
 		tbcCep.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Endereco>("cep"));
 		tbcNro.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Endereco>("numero"));
@@ -902,26 +894,22 @@ public class PedidosTelefoneController implements Initializable{
 		tbcComplemento.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Endereco>("endereco"));
 		tbcCidade.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Cidade>("cidade"));
 		tbcEstado.setCellValueFactory(new PropertyValueFactory<ClienteEndereco, Estado>("estado"));
-		
+
 		if (clie_juri != null){
-			
+
 			List<ClienteJuridicoEndereco> lstClieJuriEnde = ClienteJuridicoEnderecoDAO.filtrarClienteJuridicoEndereco(clie_juri.getCodClienteJuridico());
 			tbwEndereco.getItems().clear();
 			tbwEndereco.getItems().addAll(lstClieJuriEnde);
 		}
-		
+
 	}*/
-	
+
 	private void groupRadio() {
-		
+
 		final ToggleGroup sexo = new ToggleGroup();
-		
+
 		rbSexoF.setToggleGroup(sexo);
 		rbSexoM.setToggleGroup(sexo);
-		
-		
-		
-		
 	}
 
 }

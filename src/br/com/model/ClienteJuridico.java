@@ -12,7 +12,6 @@ public class ClienteJuridico {
 	private String emailPrincipal;
 	private String emailContato;
 	
-	
 	public int getCodClienteJuridico() {
 		return codClienteJuridico;
 	}

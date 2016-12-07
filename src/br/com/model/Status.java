@@ -4,7 +4,7 @@ public class Status {
 
 	private int codStatus;
 	private String statusPedido;
-	
+
 	public int getCodStatus() {
 		return codStatus;
 	}
@@ -17,10 +17,10 @@ public class Status {
 	public void setStatusPedido(String statusPedido) {
 		this.statusPedido = statusPedido;
 	}
-	
+
 	@Override
 	public String toString() {
 		return statusPedido;
 	}
-		
+
 }

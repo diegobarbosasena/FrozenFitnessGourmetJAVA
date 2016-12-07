@@ -4,7 +4,7 @@ public class TipoVeiculo {
 
 	private int codTipoVeiculo;
 	private String nomeTipoVeiculo;
-	
+
 	public int getCodTipoVeiculo() {
 		return codTipoVeiculo;
 	}
@@ -17,11 +17,10 @@ public class TipoVeiculo {
 	public void setNomeTipoVeiculo(String nomeTipoVeiculo) {
 		this.nomeTipoVeiculo = nomeTipoVeiculo;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return nomeTipoVeiculo ;
 	}
-	
+
 }

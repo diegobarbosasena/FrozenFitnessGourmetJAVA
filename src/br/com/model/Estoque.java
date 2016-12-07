@@ -8,7 +8,6 @@ public class Estoque {
 	private Date dtValidade;
 	private int qtd;
 	private int qtdMin;
-	
 
 	public int getCodEstoque() {
 		return codEstoque;
@@ -34,5 +33,5 @@ public class Estoque {
 	public void setQtdMin(int qtdMin) {
 		this.qtdMin = qtdMin;
 	}
-	
+
 }

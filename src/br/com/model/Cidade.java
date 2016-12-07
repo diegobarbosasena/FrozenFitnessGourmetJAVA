@@ -5,9 +5,9 @@ public class Cidade {
 	private int codCidade;
 	private String NomeCidade;
 	private int codEstado;
-	
+
 	private Estado estado;
-	
+
 	public int getCodCidade() {
 		return codCidade;
 	}
@@ -32,10 +32,10 @@ public class Cidade {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return NomeCidade;
 	}
-	
+
 }

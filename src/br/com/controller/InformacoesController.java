@@ -15,22 +15,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class InformacoesController implements Initializable{
-	
+
 	@FXML private AnchorPane anpInfo;
 	@FXML private Label lblUsuario;
 	@FXML private Label lblHora;
 	@FXML private Label lblData;
 	@FXML private Button btnSair;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		btnSair.setOnAction(s -> sair());
-		
+
 		lblUsuario.setText(LoginController.usuario_login);
-		
+
 		SimpleDateFormat d = new SimpleDateFormat("dd/MM/YYYY");
 		lblData.setText(d.format(new Date()));
-			
+
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -52,11 +52,11 @@ public class InformacoesController implements Initializable{
 		});
 		t.start();
 	}
-	
+
 	private void sair() {
 		Janelas login = new Janelas();
 		login.abrir("Login.fxml", new Stage(), "Login", false);
-		
+
 		Stage layout = (Stage)btnSair.getScene().getWindow();
 		layout.close();
 	}

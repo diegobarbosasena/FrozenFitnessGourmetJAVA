@@ -204,4 +204,34 @@ TextField, PasswordField, DatePicker{
  	-fx-background-repeat: no-repeat ;
  	-fx-background-position: center  ;
 }
+
+#btnFecharLogin{
+ 	-fx-background-image: url(/br/com/imagens/close.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMinimizarLogin{
+	-fx-background-image: url(/br/com/imagens/remove.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+
+#btnFecharLogin:hover{
+ 	-fx-background-color: #FE7402;
+ 	-fx-border-radius: 4;
+ 	-fx-background-image: url(/br/com/imagens/closee.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
+#btnMinimizarLogin:hover{
+	-fx-border-color: #FE7402;
+	-fx-border-radius: 4;
+	-fx-background-image: url(/br/com/imagens/remove.png);
+ 	-fx-background-size: 20;
+ 	-fx-background-repeat: no-repeat ;
+ 	-fx-background-position: center  ;
+}
  
