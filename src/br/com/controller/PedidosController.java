@@ -210,7 +210,7 @@ public class PedidosController implements Initializable{
 
 			HashMap<String, Object> parametros = new HashMap<String, Object>();
 
-			parametros.put("titulo", "Relatório de Pedidos");
+			parametros.put("titulo", "Relatorio de Pedidos");
 			parametros.put("total", "R$ " + PedidosDAO.somarTodosPedidos());
 			parametros.put("imagem_logo", "src/br/com/imagens/logo.PNG");
 
@@ -222,7 +222,7 @@ public class PedidosController implements Initializable{
 
 		} catch (Exception e) {
 			Alerta alertaErro = new Alerta(); 
-			alertaErro.alertaErro("Relatório", "ERRO", "Erro ao gerar relatório!");
+			alertaErro.alertaErro("Relatorio", "ERRO", "Erro ao gerar relatorio!");
 		}
 	}
 

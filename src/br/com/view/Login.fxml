@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="anpLogin" minHeight="500.0" minWidth="450.0" style="-fx-background-color: #FFF; -fx-border-color: #00B348;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controller.LoginController">
    <children>
-      <Button fx:id="btnMinimizarLogin" layoutX="360.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao_janela">
+      <Button fx:id="btnMinimizarLogin" layoutX="355.0" layoutY="10.0" mnemonicParsing="false" styleClass="botao_janela">
          <graphic>
             <ImageView fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <viewport>
@@ -37,7 +37,7 @@
                      <children>
                         <ImageView fitHeight="142.0" fitWidth="260.0" layoutX="93.0" layoutY="36.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="/br/com/imagens/logo.png" />
+                              <Image url="br/com/imagens/logo.PNG" />
                            </image>
                        </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="173.0" text="Usuário">
